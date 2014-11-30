@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes
+END
+ASIHTTPRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIHTTPRequest.m
+END
+ASICacheDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASICacheDelegate.h
+END
+ASINetworkQueue.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASINetworkQueue.h
+END
+ASIDataDecompressor.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIDataDecompressor.h
+END
+ASIAuthenticationDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIAuthenticationDialog.h
+END
+ASIProgressDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIProgressDelegate.h
+END
+CheckNetwork.m
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/CheckNetwork.m
+END
+ASIDownloadCache.m
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIDownloadCache.m
+END
+ASINetworkQueue.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASINetworkQueue.m
+END
+Reachability.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/Reachability.h
+END
+ASIDataDecompressor.m
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIDataDecompressor.m
+END
+ASIAuthenticationDialog.m
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIAuthenticationDialog.m
+END
+ASIFormDataRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIFormDataRequest.h
+END
+Reachability.m
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/Reachability.m
+END
+ASIInputStream.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIInputStream.h
+END
+ASIFormDataRequest.m
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIFormDataRequest.m
+END
+ASIHTTPRequestConfig.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIHTTPRequestConfig.h
+END
+ASIInputStream.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIInputStream.m
+END
+ASIHTTPRequestDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIHTTPRequestDelegate.h
+END
+ASIDataCompressor.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIDataCompressor.h
+END
+ASIHTTPRequest.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIHTTPRequest.h
+END
+CheckNetwork.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/CheckNetwork.h
+END
+ASIDownloadCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIDownloadCache.h
+END
+ASIDataCompressor.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/Zhxq-ios/!svn/ver/1/zhxq/Classes/ASIDataCompressor.m
+END
