@@ -39,14 +39,20 @@
 #define AppSecret @"Hr54hiz7"
 
 #define api_base_url @"http://114.215.145.29:8080"
+//登录接口
 #define api_login @"/zhxq_api/regUser/login.htm"
+//查询城市接口
 #define api_findAllCity @"/zhxq_api/params/findAllCity.htm"
+//查询城市小区接口
 #define api_findCellListByCity @"/zhxq_api/params/findCellListByCity.htm"
+//注册接口
+#define api_regUser @"/zhxq_api/regUser/regUser.htm"
 
 #define servicephone @"4006967020"
 
 #define SettingTableIdentifier @"SettingTableIdentifier"
-
+#define NoticeNewCellIdentifier @"NoticeNewCellIdentifier"
+#define NoticeOldCellIdentifier @"NoticeOldCellIdentifier"
 
 #define createshoppingcart @"create table shoppingcart (id integer primary key autoincrement not null,goodid text,title text,thumb text,price text,store_name text,business_id text,number int,user_id text)"
 
@@ -60,6 +66,8 @@
 
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+#define IS_IPHONE_6 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )667 ) < DBL_EPSILON )
+#define IS_IPHONE_6plus ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )1104 ) < DBL_EPSILON )
 
 #define IS_IOS7 ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
 #define IS_IOS8 ([[[UIDevice currentDevice]systemVersion]floatValue]>=8.0)

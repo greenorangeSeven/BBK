@@ -7,6 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterStep3View">
             <connections>
+                <outlet property="finishBtn" destination="mNd-5e-zdt" id="OVh-AG-C2p"/>
+                <outlet property="getValidataCodeBtn" destination="4pR-ZO-gac" id="qo1-Xu-Xg4"/>
+                <outlet property="mobileNoTf" destination="hEr-tZ-Aiv" id="DuH-Sa-I8V"/>
+                <outlet property="passwordAgainTf" destination="n9c-4N-l9x" id="YgO-t8-aMp"/>
+                <outlet property="passwordTf" destination="sZn-TC-0RO" id="eav-R9-qWs"/>
+                <outlet property="scrollView" destination="Cfa-MF-ef5" id="dgG-AL-oRr"/>
+                <outlet property="validateCodeTf" destination="Plr-Jh-gce" id="F2B-CR-ChL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -75,20 +82,22 @@
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sZn-TC-0RO">
                                     <rect key="frame" x="12" y="76" width="295" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码确认" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n9c-4N-l9x">
                                     <rect key="frame" x="12" y="112" width="295" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pR-ZO-gac">
                                     <rect key="frame" x="204" y="40" width="107" height="30"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                     <state key="normal" title="获取验证码">
                                         <color key="titleColor" red="0.98431372549999996" green="0.26274509800000001" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="getValidateCodeAction:" destination="-1" eventType="touchUpInside" id="DuJ-T9-yPc"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -98,6 +107,9 @@
                             <state key="normal" title="注 册 完 成" backgroundImage="button_orange">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="finishAction:" destination="-1" eventType="touchUpInside" id="PLY-6m-BaH"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="注册成功后，请使用手机号、密码登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuv-Rv-baI">
                             <rect key="frame" x="35" y="335" width="250" height="21"/>

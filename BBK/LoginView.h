@@ -10,6 +10,7 @@
 
 @interface LoginView : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UITextField *mobileNoTf;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTf;

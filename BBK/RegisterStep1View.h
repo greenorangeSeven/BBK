@@ -10,6 +10,7 @@
 
 @interface RegisterStep1View : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *cityTf;
 @property (weak, nonatomic) IBOutlet UITextField *communityTf;
 @property (weak, nonatomic) IBOutlet UITextField *buildingTf;

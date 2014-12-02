@@ -11,6 +11,11 @@
 #import "NSString+STRegex.h"
 #import "UserInfo.h"
 #import "EGOCache.h"
+#import "PropertyPageView.h"
+#import "LifePageView.h"
+#import "MyPageView.h"
+#import "SettingPageView.h"
+#import "AppDelegate.h"
 
 @interface LoginView ()
 
@@ -20,11 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    
-    
-    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,7 +46,6 @@
 - (IBAction)registerAction:(id)sender {
     RegisterStep1View *register1 = [[RegisterStep1View alloc] init];
     [self.navigationController pushViewController:register1 animated:YES];
-    
 }
 
 - (IBAction)loginAction:(id)sender {
@@ -117,7 +117,76 @@
         [userModel saveValue:userInfo.mobileNo ForKey:@"mobileNo"];
         [userModel saveValue:userInfo.nickName ForKey:@"nickName"];
         [[EGOCache globalCache] setObject:userInfo forKey:UserInfoCache withTimeoutInterval:3600 * 24 * 356];
+        
+        if([userInfo.rhUserHouseList count] > 0)
+        {
+            UserHouse *userHouse = (UserHouse *)[userInfo.rhUserHouseList objectAtIndex:0];
+            [userModel saveValue:[userHouse.userTypeId stringValue] ForKey:@"userTypeId"];
+            [userModel saveValue:userHouse.userTypeName ForKey:@"userTypeName"];
+            [userModel saveValue:userHouse.numberName ForKey:@"numberName"];
+            [userModel saveValue:userHouse.buildingName ForKey:@"buildingName"];
+            [userModel saveValue:userHouse.cellName ForKey:@"cellName"];
+            [userModel saveValue:userHouse.cellId ForKey:@"cellId"];
+            [userModel saveValue:userHouse.numberId ForKey:@"numberId"];
+        }
+        else
+        {
+            [userModel saveValue:@"" ForKey:@"userTypeId"];
+            [userModel saveValue:@"" ForKey:@"userTypeName"];
+            [userModel saveValue:@"" ForKey:@"numberName"];
+            [userModel saveValue:@"" ForKey:@"buildingName"];
+            [userModel saveValue:@"" ForKey:@"cellName"];
+            [userModel saveValue:@"" ForKey:@"cellId"];
+            [userModel saveValue:@"" ForKey:@"numberId"];
+        }
+        [self gotoTabbar];
     }
+}
+
+-(void)gotoTabbar
+{
+    //物业
+    PropertyPageView *propertyPage = [[PropertyPageView alloc] initWithNibName:@"PropertyPageView" bundle:nil];
+    propertyPage.tabBarItem.image = [UIImage imageNamed:@"tab_pro"];
+    propertyPage.tabBarItem.title = @"物业";
+    UINavigationController *propertyPageNav = [[UINavigationController alloc] initWithRootViewController:propertyPage];
+   
+    //生活
+    LifePageView *lifePage = [[LifePageView alloc] initWithNibName:@"LifePageView" bundle:nil];
+    lifePage.tabBarItem.image = [UIImage imageNamed:@"tab_life"];
+    lifePage.tabBarItem.title = @"生活";
+    UINavigationController *lifePageNav = [[UINavigationController alloc] initWithRootViewController:lifePage];
+    
+    //我的
+    MyPageView *myPage = [[MyPageView alloc] initWithNibName:@"MyPageView" bundle:nil];
+    myPage.tabBarItem.image = [UIImage imageNamed:@"tab_my"];
+    myPage.tabBarItem.title = @"我的";
+    UINavigationController *myPageNav = [[UINavigationController alloc] initWithRootViewController:myPage];
+    
+    //设置
+    SettingPageView *settingPage = [[SettingPageView alloc] initWithNibName:@"SettingPageView" bundle:nil];
+    settingPage.tabBarItem.image = [UIImage imageNamed:@"tab_setting"];
+    settingPage.tabBarItem.title = @"设置";
+    UINavigationController *settingPageNav = [[UINavigationController alloc] initWithRootViewController:settingPage];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = [NSArray arrayWithObjects:
+                                        propertyPageNav,
+                                        lifePageNav,
+                                        myPageNav,
+                                        settingPageNav,
+                                        nil];
+    [[tabBarController tabBar] setSelectedImageTintColor:[Tool getColorForMain]];
+
+    AppDelegate *appdele = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    appdele.window.rootViewController = tabBarController;
+//    [UIView transitionWithView:appdele.window
+//                      duration:0.5
+//                       options:UIViewAnimationOptionTransitionCrossDissolve
+//                    animations:^{
+//                        appdele.window.rootViewController = tabBarController;
+//                    }
+//                    completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

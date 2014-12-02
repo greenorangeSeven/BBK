@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSString *houseNumId;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *ownerNameTf;
 @property (weak, nonatomic) IBOutlet UITextField *idCardTf;
 @property (weak, nonatomic) IBOutlet UITextField *identityTf;

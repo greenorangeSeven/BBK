@@ -11,6 +11,7 @@
                 <outlet property="cityTf" destination="ehT-f2-nrt" id="JHY-3D-YU1"/>
                 <outlet property="communityTf" destination="gTe-HW-202" id="CiD-gI-pZL"/>
                 <outlet property="houseNumTf" destination="yx0-ws-Iwt" id="zKE-p5-IHk"/>
+                <outlet property="scrollView" destination="dbU-4X-KkN" id="My2-bz-Kjf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

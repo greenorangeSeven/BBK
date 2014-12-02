@@ -10,6 +10,20 @@
 		1469FD651A270DF4002685A0 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD641A270DF4002685A0 /* UserModel.m */; };
 		1469FD6A1A270E10002685A0 /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD671A270E10002685A0 /* Tool.m */; };
 		1469FD6B1A270E10002685A0 /* PrintObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD691A270E10002685A0 /* PrintObject.m */; };
+		149575711A2CA2D100320CF8 /* PropertyPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1495756F1A2CA2D100320CF8 /* PropertyPageView.m */; };
+		149575721A2CA2D100320CF8 /* PropertyPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 149575701A2CA2D100320CF8 /* PropertyPageView.xib */; };
+		14B641BA1A2D42AC00C350A0 /* LifePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641B81A2D42AC00C350A0 /* LifePageView.m */; };
+		14B641BB1A2D42AC00C350A0 /* LifePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641B91A2D42AC00C350A0 /* LifePageView.xib */; };
+		14B641C11A2D691A00C350A0 /* SettingPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641BF1A2D691A00C350A0 /* SettingPageView.m */; };
+		14B641C21A2D691A00C350A0 /* SettingPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641C01A2D691A00C350A0 /* SettingPageView.xib */; };
+		14B641C91A2D9E0200C350A0 /* TransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641C71A2D9E0200C350A0 /* TransitionView.m */; };
+		14B641CA1A2D9E0200C350A0 /* TransitionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641C81A2D9E0200C350A0 /* TransitionView.xib */; };
+		14B641CE1A2DA9DD00C350A0 /* NoticeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641CC1A2DA9DD00C350A0 /* NoticeTableView.m */; };
+		14B641CF1A2DA9DD00C350A0 /* NoticeTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641CD1A2DA9DD00C350A0 /* NoticeTableView.xib */; };
+		14B641D61A2DF89500C350A0 /* NoticeNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641D41A2DF89500C350A0 /* NoticeNewCell.m */; };
+		14B641D71A2DF89500C350A0 /* NoticeNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641D51A2DF89500C350A0 /* NoticeNewCell.xib */; };
+		14B641DC1A2DFA7D00C350A0 /* NoticeOldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641DA1A2DFA7D00C350A0 /* NoticeOldCell.m */; };
+		14B641DD1A2DFA7D00C350A0 /* NoticeOldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641DB1A2DFA7D00C350A0 /* NoticeOldCell.xib */; };
 		14D3C0781A281938003E650A /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0771A281938003E650A /* UserInfo.m */; };
 		14D3C07D1A2819EA003E650A /* UserHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C07C1A2819EA003E650A /* UserHouse.m */; };
 		14D3C0831A285C43003E650A /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0821A285C43003E650A /* City.m */; };
@@ -23,6 +37,8 @@
 		14E3A06A1A276C92009D0EB0 /* RegisterStep2View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E3A0681A276C92009D0EB0 /* RegisterStep2View.xib */; };
 		14E3A06E1A276F9C009D0EB0 /* RegisterStep3View.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3A06C1A276F9C009D0EB0 /* RegisterStep3View.m */; };
 		14E3A06F1A276F9C009D0EB0 /* RegisterStep3View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E3A06D1A276F9C009D0EB0 /* RegisterStep3View.xib */; };
+		14E8F4121A2D5CE900017CA5 /* MyPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8F4101A2D5CE900017CA5 /* MyPageView.m */; };
+		14E8F4131A2D5CE900017CA5 /* MyPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E8F4111A2D5CE900017CA5 /* MyPageView.xib */; };
 		14FDB43D1A25B73A006EFFCC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB43C1A25B73A006EFFCC /* main.m */; };
 		14FDB4401A25B73A006EFFCC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB43F1A25B73A006EFFCC /* AppDelegate.m */; };
 		14FDB4481A25B73A006EFFCC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14FDB4471A25B73A006EFFCC /* Images.xcassets */; };
@@ -209,6 +225,27 @@
 		1469FD671A270E10002685A0 /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
 		1469FD681A270E10002685A0 /* PrintObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintObject.h; sourceTree = "<group>"; };
 		1469FD691A270E10002685A0 /* PrintObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintObject.m; sourceTree = "<group>"; };
+		1495756E1A2CA2D100320CF8 /* PropertyPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyPageView.h; sourceTree = "<group>"; };
+		1495756F1A2CA2D100320CF8 /* PropertyPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyPageView.m; sourceTree = "<group>"; };
+		149575701A2CA2D100320CF8 /* PropertyPageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropertyPageView.xib; sourceTree = "<group>"; };
+		14B641B71A2D42AC00C350A0 /* LifePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifePageView.h; sourceTree = "<group>"; };
+		14B641B81A2D42AC00C350A0 /* LifePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifePageView.m; sourceTree = "<group>"; };
+		14B641B91A2D42AC00C350A0 /* LifePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LifePageView.xib; sourceTree = "<group>"; };
+		14B641BE1A2D691A00C350A0 /* SettingPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingPageView.h; sourceTree = "<group>"; };
+		14B641BF1A2D691A00C350A0 /* SettingPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingPageView.m; sourceTree = "<group>"; };
+		14B641C01A2D691A00C350A0 /* SettingPageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingPageView.xib; sourceTree = "<group>"; };
+		14B641C61A2D9E0200C350A0 /* TransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionView.h; sourceTree = "<group>"; };
+		14B641C71A2D9E0200C350A0 /* TransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionView.m; sourceTree = "<group>"; };
+		14B641C81A2D9E0200C350A0 /* TransitionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitionView.xib; sourceTree = "<group>"; };
+		14B641CB1A2DA9DD00C350A0 /* NoticeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeTableView.h; sourceTree = "<group>"; };
+		14B641CC1A2DA9DD00C350A0 /* NoticeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeTableView.m; sourceTree = "<group>"; };
+		14B641CD1A2DA9DD00C350A0 /* NoticeTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeTableView.xib; sourceTree = "<group>"; };
+		14B641D31A2DF89500C350A0 /* NoticeNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeNewCell.h; sourceTree = "<group>"; };
+		14B641D41A2DF89500C350A0 /* NoticeNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeNewCell.m; sourceTree = "<group>"; };
+		14B641D51A2DF89500C350A0 /* NoticeNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeNewCell.xib; sourceTree = "<group>"; };
+		14B641D91A2DFA7D00C350A0 /* NoticeOldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeOldCell.h; sourceTree = "<group>"; };
+		14B641DA1A2DFA7D00C350A0 /* NoticeOldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeOldCell.m; sourceTree = "<group>"; };
+		14B641DB1A2DFA7D00C350A0 /* NoticeOldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeOldCell.xib; sourceTree = "<group>"; };
 		14D3C0761A281938003E650A /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		14D3C0771A281938003E650A /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		14D3C07B1A2819EA003E650A /* UserHouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHouse.h; sourceTree = "<group>"; };
@@ -231,6 +268,9 @@
 		14E3A06B1A276F9C009D0EB0 /* RegisterStep3View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterStep3View.h; sourceTree = "<group>"; };
 		14E3A06C1A276F9C009D0EB0 /* RegisterStep3View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterStep3View.m; sourceTree = "<group>"; };
 		14E3A06D1A276F9C009D0EB0 /* RegisterStep3View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterStep3View.xib; sourceTree = "<group>"; };
+		14E8F40F1A2D5CE900017CA5 /* MyPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageView.h; sourceTree = "<group>"; };
+		14E8F4101A2D5CE900017CA5 /* MyPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageView.m; sourceTree = "<group>"; };
+		14E8F4111A2D5CE900017CA5 /* MyPageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPageView.xib; sourceTree = "<group>"; };
 		14FDB4371A25B73A006EFFCC /* BBK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FDB43B1A25B73A006EFFCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14FDB43C1A25B73A006EFFCC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -673,6 +713,45 @@
 			name = Helper;
 			sourceTree = "<group>";
 		};
+		1495756C1A2CA29E00320CF8 /* PropertyPage */ = {
+			isa = PBXGroup;
+			children = (
+				1495756E1A2CA2D100320CF8 /* PropertyPageView.h */,
+				1495756F1A2CA2D100320CF8 /* PropertyPageView.m */,
+				149575701A2CA2D100320CF8 /* PropertyPageView.xib */,
+				14B641CB1A2DA9DD00C350A0 /* NoticeTableView.h */,
+				14B641CC1A2DA9DD00C350A0 /* NoticeTableView.m */,
+				14B641CD1A2DA9DD00C350A0 /* NoticeTableView.xib */,
+				14B641D31A2DF89500C350A0 /* NoticeNewCell.h */,
+				14B641D41A2DF89500C350A0 /* NoticeNewCell.m */,
+				14B641D51A2DF89500C350A0 /* NoticeNewCell.xib */,
+				14B641D91A2DFA7D00C350A0 /* NoticeOldCell.h */,
+				14B641DA1A2DFA7D00C350A0 /* NoticeOldCell.m */,
+				14B641DB1A2DFA7D00C350A0 /* NoticeOldCell.xib */,
+			);
+			name = PropertyPage;
+			sourceTree = "<group>";
+		};
+		14B641B51A2D423C00C350A0 /* LifePage */ = {
+			isa = PBXGroup;
+			children = (
+				14B641B71A2D42AC00C350A0 /* LifePageView.h */,
+				14B641B81A2D42AC00C350A0 /* LifePageView.m */,
+				14B641B91A2D42AC00C350A0 /* LifePageView.xib */,
+			);
+			name = LifePage;
+			sourceTree = "<group>";
+		};
+		14E8F40D1A2D5CCB00017CA5 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				14E8F40F1A2D5CE900017CA5 /* MyPageView.h */,
+				14E8F4101A2D5CE900017CA5 /* MyPageView.m */,
+				14E8F4111A2D5CE900017CA5 /* MyPageView.xib */,
+			);
+			name = MyPage;
+			sourceTree = "<group>";
+		};
 		14FDB42E1A25B73A006EFFCC = {
 			isa = PBXGroup;
 			children = (
@@ -698,8 +777,14 @@
 			children = (
 				14FDB43E1A25B73A006EFFCC /* AppDelegate.h */,
 				14FDB43F1A25B73A006EFFCC /* AppDelegate.m */,
+				14B641C61A2D9E0200C350A0 /* TransitionView.h */,
+				14B641C71A2D9E0200C350A0 /* TransitionView.m */,
+				14B641C81A2D9E0200C350A0 /* TransitionView.xib */,
 				14FDB4471A25B73A006EFFCC /* Images.xcassets */,
 				14FDB4491A25B73A006EFFCC /* LaunchScreen.xib */,
+				1495756C1A2CA29E00320CF8 /* PropertyPage */,
+				14B641B51A2D423C00C350A0 /* LifePage */,
+				14E8F40D1A2D5CCB00017CA5 /* MyPage */,
 				14FDB79E1A26B6AF006EFFCC /* SettingPage */,
 				1469FD621A270DDB002685A0 /* Helper */,
 				1469FD611A270DC3002685A0 /* Model */,
@@ -770,6 +855,9 @@
 		14FDB79E1A26B6AF006EFFCC /* SettingPage */ = {
 			isa = PBXGroup;
 			children = (
+				14B641BE1A2D691A00C350A0 /* SettingPageView.h */,
+				14B641BF1A2D691A00C350A0 /* SettingPageView.m */,
+				14B641C01A2D691A00C350A0 /* SettingPageView.xib */,
 				14FDB79F1A26B6E3006EFFCC /* LoginView.h */,
 				14FDB7A01A26B6E3006EFFCC /* LoginView.mm */,
 				14FDB7A11A26B6E3006EFFCC /* LoginView.xib */,
@@ -1516,16 +1604,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14B641CA1A2D9E0200C350A0 /* TransitionView.xib in Resources */,
 				14FDB9A31A26C94E006EFFCC /* LoadingCell.xib in Resources */,
 				14FDB7A31A26B6E3006EFFCC /* LoginView.xib in Resources */,
 				14FDB9921A26C94E006EFFCC /* mapapi.bundle in Resources */,
+				14B641BB1A2D42AC00C350A0 /* LifePageView.xib in Resources */,
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
 				14FDB9761A26C94E006EFFCC /* Alixpay.bundle in Resources */,
 				14FDB4481A25B73A006EFFCC /* Images.xcassets in Resources */,
+				149575721A2CA2D100320CF8 /* PropertyPageView.xib in Resources */,
+				14B641D71A2DF89500C350A0 /* NoticeNewCell.xib in Resources */,
 				14E3A06A1A276C92009D0EB0 /* RegisterStep2View.xib in Resources */,
+				14B641DD1A2DFA7D00C350A0 /* NoticeOldCell.xib in Resources */,
 				14FDB9D01A26C94F006EFFCC /* LICENSE in Resources */,
+				14B641C21A2D691A00C350A0 /* SettingPageView.xib in Resources */,
 				14E3A0651A275C77009D0EB0 /* RegisterStep1View.xib in Resources */,
+				14B641CF1A2DA9DD00C350A0 /* NoticeTableView.xib in Resources */,
 				14E3A06F1A276F9C009D0EB0 /* RegisterStep3View.xib in Resources */,
+				14E8F4131A2D5CE900017CA5 /* MyPageView.xib in Resources */,
 				14FDB9E21A26C94F006EFFCC /* MWPhotoBrowser.bundle in Resources */,
 				14FDBA0B1A26CE7C006EFFCC /* IQKeyboardManager.bundle in Resources */,
 			);
@@ -1566,17 +1662,20 @@
 				14FDB9AF1A26C94E006EFFCC /* UIView+Toast.m in Sources */,
 				14FDB9A61A26C94E006EFFCC /* UITap.m in Sources */,
 				14FDB9C01A26C94F006EFFCC /* MWTapDetectingView.m in Sources */,
+				14B641BA1A2D42AC00C350A0 /* LifePageView.m in Sources */,
 				14FDB96C1A26C94E006EFFCC /* AFJSONRequestOperation.m in Sources */,
 				14FDB96A1A26C94E006EFFCC /* AFHTTPRequestOperation.m in Sources */,
 				14FDB9651A26C94E006EFFCC /* AESCrypt.m in Sources */,
 				14FDB9991A26C94E006EFFCC /* UIViewController+CWPopup.m in Sources */,
 				14FDB9D51A26C94F006EFFCC /* SDWebImageCompat.m in Sources */,
 				14E3A0641A275C77009D0EB0 /* RegisterStep1View.m in Sources */,
+				14B641CE1A2DA9DD00C350A0 /* NoticeTableView.m in Sources */,
 				14FDB9D71A26C94F006EFFCC /* SDWebImageDownloader.m in Sources */,
 				14FDB9CB1A26C94F006EFFCC /* PSTCollectionViewUpdateItem.m in Sources */,
 				14FDB9DD1A26C94F006EFFCC /* UIImage+MultiFormat.m in Sources */,
 				14FDB7A21A26B6E3006EFFCC /* LoginView.mm in Sources */,
 				14FDB9AB1A26C94E006EFFCC /* NSString+URLEncoding.m in Sources */,
+				14B641C11A2D691A00C350A0 /* SettingPageView.m in Sources */,
 				1469FD651A270DF4002685A0 /* UserModel.m in Sources */,
 				14FDB9DB1A26C94F006EFFCC /* UIButton+WebCache.m in Sources */,
 				14FDB9781A26C94E006EFFCC /* AlixPayOrder.m in Sources */,
@@ -1593,6 +1692,7 @@
 				14FDB9FF1A26C94F006EFFCC /* ZJSwitch.m in Sources */,
 				14FDB9AC1A26C94E006EFFCC /* UIButton+TitleImage.m in Sources */,
 				14FDB9A01A26C94E006EFFCC /* EGORefreshTableHeaderView.m in Sources */,
+				149575711A2CA2D100320CF8 /* PropertyPageView.m in Sources */,
 				14FDB96F1A26C94E006EFFCC /* AFOSCClient.m in Sources */,
 				14FDB9AA1A26C94E006EFFCC /* NSString+Extensions.m in Sources */,
 				14D3C0AD1A28792F003E650A /* HouseNum.m in Sources */,
@@ -1604,6 +1704,7 @@
 				1469FD6A1A270E10002685A0 /* Tool.m in Sources */,
 				14FDB9A11A26C94E006EFFCC /* ImageStore.m in Sources */,
 				14FDB9CF1A26C94F006EFFCC /* PSTGridLayoutSection.m in Sources */,
+				14E8F4121A2D5CE900017CA5 /* MyPageView.m in Sources */,
 				14FDB9791A26C94E006EFFCC /* AlixPayResult.m in Sources */,
 				14FDB9CA1A26C94F006EFFCC /* PSTCollectionViewLayout.m in Sources */,
 				14FDB9D11A26C94F006EFFCC /* README.md in Sources */,
@@ -1652,11 +1753,13 @@
 				14E3A06E1A276F9C009D0EB0 /* RegisterStep3View.m in Sources */,
 				14FDB9A41A26C94E006EFFCC /* NdUncaughtExceptionHandler.m in Sources */,
 				14FDB9D81A26C94F006EFFCC /* SDWebImageDownloaderOperation.m in Sources */,
+				14B641C91A2D9E0200C350A0 /* TransitionView.m in Sources */,
 				14FDB9CE1A26C94F006EFFCC /* PSTGridLayoutRow.m in Sources */,
 				14FDB9CC1A26C94F006EFFCC /* PSTGridLayoutInfo.m in Sources */,
 				14FDB9DC1A26C94F006EFFCC /* UIImage+GIF.m in Sources */,
 				14FDB9E71A26C94F006EFFCC /* RMMapper.m in Sources */,
 				14FDB9B01A26C94E006EFFCC /* FMDatabase.m in Sources */,
+				14B641D61A2DF89500C350A0 /* NoticeNewCell.m in Sources */,
 				14FDB98B1A26C94E006EFFCC /* ASIInputStream.m in Sources */,
 				14FDB9C61A26C94F006EFFCC /* PSTCollectionViewController.m in Sources */,
 				14FDB99B1A26C94E006EFFCC /* EGOImageButton.m in Sources */,
@@ -1666,6 +1769,7 @@
 				14FDB9C91A26C94F006EFFCC /* PSTCollectionViewItemKey.m in Sources */,
 				14FDB9E31A26C94F006EFFCC /* NSString+STRegex.m in Sources */,
 				14FDB97F1A26C94E006EFFCC /* SBJsonWriter.m in Sources */,
+				14B641DC1A2DFA7D00C350A0 /* NoticeOldCell.m in Sources */,
 				14D3C0A71A2874EB003E650A /* Community.m in Sources */,
 				14FDB9A81A26C94E006EFFCC /* NSDate+Extensions.m in Sources */,
 				14FDB98E1A26C94E006EFFCC /* Reachability.m in Sources */,

@@ -103,6 +103,8 @@
 //平台接口生成验签
 + (NSDictionary *)parseQueryString:(NSString *)query;
 + (NSString *)serializeURL:(NSString *)baseURL params:(NSDictionary *)params;
+//平台接口生成验签Sign
++ (NSString *)serializeSign:(NSString *)baseURL params:(NSDictionary *)params;
 
 //解析登陆JSON
 + (UserInfo *)readJsonStrToLoginUserInfo:(NSString *)str;

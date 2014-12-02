@@ -15,5 +15,15 @@
 @property (nonatomic, strong) NSString *idCardStr;
 @property (nonatomic, strong) NSString *identityIdStr;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITextField *mobileNoTf;
+@property (weak, nonatomic) IBOutlet UITextField *validateCodeTf;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTf;
+@property (weak, nonatomic) IBOutlet UITextField *passwordAgainTf;
+@property (weak, nonatomic) IBOutlet UIButton *getValidataCodeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *finishBtn;
+
+- (IBAction)getValidateCodeAction:(id)sender;
+- (IBAction)finishAction:(id)sender;
 
 @end

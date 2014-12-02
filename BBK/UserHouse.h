@@ -14,10 +14,11 @@
 @property (nonatomic, retain) NSString *userStateName;
 @property (nonatomic, retain) NSNumber *userTypeId;
 @property (nonatomic, retain) NSString *userTypeName;
-@property (nonatomic, retain) NSString *numberName;
-@property (nonatomic, retain) NSString *buildingName;
+@property (nonatomic, retain) NSString *cellId;
 @property (nonatomic, retain) NSString *cellName;
-@property (nonatomic, retain) NSString *regUserId;
+@property (nonatomic, retain) NSString *buildingName;
 @property (nonatomic, retain) NSString *numberId;
+@property (nonatomic, retain) NSString *numberName;
+@property (nonatomic, retain) NSString *regUserId;
 
 @end

@@ -10,6 +10,7 @@
                 <outlet property="idCardTf" destination="5OG-5s-U7j" id="UEb-71-oZk"/>
                 <outlet property="identityTf" destination="09o-DN-Or4" id="Zkb-ma-1wi"/>
                 <outlet property="ownerNameTf" destination="VcN-lg-EwN" id="Nnr-0K-R88"/>
+                <outlet property="scrollView" destination="pek-dd-BKV" id="ARX-7F-Crp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -126,7 +127,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="身份证后四位" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5OG-5s-U7j">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="业主身份证后四位" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5OG-5s-U7j">
                                     <rect key="frame" x="12" y="40" width="295" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
