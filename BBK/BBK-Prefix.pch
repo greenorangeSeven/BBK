@@ -47,12 +47,17 @@
 #define api_findCellListByCity @"/zhxq_api/params/findCellListByCity.htm"
 //注册接口
 #define api_regUser @"/zhxq_api/regUser/regUser.htm"
+//获得小区通知
+#define api_findPushInfo @"/zhxq_api/push/findPushInfoByPage.htm"
+//获得小区服务
+#define api_callService @"/zhxq_api/params/findManagerCompanyDepartmentAll.htm"
 
 #define servicephone @"4006967020"
 
 #define SettingTableIdentifier @"SettingTableIdentifier"
 #define NoticeNewCellIdentifier @"NoticeNewCellIdentifier"
 #define NoticeOldCellIdentifier @"NoticeOldCellIdentifier"
+#define CallServiceCellIdentifier @"CallServiceCellIdentifier"
 
 #define createshoppingcart @"create table shoppingcart (id integer primary key autoincrement not null,goodid text,title text,thumb text,price text,store_name text,business_id text,number int,user_id text)"
 

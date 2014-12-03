@@ -8,7 +8,6 @@
 
 #import "Tool.h"
 
-
 @implementation Tool
 
 + (UIAlertView *)getLoadingView:(NSString *)title andMessage:(NSString *)message
@@ -71,9 +70,9 @@
     view.clipsToBounds = YES;
 }
 
-+ (void)roundTextView:(UIView *)txtView andBorderWidth:(int)width andCornerRadius:(float)radius
++ (void)roundTextView:(UIView *)txtView andBorderWidth:(float)width andCornerRadius:(float)radius
 {
-    txtView.layer.borderColor = [[UIColor colorWithRed:202.0/255.0 green:204.0/255.0 blue:205.0/255.0 alpha:1.0] CGColor];
+    txtView.layer.borderColor = [[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0] CGColor];
     txtView.layer.borderWidth = width;
     txtView.layer.cornerRadius = radius;
     txtView.layer.masksToBounds = YES;
@@ -569,9 +568,49 @@
             building.houseNumList = [RMMapper mutableArrayOfClass:[HouseNum class] fromArrayOfDictionary:buildingSubList];
         }
     }
-    
     return communityArray;
-    
+}
+
+//解析小区通知JSON
++ (NSMutableArray *)readJsonStrToNoticeArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *noticeJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( noticeJsonDic == nil || [noticeJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[noticeJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *noticeArrayJson = [[noticeJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *noticeArray = [RMMapper mutableArrayOfClass:[Notice class] fromArrayOfDictionary:noticeArrayJson];
+        return noticeArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//解析物业呼叫JSON
++ (NSMutableArray *)readJsonStrToServiceArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *serviceJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( serviceJsonDic == nil || [serviceJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[serviceJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *serviceArrayJson = [serviceJsonDic objectForKey:@"data"];
+        NSMutableArray *serviceArray = [RMMapper mutableArrayOfClass:[CallService class] fromArrayOfDictionary:serviceArrayJson];
+        return serviceArray;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 @end

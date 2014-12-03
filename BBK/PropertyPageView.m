@@ -7,6 +7,9 @@
 //
 
 #import "PropertyPageView.h"
+#import "NoticeTableView.h"
+#import "Notice.h"
+#import "CallServiceView.h"
 
 @interface PropertyPageView ()
 {
@@ -23,7 +26,7 @@
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.text = @"步步高新天地";
+    titleLabel.text = [[UserModel Instance] getUserValueForKey:@"cellName"];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = [Tool getColorForMain];
     titleLabel.textAlignment = UITextAlignmentCenter;
@@ -34,6 +37,50 @@
     [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
+    [self getNotice];
+}
+
+- (void)getNotice
+{
+    //如果有网络连接
+    if ([UserModel Instance].isNetworkRunning) {
+        //生成获取新闻列表URL
+        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        [param setValue:@"1" forKey:@"pageNumbers"];
+        [param setValue:@"1" forKey:@"countPerPages"];
+        NSString *getNoticeListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findPushInfo] params:param];
+        
+        [[AFOSCClient sharedClient]getPath:getNoticeListUrl parameters:Nil
+                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       @try {
+                                           [notices removeAllObjects];
+                                           notices = [Tool readJsonStrToNoticeArray:operation.responseString];
+                                           if ([notices count] > 0) {
+                                               Notice *notice = [notices objectAtIndex:0];
+                                               self.noticeTitleLb.text = notice.title;
+                                           }
+                                       }
+                                       @catch (NSException *exception) {
+                                           [NdUncaughtExceptionHandler TakeException:exception];
+                                       }
+                                       @finally {
+                                           
+                                       }
+                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                       NSLog(@"列表获取出错");
+                                       
+                                       
+                                       if ([UserModel Instance].isNetworkRunning == NO) {
+                                           return;
+                                       }
+
+                                       if ([UserModel Instance].isNetworkRunning) {
+                                           [Tool showCustomHUD:@"网络不给力" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+                                       }
+                                   }];
+
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,14 +97,30 @@
     [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//物业通知
+- (IBAction)noticesAction:(id)sender {
+    NoticeTableView *noticeView = [[NoticeTableView alloc] init];
+    noticeView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:noticeView animated:YES];
 }
-*/
+
+- (IBAction)callServiceAction:(id)sender {
+    CallServiceView *callServiceView = [[CallServiceView alloc] init];
+    callServiceView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:callServiceView animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar setTintColor:[Tool getColorForMain]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
+}
+
 
 @end

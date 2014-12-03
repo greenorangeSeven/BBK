@@ -10,4 +10,6 @@
 
 @interface NoticeOldCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLb;
+
 @end

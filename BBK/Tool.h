@@ -20,6 +20,8 @@
 #import "Community.h"
 #import "Building.h"
 #import "HouseNum.h"
+#import "Notice.h"
+#import "CallService.h"
 
 @interface Tool : NSObject
 
@@ -40,7 +42,7 @@
 + (void)toTableViewBottom:(UITableView *)tableView isBottom:(BOOL)isBottom;
 
 + (void)borderView:(UIView *)view;
-+ (void)roundTextView:(UIView *)txtView andBorderWidth:(int)width andCornerRadius:(float)radius;
++ (void)roundTextView:(UIView *)txtView andBorderWidth:(float)width andCornerRadius:(float)radius;
 + (void)roundView:(UIView *)view andCornerRadius:(float)radius;
 
 + (void)noticeLogin:(UIView *)view andDelegate:(id)delegate andTitle:(NSString *)title;
@@ -112,5 +114,9 @@
 + (NSMutableArray *)readJsonStrToCityArray:(NSString *)str;
 //解析社区JSON（包含社区、楼栋、门牌）
 + (NSMutableArray *)readJsonStrToCommunityArray:(NSString *)str;
+//解析小区通知JSON
++ (NSMutableArray *)readJsonStrToNoticeArray:(NSString *)str;
+//解析物业呼叫JSON
++ (NSMutableArray *)readJsonStrToServiceArray:(NSString *)str;
 
 @end

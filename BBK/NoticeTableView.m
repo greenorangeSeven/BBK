@@ -8,8 +8,12 @@
 
 #import "NoticeTableView.h"
 #import "NoticeNewCell.h"
+#import "NoticeOldCell.h"
 
 @interface NoticeTableView ()
+{
+    UIWebView *phoneWebView;
+}
 
 @end
 
@@ -18,10 +22,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    titleLabel.text = @"物业通知";
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textColor = [Tool getColorForMain];
+    titleLabel.textAlignment = UITextAlignmentCenter;
+    self.navigationItem.titleView = titleLabel;
+    
+    UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 21, 22)];
+    [rBtn addTarget:self action:@selector(telAction:) forControlEvents:UIControlEventTouchUpInside];
+    [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
+    UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
+    self.navigationItem.rightBarButtonItem = btnTel;
+    
+    //适配iOS7uinavigationbar遮挡的问题
+    if(IS_IOS7)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
     self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height-33);
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.backgroundColor = [UIColor clearColor];
     //    设置无分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -82,17 +108,18 @@
             allCount = 0;
         }
         int pageIndex = allCount/20 + 1;
-
+        
         //生成获取新闻列表URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"countPerPages"];
-        [param setValue:@"1141680987748500" forKey:@"cellId"];
-        NSString *getNoticeListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_login] params:param];
-
+        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
+        [param setValue:@"20" forKey:@"countPerPages"];
+        NSString *getNoticeListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findPushInfo] params:param];
+        
         [[AFOSCClient sharedClient]getPath:getNoticeListUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        
-//                                       NSMutableArray *newNews = [Tool readJsonStrToNews:operation.responseString];
+                                       NSMutableArray *noticeNews = [Tool readJsonStrToNoticeArray:operation.responseString];
                                        isLoading = NO;
                                        if (!noRefresh) {
                                            [self clear];
@@ -105,7 +132,7 @@
                                            {
                                                isLoadOver = YES;
                                            }
-//                                           [notices addObjectsFromArray:newNews];
+                                           [notices addObjectsFromArray:noticeNews];
                                            [self.tableView reloadData];
                                            [self doneLoadingTableViewData];
                                        }
@@ -148,7 +175,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 82;
+    int row = [indexPath row];
+    if (row < 3)
+    {
+        return 67.0;
+    }
+    else
+    {
+        return 47.0;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -159,23 +194,42 @@
 //列表数据渲染
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int row = [indexPath row];
     if ([notices count] > 0) {
-        if ([indexPath row] < [notices count])
+        if (row < [notices count])
         {
-            NoticeNewCell *cell = [tableView dequeueReusableCellWithIdentifier:NoticeNewCellIdentifier];
-            if (!cell) {
-                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"NoticeNewCell" owner:self options:nil];
-                for (NSObject *o in objects) {
-                    if ([o isKindOfClass:[NoticeNewCell class]]) {
-                        cell = (NoticeNewCell *)o;
-                        break;
+            if (row < 3) {
+                NoticeNewCell *cell = [tableView dequeueReusableCellWithIdentifier:NoticeNewCellIdentifier];
+                if (!cell) {
+                    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"NoticeNewCell" owner:self options:nil];
+                    for (NSObject *o in objects) {
+                        if ([o isKindOfClass:[NoticeNewCell class]]) {
+                            cell = (NoticeNewCell *)o;
+                            break;
+                        }
                     }
                 }
+                Notice *n = [notices objectAtIndex:row];
+                cell.timeLb.text = n.starttime;
+                cell.titleLb.text = n.title;
+                return cell;
             }
-//            News *n = [news objectAtIndex:[indexPath row]];
-//            cell.titleLb.text = n.title;
-//            cell.summaryLb.text = n.summary;
-            return cell;
+            else
+            {
+                NoticeOldCell *cell = [tableView dequeueReusableCellWithIdentifier:NoticeOldCellIdentifier];
+                if (!cell) {
+                    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"NoticeOldCell" owner:self options:nil];
+                    for (NSObject *o in objects) {
+                        if ([o isKindOfClass:[NoticeNewCell class]]) {
+                            cell = (NoticeOldCell *)o;
+                            break;
+                        }
+                    }
+                }
+                Notice *n = [notices objectAtIndex:row];
+                cell.titleLb.text = n.title;
+                return cell;
+            }
         }
         else
         {
@@ -202,13 +256,13 @@
     }
     else
     {
-//        News *n = [news objectAtIndex:[indexPath row]];
-//        if (n) {
-//            NewsDetailView *newsDetail = [[NewsDetailView alloc] init];
-//            newsDetail.news = n;
-//            newsDetail.catalog = catalog;
-//            [self.navigationController pushViewController:newsDetail animated:YES];
-//        }
+        //        News *n = [news objectAtIndex:[indexPath row]];
+        //        if (n) {
+        //            NewsDetailView *newsDetail = [[NewsDetailView alloc] init];
+        //            newsDetail.news = n;
+        //            newsDetail.catalog = catalog;
+        //            [self.navigationController pushViewController:newsDetail animated:YES];
+        //        }
     }
 }
 
@@ -273,6 +327,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)telAction:(id)sender
+{
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", servicephone]];
+    if (!phoneWebView) {
+        phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    }
+    [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
 }
 
 @end

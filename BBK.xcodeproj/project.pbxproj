@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1435426D1A2EA21800A8BBB7 /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435426C1A2EA21800A8BBB7 /* Notice.m */; };
+		143542761A2EF4F800A8BBB7 /* CallServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143542741A2EF4F800A8BBB7 /* CallServiceView.m */; };
+		143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143542751A2EF4F800A8BBB7 /* CallServiceView.xib */; };
+		1435427B1A2F11C900A8BBB7 /* CallServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 143542791A2F11C900A8BBB7 /* CallServiceCell.m */; };
+		1435427C1A2F11C900A8BBB7 /* CallServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1435427A1A2F11C900A8BBB7 /* CallServiceCell.xib */; };
+		1435427F1A2F40B000A8BBB7 /* CallService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435427E1A2F40B000A8BBB7 /* CallService.m */; };
 		1469FD651A270DF4002685A0 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD641A270DF4002685A0 /* UserModel.m */; };
 		1469FD6A1A270E10002685A0 /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD671A270E10002685A0 /* Tool.m */; };
 		1469FD6B1A270E10002685A0 /* PrintObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD691A270E10002685A0 /* PrintObject.m */; };
@@ -24,6 +30,8 @@
 		14B641D71A2DF89500C350A0 /* NoticeNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641D51A2DF89500C350A0 /* NoticeNewCell.xib */; };
 		14B641DC1A2DFA7D00C350A0 /* NoticeOldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641DA1A2DFA7D00C350A0 /* NoticeOldCell.m */; };
 		14B641DD1A2DFA7D00C350A0 /* NoticeOldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641DB1A2DFA7D00C350A0 /* NoticeOldCell.xib */; };
+		14B812F91A2F55D500506CD1 /* CallServiceReusable.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B812F71A2F55D500506CD1 /* CallServiceReusable.m */; };
+		14B812FA1A2F55D500506CD1 /* CallServiceReusable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B812F81A2F55D500506CD1 /* CallServiceReusable.xib */; };
 		14D3C0781A281938003E650A /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0771A281938003E650A /* UserInfo.m */; };
 		14D3C07D1A2819EA003E650A /* UserHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C07C1A2819EA003E650A /* UserHouse.m */; };
 		14D3C0831A285C43003E650A /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0821A285C43003E650A /* City.m */; };
@@ -219,6 +227,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1435426B1A2EA21800A8BBB7 /* Notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notice.h; sourceTree = "<group>"; };
+		1435426C1A2EA21800A8BBB7 /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notice.m; sourceTree = "<group>"; };
+		143542731A2EF4F800A8BBB7 /* CallServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallServiceView.h; sourceTree = "<group>"; };
+		143542741A2EF4F800A8BBB7 /* CallServiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallServiceView.m; sourceTree = "<group>"; };
+		143542751A2EF4F800A8BBB7 /* CallServiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallServiceView.xib; sourceTree = "<group>"; };
+		143542781A2F11C900A8BBB7 /* CallServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallServiceCell.h; sourceTree = "<group>"; };
+		143542791A2F11C900A8BBB7 /* CallServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallServiceCell.m; sourceTree = "<group>"; };
+		1435427A1A2F11C900A8BBB7 /* CallServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallServiceCell.xib; sourceTree = "<group>"; };
+		1435427D1A2F40B000A8BBB7 /* CallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallService.h; sourceTree = "<group>"; };
+		1435427E1A2F40B000A8BBB7 /* CallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallService.m; sourceTree = "<group>"; };
 		1469FD631A270DF4002685A0 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		1469FD641A270DF4002685A0 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		1469FD661A270E10002685A0 /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
@@ -246,6 +264,9 @@
 		14B641D91A2DFA7D00C350A0 /* NoticeOldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeOldCell.h; sourceTree = "<group>"; };
 		14B641DA1A2DFA7D00C350A0 /* NoticeOldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeOldCell.m; sourceTree = "<group>"; };
 		14B641DB1A2DFA7D00C350A0 /* NoticeOldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeOldCell.xib; sourceTree = "<group>"; };
+		14B812F61A2F55D500506CD1 /* CallServiceReusable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallServiceReusable.h; sourceTree = "<group>"; };
+		14B812F71A2F55D500506CD1 /* CallServiceReusable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallServiceReusable.m; sourceTree = "<group>"; };
+		14B812F81A2F55D500506CD1 /* CallServiceReusable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallServiceReusable.xib; sourceTree = "<group>"; };
 		14D3C0761A281938003E650A /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		14D3C0771A281938003E650A /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		14D3C07B1A2819EA003E650A /* UserHouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHouse.h; sourceTree = "<group>"; };
@@ -698,6 +719,10 @@
 				14D3C0A91A2878E0003E650A /* Building.m */,
 				14D3C0AB1A28792F003E650A /* HouseNum.h */,
 				14D3C0AC1A28792F003E650A /* HouseNum.m */,
+				1435426B1A2EA21800A8BBB7 /* Notice.h */,
+				1435426C1A2EA21800A8BBB7 /* Notice.m */,
+				1435427D1A2F40B000A8BBB7 /* CallService.h */,
+				1435427E1A2F40B000A8BBB7 /* CallService.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -728,6 +753,15 @@
 				14B641D91A2DFA7D00C350A0 /* NoticeOldCell.h */,
 				14B641DA1A2DFA7D00C350A0 /* NoticeOldCell.m */,
 				14B641DB1A2DFA7D00C350A0 /* NoticeOldCell.xib */,
+				143542731A2EF4F800A8BBB7 /* CallServiceView.h */,
+				143542741A2EF4F800A8BBB7 /* CallServiceView.m */,
+				143542751A2EF4F800A8BBB7 /* CallServiceView.xib */,
+				143542781A2F11C900A8BBB7 /* CallServiceCell.h */,
+				143542791A2F11C900A8BBB7 /* CallServiceCell.m */,
+				1435427A1A2F11C900A8BBB7 /* CallServiceCell.xib */,
+				14B812F61A2F55D500506CD1 /* CallServiceReusable.h */,
+				14B812F71A2F55D500506CD1 /* CallServiceReusable.m */,
+				14B812F81A2F55D500506CD1 /* CallServiceReusable.xib */,
 			);
 			name = PropertyPage;
 			sourceTree = "<group>";
@@ -1610,10 +1644,12 @@
 				14FDB9921A26C94E006EFFCC /* mapapi.bundle in Resources */,
 				14B641BB1A2D42AC00C350A0 /* LifePageView.xib in Resources */,
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
+				143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */,
 				14FDB9761A26C94E006EFFCC /* Alixpay.bundle in Resources */,
 				14FDB4481A25B73A006EFFCC /* Images.xcassets in Resources */,
 				149575721A2CA2D100320CF8 /* PropertyPageView.xib in Resources */,
 				14B641D71A2DF89500C350A0 /* NoticeNewCell.xib in Resources */,
+				1435427C1A2F11C900A8BBB7 /* CallServiceCell.xib in Resources */,
 				14E3A06A1A276C92009D0EB0 /* RegisterStep2View.xib in Resources */,
 				14B641DD1A2DFA7D00C350A0 /* NoticeOldCell.xib in Resources */,
 				14FDB9D01A26C94F006EFFCC /* LICENSE in Resources */,
@@ -1624,6 +1660,7 @@
 				14E8F4131A2D5CE900017CA5 /* MyPageView.xib in Resources */,
 				14FDB9E21A26C94F006EFFCC /* MWPhotoBrowser.bundle in Resources */,
 				14FDBA0B1A26CE7C006EFFCC /* IQKeyboardManager.bundle in Resources */,
+				14B812FA1A2F55D500506CD1 /* CallServiceReusable.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1647,6 +1684,7 @@
 				14FDB99F1A26C94E006EFFCC /* DataSingleton.m in Sources */,
 				14FDB9E81A26C94F006EFFCC /* SGFocusImageFrame.m in Sources */,
 				14FDB9C31A26C94F006EFFCC /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
+				14B812F91A2F55D500506CD1 /* CallServiceReusable.m in Sources */,
 				14FDB98D1A26C94E006EFFCC /* CheckNetwork.m in Sources */,
 				14FDB9711A26C94E006EFFCC /* AFURLConnectionOperation.m in Sources */,
 				14FDB9841A26C94E006EFFCC /* ASIWebPageRequest.m in Sources */,
@@ -1682,6 +1720,7 @@
 				14D3C0AA1A2878E0003E650A /* Building.m in Sources */,
 				14FDB9B31A26C94E006EFFCC /* FMDatabaseQueue.m in Sources */,
 				14FDB9671A26C94E006EFFCC /* NSData+CommonCrypto.m in Sources */,
+				1435427B1A2F11C900A8BBB7 /* CallServiceCell.m in Sources */,
 				14FDB9E91A26C94F006EFFCC /* SGFocusImageItem.m in Sources */,
 				14FDB9CD1A26C94F006EFFCC /* PSTGridLayoutItem.m in Sources */,
 				14FDB99E1A26C94E006EFFCC /* EGOImageView.m in Sources */,
@@ -1721,6 +1760,7 @@
 				14FDB9D61A26C94F006EFFCC /* SDWebImageDecoder.m in Sources */,
 				14FDB9861A26C94E006EFFCC /* ASIDataCompressor.m in Sources */,
 				14FDB96B1A26C94E006EFFCC /* AFImageRequestOperation.m in Sources */,
+				1435427F1A2F40B000A8BBB7 /* CallService.m in Sources */,
 				14FDB43D1A25B73A006EFFCC /* main.m in Sources */,
 				14FDB99C1A26C94E006EFFCC /* EGOImageLoadConnection.m in Sources */,
 				14FDB9C51A26C94F006EFFCC /* PSTCollectionViewCell.m in Sources */,
@@ -1738,6 +1778,7 @@
 				14FDB9A71A26C94E006EFFCC /* NSBundle+Extensions.m in Sources */,
 				14FDB9B51A26C94E006EFFCC /* GCDiscreetNotificationView.m in Sources */,
 				14FDB9E61A26C94F006EFFCC /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
+				143542761A2EF4F800A8BBB7 /* CallServiceView.m in Sources */,
 				14FDB9C11A26C94F006EFFCC /* MWZoomingScrollView.m in Sources */,
 				14FDB9D31A26C94F006EFFCC /* NSData+ImageContentType.m in Sources */,
 				14FDB9B41A26C94E006EFFCC /* FMResultSet.m in Sources */,
@@ -1774,6 +1815,7 @@
 				14FDB9A81A26C94E006EFFCC /* NSDate+Extensions.m in Sources */,
 				14FDB98E1A26C94E006EFFCC /* Reachability.m in Sources */,
 				14FDB9B81A26C94F006EFFCC /* KxMenu.m in Sources */,
+				1435426D1A2EA21800A8BBB7 /* Notice.m in Sources */,
 				14FDB9681A26C94E006EFFCC /* NSString+Base64.m in Sources */,
 				14FDB9751A26C94E006EFFCC /* AlipayUtils.m in Sources */,
 				14FDB9691A26C94E006EFFCC /* AFHTTPClient.m in Sources */,

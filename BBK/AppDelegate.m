@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CheckNetwork.h"
 #import "LoginView.h"
 #import "UserInfo.h"
 #import "EGOCache.h"
@@ -23,14 +24,17 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //检查网络是否存在 如果不存在 则弹出提示
+    [UserModel Instance].isNetworkRunning = [CheckNetwork isExistenceNetwork];
+    
+    //设置UINavigationController背景
+
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg"]  forBarMetrics:UIBarMetricsDefault];
+
+    
     //启动判断登陆
     [self userLogin];
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    TransitionView *transitionView = [[TransitionView alloc] initWithNibName:@"TransitionView" bundle:nil];
-    self.window.rootViewController = transitionView;
-    [self.window makeKeyAndVisible];
-    
+       
     return YES;
 }
 
@@ -39,6 +43,12 @@
     UserModel *user = [UserModel Instance];
     if (user.isLogin == YES)
     {
+        //如果登录过就先启动过渡界面，否则异步登陆会有一瞬间黑屏
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        TransitionView *transitionView = [[TransitionView alloc] initWithNibName:@"TransitionView" bundle:nil];
+        self.window.rootViewController = transitionView;
+        [self.window makeKeyAndVisible];
+        
         NSString *mobileStr = [user getUserValueForKey:@"Account"];
         NSString *pwdStr = [user getPwd];
         //生成登陆URL
@@ -56,9 +66,11 @@
     }
     else
     {
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         LoginView *loginView = [[LoginView alloc] initWithNibName:@"LoginView" bundle:nil];
         UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:loginView];
         self.window.rootViewController = loginNav;
+        [self.window makeKeyAndVisible];
     }
 }
 
