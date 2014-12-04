@@ -584,6 +584,9 @@
     if ([state isEqualToString:@"0000"] == YES) {
         NSArray *noticeArrayJson = [[noticeJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
         NSMutableArray *noticeArray = [RMMapper mutableArrayOfClass:[Notice class] fromArrayOfDictionary:noticeArrayJson];
+        for (Notice *n in noticeArray) {
+            n.starttime = [self TimestampToDateStr:n.starttimeStamp andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+        }
         return noticeArray;
     }
     else

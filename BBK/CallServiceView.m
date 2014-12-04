@@ -51,7 +51,11 @@
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
-        NSString *getCallServiceListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_callService] params:nil];
+        //生成获取物业物品URL
+        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        
+        NSString *getCallServiceListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_callService] params:param];
         
         [[AFOSCClient sharedClient]getPath:getCallServiceListUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -118,12 +122,12 @@
     }
     else
     {
-        if ([service.departmentPic isEqualToString:@""]) {
+        if ([service.departmentImg isEqualToString:@""]) {
             service.imgData = [UIImage imageNamed:@"loadingpic2.png"];
         }
         else
         {
-            NSData * imageData = [_iconCache getImage:[TQImageCache parseUrlForCacheName:service.departmentPic]];
+            NSData * imageData = [_iconCache getImage:[TQImageCache parseUrlForCacheName:service.departmentImg]];
             if (imageData) {
                 service.imgData = [UIImage imageWithData:imageData];
                 cell.servicePicIv.image = service.imgData;
@@ -133,7 +137,7 @@
                 IconDownloader *downloader = [self.imageDownloadsInProgress objectForKey:[NSString stringWithFormat:@"%d", [indexPath row]]];
                 if (downloader == nil) {
                     ImgRecord *record = [ImgRecord new];
-                    NSString *urlStr = service.departmentPic;
+                    NSString *urlStr = service.departmentImg;
                     record.url = urlStr;
                     [self startIconDownload:record forIndexPath:indexPath];
                 }
@@ -205,7 +209,7 @@
             service.imgData = iconDownloader.imgRecord.img;
             // cache it
             NSData * imageData = UIImagePNGRepresentation(service.imgData);
-            [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:service.departmentPic]];
+            [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:service.departmentImg]];
             [self.collectionView reloadData];
         }
     }
@@ -251,7 +255,7 @@
 
 - (IBAction)telAction:(id)sender
 {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", servicephone]];
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
     if (!phoneWebView) {
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }

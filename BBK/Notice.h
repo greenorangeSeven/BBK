@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSString *pushId;
 @property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *starttimeStamp;
 @property (nonatomic, retain) NSString *starttime;
 @property (nonatomic, retain) NSString *cellId;
 @property (nonatomic, retain) NSString *userId;

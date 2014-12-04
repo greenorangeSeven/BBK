@@ -11,7 +11,7 @@
 @interface CallService : NSObject
 
 @property (nonatomic, retain) NSString *departmentId;
-@property (nonatomic, retain) NSString *departmentPic;
+@property (nonatomic, retain) NSString *departmentImg;
 @property (nonatomic, retain) NSString *departmentName;
 @property (nonatomic, retain) NSString *departmentPhone;
 

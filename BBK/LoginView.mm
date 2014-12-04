@@ -127,6 +127,7 @@
             [userModel saveValue:userHouse.buildingName ForKey:@"buildingName"];
             [userModel saveValue:userHouse.cellName ForKey:@"cellName"];
             [userModel saveValue:userHouse.cellId ForKey:@"cellId"];
+            [userModel saveValue:userHouse.phone ForKey:@"cellPhone"];
             [userModel saveValue:userHouse.numberId ForKey:@"numberId"];
         }
         else
@@ -137,6 +138,7 @@
             [userModel saveValue:@"" ForKey:@"buildingName"];
             [userModel saveValue:@"" ForKey:@"cellName"];
             [userModel saveValue:@"" ForKey:@"cellId"];
+            [userModel saveValue:@"" ForKey:@"cellPhone"];
             [userModel saveValue:@"" ForKey:@"numberId"];
         }
         [self gotoTabbar];

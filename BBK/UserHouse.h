@@ -20,5 +20,6 @@
 @property (nonatomic, retain) NSString *numberId;
 @property (nonatomic, retain) NSString *numberName;
 @property (nonatomic, retain) NSString *regUserId;
+@property (nonatomic, retain) NSString *phone;
 
 @end

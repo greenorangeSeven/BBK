@@ -20,5 +20,7 @@
 - (IBAction)noticesAction:(id)sender;
 //物业呼叫
 - (IBAction)callServiceAction:(id)sender;
+//物品借用
+- (IBAction)goodBorrowAction:(id)sender;
 
 @end

@@ -13,6 +13,15 @@
 		1435427B1A2F11C900A8BBB7 /* CallServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 143542791A2F11C900A8BBB7 /* CallServiceCell.m */; };
 		1435427C1A2F11C900A8BBB7 /* CallServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1435427A1A2F11C900A8BBB7 /* CallServiceCell.xib */; };
 		1435427F1A2F40B000A8BBB7 /* CallService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435427E1A2F40B000A8BBB7 /* CallService.m */; };
+		144A1ADA1A2FEE5E00E01E2B /* CircleOfFriendsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 144A1AD81A2FEE5E00E01E2B /* CircleOfFriendsCell.m */; };
+		144A1ADB1A2FEE5E00E01E2B /* CircleOfFriendsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144A1AD91A2FEE5E00E01E2B /* CircleOfFriendsCell.xib */; };
+		144A1AE01A2FF37D00E01E2B /* GoodBorrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 144A1ADE1A2FF37D00E01E2B /* GoodBorrowView.m */; };
+		144A1AE11A2FF37D00E01E2B /* GoodBorrowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144A1ADF1A2FF37D00E01E2B /* GoodBorrowView.xib */; };
+		144A1AE51A2FFDD900E01E2B /* BorrowGood.m in Sources */ = {isa = PBXBuildFile; fileRef = 144A1AE41A2FFDD900E01E2B /* BorrowGood.m */; };
+		144A1AEA1A2FFE9500E01E2B /* GoodBorrowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 144A1AE81A2FFE9500E01E2B /* GoodBorrowCell.m */; };
+		144A1AEB1A2FFE9500E01E2B /* GoodBorrowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144A1AE91A2FFE9500E01E2B /* GoodBorrowCell.xib */; };
+		144A1C021A302E4600E01E2B /* KeyboardManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144A1C001A302E4600E01E2B /* KeyboardManager.framework */; };
+		144A1C031A302E4600E01E2B /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 144A1C011A302E4600E01E2B /* IQKeyboardManager.bundle */; };
 		1469FD651A270DF4002685A0 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD641A270DF4002685A0 /* UserModel.m */; };
 		1469FD6A1A270E10002685A0 /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD671A270E10002685A0 /* Tool.m */; };
 		1469FD6B1A270E10002685A0 /* PrintObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD691A270E10002685A0 /* PrintObject.m */; };
@@ -35,7 +44,6 @@
 		14D3C0781A281938003E650A /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0771A281938003E650A /* UserInfo.m */; };
 		14D3C07D1A2819EA003E650A /* UserHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C07C1A2819EA003E650A /* UserHouse.m */; };
 		14D3C0831A285C43003E650A /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0821A285C43003E650A /* City.m */; };
-		14D3C0A41A286B0B003E650A /* KeyboardManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D3C0A31A286B0B003E650A /* KeyboardManager.framework */; };
 		14D3C0A71A2874EB003E650A /* Community.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0A61A2874EB003E650A /* Community.m */; };
 		14D3C0AA1A2878E0003E650A /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0A91A2878E0003E650A /* Building.m */; };
 		14D3C0AD1A28792F003E650A /* HouseNum.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0AC1A28792F003E650A /* HouseNum.m */; };
@@ -206,7 +214,6 @@
 		14FDB9FD1A26C94F006EFFCC /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB95E1A26C94E006EFFCC /* StrikeThroughLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		14FDB9FE1A26C94F006EFFCC /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB9611A26C94E006EFFCC /* VPImageCropperViewController.m */; };
 		14FDB9FF1A26C94F006EFFCC /* ZJSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB9641A26C94E006EFFCC /* ZJSwitch.m */; };
-		14FDBA0B1A26CE7C006EFFCC /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14FDBA091A26CE7C006EFFCC /* IQKeyboardManager.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +244,19 @@
 		1435427A1A2F11C900A8BBB7 /* CallServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallServiceCell.xib; sourceTree = "<group>"; };
 		1435427D1A2F40B000A8BBB7 /* CallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallService.h; sourceTree = "<group>"; };
 		1435427E1A2F40B000A8BBB7 /* CallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallService.m; sourceTree = "<group>"; };
+		144A1AD71A2FEE5E00E01E2B /* CircleOfFriendsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFriendsCell.h; sourceTree = "<group>"; };
+		144A1AD81A2FEE5E00E01E2B /* CircleOfFriendsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFriendsCell.m; sourceTree = "<group>"; };
+		144A1AD91A2FEE5E00E01E2B /* CircleOfFriendsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFriendsCell.xib; sourceTree = "<group>"; };
+		144A1ADD1A2FF37D00E01E2B /* GoodBorrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodBorrowView.h; sourceTree = "<group>"; };
+		144A1ADE1A2FF37D00E01E2B /* GoodBorrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodBorrowView.m; sourceTree = "<group>"; };
+		144A1ADF1A2FF37D00E01E2B /* GoodBorrowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodBorrowView.xib; sourceTree = "<group>"; };
+		144A1AE31A2FFDD900E01E2B /* BorrowGood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorrowGood.h; sourceTree = "<group>"; };
+		144A1AE41A2FFDD900E01E2B /* BorrowGood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorrowGood.m; sourceTree = "<group>"; };
+		144A1AE71A2FFE9500E01E2B /* GoodBorrowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodBorrowCell.h; sourceTree = "<group>"; };
+		144A1AE81A2FFE9500E01E2B /* GoodBorrowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodBorrowCell.m; sourceTree = "<group>"; };
+		144A1AE91A2FFE9500E01E2B /* GoodBorrowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodBorrowCell.xib; sourceTree = "<group>"; };
+		144A1C001A302E4600E01E2B /* KeyboardManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KeyboardManager.framework; sourceTree = "<group>"; };
+		144A1C011A302E4600E01E2B /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
 		1469FD631A270DF4002685A0 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		1469FD641A270DF4002685A0 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		1469FD661A270E10002685A0 /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
@@ -273,7 +293,6 @@
 		14D3C07C1A2819EA003E650A /* UserHouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHouse.m; sourceTree = "<group>"; };
 		14D3C0811A285C43003E650A /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
 		14D3C0821A285C43003E650A /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
-		14D3C0A31A286B0B003E650A /* KeyboardManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KeyboardManager.framework; sourceTree = "<group>"; };
 		14D3C0A51A2874EB003E650A /* Community.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Community.h; sourceTree = "<group>"; };
 		14D3C0A61A2874EB003E650A /* Community.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Community.m; sourceTree = "<group>"; };
 		14D3C0A81A2878E0003E650A /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
@@ -651,7 +670,6 @@
 		14FDB9611A26C94E006EFFCC /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
 		14FDB9631A26C94E006EFFCC /* ZJSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSwitch.h; sourceTree = "<group>"; };
 		14FDB9641A26C94E006EFFCC /* ZJSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSwitch.m; sourceTree = "<group>"; };
-		14FDBA091A26CE7C006EFFCC /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -664,7 +682,7 @@
 				14FDB4951A25C1AB006EFFCC /* libz.dylib in Frameworks */,
 				14FDB4931A25C1A2006EFFCC /* MobileCoreServices.framework in Frameworks */,
 				14FDB4911A25C195006EFFCC /* CFNetwork.framework in Frameworks */,
-				14D3C0A41A286B0B003E650A /* KeyboardManager.framework in Frameworks */,
+				144A1C021A302E4600E01E2B /* KeyboardManager.framework in Frameworks */,
 				14FDB9771A26C94E006EFFCC /* AlixPaylib_arc.a in Frameworks */,
 				14FDB9741A26C94E006EFFCC /* AlipayRsaLib.a in Frameworks */,
 				14FDB48F1A25C184006EFFCC /* CoreData.framework in Frameworks */,
@@ -723,6 +741,8 @@
 				1435426C1A2EA21800A8BBB7 /* Notice.m */,
 				1435427D1A2F40B000A8BBB7 /* CallService.h */,
 				1435427E1A2F40B000A8BBB7 /* CallService.m */,
+				144A1AE31A2FFDD900E01E2B /* BorrowGood.h */,
+				144A1AE41A2FFDD900E01E2B /* BorrowGood.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -762,6 +782,12 @@
 				14B812F61A2F55D500506CD1 /* CallServiceReusable.h */,
 				14B812F71A2F55D500506CD1 /* CallServiceReusable.m */,
 				14B812F81A2F55D500506CD1 /* CallServiceReusable.xib */,
+				144A1ADD1A2FF37D00E01E2B /* GoodBorrowView.h */,
+				144A1ADE1A2FF37D00E01E2B /* GoodBorrowView.m */,
+				144A1ADF1A2FF37D00E01E2B /* GoodBorrowView.xib */,
+				144A1AE71A2FFE9500E01E2B /* GoodBorrowCell.h */,
+				144A1AE81A2FFE9500E01E2B /* GoodBorrowCell.m */,
+				144A1AE91A2FFE9500E01E2B /* GoodBorrowCell.xib */,
 			);
 			name = PropertyPage;
 			sourceTree = "<group>";
@@ -772,6 +798,9 @@
 				14B641B71A2D42AC00C350A0 /* LifePageView.h */,
 				14B641B81A2D42AC00C350A0 /* LifePageView.m */,
 				14B641B91A2D42AC00C350A0 /* LifePageView.xib */,
+				144A1AD71A2FEE5E00E01E2B /* CircleOfFriendsCell.h */,
+				144A1AD81A2FEE5E00E01E2B /* CircleOfFriendsCell.m */,
+				144A1AD91A2FEE5E00E01E2B /* CircleOfFriendsCell.xib */,
 			);
 			name = LifePage;
 			sourceTree = "<group>";
@@ -1535,8 +1564,8 @@
 		14FDBA081A26CE7C006EFFCC /* IQKeyboardManager */ = {
 			isa = PBXGroup;
 			children = (
-				14D3C0A31A286B0B003E650A /* KeyboardManager.framework */,
-				14FDBA091A26CE7C006EFFCC /* IQKeyboardManager.bundle */,
+				144A1C001A302E4600E01E2B /* KeyboardManager.framework */,
+				144A1C011A302E4600E01E2B /* IQKeyboardManager.bundle */,
 			);
 			path = IQKeyboardManager;
 			sourceTree = "<group>";
@@ -1647,7 +1676,10 @@
 				143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */,
 				14FDB9761A26C94E006EFFCC /* Alixpay.bundle in Resources */,
 				14FDB4481A25B73A006EFFCC /* Images.xcassets in Resources */,
+				144A1AE11A2FF37D00E01E2B /* GoodBorrowView.xib in Resources */,
 				149575721A2CA2D100320CF8 /* PropertyPageView.xib in Resources */,
+				144A1AEB1A2FFE9500E01E2B /* GoodBorrowCell.xib in Resources */,
+				144A1ADB1A2FEE5E00E01E2B /* CircleOfFriendsCell.xib in Resources */,
 				14B641D71A2DF89500C350A0 /* NoticeNewCell.xib in Resources */,
 				1435427C1A2F11C900A8BBB7 /* CallServiceCell.xib in Resources */,
 				14E3A06A1A276C92009D0EB0 /* RegisterStep2View.xib in Resources */,
@@ -1657,9 +1689,9 @@
 				14E3A0651A275C77009D0EB0 /* RegisterStep1View.xib in Resources */,
 				14B641CF1A2DA9DD00C350A0 /* NoticeTableView.xib in Resources */,
 				14E3A06F1A276F9C009D0EB0 /* RegisterStep3View.xib in Resources */,
+				144A1C031A302E4600E01E2B /* IQKeyboardManager.bundle in Resources */,
 				14E8F4131A2D5CE900017CA5 /* MyPageView.xib in Resources */,
 				14FDB9E21A26C94F006EFFCC /* MWPhotoBrowser.bundle in Resources */,
-				14FDBA0B1A26CE7C006EFFCC /* IQKeyboardManager.bundle in Resources */,
 				14B812FA1A2F55D500506CD1 /* CallServiceReusable.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1709,6 +1741,7 @@
 				14E3A0641A275C77009D0EB0 /* RegisterStep1View.m in Sources */,
 				14B641CE1A2DA9DD00C350A0 /* NoticeTableView.m in Sources */,
 				14FDB9D71A26C94F006EFFCC /* SDWebImageDownloader.m in Sources */,
+				144A1AEA1A2FFE9500E01E2B /* GoodBorrowCell.m in Sources */,
 				14FDB9CB1A26C94F006EFFCC /* PSTCollectionViewUpdateItem.m in Sources */,
 				14FDB9DD1A26C94F006EFFCC /* UIImage+MultiFormat.m in Sources */,
 				14FDB7A21A26B6E3006EFFCC /* LoginView.mm in Sources */,
@@ -1724,6 +1757,7 @@
 				14FDB9E91A26C94F006EFFCC /* SGFocusImageItem.m in Sources */,
 				14FDB9CD1A26C94F006EFFCC /* PSTGridLayoutItem.m in Sources */,
 				14FDB99E1A26C94E006EFFCC /* EGOImageView.m in Sources */,
+				144A1AE01A2FF37D00E01E2B /* GoodBorrowView.m in Sources */,
 				14FDB9B11A26C94E006EFFCC /* FMDatabaseAdditions.m in Sources */,
 				14FDB9E51A26C94F006EFFCC /* NSObject+RMCopyable.m in Sources */,
 				14FDB9871A26C94E006EFFCC /* ASIDataDecompressor.m in Sources */,
@@ -1781,6 +1815,7 @@
 				143542761A2EF4F800A8BBB7 /* CallServiceView.m in Sources */,
 				14FDB9C11A26C94F006EFFCC /* MWZoomingScrollView.m in Sources */,
 				14FDB9D31A26C94F006EFFCC /* NSData+ImageContentType.m in Sources */,
+				144A1ADA1A2FEE5E00E01E2B /* CircleOfFriendsCell.m in Sources */,
 				14FDB9B41A26C94E006EFFCC /* FMResultSet.m in Sources */,
 				14FDB97A1A26C94E006EFFCC /* NSObject+SBJSON.m in Sources */,
 				14FDB97C1A26C94E006EFFCC /* SBJSON.m in Sources */,
@@ -1796,6 +1831,7 @@
 				14FDB9D81A26C94F006EFFCC /* SDWebImageDownloaderOperation.m in Sources */,
 				14B641C91A2D9E0200C350A0 /* TransitionView.m in Sources */,
 				14FDB9CE1A26C94F006EFFCC /* PSTGridLayoutRow.m in Sources */,
+				144A1AE51A2FFDD900E01E2B /* BorrowGood.m in Sources */,
 				14FDB9CC1A26C94F006EFFCC /* PSTGridLayoutInfo.m in Sources */,
 				14FDB9DC1A26C94F006EFFCC /* UIImage+GIF.m in Sources */,
 				14FDB9E71A26C94F006EFFCC /* RMMapper.m in Sources */,

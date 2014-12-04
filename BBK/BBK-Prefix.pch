@@ -38,7 +38,8 @@
 #define Appkey @"10000001"
 #define AppSecret @"Hr54hiz7"
 
-#define api_base_url @"http://114.215.145.29:8080"
+#define api_base_url @"http://192.168.1.21:8080"
+//#define api_base_url @"http://114.215.145.29:8080"
 //登录接口
 #define api_login @"/zhxq_api/regUser/login.htm"
 //查询城市接口
@@ -51,6 +52,11 @@
 #define api_findPushInfo @"/zhxq_api/push/findPushInfoByPage.htm"
 //获得小区服务
 #define api_callService @"/zhxq_api/params/findManagerCompanyDepartmentAll.htm"
+//获得社区朋友圈
+#define api_CircleOfFriends @"/zhxq_api/topic/findTopicInfoByPage.htm"
+//获得物品借用
+#define api_BorrowGoods @"/zhxq_api/borrow/findBorrowGoodsByPage.htm"
+
 
 #define servicephone @"4006967020"
 
