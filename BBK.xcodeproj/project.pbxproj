@@ -48,6 +48,10 @@
 		14C1177A1A31633D009CAC7E /* ExpressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C117781A31633D009CAC7E /* ExpressCell.m */; };
 		14C1177B1A31633E009CAC7E /* ExpressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C117791A31633D009CAC7E /* ExpressCell.xib */; };
 		14C1177F1A31640C009CAC7E /* Express.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C1177E1A31640C009CAC7E /* Express.m */; };
+		14C117861A31E2E8009CAC7E /* ExpressHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C117841A31E2E8009CAC7E /* ExpressHistoryView.m */; };
+		14C117871A31E2E8009CAC7E /* ExpressHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C117851A31E2E8009CAC7E /* ExpressHistoryView.xib */; };
+		14C1178B1A31E3B9009CAC7E /* ExpressHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C117891A31E3B9009CAC7E /* ExpressHistoryCell.m */; };
+		14C1178C1A31E3B9009CAC7E /* ExpressHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C1178A1A31E3B9009CAC7E /* ExpressHistoryCell.xib */; };
 		14D3C0781A281938003E650A /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0771A281938003E650A /* UserInfo.m */; };
 		14D3C07D1A2819EA003E650A /* UserHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C07C1A2819EA003E650A /* UserHouse.m */; };
 		14D3C0831A285C43003E650A /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0821A285C43003E650A /* City.m */; };
@@ -363,6 +367,12 @@
 		14C117791A31633D009CAC7E /* ExpressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpressCell.xib; sourceTree = "<group>"; };
 		14C1177D1A31640C009CAC7E /* Express.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Express.h; sourceTree = "<group>"; };
 		14C1177E1A31640C009CAC7E /* Express.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Express.m; sourceTree = "<group>"; };
+		14C117831A31E2E8009CAC7E /* ExpressHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressHistoryView.h; sourceTree = "<group>"; };
+		14C117841A31E2E8009CAC7E /* ExpressHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressHistoryView.m; sourceTree = "<group>"; };
+		14C117851A31E2E8009CAC7E /* ExpressHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpressHistoryView.xib; sourceTree = "<group>"; };
+		14C117881A31E3B9009CAC7E /* ExpressHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressHistoryCell.h; sourceTree = "<group>"; };
+		14C117891A31E3B9009CAC7E /* ExpressHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressHistoryCell.m; sourceTree = "<group>"; };
+		14C1178A1A31E3B9009CAC7E /* ExpressHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpressHistoryCell.xib; sourceTree = "<group>"; };
 		14D3C0761A281938003E650A /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		14D3C0771A281938003E650A /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		14D3C07B1A2819EA003E650A /* UserHouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHouse.h; sourceTree = "<group>"; };
@@ -879,6 +889,12 @@
 				14C117771A31633D009CAC7E /* ExpressCell.h */,
 				14C117781A31633D009CAC7E /* ExpressCell.m */,
 				14C117791A31633D009CAC7E /* ExpressCell.xib */,
+				14C117831A31E2E8009CAC7E /* ExpressHistoryView.h */,
+				14C117841A31E2E8009CAC7E /* ExpressHistoryView.m */,
+				14C117851A31E2E8009CAC7E /* ExpressHistoryView.xib */,
+				14C117881A31E3B9009CAC7E /* ExpressHistoryCell.h */,
+				14C117891A31E3B9009CAC7E /* ExpressHistoryCell.m */,
+				14C1178A1A31E3B9009CAC7E /* ExpressHistoryCell.xib */,
 			);
 			name = PropertyPage;
 			sourceTree = "<group>";
@@ -1693,9 +1709,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				14B641CA1A2D9E0200C350A0 /* TransitionView.xib in Resources */,
+				14C117871A31E2E8009CAC7E /* ExpressHistoryView.xib in Resources */,
 				14FDB9A31A26C94E006EFFCC /* LoadingCell.xib in Resources */,
 				14FDB7A31A26B6E3006EFFCC /* LoginView.xib in Resources */,
 				14B641BB1A2D42AC00C350A0 /* LifePageView.xib in Resources */,
+				14C1178C1A31E3B9009CAC7E /* ExpressHistoryCell.xib in Resources */,
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
 				143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */,
 				14FDB9761A26C94E006EFFCC /* Alixpay.bundle in Resources */,
@@ -1849,6 +1867,7 @@
 				14FDB97A1A26C94E006EFFCC /* NSObject+SBJSON.m in Sources */,
 				14FDB97C1A26C94E006EFFCC /* SBJSON.m in Sources */,
 				14FDB9E41A26C94F006EFFCC /* NSObject+RMArchivable.m in Sources */,
+				14C117861A31E2E8009CAC7E /* ExpressHistoryView.m in Sources */,
 				14FDB99D1A26C94E006EFFCC /* EGOImageLoader.m in Sources */,
 				14FDB9D21A26C94F006EFFCC /* MKAnnotationView+WebCache.m in Sources */,
 				14FDB9A91A26C94E006EFFCC /* NSString+AES.m in Sources */,
@@ -1887,6 +1906,7 @@
 				14FDB9691A26C94E006EFFCC /* AFHTTPClient.m in Sources */,
 				14FDB9BA1A26C94F006EFFCC /* MWCaptionView.m in Sources */,
 				14FDB9D41A26C94F006EFFCC /* SDImageCache.m in Sources */,
+				14C1178B1A31E3B9009CAC7E /* ExpressHistoryCell.m in Sources */,
 				14FDB9721A26C94E006EFFCC /* AFXMLRequestOperation.m in Sources */,
 				14FDB9AE1A26C94E006EFFCC /* UIImage+resize.m in Sources */,
 				14FDB9821A26C94E006EFFCC /* PayOrder.m in Sources */,

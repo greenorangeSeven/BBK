@@ -1,5 +1,5 @@
 //
-//  ExpressView.h
+//  ExpressHistoryView.h
 //  BBK
 //
 //  Created by Seven on 14-12-5.
@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGOImageView.h"
 
-@interface ExpressView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate>
+@interface ExpressHistoryView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate>
 {
     NSMutableArray *expresses;
     BOOL isLoading;
@@ -21,13 +20,7 @@
     BOOL _reloading;
 }
 
-@property (weak, nonatomic) IBOutlet EGOImageView *userFaceIv;
-@property (weak, nonatomic) IBOutlet UILabel *userInfoLb;
-@property (weak, nonatomic) IBOutlet UILabel *userAddressLb;
-@property (weak, nonatomic) IBOutlet UILabel *expressNumLb;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-- (IBAction)expressHistoryAction:(id)sender;
 
 - (void)refreshExpressData:(BOOL)noRefresh;
 

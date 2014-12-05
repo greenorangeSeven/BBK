@@ -1,43 +1,29 @@
 //
-//  ExpressView.m
+//  ExpressHistoryView.m
 //  BBK
 //
 //  Created by Seven on 14-12-5.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "ExpressView.h"
-#import "ExpressCell.h"
 #import "ExpressHistoryView.h"
+#import "ExpressHistoryCell.h"
 
-@interface ExpressView ()
-{
-    UIWebView *phoneWebView;
-}
+@interface ExpressHistoryView ()
 
 @end
 
-@implementation ExpressView
+@implementation ExpressHistoryView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.text = @"我的快递";
+    titleLabel.text = @"我的历史快递";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = [Tool getColorForMain];
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
-    
-    UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 21, 22)];
-    [rBtn addTarget:self action:@selector(telAction:) forControlEvents:UIControlEventTouchUpInside];
-    [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
-    UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
-    self.navigationItem.rightBarButtonItem = btnTel;
-    
-    UserModel *user = [UserModel Instance];
-    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [user getUserValueForKey:@"regUserName"], [user getUserValueForKey:@"mobileNo"]];
-    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [user getUserValueForKey:@"cellName"], [user getUserValueForKey:@"buildingName"], [user getUserValueForKey:@"numberName"], [user getUserValueForKey:@"userTypeName"]];
     
     //适配iOS7uinavigationbar遮挡的问题
     if(IS_IOS7)
@@ -50,7 +36,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:248.0/255.0 blue:248.0/255.0 alpha:1.0];
     //    设置无分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -118,14 +104,13 @@
         [param setValue:@"20" forKey:@"countPerPages"];
         [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
         [param setValue:[[UserModel Instance] getUserValueForKey:@"mobileNo"] forKey:@"mobileNo"];
-        [param setValue:@"0" forKey:@"stateId"];
+        [param setValue:@"1" forKey:@"stateId"];
         
         NSString *getMyExpressListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_Express] params:param];
         
         [[AFOSCClient sharedClient]getPath:getMyExpressListUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        NSMutableArray *expressNews = [Tool readJsonStrToExpressArray:operation.responseString];
-                                       self.expressNumLb.text = [Tool readJsonStrToExpressNum:operation.responseString];
                                        isLoading = NO;
                                        if (!noRefresh) {
                                            [self clear];
@@ -173,10 +158,14 @@
             return expresses.count == 0 ? 1 : expresses.count;
         }
         else
+        {
             return expresses.count + 1;
+        }
     }
     else
+    {
         return expresses.count;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -188,7 +177,7 @@
     }
     else
     {
-        return 62.0;
+        return 70.0;
     }
 }
 
@@ -204,12 +193,12 @@
     if ([expresses count] > 0) {
         if (row < [expresses count])
         {
-            ExpressCell *cell = [tableView dequeueReusableCellWithIdentifier:ExpressCellIdentifier];
+            ExpressHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:ExpressHistoryCellIdentifier];
             if (!cell) {
-                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"ExpressCell" owner:self options:nil];
+                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"ExpressHistoryCell" owner:self options:nil];
                 for (NSObject *o in objects) {
-                    if ([o isKindOfClass:[ExpressCell class]]) {
-                        cell = (ExpressCell *)o;
+                    if ([o isKindOfClass:[ExpressHistoryCell class]]) {
+                        cell = (ExpressHistoryCell *)o;
                         break;
                     }
                 }
@@ -217,9 +206,6 @@
             
             Express *exp = [expresses objectAtIndex:row];
             cell.timeLb.text = exp.timeDiff;
-            [cell.getExpressBtn setTag:row];
-            [cell.getExpressBtn addTarget:self action:@selector(getExpressAction:) forControlEvents:UIControlEventTouchUpInside];
-            
             return cell;
         }
         else
@@ -229,68 +215,7 @@
     }
     else
     {
-        return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"暂无未领取的快递" andLoadingString:(isLoading ? loadingTip : loadNext20Tip) andIsLoading:isLoading];
-    }
-}
-
-- (IBAction)getExpressAction:(id)sender
-{
-    UIButton *btn = (UIButton *)sender;
-    if (btn) {
-        int row = btn.tag;
-        
-        Express *exp = [expresses objectAtIndex:row];
-        
-        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:exp.expressId forKey:@"expressId"];
-        NSString *getExpressUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_GetExpress] params:param];
-        
-        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:getExpressUrl]];
-        [request setUseCookiePersistence:NO];
-        [request setDelegate:self];
-        [request setDidFailSelector:@selector(requestFailed:)];
-        [request setDidFinishSelector:@selector(requestGetExpress:)];
-        request.tag = row;
-        [request startAsynchronous];
-        
-        request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-        [Tool showHUD:@"领取中..." andView:self.view andHUD:request.hud];
-    }
-    
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request
-{
-    if (request.hud) {
-        [request.hud hide:NO];
-    }
-}
-- (void)requestGetExpress:(ASIHTTPRequest *)request
-{
-    if (request.hud) {
-        [request.hud hide:YES];
-    }
-    
-    [request setUseCookiePersistence:YES];
-    NSData *data = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error;
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    
-    NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
-    if ([state isEqualToString:@"0000"] == NO) {
-        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
-                                                     message:[[json objectForKey:@"header"] objectForKey:@"msg"]
-                                                    delegate:nil
-                                           cancelButtonTitle:@"确定"
-                                           otherButtonTitles:nil];
-        [av show];
-        return;
-    }
-    else
-    {
-        [expresses removeObjectAtIndex:request.tag];
-        [self.tableView reloadData];
-        self.expressNumLb.text = [NSString stringWithFormat:@"%d", [self.expressNumLb.text intValue] - 1];
+        return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"暂无历史快递" andLoadingString:(isLoading ? loadingTip : loadNext20Tip) andIsLoading:isLoading];
     }
 }
 
@@ -373,32 +298,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)telAction:(id)sender
-{
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
-    if (!phoneWebView) {
-        phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    }
-    [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
-}
-
-- (IBAction)expressHistoryAction:(id)sender {
-    ExpressHistoryView *historyView = [[ExpressHistoryView alloc] init];
-    [self.navigationController pushViewController:historyView animated:YES];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self.navigationController.navigationBar setTintColor:[Tool getColorForMain]];
-
-    self.navigationController.navigationBar.hidden = NO;
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-    backItem.title = @"返回";
-    self.navigationItem.backBarButtonItem = backItem;
 }
 
 /*

@@ -33,6 +33,13 @@
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
     
+    //适配iOS7uinavigationbar遮挡的问题
+    if(IS_IOS7)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
     [self refreshCircleOfFriendsData];
 }
 

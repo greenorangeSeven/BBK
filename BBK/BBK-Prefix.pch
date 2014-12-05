@@ -38,8 +38,8 @@
 #define Appkey @"10000001"
 #define AppSecret @"Hr54hiz7"
 
-#define api_base_url @"http://192.168.1.27:8080"
-//#define api_base_url @"http://114.215.145.29:8080"
+//#define api_base_url @"http://192.168.1.27:8080"
+#define api_base_url @"http://114.215.145.29:8080"
 //登录接口
 #define api_login @"/zhxq_api/regUser/login.htm"
 //查询城市接口
@@ -70,8 +70,7 @@
 #define CallServiceCellIdentifier @"CallServiceCellIdentifier"
 #define GoodBorrowCellIdentifier @"GoodBorrowCellIdentifier"
 #define ExpressCellIdentifier @"ExpressCellIdentifier"
-
-#define createshoppingcart @"create table shoppingcart (id integer primary key autoincrement not null,goodid text,title text,thumb text,price text,store_name text,business_id text,number int,user_id text)"
+#define ExpressHistoryCellIdentifier @"ExpressHistoryCellIdentifier"
 
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"
