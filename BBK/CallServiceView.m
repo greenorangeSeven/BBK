@@ -122,12 +122,12 @@
     }
     else
     {
-        if ([service.departmentImg isEqualToString:@""]) {
+        if ([service.departmentImgFull isEqualToString:@""]) {
             service.imgData = [UIImage imageNamed:@"loadingpic2.png"];
         }
         else
         {
-            NSData * imageData = [_iconCache getImage:[TQImageCache parseUrlForCacheName:service.departmentImg]];
+            NSData * imageData = [_iconCache getImage:[TQImageCache parseUrlForCacheName:service.departmentImgFull]];
             if (imageData) {
                 service.imgData = [UIImage imageWithData:imageData];
                 cell.servicePicIv.image = service.imgData;
@@ -137,7 +137,7 @@
                 IconDownloader *downloader = [self.imageDownloadsInProgress objectForKey:[NSString stringWithFormat:@"%d", [indexPath row]]];
                 if (downloader == nil) {
                     ImgRecord *record = [ImgRecord new];
-                    NSString *urlStr = service.departmentImg;
+                    NSString *urlStr = service.departmentImgFull;
                     record.url = urlStr;
                     [self startIconDownload:record forIndexPath:indexPath];
                 }
@@ -209,7 +209,7 @@
             service.imgData = iconDownloader.imgRecord.img;
             // cache it
             NSData * imageData = UIImagePNGRepresentation(service.imgData);
-            [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:service.departmentImg]];
+            [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:service.departmentImgFull]];
             [self.collectionView reloadData];
         }
     }

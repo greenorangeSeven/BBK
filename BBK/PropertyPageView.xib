@@ -151,6 +151,9 @@
                             <state key="normal" image="pro_kdsf">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="expressAction:" destination="-1" eventType="touchUpInside" id="iB2-Bj-hry"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eHV-oH-CVb">
                             <rect key="frame" x="131" y="369" width="61" height="62"/>

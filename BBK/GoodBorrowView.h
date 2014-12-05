@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "TQImageCache.h"
 
-@interface GoodBorrowView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, IconDownloaderDelegate>
+@interface GoodBorrowView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource, IconDownloaderDelegate>
 {
     NSMutableArray *goods;
     TQImageCache * _iconCache;
 }
 
+@property (weak, nonatomic) IBOutlet UIView *headView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 //异步加载图片专用
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;

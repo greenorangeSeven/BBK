@@ -10,4 +10,9 @@
 
 @interface GoodBorrowCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *frameView;
+@property (weak, nonatomic) IBOutlet UIImageView *goodPicIv;
+@property (weak, nonatomic) IBOutlet UILabel *goodNameLb;
+@property (weak, nonatomic) IBOutlet UILabel *goodNumberLb;
+
 @end

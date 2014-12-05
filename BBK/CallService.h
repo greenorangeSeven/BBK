@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSString *departmentId;
 @property (nonatomic, retain) NSString *departmentImg;
+@property (nonatomic, retain) NSString *departmentImgFull;
 @property (nonatomic, retain) NSString *departmentName;
 @property (nonatomic, retain) NSString *departmentPhone;
 

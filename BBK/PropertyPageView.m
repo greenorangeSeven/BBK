@@ -11,6 +11,7 @@
 #import "Notice.h"
 #import "CallServiceView.h"
 #import "GoodBorrowView.h"
+#import "ExpressView.h"
 
 @interface PropertyPageView ()
 {
@@ -117,6 +118,13 @@
     GoodBorrowView *borrowView = [[GoodBorrowView alloc] init];
     borrowView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:borrowView animated:YES];
+}
+
+//快递收发
+- (IBAction)expressAction:(id)sender {
+    ExpressView *expressView = [[ExpressView alloc] init];
+    expressView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:expressView animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -22,5 +22,7 @@
 - (IBAction)callServiceAction:(id)sender;
 //物品借用
 - (IBAction)goodBorrowAction:(id)sender;
+//快递收发
+- (IBAction)expressAction:(id)sender;
 
 @end

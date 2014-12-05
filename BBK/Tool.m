@@ -616,4 +616,70 @@
     }
 }
 
+//解析物品借用JSON
++ (NSMutableArray *)readJsonStrToBorrowGoodsArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *goodsJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( goodsJsonDic == nil || [goodsJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[goodsJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *goodsArrayJson = [[goodsJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *goodsArray = [RMMapper mutableArrayOfClass:[BorrowGood class] fromArrayOfDictionary:goodsArrayJson];
+        return goodsArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//获得未收包裹数量
++ (NSString *)readJsonStrToExpressNum:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *expressJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( expressJsonDic == nil || [expressJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[expressJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES)
+    {
+        NSString *expressNum = [NSString stringWithFormat:@"%d", [[[expressJsonDic objectForKey:@"data"] objectForKey:@"totalRecord"] intValue]] ;
+        return expressNum;
+    }
+    else
+    {
+        return @"0";
+    }
+}
+
+//解析快递包裹JSON
++ (NSMutableArray *)readJsonStrToExpressArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *expressJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( expressJsonDic == nil || [expressJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[expressJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *expressArrayJson = [[expressJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *expressArray = [RMMapper mutableArrayOfClass:[Express class] fromArrayOfDictionary:expressArrayJson];
+        for (Express *exp in expressArray) {
+            exp.timeDiff = [Tool intervalSinceNow:[Tool TimestampToDateStr:[exp.starttimeStamp stringValue] andFormatterStr:@"yyyy-MM-dd HH:mm:ss"]];
+        }
+        return expressArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 @end

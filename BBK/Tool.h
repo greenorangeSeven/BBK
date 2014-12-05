@@ -22,6 +22,8 @@
 #import "HouseNum.h"
 #import "Notice.h"
 #import "CallService.h"
+#import "BorrowGood.h"
+#import "Express.h"
 
 @interface Tool : NSObject
 
@@ -118,5 +120,11 @@
 + (NSMutableArray *)readJsonStrToNoticeArray:(NSString *)str;
 //解析物业呼叫JSON
 + (NSMutableArray *)readJsonStrToServiceArray:(NSString *)str;
+//解析物品借用JSON
++ (NSMutableArray *)readJsonStrToBorrowGoodsArray:(NSString *)str;
+//获得未收包裹数量
++ (NSString *)readJsonStrToExpressNum:(NSString *)str;
+//解析快递包裹JSON
++ (NSMutableArray *)readJsonStrToExpressArray:(NSString *)str;
 
 @end
