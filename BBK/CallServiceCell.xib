@@ -52,7 +52,7 @@
                 <outlet property="servicePhoneLb" destination="P0j-mR-ZLg" id="hHG-L7-Psf"/>
                 <outlet property="servicePicIv" destination="xyo-VW-p3q" id="ZiU-yj-ZCz"/>
             </connections>
-            <point key="canvasLocation" x="1.5" y="139.5"/>
+            <point key="canvasLocation" x="-104.5" y="107.5"/>
         </collectionViewCell>
     </objects>
     <resources>

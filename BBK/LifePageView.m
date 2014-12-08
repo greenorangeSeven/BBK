@@ -7,6 +7,7 @@
 //
 
 #import "LifePageView.h"
+#import "CircleOfFriendsCell.h"
 
 @interface LifePageView ()
 {
@@ -33,20 +34,49 @@
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
     
-    //适配iOS7uinavigationbar遮挡的问题
-    if(IS_IOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     
-    [self refreshCircleOfFriendsData];
+    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height-33);
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    //    设置无分割线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    allCount = 0;
+    //添加的代码
+    if (_refreshHeaderView == nil) {
+        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, -320.0f, self.view.frame.size.width, 320)];
+        view.delegate = self;
+        [self.tableView addSubview:view];
+        _refreshHeaderView = view;
+    }
+    [_refreshHeaderView refreshLastUpdatedDate];
+    
+    topics = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    [self refreshCircleOfFriendsData:YES];
 }
 
-- (void)refreshCircleOfFriendsData
+- (void)clear
+{
+    allCount = 0;
+    [topics removeAllObjects];
+    isLoadOver = NO;
+}
+
+- (void)refreshCircleOfFriendsData:(BOOL)noRefresh
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
+        if (isLoading || isLoadOver) {
+            return;
+        }
+        if (!noRefresh) {
+            allCount = 0;
+        }
+        
         //生成获取社区朋友圈URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
@@ -58,13 +88,22 @@
         
         [[AFOSCClient sharedClient]getPath:getCircleOfFriendsListUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       NSMutableArray *topicsNews = [Tool readJsonStrToTopicArray:operation.responseString];
+                                       isLoading = NO;
+                                       if (!noRefresh) {
+                                           [self clear];
+                                       }
                                        @try {
-//                                           [notices removeAllObjects];
-//                                           notices = [Tool readJsonStrToNoticeArray:operation.responseString];
-//                                           if ([notices count] > 0) {
-//                                               Notice *notice = [notices objectAtIndex:0];
-//                                               self.noticeTitleLb.text = notice.title;
-//                                           }
+                                           int count = [topicsNews count];
+                                           allCount += count;
+                                           if (count < 20)
+                                           {
+                                               isLoadOver = YES;
+                                           }
+                                           [topics addObjectsFromArray:topicsNews];
+                                           [self.tableView reloadData];
+                                           [self doneLoadingTableViewData];
+                                           
                                        }
                                        @catch (NSException *exception) {
                                            [NdUncaughtExceptionHandler TakeException:exception];
@@ -88,9 +127,269 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
+#pragma TableView的处理
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if ([UserModel Instance].isNetworkRunning) {
+        if (isLoadOver) {
+            return topics.count == 0 ? 1 : topics.count;
+        }
+        else
+            return topics.count + 1;
+    }
+    else
+        return topics.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row = [indexPath row];
+    if (row < [topics count]) {
+        int row = [indexPath row];
+        Topic *topic = [topics objectAtIndex:row];
+        return 140.0 + topic.viewAddHeight;
+    }
+    else
+    {
+        return 40.0;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [UIColor clearColor];
+}
+
+//列表数据渲染
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row = [indexPath row];
+    if ([topics count] > 0) {
+        if (row < [topics count])
+        {
+            
+            CircleOfFriendsCell *cell = [tableView dequeueReusableCellWithIdentifier:CircleOfFriendsCellIdentifier];
+            if (!cell) {
+                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CircleOfFriendsCell" owner:self options:nil];
+                for (NSObject *o in objects) {
+                    if ([o isKindOfClass:[CircleOfFriendsCell class]]) {
+                        cell = (CircleOfFriendsCell *)o;
+                        break;
+                    }
+                }
+            }
+            [Tool roundTextView:cell.boxView andBorderWidth:0.5 andCornerRadius:5.0];
+            //图片圆形处理
+            cell.userFaceIv.layer.masksToBounds = YES;
+            cell.userFaceIv.layer.cornerRadius = cell.userFaceIv.frame.size.height / 2;    //最重要的是这个地方要设成imgview高的一半
+            cell.userFaceIv.backgroundColor = [UIColor whiteColor];
+            
+            int row = [indexPath row];
+            
+            Topic *topic = [topics objectAtIndex:row];
+            cell.nickNameLb.text = topic.nickName;
+            cell.timeLb.text = topic.starttime;
+            cell.contentLb.text = topic.content;
+            
+            //计算话题内容高度
+            CGRect contentFrame = cell.contentLb.frame;
+            contentFrame.size.height = topic.contentHeight;
+            cell.contentLb.frame = contentFrame;
+            
+            //计算图片区域高度
+            CGRect imgFrame = cell.imgView.frame;
+            imgFrame.size.height = topic.imageViewHeight;
+            cell.imgView.frame = imgFrame;
+            
+            //计算框架View的高度
+            CGRect boxFrame = cell.boxView.frame;
+            boxFrame.size.height += topic.viewAddHeight;
+            cell.boxView.frame = boxFrame;
+            
+            //图片显示及缓存
+            if (topic.imgData) {
+                cell.userFaceIv.image = topic.imgData;
+            }
+            else
+            {
+                if ([topic.photoFull isEqualToString:@""]) {
+                    topic.imgData = [UIImage imageNamed:@"loadingpic2.png"];
+                }
+                else
+                {
+                    NSData * imageData = [_iconCache getImage:[TQImageCache parseUrlForCacheName:topic.photoFull]];
+                    if (imageData) {
+                        topic.imgData = [UIImage imageWithData:imageData];
+                        cell.userFaceIv.image = topic.imgData;
+                    }
+                    else
+                    {
+                        IconDownloader *downloader = [self.imageDownloadsInProgress objectForKey:[NSString stringWithFormat:@"%d", [indexPath row]]];
+                        if (downloader == nil) {
+                            ImgRecord *record = [ImgRecord new];
+                            NSString *urlStr = topic.photoFull;
+                            record.url = urlStr;
+                            [self startIconDownload:record forIndexPath:indexPath];
+                        }
+                    }
+                }
+            }
+            
+            return cell;
+        }
+        else
+        {
+            return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"已经加载全部" andLoadingString:(isLoading ? loadingTip : loadNext20Tip) andIsLoading:isLoading];
+        }
+    }
+    else
+    {
+        return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"暂无数据" andLoadingString:(isLoading ? loadingTip : loadNext20Tip) andIsLoading:isLoading];
+    }
+}
+
+//表格行点击事件
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    int row = [indexPath row];
+    //点击“下面20条”
+    if (row >= [topics count]) {
+        //启动刷新
+        if (!isLoading) {
+            [self performSelector:@selector(refreshCircleOfFriendsData:)];
+        }
+    }
+    else
+    {
+        //        News *n = [news objectAtIndex:[indexPath row]];
+        //        if (n) {
+        //            NewsDetailView *newsDetail = [[NewsDetailView alloc] init];
+        //            newsDetail.news = n;
+        //            newsDetail.catalog = catalog;
+        //            [self.navigationController pushViewController:newsDetail animated:YES];
+        //        }
+    }
+}
+
+#pragma 下提刷新
+- (void)reloadTableViewDataSource
+{
+    _reloading = YES;
+}
+
+- (void)doneLoadingTableViewData
+{
+    _reloading = NO;
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view
+{
+    [self reloadTableViewDataSource];
+    [self refresh];
+}
+
+// tableView添加拉更新
+- (void)egoRefreshTableHeaderDidTriggerToBottom
+{
+    if (!isLoading) {
+        [self performSelector:@selector(refreshCircleOfFriendsData:)];
+    }
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view
+{
+    return _reloading;
+}
+- (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view
+{
+    return [NSDate date];
+}
+- (void)refresh
+{
+    if ([UserModel Instance].isNetworkRunning) {
+        isLoadOver = NO;
+        [self refreshCircleOfFriendsData:NO];
+    }
+}
+
+- (void)dealloc
+{
+    [self.tableView setDelegate:nil];
+}
+
+#pragma 下载图片
+- (void)startIconDownload:(ImgRecord *)imgRecord forIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *key = [NSString stringWithFormat:@"%d",[indexPath row]];
+    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:key];
+    if (iconDownloader == nil) {
+        iconDownloader = [[IconDownloader alloc] init];
+        iconDownloader.imgRecord = imgRecord;
+        iconDownloader.index = key;
+        iconDownloader.delegate = self;
+        [self.imageDownloadsInProgress setObject:iconDownloader forKey:key];
+        [iconDownloader startDownload];
+    }
+}
+
+- (void)appImageDidLoad:(NSString *)index
+{
+    IconDownloader *iconDownloader = [self.imageDownloadsInProgress objectForKey:index];
+    if (iconDownloader)
+    {
+        int _index = [index intValue];
+        if (_index >= [topics count]) {
+            return;
+        }
+        Topic *topic = [topics objectAtIndex:[index intValue]];
+        if (topic) {
+            topic.imgData = iconDownloader.imgRecord.img;
+            // cache it
+            NSData * imageData = UIImagePNGRepresentation(topic.imgData);
+            [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:topic.photoFull]];
+            [self.tableView reloadData];
+        }
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    //清空
+    for (Topic *topic in topics) {
+        topic.imgData = nil;
+    }
+}
+
+- (void)viewDidUnload {
+    [self setTableView:nil];
+    [topics removeAllObjects];
+    [self.imageDownloadsInProgress removeAllObjects];
+    topics = nil;
+    _iconCache = nil;
+    [super viewDidUnload];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if (self.imageDownloadsInProgress != nil) {
+        NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+        [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    }
 }
 
 - (IBAction)telAction:(id)sender
@@ -101,15 +400,5 @@
     }
     [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

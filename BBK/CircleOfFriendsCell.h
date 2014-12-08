@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CircleOfFriendsCell : UITableViewCell
+@interface CircleOfFriendsCell : UITableViewCell<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, IconDownloaderDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *boxView;
+@property (weak, nonatomic) IBOutlet UIImageView *userFaceIv;
+@property (weak, nonatomic) IBOutlet UILabel *nickNameLb;
+@property (weak, nonatomic) IBOutlet UILabel *timeLb;
+@property (weak, nonatomic) IBOutlet UILabel *contentLb;
+@property (weak, nonatomic) IBOutlet UICollectionView *imgView;
 
 @end

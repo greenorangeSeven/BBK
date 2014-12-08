@@ -126,7 +126,7 @@
                                        }
                                        
                                        @try {
-                                           int count = [notices count];
+                                           int count = [noticeNews count];
                                            allCount += count;
                                            if (count < 20)
                                            {

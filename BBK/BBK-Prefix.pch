@@ -71,7 +71,7 @@
 #define GoodBorrowCellIdentifier @"GoodBorrowCellIdentifier"
 #define ExpressCellIdentifier @"ExpressCellIdentifier"
 #define ExpressHistoryCellIdentifier @"ExpressHistoryCellIdentifier"
-
+#define CircleOfFriendsCellIdentifier @"CircleOfFriendsCellIdentifier"
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"
 #define Notification_ShowPackAlertView @"Notification_ShowPackAlertView"

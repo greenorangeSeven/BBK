@@ -24,6 +24,7 @@
 #import "CallService.h"
 #import "BorrowGood.h"
 #import "Express.h"
+#import "Topic.h"
 
 @interface Tool : NSObject
 
@@ -126,5 +127,7 @@
 + (NSString *)readJsonStrToExpressNum:(NSString *)str;
 //解析快递包裹JSON
 + (NSMutableArray *)readJsonStrToExpressArray:(NSString *)str;
+//解析社区朋友圈
++ (NSMutableArray *)readJsonStrToTopicArray:(NSString *)str;
 
 @end

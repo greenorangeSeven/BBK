@@ -15,7 +15,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                 </imageView>
             </subviews>
-            <point key="canvasLocation" x="219" y="148.5"/>
+            <point key="canvasLocation" x="61" y="69.5"/>
         </collectionReusableView>
     </objects>
     <resources>

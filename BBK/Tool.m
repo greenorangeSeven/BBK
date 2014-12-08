@@ -682,4 +682,56 @@
     }
 }
 
+//解析社区朋友圈
++ (NSMutableArray *)readJsonStrToTopicArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *topicJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( topicJsonDic == nil || [topicJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[topicJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *topicArrayJson = [[topicJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *topicArray = [RMMapper mutableArrayOfClass:[Topic class] fromArrayOfDictionary:topicArrayJson];
+        for (Topic *exp in topicArray) {
+            exp.starttime = [Tool intervalSinceNow:[Tool TimestampToDateStr:[exp.starttimeStamp stringValue] andFormatterStr:@"yyyy-MM-dd HH:mm:ss"]];
+            exp.contentHeight = [self getTextHeight:236 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:exp.content];
+            if (exp.contentHeight < 36)
+            {
+                exp.contentHeight = 23;
+            }
+            int imgCount = [exp.imgUrlList count];
+            if (imgCount > 0) {
+                int row = 0;
+                if (imgCount % 3 > 0) {
+                    row = imgCount / 3 + 1;
+                }
+                else
+                {
+                    row = imgCount / 3;
+                }
+                exp.imageViewHeight = 60 * row;
+            }
+            else
+            {
+                exp.imageViewHeight = 0;
+            }
+            
+            if (exp.contentHeight > 23) {
+                exp.viewAddHeight += exp.contentHeight - 23;
+            }
+            if (exp.imageViewHeight > 60) {
+                exp.viewAddHeight += exp.imageViewHeight - 60;
+            }
+        }
+        return topicArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 @end
