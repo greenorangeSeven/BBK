@@ -40,7 +40,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:239.0/255.0 alpha:1.0];
     //    设置无分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -62,6 +62,7 @@
 - (void)clear
 {
     allCount = 0;
+    [self.imageDownloadsInProgress removeAllObjects];
     [topics removeAllObjects];
     isLoadOver = NO;
 }
@@ -145,9 +146,18 @@
 {
     int row = [indexPath row];
     if (row < [topics count]) {
-        int row = [indexPath row];
-        Topic *topic = [topics objectAtIndex:row];
-        return 140.0 + topic.viewAddHeight;
+        //出现异常问题暂时最后一条就加高行高
+        if (row == [topics count] -1) {
+            int row = [indexPath row];
+            Topic *topic = [topics objectAtIndex:row];
+            return 140.0 + topic.viewAddHeight;
+        }
+        else
+        {
+            int row = [indexPath row];
+            Topic *topic = [topics objectAtIndex:row];
+            return 120.0 + topic.viewAddHeight;
+        }
     }
     else
     {
@@ -197,14 +207,17 @@
             cell.contentLb.frame = contentFrame;
             
             //计算图片区域高度
-            CGRect imgFrame = cell.imgView.frame;
+            CGRect imgFrame = cell.collectionView.frame;
+            imgFrame.origin.y = contentFrame.origin.y + contentFrame.size.height + 5;
             imgFrame.size.height = topic.imageViewHeight;
-            cell.imgView.frame = imgFrame;
+            cell.collectionView.frame = imgFrame;
             
             //计算框架View的高度
             CGRect boxFrame = cell.boxView.frame;
             boxFrame.size.height += topic.viewAddHeight;
             cell.boxView.frame = boxFrame;
+            
+            [cell loadCircleOfFriendsImage:topic];
             
             //图片显示及缓存
             if (topic.imgData) {

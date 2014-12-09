@@ -25,6 +25,7 @@
 #import "BorrowGood.h"
 #import "Express.h"
 #import "Topic.h"
+#import "RepairType.h"
 
 @interface Tool : NSObject
 
@@ -129,5 +130,7 @@
 + (NSMutableArray *)readJsonStrToExpressArray:(NSString *)str;
 //解析社区朋友圈
 + (NSMutableArray *)readJsonStrToTopicArray:(NSString *)str;
+//解析报修类型JSON
++ (NSMutableArray *)readJsonStrToRepairTypeArray:(NSString *)str;
 
 @end

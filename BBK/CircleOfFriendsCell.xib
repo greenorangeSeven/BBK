@@ -45,13 +45,13 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" id="cdj-yn-f33">
                                 <rect key="frame" x="66" y="39" width="236" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="J1D-Kv-zXc">
-                                    <size key="itemSize" width="75" height="50"/>
+                                    <size key="itemSize" width="75" height="55"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
                                 </collectionViewFlowLayout>
                             </collectionView>
                         </subviews>
@@ -61,8 +61,8 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="boxView" destination="Vgr-k8-aqz" id="2jL-SB-XZl"/>
+                <outlet property="collectionView" destination="cdj-yn-f33" id="W6P-Kp-haB"/>
                 <outlet property="contentLb" destination="7xy-lc-EI8" id="Xxt-Pn-rXg"/>
-                <outlet property="imgView" destination="cdj-yn-f33" id="lXy-PL-g4h"/>
                 <outlet property="nickNameLb" destination="bOf-RW-ojG" id="N5h-zB-VwQ"/>
                 <outlet property="timeLb" destination="sFa-ip-Y4M" id="Y18-5e-zsj"/>
                 <outlet property="userFaceIv" destination="JII-LB-DZ8" id="II6-MK-itd"/>

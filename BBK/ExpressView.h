@@ -21,7 +21,7 @@
     BOOL _reloading;
 }
 
-@property (weak, nonatomic) IBOutlet EGOImageView *userFaceIv;
+@property (weak, nonatomic) IBOutlet UIImageView *userFaceIv;
 @property (weak, nonatomic) IBOutlet UILabel *userInfoLb;
 @property (weak, nonatomic) IBOutlet UILabel *userAddressLb;
 @property (weak, nonatomic) IBOutlet UILabel *expressNumLb;

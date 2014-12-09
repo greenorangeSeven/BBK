@@ -9,6 +9,7 @@
 #import "ExpressView.h"
 #import "ExpressCell.h"
 #import "ExpressHistoryView.h"
+#import "UIImageView+WebCache.h"
 
 @interface ExpressView ()
 {
@@ -36,6 +37,7 @@
     self.navigationItem.rightBarButtonItem = btnTel;
     
     UserModel *user = [UserModel Instance];
+    [self.userFaceIv setImageWithURL:[NSURL URLWithString:[user getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
     self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [user getUserValueForKey:@"regUserName"], [user getUserValueForKey:@"mobileNo"]];
     self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [user getUserValueForKey:@"cellName"], [user getUserValueForKey:@"buildingName"], [user getUserValueForKey:@"numberName"], [user getUserValueForKey:@"userTypeName"]];
     

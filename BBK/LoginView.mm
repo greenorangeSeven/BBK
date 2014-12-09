@@ -116,6 +116,7 @@
         [userModel saveValue:userInfo.regUserName ForKey:@"regUserName"];
         [userModel saveValue:userInfo.mobileNo ForKey:@"mobileNo"];
         [userModel saveValue:userInfo.nickName ForKey:@"nickName"];
+        [userModel saveValue:userInfo.photoFull ForKey:@"photoFull"];
         [[EGOCache globalCache] setObject:userInfo forKey:UserInfoCache withTimeoutInterval:3600 * 24 * 356];
         
         if([userInfo.rhUserHouseList count] > 0)

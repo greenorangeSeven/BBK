@@ -24,5 +24,7 @@
 - (IBAction)goodBorrowAction:(id)sender;
 //快递收发
 - (IBAction)expressAction:(id)sender;
+//物业报修
+- (IBAction)addRepairAction:(id)sender;
 
 @end

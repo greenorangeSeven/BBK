@@ -220,7 +220,7 @@
                 if (!cell) {
                     NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"NoticeOldCell" owner:self options:nil];
                     for (NSObject *o in objects) {
-                        if ([o isKindOfClass:[NoticeNewCell class]]) {
+                        if ([o isKindOfClass:[NoticeOldCell class]]) {
                             cell = (NoticeOldCell *)o;
                             break;
                         }

@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyPageView">
             <connections>
+                <outlet property="userAddressLb" destination="Yd0-yf-ybO" id="dYo-PU-HPo"/>
+                <outlet property="userFaceIv" destination="wA2-5y-XTj" id="K6z-gx-Ghx"/>
+                <outlet property="userInfoLb" destination="53Y-bi-Ogx" id="FIl-Dv-wzr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -61,6 +64,9 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_head" translatesAutoresizingMaskIntoConstraints="NO" id="wA2-5y-XTj">
+                                        <rect key="frame" x="8" y="10" width="65" height="65"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -168,10 +174,11 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="67" y="303"/>
+            <point key="canvasLocation" x="230" y="296"/>
         </view>
     </objects>
     <resources>
+        <image name="default_head" width="66" height="65"/>
         <image name="orange_arrows" width="13" height="21"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

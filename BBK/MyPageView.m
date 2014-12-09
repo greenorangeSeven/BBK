@@ -7,6 +7,7 @@
 //
 
 #import "MyPageView.h"
+#import "UIImageView+WebCache.h"
 
 @interface MyPageView ()
 {
@@ -33,6 +34,12 @@
     [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
+    
+    UserModel *userModel = [UserModel Instance];
+    [self.userFaceIv setImageWithURL:[NSURL URLWithString:[userModel getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+    
+    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [userModel getUserValueForKey:@"regUserName"], [userModel getUserValueForKey:@"mobileNo"]];
+    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [userModel getUserValueForKey:@"cellName"], [userModel getUserValueForKey:@"buildingName"], [userModel getUserValueForKey:@"numberName"], [userModel getUserValueForKey:@"userTypeName"]];
 }
 
 - (void)didReceiveMemoryWarning

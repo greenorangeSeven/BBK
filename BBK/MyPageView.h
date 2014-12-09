@@ -10,4 +10,8 @@
 
 @interface MyPageView : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *userFaceIv;
+@property (weak, nonatomic) IBOutlet UILabel *userInfoLb;
+@property (weak, nonatomic) IBOutlet UILabel *userAddressLb;
+
 @end

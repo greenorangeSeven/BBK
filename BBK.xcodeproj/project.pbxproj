@@ -54,6 +54,13 @@
 		14C1178C1A31E3B9009CAC7E /* ExpressHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C1178A1A31E3B9009CAC7E /* ExpressHistoryCell.xib */; };
 		14C117A61A343407009CAC7E /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C117A51A343407009CAC7E /* Topic.m */; };
 		14C117B31A35320B009CAC7E /* libXG-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C117B01A35320B009CAC7E /* libXG-SDK.a */; };
+		14C117BA1A357F60009CAC7E /* CircleOfFriendsImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C117B81A357F60009CAC7E /* CircleOfFriendsImgCell.m */; };
+		14C117BB1A357F60009CAC7E /* CircleOfFriendsImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C117B91A357F60009CAC7E /* CircleOfFriendsImgCell.xib */; };
+		14C117C01A359C7B009CAC7E /* AddRepairView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C117BE1A359C7B009CAC7E /* AddRepairView.m */; };
+		14C117C11A359C7B009CAC7E /* AddRepairView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C117BF1A359C7B009CAC7E /* AddRepairView.xib */; };
+		14C117C91A35E3E6009CAC7E /* RepairType.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C117C81A35E3E6009CAC7E /* RepairType.m */; };
+		14C117CE1A35F452009CAC7E /* RepairImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C117CC1A35F452009CAC7E /* RepairImageCell.m */; };
+		14C117CF1A35F452009CAC7E /* RepairImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C117CD1A35F452009CAC7E /* RepairImageCell.xib */; };
 		14D3C0781A281938003E650A /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0771A281938003E650A /* UserInfo.m */; };
 		14D3C07D1A2819EA003E650A /* UserHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C07C1A2819EA003E650A /* UserHouse.m */; };
 		14D3C0831A285C43003E650A /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D3C0821A285C43003E650A /* City.m */; };
@@ -380,6 +387,17 @@
 		14C117B01A35320B009CAC7E /* libXG-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libXG-SDK.a"; sourceTree = "<group>"; };
 		14C117B11A35320B009CAC7E /* XGPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGPush.h; sourceTree = "<group>"; };
 		14C117B21A35320B009CAC7E /* XGSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGSetting.h; sourceTree = "<group>"; };
+		14C117B71A357F60009CAC7E /* CircleOfFriendsImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFriendsImgCell.h; sourceTree = "<group>"; };
+		14C117B81A357F60009CAC7E /* CircleOfFriendsImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFriendsImgCell.m; sourceTree = "<group>"; };
+		14C117B91A357F60009CAC7E /* CircleOfFriendsImgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFriendsImgCell.xib; sourceTree = "<group>"; };
+		14C117BD1A359C7B009CAC7E /* AddRepairView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRepairView.h; sourceTree = "<group>"; };
+		14C117BE1A359C7B009CAC7E /* AddRepairView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRepairView.m; sourceTree = "<group>"; };
+		14C117BF1A359C7B009CAC7E /* AddRepairView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddRepairView.xib; sourceTree = "<group>"; };
+		14C117C71A35E3E6009CAC7E /* RepairType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairType.h; sourceTree = "<group>"; };
+		14C117C81A35E3E6009CAC7E /* RepairType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairType.m; sourceTree = "<group>"; };
+		14C117CB1A35F452009CAC7E /* RepairImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairImageCell.h; sourceTree = "<group>"; };
+		14C117CC1A35F452009CAC7E /* RepairImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairImageCell.m; sourceTree = "<group>"; };
+		14C117CD1A35F452009CAC7E /* RepairImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepairImageCell.xib; sourceTree = "<group>"; };
 		14D3C0761A281938003E650A /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		14D3C0771A281938003E650A /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		14D3C07B1A2819EA003E650A /* UserHouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHouse.h; sourceTree = "<group>"; };
@@ -709,10 +727,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14FDB4931A25C1A2006EFFCC /* MobileCoreServices.framework in Frameworks */,
 				14FDB4991A25C1C0006EFFCC /* SystemConfiguration.framework in Frameworks */,
 				14FDB4971A25C1B4006EFFCC /* QuartzCore.framework in Frameworks */,
 				14FDB4951A25C1AB006EFFCC /* libz.dylib in Frameworks */,
-				14FDB4931A25C1A2006EFFCC /* MobileCoreServices.framework in Frameworks */,
 				14FDB4911A25C195006EFFCC /* CFNetwork.framework in Frameworks */,
 				144A1C021A302E4600E01E2B /* KeyboardManager.framework in Frameworks */,
 				14FDB9771A26C94E006EFFCC /* AlixPaylib_arc.a in Frameworks */,
@@ -848,6 +866,8 @@
 				14C1177E1A31640C009CAC7E /* Express.m */,
 				14C117A41A343407009CAC7E /* Topic.h */,
 				14C117A51A343407009CAC7E /* Topic.m */,
+				14C117C71A35E3E6009CAC7E /* RepairType.h */,
+				14C117C81A35E3E6009CAC7E /* RepairType.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -905,6 +925,12 @@
 				14C117881A31E3B9009CAC7E /* ExpressHistoryCell.h */,
 				14C117891A31E3B9009CAC7E /* ExpressHistoryCell.m */,
 				14C1178A1A31E3B9009CAC7E /* ExpressHistoryCell.xib */,
+				14C117BD1A359C7B009CAC7E /* AddRepairView.h */,
+				14C117BE1A359C7B009CAC7E /* AddRepairView.m */,
+				14C117BF1A359C7B009CAC7E /* AddRepairView.xib */,
+				14C117CB1A35F452009CAC7E /* RepairImageCell.h */,
+				14C117CC1A35F452009CAC7E /* RepairImageCell.m */,
+				14C117CD1A35F452009CAC7E /* RepairImageCell.xib */,
 			);
 			name = PropertyPage;
 			sourceTree = "<group>";
@@ -918,6 +944,9 @@
 				144A1AD71A2FEE5E00E01E2B /* CircleOfFriendsCell.h */,
 				144A1AD81A2FEE5E00E01E2B /* CircleOfFriendsCell.m */,
 				144A1AD91A2FEE5E00E01E2B /* CircleOfFriendsCell.xib */,
+				14C117B71A357F60009CAC7E /* CircleOfFriendsImgCell.h */,
+				14C117B81A357F60009CAC7E /* CircleOfFriendsImgCell.m */,
+				14C117B91A357F60009CAC7E /* CircleOfFriendsImgCell.xib */,
 			);
 			name = LifePage;
 			sourceTree = "<group>";
@@ -1738,6 +1767,7 @@
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
 				143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */,
 				14FDB9761A26C94E006EFFCC /* Alixpay.bundle in Resources */,
+				14C117C11A359C7B009CAC7E /* AddRepairView.xib in Resources */,
 				14FDB4481A25B73A006EFFCC /* Images.xcassets in Resources */,
 				144A1AE11A2FF37D00E01E2B /* GoodBorrowView.xib in Resources */,
 				149575721A2CA2D100320CF8 /* PropertyPageView.xib in Resources */,
@@ -1756,7 +1786,9 @@
 				14B641CF1A2DA9DD00C350A0 /* NoticeTableView.xib in Resources */,
 				14E3A06F1A276F9C009D0EB0 /* RegisterStep3View.xib in Resources */,
 				144A1C031A302E4600E01E2B /* IQKeyboardManager.bundle in Resources */,
+				14C117CF1A35F452009CAC7E /* RepairImageCell.xib in Resources */,
 				14E8F4131A2D5CE900017CA5 /* MyPageView.xib in Resources */,
+				14C117BB1A357F60009CAC7E /* CircleOfFriendsImgCell.xib in Resources */,
 				14FDB9E21A26C94F006EFFCC /* MWPhotoBrowser.bundle in Resources */,
 				14B812FA1A2F55D500506CD1 /* CallServiceReusable.xib in Resources */,
 			);
@@ -1811,9 +1843,11 @@
 				144A1AEA1A2FFE9500E01E2B /* GoodBorrowCell.m in Sources */,
 				14FDB9CB1A26C94F006EFFCC /* PSTCollectionViewUpdateItem.m in Sources */,
 				14FDB9DD1A26C94F006EFFCC /* UIImage+MultiFormat.m in Sources */,
+				14C117C91A35E3E6009CAC7E /* RepairType.m in Sources */,
 				14FDB7A21A26B6E3006EFFCC /* LoginView.mm in Sources */,
 				14FDB9AB1A26C94E006EFFCC /* NSString+URLEncoding.m in Sources */,
 				14B641C11A2D691A00C350A0 /* SettingPageView.m in Sources */,
+				14C117BA1A357F60009CAC7E /* CircleOfFriendsImgCell.m in Sources */,
 				1469FD651A270DF4002685A0 /* UserModel.m in Sources */,
 				14FDB9DB1A26C94F006EFFCC /* UIButton+WebCache.m in Sources */,
 				14FDB9781A26C94E006EFFCC /* AlixPayOrder.m in Sources */,
@@ -1894,6 +1928,7 @@
 				14FDB9D21A26C94F006EFFCC /* MKAnnotationView+WebCache.m in Sources */,
 				14FDB9A91A26C94E006EFFCC /* NSString+AES.m in Sources */,
 				14FDB9AD1A26C94E006EFFCC /* UIDevice+Extensions.m in Sources */,
+				14C117C01A359C7B009CAC7E /* AddRepairView.m in Sources */,
 				14C117731A3151A6009CAC7E /* ExpressView.m in Sources */,
 				14FDB9E01A26C94F006EFFCC /* UIImageView+WebCache.m in Sources */,
 				14FDB9C41A26C94F006EFFCC /* PSTCollectionView.m in Sources */,
@@ -1919,6 +1954,7 @@
 				14FDB97F1A26C94E006EFFCC /* SBJsonWriter.m in Sources */,
 				14B641DC1A2DFA7D00C350A0 /* NoticeOldCell.m in Sources */,
 				14D3C0A71A2874EB003E650A /* Community.m in Sources */,
+				14C117CE1A35F452009CAC7E /* RepairImageCell.m in Sources */,
 				14FDB9A81A26C94E006EFFCC /* NSDate+Extensions.m in Sources */,
 				14FDB98E1A26C94E006EFFCC /* Reachability.m in Sources */,
 				14FDB9B81A26C94F006EFFCC /* KxMenu.m in Sources */,

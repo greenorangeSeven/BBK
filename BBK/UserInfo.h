@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSString *idCardLast4;
 @property (nonatomic, retain) NSString *mobileNo;
 @property (nonatomic, retain) NSString *nickName;
+@property (nonatomic, retain) NSString *photoFull;
 
 @property (nonatomic, retain) NSArray *rhUserHouseList;
 

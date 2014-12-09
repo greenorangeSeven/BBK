@@ -15,6 +15,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <QuartzCore/QuartzCore.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
 //添加的预编译
 #import "ASIHTTPRequest.h"
@@ -60,6 +61,9 @@
 #define api_Express @"/zhxq_api/express/findExpressInfoByPage.htm"
 //领取包裹
 #define api_GetExpress @"/zhxq_api/express/receiveExpressInfo.htm"
+//获取报修类型
+#define api_FindAllRepairType @"/zhxq_api/repair/findAllRepairType.htm"
+
 
 
 #define servicephone @"4006967020"
@@ -72,6 +76,9 @@
 #define ExpressCellIdentifier @"ExpressCellIdentifier"
 #define ExpressHistoryCellIdentifier @"ExpressHistoryCellIdentifier"
 #define CircleOfFriendsCellIdentifier @"CircleOfFriendsCellIdentifier"
+#define CircleOfFriendsImgCellIdentifier @"CircleOfFriendsImgCellIdentifier"
+#define RepairImageCellIdentifier @"RepairImageCellIdentifier"
+
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"
 #define Notification_ShowPackAlertView @"Notification_ShowPackAlertView"

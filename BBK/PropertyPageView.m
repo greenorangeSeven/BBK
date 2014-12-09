@@ -12,6 +12,7 @@
 #import "CallServiceView.h"
 #import "GoodBorrowView.h"
 #import "ExpressView.h"
+#import "AddRepairView.h"
 
 @interface PropertyPageView ()
 {
@@ -125,6 +126,13 @@
     ExpressView *expressView = [[ExpressView alloc] init];
     expressView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:expressView animated:YES];
+}
+
+//物业报修
+- (IBAction)addRepairAction:(id)sender {
+    AddRepairView *addRepairView = [[AddRepairView alloc] init];
+    addRepairView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:addRepairView animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
