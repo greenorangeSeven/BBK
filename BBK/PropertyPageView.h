@@ -7,14 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SGFocusImageFrame.h"
+#import "SGFocusImageItem.h"
 
-@interface PropertyPageView : UIViewController
+@interface PropertyPageView : UIViewController<SGFocusImageFrameDelegate>
 {
     NSMutableArray *notices;
+    
+    NSMutableArray *advDatas;
+    SGFocusImageFrame *bannerView;
+    int advIndex;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *noticeTitleLb;
+@property (weak, nonatomic) IBOutlet UIImageView *advIv;
 
 //物业通知
 - (IBAction)noticesAction:(id)sender;

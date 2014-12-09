@@ -39,4 +39,7 @@
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 - (void)startIconDownload:(ImgRecord *)imgRecord forIndexPath:(NSIndexPath *)indexPath;
 
+//生活查询
+- (IBAction)LifeReferAction:(id)sender;
+
 @end

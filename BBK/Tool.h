@@ -26,6 +26,9 @@
 #import "Express.h"
 #import "Topic.h"
 #import "RepairType.h"
+#import "Repair.h"
+#import "ADInfo.h"
+#import "LifeRefer.h"
 
 @interface Tool : NSObject
 
@@ -109,7 +112,9 @@
 //平台接口生成验签
 + (NSDictionary *)parseQueryString:(NSString *)query;
 + (NSString *)serializeURL:(NSString *)baseURL params:(NSDictionary *)params;
-//平台接口生成验签Sign
+//平台接口生成验签Sign中文转UFT-8
++ (NSString *)serializeUFT8Sign:(NSString *)baseURL params:(NSDictionary *)params;
+//平台接口生成验签Sign中文
 + (NSString *)serializeSign:(NSString *)baseURL params:(NSDictionary *)params;
 
 //解析登陆JSON
@@ -132,5 +137,11 @@
 + (NSMutableArray *)readJsonStrToTopicArray:(NSString *)str;
 //解析报修类型JSON
 + (NSMutableArray *)readJsonStrToRepairTypeArray:(NSString *)str;
+//解析报修列表JSON
++ (NSMutableArray *)readJsonStrToRepairArray:(NSString *)str;
+//解析广告JSON
++ (NSMutableArray *)readJsonStrToAdinfoArray:(NSString *)str;
+//解析生活查询JSON
++ (NSMutableArray *)readJsonStrToLifeReferArray:(NSString *)str;
 
 @end

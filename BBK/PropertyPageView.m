@@ -13,6 +13,7 @@
 #import "GoodBorrowView.h"
 #import "ExpressView.h"
 #import "AddRepairView.h"
+#import "ADInfo.h"
 
 @interface PropertyPageView ()
 {
@@ -40,7 +41,86 @@
     [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
+    [self getADVData];
     [self getNotice];
+}
+
+- (void)getADVData
+{
+    //如果有网络连接
+    if ([UserModel Instance].isNetworkRunning) {
+        //生成获取广告URL
+        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+        [param setValue:@"1141788149430600" forKey:@"typeId"];
+        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        [param setValue:@"1" forKey:@"timeCon"];
+        NSString *getADDataUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findAdInfoList] params:param];
+        
+        [[AFOSCClient sharedClient]getPath:getADDataUrl parameters:Nil
+                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       @try {
+                                           advDatas = [Tool readJsonStrToAdinfoArray:operation.responseString];
+                                           int length = [advDatas count];
+                                           
+                                           NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length+2];
+                                           if (length > 1)
+                                           {
+                                               ADInfo *adv = [advDatas objectAtIndex:length-1];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:adv.adName image:adv.imgUrlFull tag:length-1];
+                                               [itemArray addObject:item];
+                                           }
+                                           for (int i = 0; i < length; i++)
+                                           {
+                                               ADInfo *adv = [advDatas objectAtIndex:i];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:adv.adName image:adv.imgUrlFull tag:i];
+                                               [itemArray addObject:item];
+                                               
+                                           }
+                                           //添加第一张图 用于循环
+                                           if (length >1)
+                                           {
+                                               ADInfo *adv = [advDatas objectAtIndex:0];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:adv.adName image:adv.imgUrlFull tag:0];
+                                               [itemArray addObject:item];
+                                           }
+                                           bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 135) delegate:self imageItems:itemArray isAuto:YES];
+                                           [bannerView scrollToIndex:0];
+                                           [self.advIv addSubview:bannerView];
+                                       }
+                                       @catch (NSException *exception) {
+                                           [NdUncaughtExceptionHandler TakeException:exception];
+                                       }
+                                       @finally {
+                                           
+                                       }
+                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                       if ([UserModel Instance].isNetworkRunning == NO) {
+                                           return;
+                                       }
+                                       if ([UserModel Instance].isNetworkRunning) {
+                                           [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                       }
+                                   }];
+    }
+}
+
+//顶部图片滑动点击委托协议实现事件
+- (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
+{
+    ADInfo *adv = (ADInfo *)[advDatas objectAtIndex:advIndex];
+    if (adv)
+    {
+//        ADVDetailView *advDetail = [[ADVDetailView alloc] init];
+//        advDetail.hidesBottomBarWhenPushed = YES;
+//        advDetail.adv = adv;
+//        [self.navigationController pushViewController:advDetail animated:YES];
+    }
+}
+
+//顶部图片自动滑动委托协议实现事件
+- (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(int)index;
+{
+    advIndex = index;
 }
 
 - (void)getNotice
@@ -77,12 +157,12 @@
                                        if ([UserModel Instance].isNetworkRunning == NO) {
                                            return;
                                        }
-
+                                       
                                        if ([UserModel Instance].isNetworkRunning) {
                                            [Tool showCustomHUD:@"网络不给力" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
                                        }
                                    }];
-
+        
     }
 }
 
@@ -138,7 +218,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    bannerView.delegate = self;
     [self.navigationController.navigationBar setTintColor:[Tool getColorForMain]];
     
     self.navigationController.navigationBar.hidden = NO;
@@ -147,5 +227,10 @@
     self.navigationItem.backBarButtonItem = backItem;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    bannerView.delegate = nil;
+}
 
 @end

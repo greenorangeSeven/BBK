@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSNumber *goodsNum;
 @property (nonatomic, retain) NSString *borrowCount;
 @property (nonatomic, retain) NSString *imgUrl;
+@property (nonatomic, retain) NSString *imgUrlFull;
 
 @property (nonatomic, retain) UIImage *imgData;
 

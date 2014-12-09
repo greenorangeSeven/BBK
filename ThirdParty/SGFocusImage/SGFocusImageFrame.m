@@ -15,6 +15,8 @@
     UIScrollView *_scrollView;
     //    GPSimplePageView *_pageControl;
     UIPageControl *_pageControl;
+    UILabel *_titleLb;
+    NSArray *imageItemsArray;
 }
 
 - (void)setupViews;
@@ -88,17 +90,39 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 5.0; //switch interval time
 - (void)setupViews
 {
     NSArray *imageItems = objc_getAssociatedObject(self, (const void *)SG_FOCUS_ITEM_ASS_KEY);
+    imageItemsArray = imageItems;
     _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     _scrollView.scrollsToTop = NO;
     float space = 0;
     CGSize size = CGSizeMake(320, 0);
     //    _pageControl = [[GPSimplePageView alloc] initWithFrame:CGRectMake(self.bounds.size.width *.5 - size.width *.5, self.bounds.size.height - size.height, size.width, size.height)];
-    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height -16-10, 320, 10)];
+    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height -30-10, 320, 10)];
     _pageControl.userInteractionEnabled = NO;
     _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
     _pageControl.pageIndicatorTintColor = [UIColor grayColor];
     [self addSubview:_scrollView];
     [self addSubview:_pageControl];
+    
+    _titleLb = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-25, 320, 25)];
+    _titleLb.font = [UIFont boldSystemFontOfSize:14];
+    
+    _titleLb.backgroundColor = [UIColor colorWithRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:0.5];
+    _titleLb.textColor = [UIColor whiteColor];
+    _titleLb.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_titleLb];
+    
+    if ([imageItems count] > 0) {
+        if ([imageItems count] == 1)
+        {
+            SGFocusImageItem *item = [imageItems objectAtIndex:0];
+            _titleLb.text = item.title;
+        }
+        else
+        {
+            SGFocusImageItem *item = [imageItems objectAtIndex:1];
+            _titleLb.text = item.title;
+        }
+    }
     
     /*
      _scrollView.layer.cornerRadius = 10;
@@ -122,7 +146,7 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 5.0; //switch interval time
     
     for (int i = 0; i < imageItems.count; i++) {
         SGFocusImageItem *item = [imageItems objectAtIndex:i];
-        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"nopic4.png"]];
+        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadpic1.png"]];
         imageView.imageURL = [NSURL URLWithString:item.image];
         imageView.frame = CGRectMake(i * _scrollView.frame.size.width+space, space, _scrollView.frame.size.width-space*2, _scrollView.frame.size.height-2*space-size.height);
         [_scrollView addSubview:imageView];
@@ -220,6 +244,18 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 5.0; //switch interval time
         }
     }
     _pageControl.currentPage = page;
+    if ([imageItems count] == 1)
+    {
+        SGFocusImageItem *item = [imageItems objectAtIndex:0];
+        _titleLb.text = item.title;
+    }
+    else
+    {
+       SGFocusImageItem *item = [imageItems objectAtIndex:page+1];
+        _titleLb.text = item.title;
+    }
+    
+    
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {

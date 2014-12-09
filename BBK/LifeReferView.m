@@ -1,73 +1,63 @@
 //
-//  CallServiceView.m
+//  LifeReferView.m
 //  BBK
 //
-//  Created by Seven on 14-12-3.
+//  Created by Seven on 14-12-9.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "CallServiceView.h"
-#import "CallService.h"
-#import "CallServiceCell.h"
-#import "CallServiceReusable.h"
+#import "LifeReferView.h"
+#import "LifeRefer.h"
+#import "LifeReferCell.h"
+#import "LifeReferFooterReusableView.h"
+#import "CommDetailView.h"
 
-@interface CallServiceView ()
-{
-    UIWebView *phoneWebView;
-}
+@interface LifeReferView ()
 
 @end
 
-@implementation CallServiceView
+@implementation LifeReferView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //适配iOS7uinavigationbar遮挡的问题
-    if(IS_IOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
-    
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.text = @"物业呼叫";
+    titleLabel.text = @"生活查询";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = [Tool getColorForMain];
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
-    UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 21, 22)];
-    [rBtn addTarget:self action:@selector(telAction:) forControlEvents:UIControlEventTouchUpInside];
-    [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
-    UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
-    self.navigationItem.rightBarButtonItem = btnTel;
-    
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    [self.collectionView registerClass:[CallServiceCell class] forCellWithReuseIdentifier:CallServiceCellIdentifier];
-    [self.collectionView registerClass:[CallServiceReusable class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CallServiceHead"];
+    [self.collectionView registerClass:[LifeReferCell class] forCellWithReuseIdentifier:LifeReferCellIdentifier];
+    [self.collectionView registerClass:[LifeReferFooterReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"LifeReferFooter"];
     
-    [self reload];
+    [self findLifeTypeAll];
 }
 
 //取数方法
-- (void)reload
+- (void)findLifeTypeAll
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
-        //生成获取物业物品URL
-        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        //生成获取生活查询URL
+        NSString *findLifeTypeAllUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findLifeTypeAll] params:nil];
         
-        NSString *getCallServiceListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_callService] params:param];
-        
-        [[AFOSCClient sharedClient]getPath:getCallServiceListUrl parameters:Nil
+        [[AFOSCClient sharedClient]getPath:findLifeTypeAllUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
-                                           services = [Tool readJsonStrToServiceArray:operation.responseString];
+                                           refers = [Tool readJsonStrToLifeReferArray:operation.responseString];
+                                           int n = [refers count] % 4;
+                                           if(n > 0)
+                                           {
+                                               for (int i = 0; i < 4 - n; i++) {
+                                                   LifeRefer *r = [[LifeRefer alloc] init];
+                                                   r.lifeTypeId = @"-1";
+                                                   [refers addObject:r];
+                                               }
+                                           }
                                            [self.collectionView reloadData];
                                        }
                                        @catch (NSException *exception) {
@@ -90,7 +80,7 @@
 //定义展示的UICollectionViewCell的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [services count];
+    return [refers count];
 }
 
 //定义展示的Section的个数
@@ -102,49 +92,46 @@
 //每个UICollectionView展示的内容
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CallServiceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CallServiceCellIdentifier forIndexPath:indexPath];
+    LifeReferCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:LifeReferCellIdentifier forIndexPath:indexPath];
     if (!cell) {
-        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CallServiceCell" owner:self options:nil];
+        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"LifeReferCell" owner:self options:nil];
         for (NSObject *o in objects) {
-            if ([o isKindOfClass:[CallServiceCell class]]) {
-                cell = (CallServiceCell *)o;
+            if ([o isKindOfClass:[LifeReferCell class]]) {
+                cell = (LifeReferCell *)o;
                 break;
             }
         }
     }
     int row = [indexPath row];
-    CallService *service = [services objectAtIndex:row];
-    if (row % 2 != 0) {
-        CGRect frame = cell.boxView.frame;
-        frame.origin.x = 5;
-        cell.boxView.frame = frame;
+    LifeRefer *refer = [refers objectAtIndex:row];
+    if ([refer.lifeTypeId isEqualToString:@"-1"]) {
+        cell.referNameLb.text = nil;
+        return cell;
     }
-    [Tool roundTextView:cell.boxView andBorderWidth:0.5 andCornerRadius:5.0];
-    cell.serviceNameLb.text = service.departmentName;
-    cell.servicePhoneLb.text = service.departmentPhone;
+    cell.referNameLb.text = refer.lifeTypeName;
     
     //图片显示及缓存
-    if (service.imgData) {
-        cell.servicePicIv.image = service.imgData;
+    if (refer.imgData) {
+        cell.referIv.image = refer.imgData;
     }
     else
     {
-        if ([service.departmentImgFull isEqualToString:@""]) {
-            service.imgData = [UIImage imageNamed:@"loadingpic2.png"];
+        if ([refer.imgUrlFull isEqualToString:@""]) {
+            refer.imgData = [UIImage imageNamed:@"loadingpic2.png"];
         }
         else
         {
-            NSData * imageData = [_iconCache getImage:[TQImageCache parseUrlForCacheName:service.departmentImgFull]];
+            NSData * imageData = [_iconCache getImage:[TQImageCache parseUrlForCacheName:refer.imgUrlFull]];
             if (imageData) {
-                service.imgData = [UIImage imageWithData:imageData];
-                cell.servicePicIv.image = service.imgData;
+                refer.imgData = [UIImage imageWithData:imageData];
+                cell.referIv.image = refer.imgData;
             }
             else
             {
                 IconDownloader *downloader = [self.imageDownloadsInProgress objectForKey:[NSString stringWithFormat:@"%d", [indexPath row]]];
                 if (downloader == nil) {
                     ImgRecord *record = [ImgRecord new];
-                    NSString *urlStr = service.departmentImgFull;
+                    NSString *urlStr = refer.imgUrlFull;
                     record.url = urlStr;
                     [self startIconDownload:record forIndexPath:indexPath];
                 }
@@ -158,26 +145,25 @@
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(155, 145);
+    return CGSizeMake(78, 90);
 }
 
 //定义每个UICollectionView 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10, 0, 5, 0);
+    return UIEdgeInsetsMake(0, 1, 1, 1);
 }
 
 #pragma mark --UICollectionViewDelegate
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CallService *project = [services objectAtIndex:[indexPath row]];
-    if (project != nil) {
-        NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", project.departmentPhone]];
-        if (!phoneWebView) {
-            phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-        }
-        [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
+    LifeRefer *refer = [refers objectAtIndex:[indexPath row]];
+    if (refer != nil) {
+        CommDetailView *detailView = [[CommDetailView alloc] init];
+        detailView.titleStr = refer.lifeTypeName;
+        detailView.urlStr = refer.url;
+        [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 
@@ -208,15 +194,15 @@
     if (iconDownloader)
     {
         int _index = [index intValue];
-        if (_index >= [services count]) {
+        if (_index >= [refers count]) {
             return;
         }
-        CallService *service = [services objectAtIndex:[index intValue]];
-        if (service) {
-            service.imgData = iconDownloader.imgRecord.img;
+        LifeRefer *refer = [refers objectAtIndex:[index intValue]];
+        if (refer) {
+            refer.imgData = iconDownloader.imgRecord.img;
             // cache it
-            NSData * imageData = UIImagePNGRepresentation(service.imgData);
-            [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:service.departmentImgFull]];
+            NSData * imageData = UIImagePNGRepresentation(refer.imgData);
+            [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:refer.imgUrlFull]];
             [self.collectionView reloadData];
         }
     }
@@ -228,16 +214,16 @@
     NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
     [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
     //清空
-    for (CallService *service in services) {
-        service.imgData = nil;
+    for (LifeRefer *refer in refers) {
+        refer.imgData = nil;
     }
 }
 
 - (void)viewDidUnload {
     [self setCollectionView:nil];
-    [services removeAllObjects];
+    [refers removeAllObjects];
     [self.imageDownloadsInProgress removeAllObjects];
-    services = nil;
+    refers = nil;
     _iconCache = nil;
     [super viewDidUnload];
 }
@@ -253,20 +239,22 @@
 // 返回headview或footview
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *reusableview = nil;
-    if (kind == UICollectionElementKindSectionHeader){
-        CallServiceReusable *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CallServiceHead" forIndexPath:indexPath];
-        reusableview = headerView;
+    if (kind == UICollectionElementKindSectionFooter){
+        LifeReferFooterReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"LifeReferFooter" forIndexPath:indexPath];
+        reusableview = footerView;
     }
     return reusableview;
 }
 
-- (IBAction)telAction:(id)sender
+- (void)viewWillAppear:(BOOL)animated
 {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
-    if (!phoneWebView) {
-        phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    }
-    [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTintColor:[Tool getColorForMain]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
 }
 
 /*

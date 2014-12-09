@@ -39,7 +39,7 @@
 #define Appkey @"10000001"
 #define AppSecret @"Hr54hiz7"
 
-//#define api_base_url @"http://192.168.1.27:8080"
+//#define api_base_url @"http://192.168.1.26:8080"
 #define api_base_url @"http://114.215.145.29:8080"
 //登录接口
 #define api_login @"/zhxq_api/regUser/login.htm"
@@ -63,7 +63,14 @@
 #define api_GetExpress @"/zhxq_api/express/receiveExpressInfo.htm"
 //获取报修类型
 #define api_FindAllRepairType @"/zhxq_api/repair/findAllRepairType.htm"
-
+//新增报修
+#define api_AddRepairWork @"/zhxq_api/repair/addRepairWork.htm"
+//报修分页查询
+#define api_FindRepairWorkByPage @"/zhxq_api/repair/findRepairWorkByPage.htm"
+//获取广告信息
+#define api_findAdInfoList @"/zhxq_api/ad/findAdInfoList.htm"
+//获取生活查询
+#define api_findLifeTypeAll @"/zhxq_api/shop/findLifeTypeAll.htm"
 
 
 #define servicephone @"4006967020"
@@ -78,6 +85,8 @@
 #define CircleOfFriendsCellIdentifier @"CircleOfFriendsCellIdentifier"
 #define CircleOfFriendsImgCellIdentifier @"CircleOfFriendsImgCellIdentifier"
 #define RepairImageCellIdentifier @"RepairImageCellIdentifier"
+#define RepairTableCellIdentifier @"RepairTableCellIdentifier"
+#define LifeReferCellIdentifier @"LifeReferCellIdentifier"
 
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"

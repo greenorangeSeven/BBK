@@ -11,6 +11,7 @@
                 <outlet property="repairContentPlaceholder" destination="dEi-8N-bDs" id="FdU-5C-UNo"/>
                 <outlet property="repairContentTv" destination="02D-cu-wDR" id="Abx-b3-bOg"/>
                 <outlet property="repairTypeNameLb" destination="lT6-65-78p" id="Z66-7g-nOt"/>
+                <outlet property="submitRepairBtn" destination="pbP-km-aQz" id="uNi-IQ-6fY"/>
                 <outlet property="userAddressLb" destination="1bc-wp-45D" id="gY1-5W-XJ8"/>
                 <outlet property="userFaceIv" destination="5Mx-1C-Jr9" id="u8R-wL-Z63"/>
                 <outlet property="userInfoLb" destination="QgY-hO-ZmF" id="iH9-0l-mG9"/>
@@ -171,6 +172,9 @@
                             <state key="normal" title="立即报修" backgroundImage="button_orange">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="submitRepairAction:" destination="-1" eventType="touchUpInside" id="6eR-o4-ZN1"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lKQ-2t-4zh">
                             <rect key="frame" x="44" y="382" width="232" height="45"/>

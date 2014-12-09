@@ -8,6 +8,7 @@
 
 #import "LifePageView.h"
 #import "CircleOfFriendsCell.h"
+#import "LifeReferView.h"
 
 @interface LifePageView ()
 {
@@ -405,6 +406,17 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTintColor:[Tool getColorForMain]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
+}
+
 - (IBAction)telAction:(id)sender
 {
     NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
@@ -412,6 +424,12 @@
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }
     [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
+}
+
+- (IBAction)LifeReferAction:(id)sender {
+    LifeReferView *lifeReferView = [[LifeReferView alloc] init];
+    lifeReferView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:lifeReferView animated:YES];
 }
 
 @end

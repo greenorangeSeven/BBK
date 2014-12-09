@@ -17,10 +17,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *repairContentPlaceholder;
 @property (weak, nonatomic) IBOutlet UITextView *repairContentTv;
 @property (weak, nonatomic) IBOutlet UILabel *repairTypeNameLb;
+@property (weak, nonatomic) IBOutlet UIButton *submitRepairBtn;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 - (IBAction)selectRepairTypeAction:(id)sender;
 - (IBAction)telServiceAction:(id)sender;
+- (IBAction)submitRepairAction:(id)sender;
 
 @end

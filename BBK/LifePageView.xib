@@ -94,6 +94,9 @@
                                         <state key="normal" image="life_shcx">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="LifeReferAction:" destination="-1" eventType="touchUpInside" id="N8W-j2-WTm"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="周边商家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DO2-lw-5VR">
                                         <rect key="frame" x="30" y="153" width="58" height="21"/>

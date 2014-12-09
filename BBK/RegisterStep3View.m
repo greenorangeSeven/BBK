@@ -129,14 +129,13 @@
     [param setValue:validateCodeStr forKey:@"validateCode"];
     [param setValue:mobileStr forKey:@"mobileNo"];
     [param setValue:pwdStr forKey:@"password"];
-    NSString *regUserSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_regUser] params:param];
+    NSString *regUserSign = [Tool serializeUFT8Sign:[NSString stringWithFormat:@"%@%@", api_base_url, api_regUser] params:param];
     NSString *regUserUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_regUser];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:regUserUrl]];
     [request setUseCookiePersistence:NO];
     [request setPostValue:Appkey forKey:@"accessId"];
     [request setPostValue:[self.ownerNameStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"rUserName"];
-    NSLog([NSString stringWithFormat:@"rUserName=%@", [self.ownerNameStr stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]]);
     [request setPostValue:self.idCardStr forKey:@"idCardLast4"];
     [request setPostValue:self.identityIdStr forKey:@"userTypeId"];
     [request setPostValue:self.houseNumId forKey:@"numberId"];

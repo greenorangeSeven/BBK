@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PropertyPageView">
             <connections>
+                <outlet property="advIv" destination="sJn-T4-uao" id="8tf-tG-pNG"/>
                 <outlet property="noticeTitleLb" destination="0cq-Ck-Wud" id="hZb-su-v7S"/>
                 <outlet property="scrollView" destination="UOn-5I-q9O" id="Hx3-S0-VNo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,7 +22,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="456"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadpic" id="sJn-T4-uao">
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadpic" id="sJn-T4-uao">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         </imageView>

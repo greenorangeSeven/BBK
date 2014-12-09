@@ -151,6 +151,11 @@
         frame.origin.x = 16;
         cell.frameView.frame = frame;
     }
+    else if (row % 3 == 1) {
+        CGRect frame = cell.frameView.frame;
+        frame.origin.x = 8;
+        cell.frameView.frame = frame;
+    }
     else if (row % 3 == 2) {
         CGRect frame = cell.frameView.frame;
         frame.origin.x = 0;
@@ -166,12 +171,12 @@
     }
     else
     {
-        if ([good.imgUrl isEqualToString:@""]) {
+        if ([good.imgUrlFull isEqualToString:@""]) {
             good.imgData = [UIImage imageNamed:@"loadingpic2.png"];
         }
         else
         {
-            NSData * imageData = [_iconCache getImage:[TQImageCache parseUrlForCacheName:good.imgUrl]];
+            NSData * imageData = [_iconCache getImage:[TQImageCache parseUrlForCacheName:good.imgUrlFull]];
             if (imageData) {
                 good.imgData = [UIImage imageWithData:imageData];
                 cell.goodPicIv.image = good.imgData;
@@ -181,7 +186,7 @@
                 IconDownloader *downloader = [self.imageDownloadsInProgress objectForKey:[NSString stringWithFormat:@"%d", [indexPath row]]];
                 if (downloader == nil) {
                     ImgRecord *record = [ImgRecord new];
-                    NSString *urlStr = good.imgUrl;
+                    NSString *urlStr = good.imgUrlFull;
                     record.url = urlStr;
                     [self startIconDownload:record forIndexPath:indexPath];
                 }
@@ -253,7 +258,7 @@
             good.imgData = iconDownloader.imgRecord.img;
             // cache it
             NSData * imageData = UIImagePNGRepresentation(good.imgData);
-            [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:good.imgUrl]];
+            [_iconCache putImage:imageData withName:[TQImageCache parseUrlForCacheName:good.imgUrlFull]];
             [self.collectionView reloadData];
         }
     }

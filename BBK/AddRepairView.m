@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "RepairType.h"
 #import "RepairImageCell.h"
+#import "RepairTableView.h"
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
@@ -62,7 +63,9 @@
 
 - (void)pushRepairListAction:(id)sender
 {
-    
+    RepairTableView *repairTableView = [[RepairTableView alloc] init];
+    repairTableView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:repairTableView animated:YES];
 }
 
 - (void)getRepairTypeData
@@ -76,6 +79,7 @@
     [request setDidFailSelector:@selector(requestFailed:)];
     [request setDidFinishSelector:@selector(requestSucceed:)];
     [request startAsynchronous];
+    request.tag = 0;
     
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"加载中..." andView:self.view andHUD:request.hud];
@@ -110,10 +114,16 @@
     }
     else
     {
-        repairTypeArray = [Tool readJsonStrToRepairTypeArray:request.responseString];
-        RepairType *repairType = [repairTypeArray objectAtIndex:0];
-        self.repairTypeNameLb.text = repairType.typeName;
-        repairTypeId = repairType.typeId;
+        if (request.tag == 0) {
+            repairTypeArray = [Tool readJsonStrToRepairTypeArray:request.responseString];
+            RepairType *repairType = [repairTypeArray objectAtIndex:0];
+            self.repairTypeNameLb.text = repairType.typeName;
+            repairTypeId = repairType.typeId;
+        }
+        else
+        {
+            
+        }
     }
 }
 
@@ -483,6 +493,86 @@
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }
     [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
+}
+
+- (IBAction)submitRepairAction:(id)sender {
+    NSString *contentStr = self.repairContentTv.text;
+    if (contentStr == nil || [contentStr length] == 0) {
+        [Tool showCustomHUD:@"请填写报修描述" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        return;
+    }
+    self.submitRepairBtn.enabled = NO;
+    
+    UserModel *userModel = [UserModel Instance];
+    
+    //生成新增报修Sign
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    [param setValue:repairTypeId forKey:@"typeId"];
+    [param setValue:contentStr forKey:@"repairContent"];
+    [param setValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+    [param setValue:[userModel getUserValueForKey:@"numberId"] forKey:@"numberId"];
+    NSString *addRegirSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_AddRepairWork] params:param];
+    
+    NSString *addRegirUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_AddRepairWork];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:addRegirUrl]];
+    [request setUseCookiePersistence:[[UserModel Instance] isLogin]];
+    [request setPostValue:Appkey forKey:@"accessId"];
+    [request setPostValue:addRegirSign forKey:@"sign"];
+    [request setPostValue:repairTypeId forKey:@"typeId"];
+    [request setPostValue:contentStr forKey:@"repairContent"];
+    [request setPostValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+    [request setPostValue:[userModel getUserValueForKey:@"numberId"] forKey:@"numberId"];
+    for (int i = 0 ; i < [repairImageArray count] - 1; i++) {
+        UIImage *repairImage = [repairImageArray objectAtIndex:i];
+        [request addData:UIImageJPEGRepresentation(repairImage, 0.75f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:[NSString stringWithFormat:@"pic%d", i]];
+    }
+    request.tag = 1;
+    
+    request.delegate = self;
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [request setDidFinishSelector:@selector(requestSubmit:)];
+    [request startAsynchronous];
+    request.hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"提交报修" andView:self.view andHUD:request.hud];
+}
+
+- (void)requestSubmit:(ASIHTTPRequest *)request
+{
+    if (request.hud) {
+        [request.hud hide:YES];
+    }
+    
+    [request setUseCookiePersistence:YES];
+    NSData *data = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    
+    NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == NO) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                     message:[[json objectForKey:@"header"] objectForKey:@"msg"]
+                                                    delegate:nil
+                                           cancelButtonTitle:@"确定"
+                                           otherButtonTitles:nil];
+        [av show];
+        return;
+    }
+    else
+    {
+        
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar setTintColor:[Tool getColorForMain]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
 }
 
 @end

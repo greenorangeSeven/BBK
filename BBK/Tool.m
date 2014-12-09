@@ -474,8 +474,8 @@
     }
 }
 
-//平台接口生成验签Sign
-+ (NSString *)serializeSign:(NSString *)baseURL params:(NSDictionary *)params
+//平台接口生成验签Sign中文转UFT-8
++ (NSString *)serializeUFT8Sign:(NSString *)baseURL params:(NSDictionary *)params
 {
     NSURL* parsedURL = [NSURL URLWithString:[baseURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:[self parseQueryString:[parsedURL query]]];
@@ -492,6 +492,36 @@
     NSString *signStringUTF8 = [signString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     NSData *stringBytes = [signStringUTF8 dataUsingEncoding: NSUTF8StringEncoding];
+    if (CC_MD5([stringBytes bytes], [stringBytes length], digest)) {
+        /* SHA-1 hash has been calculated and stored in 'digest'. */
+        NSMutableString *digestString = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH];
+        for (int i=0; i<CC_MD5_DIGEST_LENGTH; i++) {
+            unsigned char aChar = digest[i];
+            [digestString appendFormat:@"%02X", aChar];
+        }
+        return [digestString lowercaseString];
+    } else {
+        return nil;
+    }
+}
+
+//平台接口生成验签Sign中文
++ (NSString *)serializeSign:(NSString *)baseURL params:(NSDictionary *)params
+{
+    NSURL* parsedURL = [NSURL URLWithString:[baseURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableDictionary *paramsDic = [NSMutableDictionary dictionaryWithDictionary:[self parseQueryString:[parsedURL query]]];
+    if (params) {
+        [paramsDic setValuesForKeysWithDictionary:params];
+    }
+    
+    NSMutableString *signString = [NSMutableString stringWithString:[NSString stringWithFormat:@"accessId%@", Appkey]];
+    NSArray *sortedKeys = [[paramsDic allKeys] sortedArrayUsingSelector: @selector(compare:)];
+    for (NSString *key in sortedKeys) {
+        [signString appendFormat:@"%@%@", key, [paramsDic objectForKey:key]];
+    }
+    [signString appendString:AppSecret];
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    NSData *stringBytes = [signString dataUsingEncoding: NSUTF8StringEncoding];
     if (CC_MD5([stringBytes bytes], [stringBytes length], digest)) {
         /* SHA-1 hash has been calculated and stored in 'digest'. */
         NSMutableString *digestString = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH];
@@ -629,6 +659,9 @@
     if ([state isEqualToString:@"0000"] == YES) {
         NSArray *goodsArrayJson = [[goodsJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
         NSMutableArray *goodsArray = [RMMapper mutableArrayOfClass:[BorrowGood class] fromArrayOfDictionary:goodsArrayJson];
+        for (BorrowGood *good in goodsArray) {
+            good.imgUrlFull = [NSString stringWithFormat:@"%@_200", good.imgUrlFull];
+        }
         return goodsArray;
     }
     else
@@ -748,6 +781,72 @@
         NSArray *typeArrayJson = [typeJsonDic objectForKey:@"data"];
         NSMutableArray *typeArray = [RMMapper mutableArrayOfClass:[RepairType class] fromArrayOfDictionary:typeArrayJson];
         return typeArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//解析报修列表JSON
++ (NSMutableArray *)readJsonStrToRepairArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *repairJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( repairJsonDic == nil || [repairJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[repairJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *repairArrayJson = [[repairJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *repairArray = [RMMapper mutableArrayOfClass:[Repair class] fromArrayOfDictionary:repairArrayJson];
+        for (Repair *r in repairArray) {
+            r.starttime = [self TimestampToDateStr:r.starttimeStamp andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+        }
+        return repairArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//解析广告JSON
++ (NSMutableArray *)readJsonStrToAdinfoArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *adJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( adJsonDic == nil || [adJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[adJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *adArrayJson = [adJsonDic objectForKey:@"data"];
+        NSMutableArray *adArray = [RMMapper mutableArrayOfClass:[ADInfo class] fromArrayOfDictionary:adArrayJson];
+        return adArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//解析生活查询JSON
++ (NSMutableArray *)readJsonStrToLifeReferArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *referJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( referJsonDic == nil || [referJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[referJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *referArrayJson = [referJsonDic objectForKey:@"data"];
+        NSMutableArray *referArray = [RMMapper mutableArrayOfClass:[LifeRefer class] fromArrayOfDictionary:referArrayJson];
+        return referArray;
     }
     else
     {
