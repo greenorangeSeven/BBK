@@ -40,6 +40,9 @@
 		14B4D3DF1A37262700933A5A /* LifeReferFooterReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B4D3DD1A37262700933A5A /* LifeReferFooterReusableView.xib */; };
 		14B4D3E31A372C8B00933A5A /* CommDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D3E11A372C8B00933A5A /* CommDetailView.m */; };
 		14B4D3E41A372C8B00933A5A /* CommDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B4D3E21A372C8B00933A5A /* CommDetailView.xib */; };
+		14B4D3E81A37418400933A5A /* ConvenienceTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D3E61A37418400933A5A /* ConvenienceTypeView.m */; };
+		14B4D3E91A37418400933A5A /* ConvenienceTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B4D3E71A37418400933A5A /* ConvenienceTypeView.xib */; };
+		14B4D3EC1A3744D500933A5A /* ShopType.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D3EB1A3744D500933A5A /* ShopType.m */; };
 		14B641BA1A2D42AC00C350A0 /* LifePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641B81A2D42AC00C350A0 /* LifePageView.m */; };
 		14B641BB1A2D42AC00C350A0 /* LifePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641B91A2D42AC00C350A0 /* LifePageView.xib */; };
 		14B641C11A2D691A00C350A0 /* SettingPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641BF1A2D691A00C350A0 /* SettingPageView.m */; };
@@ -380,6 +383,11 @@
 		14B4D3E01A372C8B00933A5A /* CommDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommDetailView.h; sourceTree = "<group>"; };
 		14B4D3E11A372C8B00933A5A /* CommDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommDetailView.m; sourceTree = "<group>"; };
 		14B4D3E21A372C8B00933A5A /* CommDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommDetailView.xib; sourceTree = "<group>"; };
+		14B4D3E51A37418400933A5A /* ConvenienceTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvenienceTypeView.h; sourceTree = "<group>"; };
+		14B4D3E61A37418400933A5A /* ConvenienceTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvenienceTypeView.m; sourceTree = "<group>"; };
+		14B4D3E71A37418400933A5A /* ConvenienceTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConvenienceTypeView.xib; sourceTree = "<group>"; };
+		14B4D3EA1A3744D500933A5A /* ShopType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopType.h; sourceTree = "<group>"; };
+		14B4D3EB1A3744D500933A5A /* ShopType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopType.m; sourceTree = "<group>"; };
 		14B641B71A2D42AC00C350A0 /* LifePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifePageView.h; sourceTree = "<group>"; };
 		14B641B81A2D42AC00C350A0 /* LifePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifePageView.m; sourceTree = "<group>"; };
 		14B641B91A2D42AC00C350A0 /* LifePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LifePageView.xib; sourceTree = "<group>"; };
@@ -913,6 +921,8 @@
 				14CCEE0C1A36CA4600ABBE7F /* ADInfo.m */,
 				14B4D3D21A36DB9600933A5A /* LifeRefer.h */,
 				14B4D3D31A36DB9600933A5A /* LifeRefer.m */,
+				14B4D3EA1A3744D500933A5A /* ShopType.h */,
+				14B4D3EB1A3744D500933A5A /* ShopType.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1018,6 +1028,9 @@
 				14B4D3DB1A37262700933A5A /* LifeReferFooterReusableView.h */,
 				14B4D3DC1A37262700933A5A /* LifeReferFooterReusableView.m */,
 				14B4D3DD1A37262700933A5A /* LifeReferFooterReusableView.xib */,
+				14B4D3E51A37418400933A5A /* ConvenienceTypeView.h */,
+				14B4D3E61A37418400933A5A /* ConvenienceTypeView.m */,
+				14B4D3E71A37418400933A5A /* ConvenienceTypeView.xib */,
 			);
 			name = LifePage;
 			sourceTree = "<group>";
@@ -1831,6 +1844,7 @@
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
 				14B4D3E41A372C8B00933A5A /* CommDetailView.xib in Resources */,
 				143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */,
+				14B4D3E91A37418400933A5A /* ConvenienceTypeView.xib in Resources */,
 				14FDB9761A26C94E006EFFCC /* Alixpay.bundle in Resources */,
 				14C117C11A359C7B009CAC7E /* AddRepairView.xib in Resources */,
 				14FDB4481A25B73A006EFFCC /* Images.xcassets in Resources */,
@@ -1919,6 +1933,7 @@
 				14C117BA1A357F60009CAC7E /* CircleOfFriendsImgCell.m in Sources */,
 				1469FD651A270DF4002685A0 /* UserModel.m in Sources */,
 				14FDB9DB1A26C94F006EFFCC /* UIButton+WebCache.m in Sources */,
+				14B4D3E81A37418400933A5A /* ConvenienceTypeView.m in Sources */,
 				14FDB9781A26C94E006EFFCC /* AlixPayOrder.m in Sources */,
 				14D3C0AA1A2878E0003E650A /* Building.m in Sources */,
 				14FDB9B31A26C94E006EFFCC /* FMDatabaseQueue.m in Sources */,
@@ -1955,6 +1970,7 @@
 				14FDB9CA1A26C94F006EFFCC /* PSTCollectionViewLayout.m in Sources */,
 				14FDB9D11A26C94F006EFFCC /* README.md in Sources */,
 				14FDB99A1A26C94E006EFFCC /* EGOCache.m in Sources */,
+				14B4D3EC1A3744D500933A5A /* ShopType.m in Sources */,
 				14FDB9DF1A26C94F006EFFCC /* UIImageView+HighlightedWebCache.m in Sources */,
 				14FDB9C71A26C94F006EFFCC /* PSTCollectionViewData.m in Sources */,
 				14FDB9D91A26C94F006EFFCC /* SDWebImageManager.m in Sources */,

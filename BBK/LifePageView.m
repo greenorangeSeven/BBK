@@ -9,6 +9,7 @@
 #import "LifePageView.h"
 #import "CircleOfFriendsCell.h"
 #import "LifeReferView.h"
+#import "ConvenienceTypeView.h"
 
 @interface LifePageView ()
 {
@@ -430,6 +431,12 @@
     LifeReferView *lifeReferView = [[LifeReferView alloc] init];
     lifeReferView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:lifeReferView animated:YES];
+}
+
+- (IBAction)convenienceTypeAction:(id)sender {
+    ConvenienceTypeView *convenienceView = [[ConvenienceTypeView alloc] init];
+    convenienceView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:convenienceView animated:YES];
 }
 
 @end

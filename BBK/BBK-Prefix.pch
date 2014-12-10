@@ -71,6 +71,8 @@
 #define api_findAdInfoList @"/zhxq_api/ad/findAdInfoList.htm"
 //获取生活查询
 #define api_findLifeTypeAll @"/zhxq_api/shop/findLifeTypeAll.htm"
+//获取商家分类
+#define api_findShopType @"/zhxq_api/shop/findShopTypeList.htm"
 
 
 #define servicephone @"4006967020"

@@ -41,5 +41,7 @@
 
 //生活查询
 - (IBAction)LifeReferAction:(id)sender;
+//便民服务
+- (IBAction)convenienceTypeAction:(id)sender;
 
 @end

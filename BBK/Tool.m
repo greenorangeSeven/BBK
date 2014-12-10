@@ -854,4 +854,25 @@
     }
 }
 
+//解析商家分类JSON
++ (NSMutableArray *)readJsonStrToShopTypeArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *shopTypeJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( shopTypeJsonDic == nil || [shopTypeJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[shopTypeJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *shopTypeArrayJson = [shopTypeJsonDic objectForKey:@"data"];
+        NSMutableArray *shopTypeArray = [RMMapper mutableArrayOfClass:[ShopType class] fromArrayOfDictionary:shopTypeArrayJson];
+        return shopTypeArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 @end
