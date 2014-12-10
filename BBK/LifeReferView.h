@@ -13,6 +13,7 @@
 {
     NSMutableArray *refers;
     TQImageCache * _iconCache;
+    MBProgressHUD *hud;
 }
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;

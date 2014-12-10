@@ -44,6 +44,8 @@
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
     
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -58,6 +60,7 @@
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
+        [Tool showHUD:@"加载中..." andView:self.view andHUD:hud];
         //生成获取物业物品URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
@@ -74,14 +77,16 @@
                                            [NdUncaughtExceptionHandler TakeException:exception];
                                        }
                                        @finally {
-                                           
+                                           if (hud != nil) {
+                                               [hud hide:YES];
+                                           }
                                        }
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        if ([UserModel Instance].isNetworkRunning == NO) {
                                            return;
                                        }
                                        if ([UserModel Instance].isNetworkRunning) {
-                                           [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                           [Tool showCustomHUD:@"网络不给力" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
                                        }
                                    }];
     }

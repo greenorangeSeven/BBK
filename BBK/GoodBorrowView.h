@@ -13,6 +13,7 @@
 {
     NSMutableArray *goods;
     TQImageCache * _iconCache;
+    MBProgressHUD *hud;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *headView;

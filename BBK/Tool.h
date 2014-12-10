@@ -30,6 +30,7 @@
 #import "ADInfo.h"
 #import "LifeRefer.h"
 #import "ShopType.h"
+#import "ShopInfo.h"
 
 @interface Tool : NSObject
 
@@ -146,5 +147,7 @@
 + (NSMutableArray *)readJsonStrToLifeReferArray:(NSString *)str;
 //解析商家分类JSON
 + (NSMutableArray *)readJsonStrToShopTypeArray:(NSString *)str;
+//解析商家信息JSON
++ (NSMutableArray *)readJsonStrToShopInfoArray:(NSString *)str;
 
 @end

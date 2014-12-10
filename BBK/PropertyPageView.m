@@ -98,7 +98,7 @@
                                            return;
                                        }
                                        if ([UserModel Instance].isNetworkRunning) {
-                                           [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                           [Tool showCustomHUD:@"网络不给力" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
                                        }
                                    }];
     }

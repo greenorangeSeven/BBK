@@ -8,6 +8,7 @@
 
 #import "ConvenienceTypeView.h"
 #import "LifeReferCell.h"
+#import "ConvenienceTableView.h"
 
 @interface ConvenienceTypeView ()
 
@@ -25,6 +26,8 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -37,6 +40,7 @@
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
+        [Tool showHUD:@"加载中..." andView:self.view andHUD:hud];
         //生成获取便民服务类型URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:@"1" forKey:@"classType"];
@@ -61,14 +65,16 @@
                                            [NdUncaughtExceptionHandler TakeException:exception];
                                        }
                                        @finally {
-                                           
+                                           if (hud != nil) {
+                                               [hud hide:YES];
+                                           }
                                        }
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        if ([UserModel Instance].isNetworkRunning == NO) {
                                            return;
                                        }
                                        if ([UserModel Instance].isNetworkRunning) {
-                                           [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                           [Tool showCustomHUD:@"网络不给力" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
                                        }
                                    }];
     }
@@ -157,10 +163,12 @@
 {
     ShopType *shopType = [types objectAtIndex:[indexPath row]];
     if (shopType != nil) {
-//        CommDetailView *detailView = [[CommDetailView alloc] init];
-//        detailView.titleStr = refer.lifeTypeName;
-//        detailView.urlStr = refer.url;
-//        [self.navigationController pushViewController:detailView animated:YES];
+        if ([shopType.shopTypeId isEqualToString:@"-1"]) {
+            return;
+        }
+        ConvenienceTableView *shopTableView = [[ConvenienceTableView alloc] init];
+        shopTableView.type = shopType;
+        [self.navigationController pushViewController:shopTableView animated:YES];
     }
 }
 

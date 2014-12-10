@@ -22,6 +22,8 @@
 
 #define _IPHONE80_ 80000
 
+BMKMapManager* _mapManager;
+
 @interface AppDelegate ()
 
 @end
@@ -78,6 +80,19 @@
 
     //启动判断登陆
     [self userLogin];
+    
+    // 要使用百度地图，请先启动BaiduMapManager
+    _mapManager = [[BMKMapManager alloc]init];
+    BOOL ret = [_mapManager start:@"dK61V2aHtsIwUo3CIk3KkFWm" generalDelegate:self];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    //设置目录不进行IOS自动同步！否则审核不能通过
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *directory = [NSString stringWithFormat:@"%@/cfg", [paths objectAtIndex:0]];
+    NSURL *dbURLPath = [NSURL fileURLWithPath:directory];
+    [self addSkipBackupAttributeToItemAtURL:dbURLPath];
+    [self addSkipBackupAttributeToPath:directory];
     
     //集成信鸽start
     [XGPush startApp:2200064345 appKey:@"IQXV9791ER1N"];
@@ -395,6 +410,24 @@
 }
 
 //信鸽
+
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
+{
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    NSError *error = nil;
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }
+    return success;
+}
+
+- (void)addSkipBackupAttributeToPath:(NSString*)path {
+    u_int8_t b = 1;
+    setxattr([path fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

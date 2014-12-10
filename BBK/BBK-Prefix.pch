@@ -73,6 +73,8 @@
 #define api_findLifeTypeAll @"/zhxq_api/shop/findLifeTypeAll.htm"
 //获取商家分类
 #define api_findShopType @"/zhxq_api/shop/findShopTypeList.htm"
+//获取商家分类
+#define api_findShopInfoByPage @"/zhxq_api/shop/findShopInfoByPage.htm"
 
 
 #define servicephone @"4006967020"
@@ -89,6 +91,7 @@
 #define RepairImageCellIdentifier @"RepairImageCellIdentifier"
 #define RepairTableCellIdentifier @"RepairTableCellIdentifier"
 #define LifeReferCellIdentifier @"LifeReferCellIdentifier"
+#define ConvenienceCellIdentifier @"ConvenienceCellIdentifier"
 
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"

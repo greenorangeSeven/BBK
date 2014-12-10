@@ -875,4 +875,25 @@
     }
 }
 
+//解析商家信息JSON
++ (NSMutableArray *)readJsonStrToShopInfoArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *shopInfoJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( shopInfoJsonDic == nil || [shopInfoJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[shopInfoJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *shopInfoArrayJson = [[shopInfoJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *shopInfoArray = [RMMapper mutableArrayOfClass:[ShopInfo class] fromArrayOfDictionary:shopInfoArrayJson];
+        return shopInfoArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 @end
