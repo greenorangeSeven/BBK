@@ -31,6 +31,9 @@
 #import "LifeRefer.h"
 #import "ShopType.h"
 #import "ShopInfo.h"
+#import "RepairBasic.h"
+#import "RepairDispatch.h"
+#import "RepairFinish.h"
 
 @interface Tool : NSObject
 
@@ -149,5 +152,7 @@
 + (NSMutableArray *)readJsonStrToShopTypeArray:(NSString *)str;
 //解析商家信息JSON
 + (NSMutableArray *)readJsonStrToShopInfoArray:(NSString *)str;
+//解析报修详情JSON
++ (NSMutableArray *)readJsonStrToRepairItemArray:(NSString *)str;
 
 @end

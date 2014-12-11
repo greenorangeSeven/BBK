@@ -37,7 +37,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_head" translatesAutoresizingMaskIntoConstraints="NO" id="xQH-HK-dXW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="default_head" translatesAutoresizingMaskIntoConstraints="NO" id="xQH-HK-dXW">
                                         <rect key="frame" x="12" y="8" width="65" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="65" id="fjC-3f-pG2"/>
@@ -86,7 +86,7 @@
                                     <constraint firstAttribute="bottom" secondItem="3TA-9f-84P" secondAttribute="bottom" id="vff-xC-cyg"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的报修单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQp-uu-Yak">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="我的报修单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQp-uu-Yak">
                                 <rect key="frame" x="14" y="102" width="137" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="137" id="OHB-Yg-HSI"/>

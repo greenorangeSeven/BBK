@@ -11,6 +11,7 @@
 @interface CommDetailView ()
 {
     MBProgressHUD *hud;
+    UIWebView *phoneWebView;
 }
 
 @end
@@ -44,6 +45,21 @@
     if (hud != nil) {
         [hud hide:YES];
     }
+}
+
+#pragma 浏览器链接处理
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if ([request.URL.absoluteString hasSuffix:@"telphone"])
+    {
+        NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
+        if (!phoneWebView) {
+            phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        }
+        [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
+        return NO;
+    }
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning

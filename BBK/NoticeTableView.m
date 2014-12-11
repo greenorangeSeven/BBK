@@ -9,6 +9,7 @@
 #import "NoticeTableView.h"
 #import "NoticeNewCell.h"
 #import "NoticeOldCell.h"
+#import "CommDetailView.h"
 
 @interface NoticeTableView ()
 {
@@ -256,13 +257,12 @@
     }
     else
     {
-        //        News *n = [news objectAtIndex:[indexPath row]];
-        //        if (n) {
-        //            NewsDetailView *newsDetail = [[NewsDetailView alloc] init];
-        //            newsDetail.news = n;
-        //            newsDetail.catalog = catalog;
-        //            [self.navigationController pushViewController:newsDetail animated:YES];
-        //        }
+        Notice *n = [notices objectAtIndex:[indexPath row]];
+        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, api_pushDetailHtm ,n.pushId];
+        CommDetailView *detailView = [[CommDetailView alloc] init];
+        detailView.titleStr = @"物业通知";
+        detailView.urlStr = pushDetailHtm;
+        [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 
@@ -327,6 +327,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    bannerView.delegate = self;
+    [self.navigationController.navigationBar setTintColor:[Tool getColorForMain]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
 }
 
 - (IBAction)telAction:(id)sender

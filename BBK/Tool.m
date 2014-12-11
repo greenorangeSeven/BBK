@@ -899,4 +899,60 @@
     }
 }
 
+//解析报修详情JSON
++ (NSMutableArray *)readJsonStrToRepairItemArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *repairDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( repairDic == nil || [repairDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[repairDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSMutableArray *items = [[NSMutableArray alloc] init];
+        NSDictionary *repairDicJson = [repairDic objectForKey:@"data"];
+//        NSMutableArray *serviceArray = [RMMapper mutableArrayOfClass:[CallService class] fromArrayOfDictionary:repairDicJson];
+        RepairBasic *basic = [RMMapper objectWithClass:[RepairBasic class] fromDictionary:repairDicJson];
+        basic.starttime = [self TimestampToDateStr:[basic.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+        //添加报修基础数据
+        [items addObject:basic];
+        for (int i = 0; i < [basic.imgList count]; i++) {
+            NSDictionary *imageDicJson = [repairDic objectForKey:@"data"];
+            [basic.fullImgList addObject:[imageDicJson objectForKey:@"imgUrlFull"]];
+        }
+        for (int l = 0; l < [basic.repairRunList count]; l++) {
+            if (l == 0) {
+                RepairDispatch *dispatch = [[RepairDispatch alloc] init];
+                dispatch.repairmanId = basic.repairmanId;
+                dispatch.repairmanName = basic.repairmanName;
+                dispatch.mobileNo = basic.mobileNo;
+                dispatch.starttimeStamp = [[basic.repairRunList objectAtIndex:l] objectForKey:@"starttimeStamp"];
+                dispatch.starttime = [self TimestampToDateStr:[dispatch.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+                //添加报修派单数据
+                [items addObject:dispatch];
+            }
+            if (l == 1) {
+                RepairFinish *finish = [[RepairFinish alloc] init];
+//                @property (nonatomic, retain) NSString *runContent;
+//                @property double cost;
+//                @property (nonatomic, retain) NSNumber *starttimeStamp;
+//                @property (nonatomic, retain) NSString *starttime;
+                finish.runContent = basic.runContent;
+                finish.cost = basic.cost;
+                finish.starttimeStamp = [[basic.repairRunList objectAtIndex:l] objectForKey:@"starttimeStamp"];
+                finish.starttime = [self TimestampToDateStr:[finish.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+                //添加维修完成数据
+                [items addObject:finish];
+            }
+        }
+        
+        return items;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 @end

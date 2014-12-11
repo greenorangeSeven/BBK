@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepairDetailView : UIViewController
+@interface RepairDetailView : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) Repair *repair;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
