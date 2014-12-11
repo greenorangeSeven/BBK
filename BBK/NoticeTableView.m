@@ -43,7 +43,7 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height-33);
+//    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height-33);
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

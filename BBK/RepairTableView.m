@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "RepairTableCell.h"
 #import "Repair.h"
+#import "RepairDetailView.h"
 
 @interface RepairTableView ()
 
@@ -61,12 +62,6 @@
     
     repairs = [[NSMutableArray alloc] initWithCapacity:20];
     [self reload:YES];
-    [self getRepairWorkByPage];
-}
-
-- (void)getRepairWorkByPage
-{
-    
 }
 
 - (void)refreshed:(NSNotification *)notification
@@ -202,18 +197,18 @@
     if ([repairs count] > 0) {
         if (row < [repairs count])
         {
-
-                RepairTableCell *cell = [tableView dequeueReusableCellWithIdentifier:RepairTableCellIdentifier];
-                if (!cell) {
-                    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"RepairTableCell" owner:self options:nil];
-                    for (NSObject *o in objects) {
-                        if ([o isKindOfClass:[RepairTableCell class]]) {
-                            cell = (RepairTableCell *)o;
-                            break;
-                        }
+            
+            RepairTableCell *cell = [tableView dequeueReusableCellWithIdentifier:RepairTableCellIdentifier];
+            if (!cell) {
+                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"RepairTableCell" owner:self options:nil];
+                for (NSObject *o in objects) {
+                    if ([o isKindOfClass:[RepairTableCell class]]) {
+                        cell = (RepairTableCell *)o;
+                        break;
                     }
                 }
-                Repair *repair = [repairs objectAtIndex:row];
+            }
+            Repair *repair = [repairs objectAtIndex:row];
             cell.starttimeLb.text = repair.starttime;
             cell.repairContentLb.text = repair.repairContent;
             cell.stateNameLb.text = repair.stateName;
@@ -224,7 +219,7 @@
             {
                 cell.stateNameLb.textColor = [UIColor colorWithRed:177.0/255.0 green:177.0/255.0 blue:177.0/255.0 alpha:1.0];
             }
-                return cell;
+            return cell;
             
         }
         else
@@ -252,13 +247,12 @@
     }
     else
     {
-        //        News *n = [news objectAtIndex:[indexPath row]];
-        //        if (n) {
-        //            NewsDetailView *newsDetail = [[NewsDetailView alloc] init];
-        //            newsDetail.news = n;
-        //            newsDetail.catalog = catalog;
-        //            [self.navigationController pushViewController:newsDetail animated:YES];
-        //        }
+        Repair *repair = [repairs objectAtIndex:row];
+        if (repair) {
+            RepairDetailView *repairDetail = [[RepairDetailView alloc] init];
+            repairDetail.repair = repair;
+            [self.navigationController pushViewController:repairDetail animated:YES];
+        }
     }
 }
 

@@ -888,6 +888,9 @@
     if ([state isEqualToString:@"0000"] == YES) {
         NSArray *shopInfoArrayJson = [[shopInfoJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
         NSMutableArray *shopInfoArray = [RMMapper mutableArrayOfClass:[ShopInfo class] fromArrayOfDictionary:shopInfoArrayJson];
+        for (ShopInfo *shop in shopInfoArray) {
+            shop.imgUrlFull = [NSString stringWithFormat:@"%@_200", shop.imgUrlFull];
+        }
         return shopInfoArray;
     }
     else

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LifePageView">
             <connections>
+                <outlet property="advIv" destination="ZKa-7s-f14" id="oZL-v6-bpS"/>
                 <outlet property="tableView" destination="tzZ-d2-5JH" id="OhG-Vs-Nah"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,7 +25,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="434"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadpic" id="ZKa-7s-f14">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadpic" id="ZKa-7s-f14">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -83,6 +84,9 @@
                                         <state key="normal" image="life_zbsj">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="ShopTypeAction:" destination="-1" eventType="touchUpInside" id="CEn-gm-EXE"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YS0-nm-eLM">
                                         <rect key="frame" x="129" y="91" width="61" height="62"/>

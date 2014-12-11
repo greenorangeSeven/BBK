@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TQImageCache.h"
+#import "SGFocusImageFrame.h"
+#import "SGFocusImageItem.h"
 
-@interface LifePageView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate,IconDownloaderDelegate>
+@interface LifePageView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate,IconDownloaderDelegate,SGFocusImageFrameDelegate>
 {
     NSMutableArray *topics;
     BOOL isLoading;
@@ -21,9 +23,14 @@
     BOOL _reloading;
     
     TQImageCache * _iconCache;
+    
+    NSMutableArray *advDatas;
+    SGFocusImageFrame *bannerView;
+    int advIndex;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *advIv;
 
 - (void)refreshCircleOfFriendsData:(BOOL)noRefresh;
 
@@ -43,5 +50,7 @@
 - (IBAction)LifeReferAction:(id)sender;
 //便民服务
 - (IBAction)convenienceTypeAction:(id)sender;
+//周边商家
+- (IBAction)ShopTypeAction:(id)sender;
 
 @end
