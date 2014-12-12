@@ -14,6 +14,6 @@
 @property (nonatomic, retain) NSString *buildingName;
 
 @property (nonatomic, retain) NSArray *subList;
-@property (nonatomic, retain) NSArray *houseNumList;
+@property (nonatomic, retain) NSArray *unitList;
 
 @end

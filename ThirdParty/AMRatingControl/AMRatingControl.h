@@ -6,22 +6,23 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^EditingChangedBlock)(NSUInteger rating);
+typedef void (^EditingDidEndBlock)(NSUInteger rating);
+
 
 @interface AMRatingControl : UIControl
-{
-	UIImage *_emptyImage, *_solidImage;
-    UIColor *_emptyColor, *_solidColor;
-    NSInteger _maxRating;
-    CGFloat _starSize;
-    NSInteger _starWidthAndHeight;
-}
 
 
 /**************************************************************************************************/
 #pragma mark - Getters and Setters
 
+@property (nonatomic, assign) NSInteger maxRating;
 @property (nonatomic, assign) NSInteger rating;
-
+@property (nonatomic, readwrite) NSUInteger starFontSize;
+@property (nonatomic, readwrite) NSUInteger starWidthAndHeight;
+@property (nonatomic, readwrite) NSUInteger starSpacing;
+@property (nonatomic, copy) EditingChangedBlock editingChangedBlock;
+@property (nonatomic, copy) EditingDidEndBlock editingDidEndBlock;
 
 /**************************************************************************************************/
 #pragma mark - Birth & Death
@@ -31,7 +32,7 @@
  * The control will manage its own width/height (kind of like UIActivityIndicator)
  * @param maxRating
  */
-- (id)initWithLocation:(CGPoint)location andMaxRating:(NSInteger)maxRating andStarSize:(CGFloat)starSize andStarWidthAndHeight:(NSInteger)widthAndHeight;
+- (id)initWithLocation:(CGPoint)location andMaxRating:(NSInteger)maxRating;
 
 /**
  * @param location : position of the rating control in your view
@@ -42,9 +43,7 @@
 - (id)initWithLocation:(CGPoint)location
             emptyColor:(UIColor *)emptyColor
             solidColor:(UIColor *)solidColor
-          andMaxRating:(NSInteger)maxRating
-           andStarSize:(CGFloat)starSize
- andStarWidthAndHeight:(NSInteger)widthAndHeight;
+          andMaxRating:(NSInteger)maxRating;
 
 /**
  * @param location : position of the rating control in your view
@@ -56,9 +55,7 @@
 - (id)initWithLocation:(CGPoint)location
             emptyImage:(UIImage *)emptyImageOrNil
             solidImage:(UIImage *)solidImageOrNil
-          andMaxRating:(NSInteger)maxRating
-           andStarSize:(CGFloat)starSize
- andStarWidthAndHeight:(NSInteger)widthAndHeight;
+          andMaxRating:(NSInteger)maxRating;
 
 
 

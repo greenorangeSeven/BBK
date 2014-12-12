@@ -12,6 +12,7 @@
                 <outlet property="communityTf" destination="gTe-HW-202" id="CiD-gI-pZL"/>
                 <outlet property="houseNumTf" destination="yx0-ws-Iwt" id="zKE-p5-IHk"/>
                 <outlet property="scrollView" destination="dbU-4X-KkN" id="My2-bz-Kjf"/>
+                <outlet property="unitTf" destination="cdb-Oj-6Ge" id="KF9-bU-8Us"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -93,7 +94,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aN0-kO-Wc4">
-                            <rect key="frame" x="0.0" y="115" width="320" height="145"/>
+                            <rect key="frame" x="0.0" y="115" width="320" height="183"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxd-nC-K24">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -146,7 +147,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="门牌号" placeholder="门牌号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yx0-ws-Iwt">
-                                    <rect key="frame" x="12" y="112" width="295" height="30"/>
+                                    <rect key="frame" x="12" y="148" width="295" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
@@ -160,13 +161,28 @@
                                     <rect key="frame" x="294" y="80" width="13" height="21"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orange_arrows" translatesAutoresizingMaskIntoConstraints="NO" id="sLI-e2-Mu1">
-                                    <rect key="frame" x="294" y="116" width="13" height="21"/>
+                                    <rect key="frame" x="294" y="152" width="13" height="21"/>
                                 </imageView>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="单元" placeholder="门牌号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cdb-Oj-6Ge">
+                                    <rect key="frame" x="12" y="113" width="295" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="orange_arrows" translatesAutoresizingMaskIntoConstraints="NO" id="wTI-JY-Agd">
+                                    <rect key="frame" x="294" y="117" width="13" height="21"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxE-42-Rzi">
+                                    <rect key="frame" x="0.0" y="182" width="320" height="1"/>
+                                    <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VX-Fw-3oF">
-                            <rect key="frame" x="44" y="280" width="232" height="45"/>
+                            <rect key="frame" x="44" y="311" width="232" height="45"/>
                             <state key="normal" title="   下一步" image="nextIcon" backgroundImage="button_orange">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -175,21 +191,21 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lN-vg-jQj">
-                            <rect key="frame" x="24" y="358" width="272" height="1"/>
+                            <rect key="frame" x="24" y="374" width="272" height="1"/>
                             <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NQ-rg-9op">
-                            <rect key="frame" x="65" y="380" width="191" height="38"/>
+                            <rect key="frame" x="65" y="391" width="191" height="38"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="邀请码用户注册" backgroundImage="button_red1">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="如果您接收到业主发给您邀请码请在此注册" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9t-q1-0Rv">
-                            <rect key="frame" x="62" y="432" width="196" height="39"/>
+                            <rect key="frame" x="62" y="440" width="196" height="39"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -199,7 +215,7 @@
             </subviews>
             <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-9" y="102"/>
+            <point key="canvasLocation" x="-154" y="93"/>
         </view>
     </objects>
     <resources>

@@ -9,5 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @interface RepairBasicCell : UITableViewCell
+<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
+    NSArray *imageList;
+}
+
+@property (weak, nonatomic) IBOutlet UIView *basicView;
+@property (weak, nonatomic) IBOutlet UILabel *repairTimeLb;
+@property (weak, nonatomic) IBOutlet UILabel *repairTypeLb;
+@property (weak, nonatomic) IBOutlet UILabel *repairContentLb;
+@property (weak, nonatomic) IBOutlet UIView *repairImageView;
+@property (weak, nonatomic) IBOutlet UIView *repairImageFrameView;
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+- (void)loadRepairImage:(NSArray *)imageList;
 
 @end

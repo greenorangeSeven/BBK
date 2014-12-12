@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *cityTf;
 @property (weak, nonatomic) IBOutlet UITextField *communityTf;
 @property (weak, nonatomic) IBOutlet UITextField *buildingTf;
+@property (weak, nonatomic) IBOutlet UITextField *unitTf;
 @property (weak, nonatomic) IBOutlet UITextField *houseNumTf;
 
 - (IBAction)nextStepAction:(id)sender;

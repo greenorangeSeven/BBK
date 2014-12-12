@@ -20,6 +20,9 @@
 @property (nonatomic, retain) NSNumber *starttimeStamp;
 @property (nonatomic, retain) NSString *starttime;
 
+@property int contentHeight;
+@property int viewAddHeight;
+
 //维修
 @property (nonatomic, retain) NSString *repairmanId;
 @property (nonatomic, retain) NSString *repairmanName;

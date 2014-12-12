@@ -8,6 +8,8 @@
 
 #import "SettingPageView.h"
 #import "ZJSwitch.h"
+#import "LoginView.h"
+#import "AppDelegate.h"
 
 @interface SettingPageView ()
 {
@@ -83,4 +85,13 @@
 }
 */
 
+- (IBAction)logoutAction:(id)sender {
+    //设置登录并保存用户信息
+    UserModel *userModel = [UserModel Instance];
+    [userModel saveIsLogin:NO];
+    LoginView *loginView = [[LoginView alloc] initWithNibName:@"LoginView" bundle:nil];
+    UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:loginView];
+    AppDelegate *appdele = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    appdele.window.rootViewController = loginNav;
+}
 @end

@@ -61,6 +61,15 @@
 		14B4D42F1A39D77300933A5A /* RepairBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D42E1A39D77300933A5A /* RepairBasic.m */; };
 		14B4D4321A39DAC000933A5A /* RepairDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4311A39DAC000933A5A /* RepairDispatch.m */; };
 		14B4D4351A39DB8300933A5A /* RepairFinish.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4341A39DB8300933A5A /* RepairFinish.m */; };
+		14B4D43C1A3A8AD800933A5A /* RepairDispatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D43A1A3A8AD800933A5A /* RepairDispatchCell.m */; };
+		14B4D43D1A3A8AD800933A5A /* RepairDispatchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B4D43B1A3A8AD800933A5A /* RepairDispatchCell.xib */; };
+		14B4D4441A3A9CE900933A5A /* RepairFinishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4421A3A9CE900933A5A /* RepairFinishCell.m */; };
+		14B4D4451A3A9CE900933A5A /* RepairFinishCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B4D4431A3A9CE900933A5A /* RepairFinishCell.xib */; };
+		14B4D44A1A3ACBE100933A5A /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4491A3ACBE100933A5A /* Unit.m */; };
+		14B4D4511A3B2D1D00933A5A /* RepairResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D44F1A3B2D1D00933A5A /* RepairResultCell.m */; };
+		14B4D4521A3B2D1D00933A5A /* RepairResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B4D4501A3B2D1D00933A5A /* RepairResultCell.xib */; };
+		14B4D4561A3B359700933A5A /* RepairResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4551A3B359700933A5A /* RepairResult.m */; };
+		14B4D4591A3B375000933A5A /* RepairResuleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4581A3B375000933A5A /* RepairResuleItem.m */; };
 		14B641BA1A2D42AC00C350A0 /* LifePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641B81A2D42AC00C350A0 /* LifePageView.m */; };
 		14B641BB1A2D42AC00C350A0 /* LifePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641B91A2D42AC00C350A0 /* LifePageView.xib */; };
 		14B641C11A2D691A00C350A0 /* SettingPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641BF1A2D691A00C350A0 /* SettingPageView.m */; };
@@ -435,6 +444,21 @@
 		14B4D4311A39DAC000933A5A /* RepairDispatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairDispatch.m; sourceTree = "<group>"; };
 		14B4D4331A39DB8300933A5A /* RepairFinish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairFinish.h; sourceTree = "<group>"; };
 		14B4D4341A39DB8300933A5A /* RepairFinish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairFinish.m; sourceTree = "<group>"; };
+		14B4D4391A3A8AD800933A5A /* RepairDispatchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairDispatchCell.h; sourceTree = "<group>"; };
+		14B4D43A1A3A8AD800933A5A /* RepairDispatchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairDispatchCell.m; sourceTree = "<group>"; };
+		14B4D43B1A3A8AD800933A5A /* RepairDispatchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepairDispatchCell.xib; sourceTree = "<group>"; };
+		14B4D4411A3A9CE900933A5A /* RepairFinishCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairFinishCell.h; sourceTree = "<group>"; };
+		14B4D4421A3A9CE900933A5A /* RepairFinishCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairFinishCell.m; sourceTree = "<group>"; };
+		14B4D4431A3A9CE900933A5A /* RepairFinishCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepairFinishCell.xib; sourceTree = "<group>"; };
+		14B4D4481A3ACBE100933A5A /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
+		14B4D4491A3ACBE100933A5A /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
+		14B4D44E1A3B2D1D00933A5A /* RepairResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairResultCell.h; sourceTree = "<group>"; };
+		14B4D44F1A3B2D1D00933A5A /* RepairResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairResultCell.m; sourceTree = "<group>"; };
+		14B4D4501A3B2D1D00933A5A /* RepairResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepairResultCell.xib; sourceTree = "<group>"; };
+		14B4D4541A3B359700933A5A /* RepairResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairResult.h; sourceTree = "<group>"; };
+		14B4D4551A3B359700933A5A /* RepairResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairResult.m; sourceTree = "<group>"; };
+		14B4D4571A3B375000933A5A /* RepairResuleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairResuleItem.h; sourceTree = "<group>"; };
+		14B4D4581A3B375000933A5A /* RepairResuleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairResuleItem.m; sourceTree = "<group>"; };
 		14B641B71A2D42AC00C350A0 /* LifePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifePageView.h; sourceTree = "<group>"; };
 		14B641B81A2D42AC00C350A0 /* LifePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifePageView.m; sourceTree = "<group>"; };
 		14B641B91A2D42AC00C350A0 /* LifePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LifePageView.xib; sourceTree = "<group>"; };
@@ -948,6 +972,8 @@
 				14D3C0A61A2874EB003E650A /* Community.m */,
 				14D3C0A81A2878E0003E650A /* Building.h */,
 				14D3C0A91A2878E0003E650A /* Building.m */,
+				14B4D4481A3ACBE100933A5A /* Unit.h */,
+				14B4D4491A3ACBE100933A5A /* Unit.m */,
 				14D3C0AB1A28792F003E650A /* HouseNum.h */,
 				14D3C0AC1A28792F003E650A /* HouseNum.m */,
 				1435426B1A2EA21800A8BBB7 /* Notice.h */,
@@ -970,6 +996,10 @@
 				14B4D4311A39DAC000933A5A /* RepairDispatch.m */,
 				14B4D4331A39DB8300933A5A /* RepairFinish.h */,
 				14B4D4341A39DB8300933A5A /* RepairFinish.m */,
+				14B4D4541A3B359700933A5A /* RepairResult.h */,
+				14B4D4551A3B359700933A5A /* RepairResult.m */,
+				14B4D4571A3B375000933A5A /* RepairResuleItem.h */,
+				14B4D4581A3B375000933A5A /* RepairResuleItem.m */,
 				14CCEE0B1A36CA4600ABBE7F /* ADInfo.h */,
 				14CCEE0C1A36CA4600ABBE7F /* ADInfo.m */,
 				14B4D3D21A36DB9600933A5A /* LifeRefer.h */,
@@ -1056,6 +1086,15 @@
 				14B4D4281A39D04A00933A5A /* RepairBasicCell.h */,
 				14B4D4291A39D04A00933A5A /* RepairBasicCell.m */,
 				14B4D42A1A39D04A00933A5A /* RepairBasicCell.xib */,
+				14B4D4391A3A8AD800933A5A /* RepairDispatchCell.h */,
+				14B4D43A1A3A8AD800933A5A /* RepairDispatchCell.m */,
+				14B4D43B1A3A8AD800933A5A /* RepairDispatchCell.xib */,
+				14B4D4411A3A9CE900933A5A /* RepairFinishCell.h */,
+				14B4D4421A3A9CE900933A5A /* RepairFinishCell.m */,
+				14B4D4431A3A9CE900933A5A /* RepairFinishCell.xib */,
+				14B4D44E1A3B2D1D00933A5A /* RepairResultCell.h */,
+				14B4D44F1A3B2D1D00933A5A /* RepairResultCell.m */,
+				14B4D4501A3B2D1D00933A5A /* RepairResultCell.xib */,
 			);
 			name = PropertyPage;
 			sourceTree = "<group>";
@@ -1915,11 +1954,14 @@
 				14FDB9A31A26C94E006EFFCC /* LoadingCell.xib in Resources */,
 				14FDB7A31A26B6E3006EFFCC /* LoginView.xib in Resources */,
 				14B641BB1A2D42AC00C350A0 /* LifePageView.xib in Resources */,
+				14B4D4521A3B2D1D00933A5A /* RepairResultCell.xib in Resources */,
 				14B4D3DF1A37262700933A5A /* LifeReferFooterReusableView.xib in Resources */,
+				14B4D4451A3A9CE900933A5A /* RepairFinishCell.xib in Resources */,
 				14B4D4271A39CD5200933A5A /* RepairBasicView.xib in Resources */,
 				14C1178C1A31E3B9009CAC7E /* ExpressHistoryCell.xib in Resources */,
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
 				14B4D3E41A372C8B00933A5A /* CommDetailView.xib in Resources */,
+				14B4D43D1A3A8AD800933A5A /* RepairDispatchCell.xib in Resources */,
 				143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */,
 				14B4D3E91A37418400933A5A /* ConvenienceTypeView.xib in Resources */,
 				14FDB9761A26C94E006EFFCC /* Alixpay.bundle in Resources */,
@@ -1983,6 +2025,7 @@
 				14B812F91A2F55D500506CD1 /* CallServiceReusable.m in Sources */,
 				14FDB98D1A26C94E006EFFCC /* CheckNetwork.m in Sources */,
 				14FDB9711A26C94E006EFFCC /* AFURLConnectionOperation.m in Sources */,
+				14B4D4441A3A9CE900933A5A /* RepairFinishCell.m in Sources */,
 				14FDB9841A26C94E006EFFCC /* ASIWebPageRequest.m in Sources */,
 				14FDB9E11A26C94F006EFFCC /* UIView+WebCacheOperation.m in Sources */,
 				14FDB98C1A26C94E006EFFCC /* ASINetworkQueue.m in Sources */,
@@ -2043,6 +2086,7 @@
 				14D3C0AD1A28792F003E650A /* HouseNum.m in Sources */,
 				14FDB9C81A26C94F006EFFCC /* PSTCollectionViewFlowLayout.m in Sources */,
 				14B4D3E31A372C8B00933A5A /* CommDetailView.m in Sources */,
+				14B4D4561A3B359700933A5A /* RepairResult.m in Sources */,
 				14FDB9C21A26C94F006EFFCC /* DACircularProgressView.m in Sources */,
 				14FDB97B1A26C94E006EFFCC /* NSString+SBJSON.m in Sources */,
 				14FDB9BF1A26C94F006EFFCC /* MWTapDetectingImageView.m in Sources */,
@@ -2058,6 +2102,7 @@
 				14B4D4321A39DAC000933A5A /* RepairDispatch.m in Sources */,
 				14FDB99A1A26C94E006EFFCC /* EGOCache.m in Sources */,
 				14B4D3EC1A3744D500933A5A /* ShopType.m in Sources */,
+				14B4D44A1A3ACBE100933A5A /* Unit.m in Sources */,
 				14FDB9DF1A26C94F006EFFCC /* UIImageView+HighlightedWebCache.m in Sources */,
 				14FDB9C71A26C94F006EFFCC /* PSTCollectionViewData.m in Sources */,
 				14FDB9D91A26C94F006EFFCC /* SDWebImageManager.m in Sources */,
@@ -2140,6 +2185,7 @@
 				14D3C0A71A2874EB003E650A /* Community.m in Sources */,
 				14C117CE1A35F452009CAC7E /* RepairImageCell.m in Sources */,
 				14FDB9A81A26C94E006EFFCC /* NSDate+Extensions.m in Sources */,
+				14B4D43C1A3A8AD800933A5A /* RepairDispatchCell.m in Sources */,
 				14FDB98E1A26C94E006EFFCC /* Reachability.m in Sources */,
 				14FDB9B81A26C94F006EFFCC /* KxMenu.m in Sources */,
 				1435426D1A2EA21800A8BBB7 /* Notice.m in Sources */,
@@ -2148,6 +2194,7 @@
 				14FDB9751A26C94E006EFFCC /* AlipayUtils.m in Sources */,
 				14CCEE0D1A36CA4600ABBE7F /* ADInfo.m in Sources */,
 				14FDB9691A26C94E006EFFCC /* AFHTTPClient.m in Sources */,
+				14B4D4511A3B2D1D00933A5A /* RepairResultCell.m in Sources */,
 				14B4D3FD1A37E11500933A5A /* ShopInfo.m in Sources */,
 				14B4D4351A39DB8300933A5A /* RepairFinish.m in Sources */,
 				14FDB9BA1A26C94F006EFFCC /* MWCaptionView.m in Sources */,
@@ -2156,6 +2203,7 @@
 				14FDB9721A26C94E006EFFCC /* AFXMLRequestOperation.m in Sources */,
 				14FDB9AE1A26C94E006EFFCC /* UIImage+resize.m in Sources */,
 				14FDB9821A26C94E006EFFCC /* PayOrder.m in Sources */,
+				14B4D4591A3B375000933A5A /* RepairResuleItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

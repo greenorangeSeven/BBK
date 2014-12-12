@@ -159,16 +159,16 @@
 }
 + (void)processLoginNotice:(UIActionSheet *)actionSheet andButtonIndex:(NSInteger)buttonIndex andNav:(UINavigationController *)nav andParent:(UIViewController *)parent
 {
-//    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-//    if ([buttonTitle isEqualToString:@"登录"]) {
-//        LoginView *loginView = [[LoginView alloc] init];
-//        [nav pushViewController:loginView animated:YES];
-//    }
-//    else if([buttonTitle isEqualToString:@"注册"])
-//    {
-//        RegisterView *regView = [[RegisterView alloc] init];
-//        [nav pushViewController:regView animated:YES];
-//    }
+    //    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    //    if ([buttonTitle isEqualToString:@"登录"]) {
+    //        LoginView *loginView = [[LoginView alloc] init];
+    //        [nav pushViewController:loginView animated:YES];
+    //    }
+    //    else if([buttonTitle isEqualToString:@"注册"])
+    //    {
+    //        RegisterView *regView = [[RegisterView alloc] init];
+    //        [nav pushViewController:regView animated:YES];
+    //    }
 }
 
 + (NSString *)intervalSinceNow: (NSString *) theDate
@@ -263,7 +263,7 @@
 
 + (UIColor *)getBackgroundColor
 {
-//    return [UIColor colorWithPatternImage:[UIImage imageNamed:@"fb_bg.jpg"]];
+    //    return [UIColor colorWithPatternImage:[UIImage imageNamed:@"fb_bg.jpg"]];
     return [UIColor colorWithRed:234.0/255 green:234.0/255 blue:234.0/255 alpha:1.0];
 }
 + (UIColor *)getCellBackgroundColor
@@ -595,7 +595,11 @@
         comu.buildingList = [RMMapper mutableArrayOfClass:[Building class] fromArrayOfDictionary:comuSubList];
         for (Building *building in comu.buildingList) {
             NSArray *buildingSubList = building.subList;
-            building.houseNumList = [RMMapper mutableArrayOfClass:[HouseNum class] fromArrayOfDictionary:buildingSubList];
+            building.unitList = [RMMapper mutableArrayOfClass:[Unit class] fromArrayOfDictionary:buildingSubList];
+            for (Unit *unit in building.unitList) {
+                NSArray *unitSubList = unit.subList;
+                unit.houseNumList = [RMMapper mutableArrayOfClass:[HouseNum class] fromArrayOfDictionary:unitSubList];
+            }
         }
     }
     return communityArray;
@@ -912,13 +916,24 @@
     if ([state isEqualToString:@"0000"] == YES) {
         NSMutableArray *items = [[NSMutableArray alloc] init];
         NSDictionary *repairDicJson = [repairDic objectForKey:@"data"];
-//        NSMutableArray *serviceArray = [RMMapper mutableArrayOfClass:[CallService class] fromArrayOfDictionary:repairDicJson];
+        //        NSMutableArray *serviceArray = [RMMapper mutableArrayOfClass:[CallService class] fromArrayOfDictionary:repairDicJson];
         RepairBasic *basic = [RMMapper objectWithClass:[RepairBasic class] fromDictionary:repairDicJson];
         basic.starttime = [self TimestampToDateStr:[basic.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+        basic.contentHeight = [self getTextHeight:304 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:basic.repairContent];
+        if (basic.contentHeight < 36)
+        {
+            basic.contentHeight = 36;
+            basic.viewAddHeight = 0;
+        }
+        else
+        {
+            basic.viewAddHeight = basic.contentHeight - 36;
+        }
         //添加报修基础数据
         [items addObject:basic];
+        basic.fullImgList = [[NSMutableArray alloc] init];
         for (int i = 0; i < [basic.imgList count]; i++) {
-            NSDictionary *imageDicJson = [repairDic objectForKey:@"data"];
+            NSDictionary *imageDicJson = [basic.imgList objectAtIndex:i];
             [basic.fullImgList addObject:[imageDicJson objectForKey:@"imgUrlFull"]];
         }
         for (int l = 0; l < [basic.repairRunList count]; l++) {
@@ -934,17 +949,34 @@
             }
             if (l == 1) {
                 RepairFinish *finish = [[RepairFinish alloc] init];
-//                @property (nonatomic, retain) NSString *runContent;
-//                @property double cost;
-//                @property (nonatomic, retain) NSNumber *starttimeStamp;
-//                @property (nonatomic, retain) NSString *starttime;
-                finish.runContent = basic.runContent;
+                finish.runContent = [[basic.repairRunList objectAtIndex:l] objectForKey:@"runContent"];
                 finish.cost = basic.cost;
                 finish.starttimeStamp = [[basic.repairRunList objectAtIndex:l] objectForKey:@"starttimeStamp"];
                 finish.starttime = [self TimestampToDateStr:[finish.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+                
+                finish.contentHeight = [self getTextHeight:304 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:finish.runContent];
+                if (finish.contentHeight < 36)
+                {
+                    finish.contentHeight = 36;
+                    finish.viewAddHeight = 0;
+                }
+                else
+                {
+                    finish.viewAddHeight = finish.contentHeight - 36;
+                }
+                
                 //添加维修完成数据
                 [items addObject:finish];
             }
+        }
+        if ([basic.repairResult count] > 0) {
+            RepairResult *result = [[RepairResult alloc] init];
+            result.repairResult = [RMMapper mutableArrayOfClass:[RepairResuleItem class] fromArrayOfDictionary:basic.repairResult];
+            result.userRecontent = basic.userRecontent;
+            result.scoreViewHeight = 39 * [result.repairResult count];
+            result.addViewHeight = 39 * ([result.repairResult count] - 1);
+            //添加维修评论数据
+            [items addObject:result];
         }
         
         return items;

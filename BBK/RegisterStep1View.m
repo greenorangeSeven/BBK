@@ -12,6 +12,7 @@
 #import "Community.h"
 #import "Building.h"
 #import "HouseNum.h"
+#import "Unit.h"
 #import "IQKeyboardManager/KeyboardManager.framework/Headers/IQKeyboardManager.h"
 
 @interface RegisterStep1View ()
@@ -28,11 +29,13 @@
 @property (nonatomic, strong) UIPickerView *communityPicker;
 @property (nonatomic, strong) UIPickerView *buildingPicker;
 @property (nonatomic, strong) UIPickerView *houseNumPicker;
+@property (nonatomic, strong) UIPickerView *unitPicker;
 
 @property (nonatomic, strong) NSArray *cityArray;
 @property (nonatomic, strong) NSArray *communityArray;
 @property (nonatomic, strong) NSArray *buildingArray;
 @property (nonatomic, strong) NSArray *houseNumArray;
+@property (nonatomic, strong) NSArray *unitArray;
 
 @end
 
@@ -57,7 +60,7 @@
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
     
-    self.fieldArray = @[self.cityTf, self.communityTf, self.buildingTf, self.houseNumTf];
+    self.fieldArray = @[self.cityTf, self.communityTf, self.buildingTf, self.unitTf, self.houseNumTf];
     
     self.cityTf.tag = 1;
     self.cityTf.delegate = self;
@@ -70,7 +73,9 @@
     
     self.houseNumTf.tag = 4;
     self.houseNumTf.delegate = self;
-    
+    //新加单元所以tag在门牌之后
+    self.unitTf.tag = 5;
+    self.unitTf.delegate = self;
     
     self.pickerSelectRow = 0;
     
@@ -187,6 +192,10 @@
     {
         return [self.houseNumArray count];
     }
+    else if (pickerView.tag == 5)
+    {
+        return [self.unitArray count];
+    }
     else
     {
         return 0;
@@ -216,6 +225,11 @@
         HouseNum *houseNum = (HouseNum *)[self.houseNumArray objectAtIndex:row];
         return houseNum.numberName;
     }
+    else if (pickerView.tag == 5)
+    {
+        Unit *unit = (Unit *)[self.unitArray objectAtIndex:row];
+        return unit.unitName;
+    }
     else
     {
         return nil;
@@ -237,6 +251,10 @@
         self.pickerSelectRow = row;
     }
     else if (thePickerView.tag == 4)
+    {
+        self.pickerSelectRow = row;
+    }
+    else if (thePickerView.tag == 5)
     {
         self.pickerSelectRow = row;
     }
@@ -264,6 +282,7 @@
         self.houseNumTf.enabled = NO;
         self.communityTf.text = @"社区";
         self.buildingTf.text = @"楼栋";
+        self.unitTf.text = @"单元";
         self.houseNumTf.text = @"门牌号";
     }
     else if (textField.tag == 2)
@@ -301,6 +320,18 @@
         
         HouseNum *houseNum = (HouseNum *)[self.houseNumArray objectAtIndex:0];
         self.houseNumTf.text = houseNum.numberName;
+    }
+    else if (textField.tag == 5)
+    {
+        self.unitPicker = [[UIPickerView alloc] initWithFrame:CGRectZero];
+        self.unitPicker.showsSelectionIndicator = YES;
+        self.unitPicker.delegate = self;
+        self.unitPicker.dataSource = self;
+        self.unitPicker.tag = 5;
+        textField.inputView = self.unitPicker;
+        
+        Unit *unit = (Unit *)[self.unitArray objectAtIndex:0];
+        self.unitTf.text = unit.unitName;
     }
 }
 
@@ -362,7 +393,28 @@
         }
         Building *building = [self.buildingArray objectAtIndex:self.pickerSelectRow];
         self.buildingTf.text = building.buildingName;
-        self.houseNumArray = building.houseNumList;
+        self.unitArray = building.unitList;
+        [self.unitPicker reloadAllComponents];
+        
+        if ([self.unitArray count] > 0) {
+            self.unitTf.enabled = YES;
+            self.unitTf.text = @"单元";
+        }
+        else
+        {
+            self.unitTf.enabled = NO;
+            self.unitTf.text = @"暂无单元";
+        }
+    }
+    else if (sender.tag == 5)
+    {
+        if([self.unitArray count] - 1 < self.pickerSelectRow)
+        {
+            self.pickerSelectRow = 0;
+        }
+        Unit *unit = [self.unitArray objectAtIndex:self.pickerSelectRow];
+        self.unitTf.text = unit.unitName;
+        self.houseNumArray = unit.houseNumList;
         [self.houseNumPicker reloadAllComponents];
         
         if ([self.houseNumArray count] > 0) {

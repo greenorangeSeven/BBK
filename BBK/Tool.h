@@ -19,6 +19,7 @@
 #import "City.h"
 #import "Community.h"
 #import "Building.h"
+#import "Unit.h"
 #import "HouseNum.h"
 #import "Notice.h"
 #import "CallService.h"
@@ -34,6 +35,8 @@
 #import "RepairBasic.h"
 #import "RepairDispatch.h"
 #import "RepairFinish.h"
+#import "RepairResult.h"
+#import "RepairResuleItem.h"
 
 @interface Tool : NSObject
 

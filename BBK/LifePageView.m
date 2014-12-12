@@ -484,7 +484,6 @@
         NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
         [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
     }
-    bannerView.delegate = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -497,6 +496,12 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"返回";
     self.navigationItem.backBarButtonItem = backItem;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    bannerView.delegate = nil;
 }
 
 - (IBAction)telAction:(id)sender

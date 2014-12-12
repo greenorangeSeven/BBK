@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TQImageCache.h"
 
-@interface CircleOfFriendsCell : UITableViewCell<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, IconDownloaderDelegate>
+@interface CircleOfFriendsCell : UITableViewCell<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     NSArray *imageList;
-    TQImageCache * _iconCache;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *boxView;

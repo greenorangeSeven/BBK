@@ -15,4 +15,7 @@
 @property (nonatomic, retain) NSNumber *starttimeStamp;
 @property (nonatomic, retain) NSString *starttime;
 
+@property int contentHeight;
+@property int viewAddHeight;
+
 @end

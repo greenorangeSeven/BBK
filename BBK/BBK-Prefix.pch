@@ -39,7 +39,7 @@
 #define Appkey @"10000001"
 #define AppSecret @"Hr54hiz7"
 
-//#define api_base_url @"http://192.168.1.26:8080"
+//#define api_base_url @"http://192.168.1.11:8080"
 #define api_base_url @"http://114.215.145.29:8080"
 //登录接口
 #define api_login @"/zhxq_api/regUser/login.htm"
@@ -81,7 +81,7 @@
 #define api_findShopInfoByPage @"/zhxq_api/shop/findShopInfoByPage.htm"
 
 
-#define servicephone @"4006967020"
+#define servicephone @"0731-58661602"
 
 #define SettingTableIdentifier @"SettingTableIdentifier"
 #define NoticeNewCellIdentifier @"NoticeNewCellIdentifier"
@@ -98,7 +98,9 @@
 #define ConvenienceCellIdentifier @"ConvenienceCellIdentifier"
 #define ShopInfoCellIdentifier @"ShopInfoCellIdentifier"
 #define RepairBasicCellIdentifier @"RepairBasicCellIdentifier"
-
+#define RepairDispatchCellIdentifier @"RepairDispatchCellIdentifier"
+#define RepairFinishCellIdentifier @"RepairFinishCellIdentifier"
+#define RepairResultCellIdentifier @"RepairResultCellIdentifier"
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"
 #define Notification_ShowPackAlertView @"Notification_ShowPackAlertView"
