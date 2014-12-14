@@ -1,24 +1,24 @@
 //
-//  AddRepairView.m
+//  AddSuitWorkView.m
 //  BBK
 //
-//  Created by Seven on 14-12-8.
+//  Created by Seven on 14-12-14.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "AddRepairView.h"
-#import "UIImageView+WebCache.h"
-#import "RepairType.h"
+#import "AddSuitWorkView.h"
 #import "RepairImageCell.h"
-#import "RepairTableView.h"
+#import "UIImageView+WebCache.h"
+#import "SuitType.h"
+#import "SuitWorkTableView.h"
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
-@interface AddRepairView ()
+@interface AddSuitWorkView ()
 {
-    NSString *repairTypeId;
-    NSArray *repairTypeArray;
-    NSMutableArray *repairImageArray;
+    int suitTypeId;
+    NSArray *suitTypeArray;
+    NSMutableArray *suitImageArray;
     int selectCaremaIndex;
     
     UIWebView *phoneWebView;
@@ -26,20 +26,20 @@
 
 @end
 
-@implementation AddRepairView
+@implementation AddSuitWorkView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.text = @"物业报修";
+    titleLabel.text = @"投诉建议";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = [Tool getColorForMain];
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle: @"报修单" style:UIBarButtonItemStyleBordered target:self action:@selector(pushRepairListAction:)];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle: @"我的" style:UIBarButtonItemStyleBordered target:self action:@selector(pushSuitWorkListAction:)];
     self.navigationItem.rightBarButtonItem = rightBtn;
     
     UserModel *userModel = [UserModel Instance];
@@ -48,30 +48,30 @@
     self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [userModel getUserValueForKey:@"regUserName"], [userModel getUserValueForKey:@"mobileNo"]];
     self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [userModel getUserValueForKey:@"cellName"], [userModel getUserValueForKey:@"buildingName"], [userModel getUserValueForKey:@"numberName"], [userModel getUserValueForKey:@"userTypeName"]];
     
-    self.repairContentTv.delegate = self;
+    self.suitContentTv.delegate = self;
     
-    repairImageArray = [[NSMutableArray alloc] initWithCapacity:4];
+    suitImageArray = [[NSMutableArray alloc] initWithCapacity:4];
     UIImage *myImage = [UIImage imageNamed:@"cameralogo"];
-    [repairImageArray addObject:myImage];
+    [suitImageArray addObject:myImage];
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[RepairImageCell class] forCellWithReuseIdentifier:RepairImageCellIdentifier];
     
-    [self getRepairTypeData];
+    [self getSuitTypeData];
 }
 
-- (void)pushRepairListAction:(id)sender
+- (void)pushSuitWorkListAction:(id)sender
 {
-    RepairTableView *repairTableView = [[RepairTableView alloc] init];
-    repairTableView.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:repairTableView animated:YES];
+    SuitWorkTableView *suitTableView = [[SuitWorkTableView alloc] init];
+    suitTableView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:suitTableView animated:YES];
 }
 
-- (void)getRepairTypeData
+- (void)getSuitTypeData
 {
     //生成获取报修类型URL
-    NSString *typeUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_FindAllRepairType] params:nil];
+    NSString *typeUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findAllSuitType] params:nil];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:typeUrl]];
     [request setUseCookiePersistence:NO];
@@ -115,14 +115,10 @@
     else
     {
         if (request.tag == 0) {
-            repairTypeArray = [Tool readJsonStrToRepairTypeArray:request.responseString];
-            RepairType *repairType = [repairTypeArray objectAtIndex:0];
-            self.repairTypeNameLb.text = repairType.typeName;
-            repairTypeId = repairType.typeId;
-        }
-        else
-        {
-            
+            suitTypeArray = [Tool readJsonStrToSuitTypeArray:request.responseString];
+            SuitType *suitType = [suitTypeArray objectAtIndex:0];
+            self.suitTypeNameLb.text = suitType.suitTypeName;
+            suitTypeId = suitType.suitTypeId;
         }
     }
 }
@@ -131,16 +127,16 @@
 {
     int textLength = [textView.text length];
     if (textLength == 0) {
-        [self.repairContentPlaceholder setHidden:NO];
+        [self.suitContentPlaceholder setHidden:NO];
     }else{
-        [self.repairContentPlaceholder setHidden:YES];
+        [self.suitContentPlaceholder setHidden:YES];
     }
 }
 
 //定义展示的UICollectionViewCell的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [repairImageArray count];
+    return [suitImageArray count];
 }
 
 //定义展示的Section的个数
@@ -163,7 +159,7 @@
         }
     }
     int row = [indexPath row];
-    UIImage *repairImage = [repairImageArray objectAtIndex:row];
+    UIImage *repairImage = [suitImageArray objectAtIndex:row];
     cell.repairIv.image = repairImage;
     
     return cell;
@@ -187,7 +183,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = [indexPath row];
-    if (row == [repairImageArray count] -1) {
+    if (row == [suitImageArray count] -1) {
         UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
                                                         cancelButtonTitle:@"取消"
@@ -199,10 +195,10 @@
     else
     {
         UIActionSheet *delSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"取消"
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"删除", nil];
+                                                              delegate:self
+                                                     cancelButtonTitle:@"取消"
+                                                destructiveButtonTitle:nil
+                                                     otherButtonTitles:@"删除", nil];
         delSheet.tag = 2;
         selectCaremaIndex = row;
         [delSheet showInView:self.view];
@@ -252,7 +248,7 @@
     }
     if (actionSheet.tag == 2) {
         if (buttonIndex == 0) {
-            [repairImageArray removeObjectAtIndex:selectCaremaIndex];
+            [suitImageArray removeObjectAtIndex:selectCaremaIndex];
             [self.collectionView reloadData];
         }
     }
@@ -262,7 +258,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:YES completion:^() {
         UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        [repairImageArray insertObject:portraitImg atIndex:[repairImageArray count] -1];
+        UIImage *smallImage = [self imageByScalingToMaxSize:portraitImg];
+        [suitImageArray insertObject:smallImage atIndex:[suitImageArray count] -1];
         [self.collectionView reloadData];
     }];
 }
@@ -393,11 +390,11 @@
 }
 //拍照处理
 
-- (IBAction)selectRepairTypeAction:(id)sender {
-    if ([repairTypeArray count]> 0) {
-        RepairType *repairType = [repairTypeArray objectAtIndex:0];
-        self.repairTypeNameLb.text = repairType.typeName;
-        repairTypeId = repairType.typeId;
+- (IBAction)selectSuitTypeAction:(id)sender {
+    if ([suitTypeArray count]> 0) {
+        SuitType *suitType = [suitTypeArray objectAtIndex:0];
+        self.suitTypeNameLb.text = suitType.suitTypeName;
+        suitTypeId = suitType.suitTypeId;
     }
     else
     {
@@ -446,7 +443,7 @@
 //返回当前列显示的行数
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [repairTypeArray count];
+    return [suitTypeArray count];
 }
 
 #pragma mark Picker Delegate Methods
@@ -454,23 +451,23 @@
 //返回当前行的内容,此处是将数组中数值添加到滚动的那个显示栏上
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    RepairType *type = (RepairType *)[repairTypeArray objectAtIndex:row];
-    return type.typeName;
+    SuitType *type = (SuitType *)[suitTypeArray objectAtIndex:row];
+    return type.suitTypeName;
 }
 
 -(void) pickerView: (UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent: (NSInteger)component
 {
-    RepairType *type = (RepairType *)[repairTypeArray objectAtIndex:row];
-    repairTypeId = type.typeId;
-    self.repairTypeNameLb.text = type.typeName;
+    SuitType *type = (SuitType *)[suitTypeArray objectAtIndex:row];
+    suitTypeId = type.suitTypeId;
+    self.suitTypeNameLb.text = type.suitTypeName;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UILabel *myView = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 300, 30)];
     myView.textAlignment = UITextAlignmentCenter;
-    RepairType *type = (RepairType *)[repairTypeArray objectAtIndex:row];
-    myView.text = type.typeName;
+    SuitType *type = (SuitType *)[suitTypeArray objectAtIndex:row];
+    myView.text = type.suitTypeName;
     myView.font = [UIFont systemFontOfSize:18];         //用label来设置字体大小
     myView.backgroundColor = [UIColor clearColor];
     return myView;
@@ -484,36 +481,36 @@
     [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
 }
 
-- (IBAction)submitRepairAction:(id)sender {
-    NSString *contentStr = self.repairContentTv.text;
+- (IBAction)submitSuitAction:(id)sender {
+    NSString *contentStr = self.suitContentTv.text;
     if (contentStr == nil || [contentStr length] == 0) {
-        [Tool showCustomHUD:@"请填写报修描述" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        [Tool showCustomHUD:@"请填写投诉描述" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
         return;
     }
-    self.submitRepairBtn.enabled = NO;
+    self.submitSuitBtn.enabled = NO;
     
     UserModel *userModel = [UserModel Instance];
     
-    //生成新增报修Sign
+    //生成新增投诉Sign
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    [param setValue:repairTypeId forKey:@"typeId"];
-    [param setValue:contentStr forKey:@"repairContent"];
+    [param setValue:[NSString stringWithFormat:@"%d", suitTypeId] forKey:@"suitTypeId"];
+    [param setValue:contentStr forKey:@"suitContent"];
     [param setValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
     [param setValue:[userModel getUserValueForKey:@"numberId"] forKey:@"numberId"];
-    NSString *addRegirSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_AddRepairWork] params:param];
+    NSString *addSuitSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_addSuitWork] params:param];
     
-    NSString *addRegirUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_AddRepairWork];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:addRegirUrl]];
+    NSString *addSuitUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_addSuitWork];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:addSuitUrl]];
     [request setUseCookiePersistence:[[UserModel Instance] isLogin]];
     [request setTimeOutSeconds:30];
     [request setPostValue:Appkey forKey:@"accessId"];
-    [request setPostValue:addRegirSign forKey:@"sign"];
-    [request setPostValue:repairTypeId forKey:@"typeId"];
-    [request setPostValue:contentStr forKey:@"repairContent"];
+    [request setPostValue:addSuitSign forKey:@"sign"];
+    [request setPostValue:[NSString stringWithFormat:@"%d", suitTypeId] forKey:@"suitTypeId"];
+    [request setPostValue:contentStr forKey:@"suitContent"];
     [request setPostValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
     [request setPostValue:[userModel getUserValueForKey:@"numberId"] forKey:@"numberId"];
-    for (int i = 0 ; i < [repairImageArray count] - 1; i++) {
-        UIImage *repairImage = [repairImageArray objectAtIndex:i];
+    for (int i = 0 ; i < [suitImageArray count] - 1; i++) {
+        UIImage *repairImage = [suitImageArray objectAtIndex:i];
         [request addData:UIImageJPEGRepresentation(repairImage, 0.6f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:[NSString stringWithFormat:@"pic%d", i]];
     }
     request.tag = 1;
@@ -536,7 +533,7 @@
     NSData *data = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    
+    NSLog(request.responseString);
     NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
     if ([state isEqualToString:@"0000"] == NO) {
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
@@ -545,23 +542,23 @@
                                            cancelButtonTitle:@"确定"
                                            otherButtonTitles:nil];
         [av show];
-        self.submitRepairBtn.enabled = YES;
+        self.submitSuitBtn.enabled = YES;
         return;
     }
     else
     {
-        RepairTableView *repairTableView = [[RepairTableView alloc] init];
-        repairTableView.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:repairTableView animated:YES];
+        SuitWorkTableView *suitTableView = [[SuitWorkTableView alloc] init];
+        suitTableView.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:suitTableView animated:YES];
         
-        [repairImageArray removeAllObjects];
+        [suitImageArray removeAllObjects];
         UIImage *myImage = [UIImage imageNamed:@"cameralogo"];
-        [repairImageArray addObject:myImage];
+        [suitImageArray addObject:myImage];
         [self.collectionView reloadData];
         
-        self.repairContentTv.text = @"";
-        self.repairContentPlaceholder.hidden = NO;
-        self.submitRepairBtn.enabled = YES;
+        self.suitContentTv.text = @"";
+        self.suitContentPlaceholder.hidden = NO;
+        self.submitSuitBtn.enabled = YES;
     }
 }
 

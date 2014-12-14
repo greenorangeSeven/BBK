@@ -1,14 +1,14 @@
 //
-//  RepairResultCell.m
+//  SuitResutCell.m
 //  BBK
 //
-//  Created by Seven on 14-12-12.
+//  Created by Seven on 14-12-14.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "RepairResultCell.h"
+#import "SuitResutCell.h"
 
-@implementation RepairResultCell
+@implementation SuitResutCell
 
 - (void)awakeFromNib {
     // Initialization code

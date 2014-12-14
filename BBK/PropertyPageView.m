@@ -14,6 +14,7 @@
 #import "ExpressView.h"
 #import "AddRepairView.h"
 #import "ADInfo.h"
+#import "AddSuitWorkView.h"
 
 @interface PropertyPageView ()
 {
@@ -213,6 +214,13 @@
     AddRepairView *addRepairView = [[AddRepairView alloc] init];
     addRepairView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:addRepairView animated:YES];
+}
+
+//投诉建议
+- (IBAction)addSuitWorkAction:(id)sender {
+    AddSuitWorkView *addSuitView = [[AddSuitWorkView alloc] init];
+    addSuitView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:addSuitView animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

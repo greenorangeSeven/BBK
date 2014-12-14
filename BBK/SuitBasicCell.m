@@ -1,16 +1,16 @@
 //
-//  RepairBasicCell.m
+//  SuitBasicCell.m
 //  BBK
 //
-//  Created by Seven on 14-12-11.
+//  Created by Seven on 14-12-14.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "RepairBasicCell.h"
+#import "SuitBasicCell.h"
 #import "RepairImageCell.h"
 #import "UIImageView+WebCache.h"
 
-@implementation RepairBasicCell
+@implementation SuitBasicCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -22,7 +22,7 @@
     // Configure the view for the selected state
 }
 
-- (void)loadRepairImage:(NSArray *)imgUrlList
+- (void)loadSuitImage:(NSArray *)imgUrlList
 {
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;

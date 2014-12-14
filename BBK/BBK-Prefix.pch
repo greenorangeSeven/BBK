@@ -39,8 +39,8 @@
 #define Appkey @"10000001"
 #define AppSecret @"Hr54hiz7"
 
-#define api_base_url @"http://192.168.1.26:8080"
-//#define api_base_url @"http://114.215.145.29:8080"
+//#define api_base_url @"http://192.168.1.26:8080"
+#define api_base_url @"http://114.215.145.29:8080"
 //登录接口
 #define api_login @"/zhxq_api/regUser/login.htm"
 //查询城市接口
@@ -85,6 +85,17 @@
 #define api_findShopInfoByPage @"/zhxq_api/shop/findShopInfoByPage.htm"
 //获取悦生活月刊列表
 #define api_findMonthlyByPageInfo @"/zhxq_api/monthly/findMonthlyByPageInfo.htm"
+//获取投诉类型
+#define api_findAllSuitType @"/zhxq_api/suit/findAllSuitType.htm"
+//新增投诉
+#define api_addSuitWork @"/zhxq_api/suit/addSuitWork.htm"
+//获取投诉列表
+#define api_findSuitWorkByPage @"/zhxq_api/suit/findSuitWorkByPage.htm"
+//获取投诉详情
+#define api_findSuitWorkDetail @"/zhxq_api/suit/findSuitWorkDetail.htm"
+//投诉评价
+#define api_modiSuitWorkOver @"/zhxq_api/suit/modiSuitWorkOver.htm"
+
 
 
 //小区通知详情页面
@@ -113,6 +124,10 @@
 #define RepairFinishCellIdentifier @"RepairFinishCellIdentifier"
 #define RepairResultCellIdentifier @"RepairResultCellIdentifier"
 #define MonthlyCellIdentifier @"MonthlyCellIdentifier"
+#define SuitBasicCellIdentifier @"SuitBasicCellIdentifier"
+#define SuitReplyCellIdentifier @"SuitReplyCellIdentifier"
+#define SuitResutCellIdentifier @"SuitResutCellIdentifier"
+
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"
 #define Notification_ShowPackAlertView @"Notification_ShowPackAlertView"

@@ -1,29 +1,28 @@
 //
-//  RepairTableView.m
+//  SuitWorkTableView.m
 //  BBK
 //
-//  Created by Seven on 14-12-9.
+//  Created by Seven on 14-12-14.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "RepairTableView.h"
+#import "SuitWorkTableView.h"
 #import "UIImageView+WebCache.h"
 #import "RepairTableCell.h"
-#import "Repair.h"
-#import "RepairDetailView.h"
+#import "SuitDetailView.h"
 
-@interface RepairTableView ()
+@interface SuitWorkTableView ()
 
 @end
 
-@implementation RepairTableView
+@implementation SuitWorkTableView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.text = @"报修单";
+    titleLabel.text = @"投诉建议";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = [Tool getColorForMain];
     titleLabel.textAlignment = UITextAlignmentCenter;
@@ -31,24 +30,15 @@
     
     UserModel *userModel = [UserModel Instance];
     [self.userFaceIv setImageWithURL:[NSURL URLWithString:[userModel getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
-    
-    //适配iOS7uinavigationbar遮挡的问题
-    if(IS_IOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
-    
     self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [userModel getUserValueForKey:@"regUserName"], [userModel getUserValueForKey:@"mobileNo"]];
     self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [userModel getUserValueForKey:@"cellName"], [userModel getUserValueForKey:@"buildingName"], [userModel getUserValueForKey:@"numberName"], [userModel getUserValueForKey:@"userTypeName"]];
-    
-//    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height-33);
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor clearColor];
     //    设置无分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableHeaderView = self.headerView;
     
     allCount = 0;
     //添加的代码
@@ -60,7 +50,7 @@
     }
     [_refreshHeaderView refreshLastUpdatedDate];
     
-    repairs = [[NSMutableArray alloc] initWithCapacity:20];
+    suits = [[NSMutableArray alloc] initWithCapacity:20];
     [self reload:YES];
 }
 
@@ -84,15 +74,15 @@
 {
     [self setTableView:nil];
     _refreshHeaderView = nil;
-    [repairs removeAllObjects];
-    repairs = nil;
+    [suits removeAllObjects];
+    suits = nil;
     [super viewDidUnload];
 }
 
 - (void)clear
 {
     allCount = 0;
-    [repairs removeAllObjects];
+    [suits removeAllObjects];
     isLoadOver = NO;
 }
 
@@ -108,31 +98,31 @@
         }
         int pageIndex = allCount/20 + 1;
         
-        //生成获取报修列表URL
+        //生成获取投诉列表URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
         [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
         [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
         [param setValue:@"20" forKey:@"countPerPages"];
-        NSString *getRepairListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_FindRepairWorkByPage] params:param];
+        NSString *getSuitListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findSuitWorkByPage] params:param];
         
-        [[AFOSCClient sharedClient]getPath:getRepairListUrl parameters:Nil
+        [[AFOSCClient sharedClient]getPath:getSuitListUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        
-                                       NSMutableArray *repairsNews = [Tool readJsonStrToRepairArray:operation.responseString];
+                                       NSMutableArray *suitNews = [Tool readJsonStrToSuitArray:operation.responseString];
                                        isLoading = NO;
                                        if (!noRefresh) {
                                            [self clear];
                                        }
                                        
                                        @try {
-                                           int count = [repairsNews count];
+                                           int count = [suitNews count];
                                            allCount += count;
                                            if (count < 20)
                                            {
                                                isLoadOver = YES;
                                            }
-                                           [repairs addObjectsFromArray:repairsNews];
+                                           [suits addObjectsFromArray:suitNews];
                                            [self.tableView reloadData];
                                            [self doneLoadingTableViewData];
                                        }
@@ -164,19 +154,19 @@
 {
     if ([UserModel Instance].isNetworkRunning) {
         if (isLoadOver) {
-            return repairs.count == 0 ? 1 : repairs.count;
+            return suits.count == 0 ? 1 : suits.count;
         }
         else
-            return repairs.count + 1;
+            return suits.count + 1;
     }
     else
-        return repairs.count;
+        return suits.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = [indexPath row];
-    if (row < [repairs count]) {
+    if (row < [suits count]) {
         return 65.0;
     }
     else
@@ -194,8 +184,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = [indexPath row];
-    if ([repairs count] > 0) {
-        if (row < [repairs count])
+    if ([suits count] > 0) {
+        if (row < [suits count])
         {
             
             RepairTableCell *cell = [tableView dequeueReusableCellWithIdentifier:RepairTableCellIdentifier];
@@ -208,11 +198,11 @@
                     }
                 }
             }
-            Repair *repair = [repairs objectAtIndex:row];
-            cell.starttimeLb.text = repair.starttime;
-            cell.repairContentLb.text = repair.repairContent;
-            cell.stateNameLb.text = repair.stateName;
-            if ([repair.stateSort isEqualToString:@"1"]) {
+            Suit *suit = [suits objectAtIndex:row];
+            cell.starttimeLb.text = suit.starttime;
+            cell.repairContentLb.text = suit.suitContent;
+            cell.stateNameLb.text = suit.suitStateName;
+            if (suit.suitStateId == 0) {
                 cell.stateNameLb.textColor = [Tool getColorForMain];
             }
             else
@@ -239,7 +229,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     int row = [indexPath row];
     //点击“下面20条”
-    if (row >= [repairs count]) {
+    if (row >= [suits count]) {
         //启动刷新
         if (!isLoading) {
             [self performSelector:@selector(reload:)];
@@ -247,11 +237,11 @@
     }
     else
     {
-        Repair *repair = [repairs objectAtIndex:row];
-        if (repair) {
-            RepairDetailView *repairDetail = [[RepairDetailView alloc] init];
-            repairDetail.repair = repair;
-            [self.navigationController pushViewController:repairDetail animated:YES];
+        Suit *suit = [suits objectAtIndex:row];
+        if (suit) {
+            SuitDetailView *suitDetail = [[SuitDetailView alloc] init];
+            suitDetail.suit = suit;
+            [self.navigationController pushViewController:suitDetail animated:YES];
         }
     }
 }

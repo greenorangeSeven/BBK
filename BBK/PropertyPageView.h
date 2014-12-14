@@ -33,5 +33,7 @@
 - (IBAction)expressAction:(id)sender;
 //物业报修
 - (IBAction)addRepairAction:(id)sender;
+//投诉建议
+- (IBAction)addSuitWorkAction:(id)sender;
 
 @end

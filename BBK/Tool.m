@@ -969,7 +969,7 @@
                 [items addObject:finish];
             }
         }
-        if ([basic.repairResult count] > 0) {
+        if ([items count] >= 3 && [basic.repairResult count] > 0) {
             RepairResult *result = [[RepairResult alloc] init];
             result.repairResult = [RMMapper mutableArrayOfClass:[RepairResuleItem class] fromArrayOfDictionary:basic.repairResult];
             result.userRecontent = basic.userRecontent;
@@ -1001,6 +1001,118 @@
         NSArray *monthlyArrayJson = [[monthlyJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
         NSMutableArray *monthlyArray = [RMMapper mutableArrayOfClass:[Monthly class] fromArrayOfDictionary:monthlyArrayJson];
         return monthlyArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//解析投诉类型JSON
++ (NSMutableArray *)readJsonStrToSuitTypeArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *typeJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( typeJsonDic == nil || [typeJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[typeJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *typeArrayJson = [typeJsonDic objectForKey:@"data"];
+        NSMutableArray *typeArray = [RMMapper mutableArrayOfClass:[SuitType class] fromArrayOfDictionary:typeArrayJson];
+        return typeArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//解析投诉列表JSON
++ (NSMutableArray *)readJsonStrToSuitArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *suitJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( suitJsonDic == nil || [suitJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[suitJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *suitArrayJson = [[suitJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *suitArray = [RMMapper mutableArrayOfClass:[Suit class] fromArrayOfDictionary:suitArrayJson];
+        for (Suit *s in suitArray) {
+            s.starttime = [self TimestampToDateStr:[s.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+        }
+        return suitArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//解析投诉详情JSON
++ (NSMutableArray *)readJsonStrToSuitItemArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *suitDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( suitDic == nil || [suitDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[suitDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSMutableArray *items = [[NSMutableArray alloc] init];
+        NSDictionary *suitDicJson = [suitDic objectForKey:@"data"];
+
+        SuitBasic *basic = [RMMapper objectWithClass:[SuitBasic class] fromDictionary:suitDicJson];
+        basic.starttime = [self TimestampToDateStr:[basic.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+        basic.contentHeight = [self getTextHeight:304 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:basic.suitContent];
+        if (basic.contentHeight < 36)
+        {
+            basic.contentHeight = 36;
+            basic.viewAddHeight = 0;
+        }
+        else
+        {
+            basic.viewAddHeight = basic.contentHeight - 36;
+        }
+        //将图片对象转图片数组
+        basic.fullImgList = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [basic.imgList count]; i++) {
+            NSDictionary *imageDicJson = [basic.imgList objectAtIndex:i];
+            [basic.fullImgList addObject:[imageDicJson objectForKey:@"imgUrlFull"]];
+        }
+        //添加投诉基础数据
+        [items addObject:basic];
+        if (basic.suitReply != nil) {
+            basic.suitReply.replyTime = [self TimestampToDateStr:[basic.suitReply.replyTimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+            basic.suitReply.contentHeight = [self getTextHeight:304 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:basic.suitReply.replyContent];
+            if (basic.suitReply.contentHeight < 36)
+            {
+                basic.suitReply.contentHeight = 36;
+                basic.suitReply.viewAddHeight = 0;
+            }
+            else
+            {
+                basic.suitReply.viewAddHeight = basic.suitReply.contentHeight - 36;
+            }
+            //添加投诉反馈数据
+            [items addObject:basic.suitReply];
+        }
+        if ([items count] >= 2 && [basic.suitResult count] > 0) {
+            SuitResult *result = [[SuitResult alloc] init];
+            result.suitResult = [RMMapper mutableArrayOfClass:[SuitResultItem class] fromArrayOfDictionary:basic.suitResult];
+            result.userRecontent = basic.userRecontent;
+            result.scoreViewHeight = 39 * [result.suitResult count];
+            result.addViewHeight = 39 * ([result.suitResult count] - 1);
+            //添加投诉评论数据
+            [items addObject:result];
+        }
+        
+        return items;
     }
     else
     {

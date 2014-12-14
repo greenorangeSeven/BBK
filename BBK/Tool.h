@@ -38,6 +38,12 @@
 #import "RepairResult.h"
 #import "RepairResuleItem.h"
 #import "Monthly.h"
+#import "SuitType.h"
+#import "Suit.h"
+#import "SuitBasic.h"
+#import "SuitReply.h"
+#import "SuitResult.h"
+#import "SuitResultItem.h"
 
 @interface Tool : NSObject
 
@@ -160,5 +166,11 @@
 + (NSMutableArray *)readJsonStrToRepairItemArray:(NSString *)str;
 //解析悦月刊JSON
 + (NSMutableArray *)readJsonStrToMonthlyArray:(NSString *)str;
+//解析投诉类型JSON
++ (NSMutableArray *)readJsonStrToSuitTypeArray:(NSString *)str;
+//解析投诉列表JSON
++ (NSMutableArray *)readJsonStrToSuitArray:(NSString *)str;
+//解析投诉详情JSON
++ (NSMutableArray *)readJsonStrToSuitItemArray:(NSString *)str;
 
 @end
