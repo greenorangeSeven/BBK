@@ -132,6 +132,9 @@
                                         <state key="normal" image="life_ysh">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pushMonthlyViewAction:" destination="-1" eventType="touchUpInside" id="rEx-EB-MuG"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HMy-EQ-f77">
                                         <rect key="frame" x="129" y="177" width="61" height="62"/>
@@ -201,7 +204,7 @@
         <image name="life_sqpyq" width="61" height="62"/>
         <image name="life_ysh" width="61" height="62"/>
         <image name="life_zbsj" width="61" height="62"/>
-        <image name="loadpic" width="720" height="303"/>
+        <image name="loadpic" width="320" height="135"/>
         <image name="talk_logo" width="20" height="17"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -1,48 +1,33 @@
 //
-//  NoticeTableView.m
+//  MonthlyView.m
 //  BBK
 //
-//  Created by Seven on 14-12-2.
+//  Created by Seven on 14-12-13.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "NoticeTableView.h"
-#import "NoticeNewCell.h"
-#import "NoticeOldCell.h"
+#import "MonthlyView.h"
+#import "Monthly.h"
+#import "MonthlyCell.h"
+#import "UIImageView+WebCache.h"
 #import "CommDetailView.h"
 
-@interface NoticeTableView ()
-{
-    UIWebView *phoneWebView;
-}
+@interface MonthlyView ()
 
 @end
 
-@implementation NoticeTableView
+@implementation MonthlyView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.text = @"物业通知";
+    titleLabel.text = @"悦月刊";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = [Tool getColorForMain];
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
-    
-    UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 21, 22)];
-    [rBtn addTarget:self action:@selector(telAction:) forControlEvents:UIControlEventTouchUpInside];
-    [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
-    UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
-    self.navigationItem.rightBarButtonItem = btnTel;
-    
-    //适配iOS7uinavigationbar遮挡的问题
-    if(IS_IOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -60,7 +45,9 @@
     }
     [_refreshHeaderView refreshLastUpdatedDate];
     
-    notices = [[NSMutableArray alloc] initWithCapacity:20];
+    monthlys = [[NSMutableArray alloc] initWithCapacity:20];
+    
+    self.tableView.tableHeaderView = self.advIv;
     [self reload:YES];
 }
 
@@ -84,15 +71,15 @@
 {
     [self setTableView:nil];
     _refreshHeaderView = nil;
-    [notices removeAllObjects];
-    notices = nil;
+    [monthlys removeAllObjects];
+    monthlys = nil;
     [super viewDidUnload];
 }
 
 - (void)clear
 {
     allCount = 0;
-    [notices removeAllObjects];
+    [monthlys removeAllObjects];
     isLoadOver = NO;
 }
 
@@ -108,17 +95,16 @@
         }
         int pageIndex = allCount/20 + 1;
         
-        //生成获取新闻列表URL
+        //生成获取悦月刊列表URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
         [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
         [param setValue:@"20" forKey:@"countPerPages"];
-        NSString *getNoticeListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findPushInfo] params:param];
+        NSString *getMonthlyListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findMonthlyByPageInfo] params:param];
         
-        [[AFOSCClient sharedClient]getPath:getNoticeListUrl parameters:Nil
+        [[AFOSCClient sharedClient]getPath:getMonthlyListUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        
-                                       NSMutableArray *noticeNews = [Tool readJsonStrToNoticeArray:operation.responseString];
+                                       NSMutableArray *noticeNews = [Tool readJsonStrToMonthlyArray:operation.responseString];
                                        isLoading = NO;
                                        if (!noRefresh) {
                                            [self clear];
@@ -131,7 +117,7 @@
                                            {
                                                isLoadOver = YES;
                                            }
-                                           [notices addObjectsFromArray:noticeNews];
+                                           [monthlys addObjectsFromArray:noticeNews];
                                            [self.tableView reloadData];
                                            [self doneLoadingTableViewData];
                                        }
@@ -163,21 +149,21 @@
 {
     if ([UserModel Instance].isNetworkRunning) {
         if (isLoadOver) {
-            return notices.count == 0 ? 1 : notices.count;
+            return monthlys.count == 0 ? 1 : monthlys.count;
         }
         else
-            return notices.count + 1;
+            return monthlys.count + 1;
     }
     else
-        return notices.count;
+        return monthlys.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = [indexPath row];
-    if (row < 3)
+    if (row < [monthlys count])
     {
-        return 67.0;
+        return 112.0;
     }
     else
     {
@@ -194,41 +180,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = [indexPath row];
-    if ([notices count] > 0) {
-        if (row < [notices count])
+    if ([monthlys count] > 0) {
+        if (row < [monthlys count])
         {
-            if (row < 3) {
-                NoticeNewCell *cell = [tableView dequeueReusableCellWithIdentifier:NoticeNewCellIdentifier];
-                if (!cell) {
-                    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"NoticeNewCell" owner:self options:nil];
-                    for (NSObject *o in objects) {
-                        if ([o isKindOfClass:[NoticeNewCell class]]) {
-                            cell = (NoticeNewCell *)o;
-                            break;
-                        }
+            MonthlyCell *cell = [tableView dequeueReusableCellWithIdentifier:MonthlyCellIdentifier];
+            if (!cell) {
+                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"MonthlyCell" owner:self options:nil];
+                for (NSObject *o in objects) {
+                    if ([o isKindOfClass:[MonthlyCell class]]) {
+                        cell = (MonthlyCell *)o;
+                        break;
                     }
                 }
-                Notice *n = [notices objectAtIndex:row];
-                cell.timeLb.text = n.starttime;
-                cell.titleLb.text = n.title;
-                return cell;
             }
-            else
-            {
-                NoticeOldCell *cell = [tableView dequeueReusableCellWithIdentifier:NoticeOldCellIdentifier];
-                if (!cell) {
-                    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"NoticeOldCell" owner:self options:nil];
-                    for (NSObject *o in objects) {
-                        if ([o isKindOfClass:[NoticeOldCell class]]) {
-                            cell = (NoticeOldCell *)o;
-                            break;
-                        }
-                    }
-                }
-                Notice *n = [notices objectAtIndex:row];
-                cell.titleLb.text = n.title;
-                return cell;
-            }
+            Monthly *monthly = [monthlys objectAtIndex:row];
+            cell.titleLb.text = monthly.publicationTitle;
+            cell.synopsisLb.text = monthly.synopsis;
+            
+            NSString *imageUrl = [NSString stringWithFormat:@"%@_200", monthly.titleImgFull];
+            [cell.imageIv setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"loadpic.png"]];
+            return cell;
         }
         else
         {
@@ -247,7 +218,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     int row = [indexPath row];
     //点击“下面20条”
-    if (row >= [notices count]) {
+    if (row >= [monthlys count]) {
         //启动刷新
         if (!isLoading) {
             [self performSelector:@selector(reload:)];
@@ -255,10 +226,10 @@
     }
     else
     {
-        Notice *n = [notices objectAtIndex:[indexPath row]];
-        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, api_pushDetailHtm ,n.pushId];
+        Monthly *monthly = [monthlys objectAtIndex:[indexPath row]];
+        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, api_monthlyDetailHtm ,monthly.publicationId];
         CommDetailView *detailView = [[CommDetailView alloc] init];
-        detailView.titleStr = @"物业通知";
+        detailView.titleStr = @"悦月刊";
         detailView.urlStr = pushDetailHtm;
         [self.navigationController pushViewController:detailView animated:YES];
     }
@@ -337,15 +308,6 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"返回";
     self.navigationItem.backBarButtonItem = backItem;
-}
-
-- (IBAction)telAction:(id)sender
-{
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
-    if (!phoneWebView) {
-        phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    }
-    [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
 }
 
 @end

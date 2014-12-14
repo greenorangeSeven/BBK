@@ -7,6 +7,7 @@
 //
 
 #import "RepairResultCell.h"
+#import "AMRatingControl.h"
 
 @implementation RepairResultCell
 
@@ -18,6 +19,21 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)bindResultContentTvDelegate
+{
+    self.resultContentTv.delegate = self;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    int textLength = [textView.text length];
+    if (textLength == 0) {
+        [self.resultContentPlaceholder setHidden:NO];
+    }else{
+        [self.resultContentPlaceholder setHidden:YES];
+    }
 }
 
 @end

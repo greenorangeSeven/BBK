@@ -70,6 +70,11 @@
 		14B4D4521A3B2D1D00933A5A /* RepairResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B4D4501A3B2D1D00933A5A /* RepairResultCell.xib */; };
 		14B4D4561A3B359700933A5A /* RepairResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4551A3B359700933A5A /* RepairResult.m */; };
 		14B4D4591A3B375000933A5A /* RepairResuleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4581A3B375000933A5A /* RepairResuleItem.m */; };
+		14B4D4621A3C179100933A5A /* MonthlyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4601A3C179100933A5A /* MonthlyView.m */; };
+		14B4D4631A3C179100933A5A /* MonthlyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B4D4611A3C179100933A5A /* MonthlyView.xib */; };
+		14B4D4661A3C24A900933A5A /* Monthly.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4651A3C24A900933A5A /* Monthly.m */; };
+		14B4D46A1A3C26BD00933A5A /* MonthlyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B4D4681A3C26BD00933A5A /* MonthlyCell.m */; };
+		14B4D46B1A3C26BD00933A5A /* MonthlyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B4D4691A3C26BD00933A5A /* MonthlyCell.xib */; };
 		14B641BA1A2D42AC00C350A0 /* LifePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641B81A2D42AC00C350A0 /* LifePageView.m */; };
 		14B641BB1A2D42AC00C350A0 /* LifePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B641B91A2D42AC00C350A0 /* LifePageView.xib */; };
 		14B641C11A2D691A00C350A0 /* SettingPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B641BF1A2D691A00C350A0 /* SettingPageView.m */; };
@@ -459,6 +464,14 @@
 		14B4D4551A3B359700933A5A /* RepairResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairResult.m; sourceTree = "<group>"; };
 		14B4D4571A3B375000933A5A /* RepairResuleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepairResuleItem.h; sourceTree = "<group>"; };
 		14B4D4581A3B375000933A5A /* RepairResuleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairResuleItem.m; sourceTree = "<group>"; };
+		14B4D45F1A3C179100933A5A /* MonthlyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthlyView.h; sourceTree = "<group>"; };
+		14B4D4601A3C179100933A5A /* MonthlyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyView.m; sourceTree = "<group>"; };
+		14B4D4611A3C179100933A5A /* MonthlyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthlyView.xib; sourceTree = "<group>"; };
+		14B4D4641A3C24A900933A5A /* Monthly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monthly.h; sourceTree = "<group>"; };
+		14B4D4651A3C24A900933A5A /* Monthly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monthly.m; sourceTree = "<group>"; };
+		14B4D4671A3C26BD00933A5A /* MonthlyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthlyCell.h; sourceTree = "<group>"; };
+		14B4D4681A3C26BD00933A5A /* MonthlyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyCell.m; sourceTree = "<group>"; };
+		14B4D4691A3C26BD00933A5A /* MonthlyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthlyCell.xib; sourceTree = "<group>"; };
 		14B641B71A2D42AC00C350A0 /* LifePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifePageView.h; sourceTree = "<group>"; };
 		14B641B81A2D42AC00C350A0 /* LifePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifePageView.m; sourceTree = "<group>"; };
 		14B641B91A2D42AC00C350A0 /* LifePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LifePageView.xib; sourceTree = "<group>"; };
@@ -1008,6 +1021,8 @@
 				14B4D3EB1A3744D500933A5A /* ShopType.m */,
 				14B4D3FB1A37E11500933A5A /* ShopInfo.h */,
 				14B4D3FC1A37E11500933A5A /* ShopInfo.m */,
+				14B4D4641A3C24A900933A5A /* Monthly.h */,
+				14B4D4651A3C24A900933A5A /* Monthly.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1077,6 +1092,25 @@
 				14CCEE021A3696CE00ABBE7F /* RepairTableCell.h */,
 				14CCEE031A3696CE00ABBE7F /* RepairTableCell.m */,
 				14CCEE041A3696CE00ABBE7F /* RepairTableCell.xib */,
+				14B4D45B1A3BDE1300933A5A /* RepairDetail */,
+			);
+			name = PropertyPage;
+			sourceTree = "<group>";
+		};
+		14B4D3C51A36CE4D00933A5A /* SGFocusImage */ = {
+			isa = PBXGroup;
+			children = (
+				14B4D3C61A36CE4D00933A5A /* SGFocusImageFrame.h */,
+				14B4D3C71A36CE4D00933A5A /* SGFocusImageFrame.m */,
+				14B4D3C81A36CE4D00933A5A /* SGFocusImageItem.h */,
+				14B4D3C91A36CE4D00933A5A /* SGFocusImageItem.m */,
+			);
+			path = SGFocusImage;
+			sourceTree = "<group>";
+		};
+		14B4D45B1A3BDE1300933A5A /* RepairDetail */ = {
+			isa = PBXGroup;
+			children = (
 				14B4D41E1A3976E600933A5A /* RepairDetailView.h */,
 				14B4D41F1A3976E600933A5A /* RepairDetailView.m */,
 				14B4D4201A3976E600933A5A /* RepairDetailView.xib */,
@@ -1096,18 +1130,7 @@
 				14B4D44F1A3B2D1D00933A5A /* RepairResultCell.m */,
 				14B4D4501A3B2D1D00933A5A /* RepairResultCell.xib */,
 			);
-			name = PropertyPage;
-			sourceTree = "<group>";
-		};
-		14B4D3C51A36CE4D00933A5A /* SGFocusImage */ = {
-			isa = PBXGroup;
-			children = (
-				14B4D3C61A36CE4D00933A5A /* SGFocusImageFrame.h */,
-				14B4D3C71A36CE4D00933A5A /* SGFocusImageFrame.m */,
-				14B4D3C81A36CE4D00933A5A /* SGFocusImageItem.h */,
-				14B4D3C91A36CE4D00933A5A /* SGFocusImageItem.m */,
-			);
-			path = SGFocusImage;
+			name = RepairDetail;
 			sourceTree = "<group>";
 		};
 		14B641B51A2D423C00C350A0 /* LifePage */ = {
@@ -1146,6 +1169,12 @@
 				14B4D4151A39253700933A5A /* ShopInfoCell.h */,
 				14B4D4161A39253700933A5A /* ShopInfoCell.m */,
 				14B4D4171A39253700933A5A /* ShopInfoCell.xib */,
+				14B4D45F1A3C179100933A5A /* MonthlyView.h */,
+				14B4D4601A3C179100933A5A /* MonthlyView.m */,
+				14B4D4611A3C179100933A5A /* MonthlyView.xib */,
+				14B4D4671A3C26BD00933A5A /* MonthlyCell.h */,
+				14B4D4681A3C26BD00933A5A /* MonthlyCell.m */,
+				14B4D4691A3C26BD00933A5A /* MonthlyCell.xib */,
 			);
 			name = LifePage;
 			sourceTree = "<group>";
@@ -1949,6 +1978,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14B4D4631A3C179100933A5A /* MonthlyView.xib in Resources */,
 				14B641CA1A2D9E0200C350A0 /* TransitionView.xib in Resources */,
 				14C117871A31E2E8009CAC7E /* ExpressHistoryView.xib in Resources */,
 				14FDB9A31A26C94E006EFFCC /* LoadingCell.xib in Resources */,
@@ -1975,6 +2005,7 @@
 				144A1AEB1A2FFE9500E01E2B /* GoodBorrowCell.xib in Resources */,
 				144A1ADB1A2FEE5E00E01E2B /* CircleOfFriendsCell.xib in Resources */,
 				14B641D71A2DF89500C350A0 /* NoticeNewCell.xib in Resources */,
+				14B4D46B1A3C26BD00933A5A /* MonthlyCell.xib in Resources */,
 				1435427C1A2F11C900A8BBB7 /* CallServiceCell.xib in Resources */,
 				14E3A06A1A276C92009D0EB0 /* RegisterStep2View.xib in Resources */,
 				144A1C061A302EE400E01E2B /* mapapi.bundle in Resources */,
@@ -2100,9 +2131,11 @@
 				14FDB9CA1A26C94F006EFFCC /* PSTCollectionViewLayout.m in Sources */,
 				14FDB9D11A26C94F006EFFCC /* README.md in Sources */,
 				14B4D4321A39DAC000933A5A /* RepairDispatch.m in Sources */,
+				14B4D46A1A3C26BD00933A5A /* MonthlyCell.m in Sources */,
 				14FDB99A1A26C94E006EFFCC /* EGOCache.m in Sources */,
 				14B4D3EC1A3744D500933A5A /* ShopType.m in Sources */,
 				14B4D44A1A3ACBE100933A5A /* Unit.m in Sources */,
+				14B4D4661A3C24A900933A5A /* Monthly.m in Sources */,
 				14FDB9DF1A26C94F006EFFCC /* UIImageView+HighlightedWebCache.m in Sources */,
 				14FDB9C71A26C94F006EFFCC /* PSTCollectionViewData.m in Sources */,
 				14FDB9D91A26C94F006EFFCC /* SDWebImageManager.m in Sources */,
@@ -2118,6 +2151,7 @@
 				14FDB96B1A26C94E006EFFCC /* AFImageRequestOperation.m in Sources */,
 				1435427F1A2F40B000A8BBB7 /* CallService.m in Sources */,
 				14B4D42F1A39D77300933A5A /* RepairBasic.m in Sources */,
+				14B4D4621A3C179100933A5A /* MonthlyView.m in Sources */,
 				14FDB43D1A25B73A006EFFCC /* main.m in Sources */,
 				14FDB99C1A26C94E006EFFCC /* EGOImageLoadConnection.m in Sources */,
 				14FDB9C51A26C94F006EFFCC /* PSTCollectionViewCell.m in Sources */,

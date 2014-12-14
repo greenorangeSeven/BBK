@@ -62,7 +62,58 @@
 */
 
 - (IBAction)getValidateCodeAction:(id)sender {
-    [self startValidateCodeCountDown];
+    
+    NSString *mobileStr = self.mobileNoTf.text;
+    if (![mobileStr isValidPhoneNum]) {
+        [Tool showCustomHUD:@"手机号错误" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        return;
+    }
+    self.getValidataCodeBtn.enabled = NO;
+    //生成验证码URL
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    [param setValue:mobileStr forKey:@"mobileNo"];
+    NSString *createRegCodeListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_createRegCode] params:param];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:createRegCodeListUrl]];
+    [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
+    [request setDelegate:self];
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [request setDidFinishSelector:@selector(requestCreateRegCode:)];
+    request.tag = 3;
+    [request startAsynchronous];
+    
+    request.hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"验证码发送中" andView:self.view andHUD:request.hud];
+}
+
+- (void)requestCreateRegCode:(ASIHTTPRequest *)request
+{
+    if (request.hud) {
+        [request.hud hide:YES];
+    }
+    
+    [request setUseCookiePersistence:YES];
+    NSData *data = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    
+    NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == NO) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                     message:[[json objectForKey:@"header"] objectForKey:@"msg"]
+                                                    delegate:nil
+                                           cancelButtonTitle:@"确定"
+                                           otherButtonTitles:nil];
+        [av show];
+        self.finishBtn.enabled = YES;
+        return;
+    }
+    else
+    {
+        [Tool showCustomHUD:@"验证码发送成功" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        [self startValidateCodeCountDown];
+    }
 }
 
 - (IBAction)telAction:(id)sender
@@ -129,13 +180,14 @@
     [param setValue:validateCodeStr forKey:@"validateCode"];
     [param setValue:mobileStr forKey:@"mobileNo"];
     [param setValue:pwdStr forKey:@"password"];
-    NSString *regUserSign = [Tool serializeUFT8Sign:[NSString stringWithFormat:@"%@%@", api_base_url, api_regUser] params:param];
+    NSString *regUserSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_regUser] params:param];
     NSString *regUserUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_regUser];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:regUserUrl]];
     [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
     [request setPostValue:Appkey forKey:@"accessId"];
-    [request setPostValue:[self.ownerNameStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"rUserName"];
+    [request setPostValue:self.ownerNameStr forKey:@"rUserName"];
     [request setPostValue:self.idCardStr forKey:@"idCardLast4"];
     [request setPostValue:self.identityIdStr forKey:@"userTypeId"];
     [request setPostValue:self.houseNumId forKey:@"numberId"];
@@ -157,6 +209,16 @@
 {
     if (request.hud) {
         [request.hud hide:NO];
+        
+    }
+    [Tool showCustomHUD:@"网络连接超时" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+    if(self.getValidataCodeBtn.enabled == NO)
+    {
+        self.getValidataCodeBtn.enabled = YES;
+    }
+    if(self.finishBtn.enabled == NO)
+    {
+        self.finishBtn.enabled = YES;
     }
 }
 - (void)requestRegUser:(ASIHTTPRequest *)request

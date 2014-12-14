@@ -52,5 +52,7 @@
 - (IBAction)convenienceTypeAction:(id)sender;
 //周边商家
 - (IBAction)ShopTypeAction:(id)sender;
+//悦月刊
+- (IBAction)pushMonthlyViewAction:(id)sender;
 
 @end

@@ -11,6 +11,7 @@
 #import "LifeReferView.h"
 #import "ConvenienceTypeView.h"
 #import "ShopTypeView.h"
+#import "MonthlyView.h"
 
 @interface LifePageView ()
 {
@@ -513,22 +514,32 @@
     [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
 }
 
+//生活查询
 - (IBAction)LifeReferAction:(id)sender {
     LifeReferView *lifeReferView = [[LifeReferView alloc] init];
     lifeReferView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:lifeReferView animated:YES];
 }
 
+//便民服务
 - (IBAction)convenienceTypeAction:(id)sender {
     ConvenienceTypeView *convenienceView = [[ConvenienceTypeView alloc] init];
     convenienceView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:convenienceView animated:YES];
 }
 
+//周边商家
 - (IBAction)ShopTypeAction:(id)sender {
     ShopTypeView *shopTypeView = [[ShopTypeView alloc] init];
     shopTypeView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:shopTypeView animated:YES];
+}
+
+//悦月刊
+- (IBAction)pushMonthlyViewAction:(id)sender {
+    MonthlyView *monthlyView = [[MonthlyView alloc] init];
+    monthlyView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:monthlyView animated:YES];
 }
 
 @end

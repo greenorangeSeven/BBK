@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepairResultCell : UITableViewCell
+@interface RepairResultCell : UITableViewCell<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scoreFrameView;
-@property (weak, nonatomic) IBOutlet UIView *scoreItemView;
-@property (weak, nonatomic) IBOutlet UILabel *scoreItemNameLb;
-@property (weak, nonatomic) IBOutlet UILabel *scoreItemRateLb;
 @property (weak, nonatomic) IBOutlet UITextView *resultContentTv;
 @property (weak, nonatomic) IBOutlet UIView *resultContentView;
+@property (weak, nonatomic) IBOutlet UIButton *submitScoreBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *resultContentPlaceholder;
+
+- (void)bindResultContentTvDelegate;
 @end

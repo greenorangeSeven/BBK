@@ -21,7 +21,13 @@
 {
     MBProgressHUD *hud;
     NSMutableArray *detailItems;
+    NSArray *repairResultArray;
+    //如果stateSort==4则为已评价
+    NSString *stateSort;
 }
+
+@property (weak, nonatomic) UITextView *userRecontent;
+@property (weak, nonatomic) UIButton *submitScoreBtn;
 
 @end
 
@@ -68,6 +74,7 @@
         
         [[AFOSCClient sharedClient]getPath:getRepairDetailUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       [detailItems removeAllObjects];
                                        @try {
                                            detailItems = [Tool readJsonStrToRepairItemArray:operation.responseString];
                                            [self.tableView reloadData];
@@ -103,6 +110,7 @@
     int row = [indexPath row];
     if (row == 0) {
         RepairBasic *basic = [detailItems objectAtIndex:row];
+        stateSort = basic.stateSort;
         return 230.0 + basic.viewAddHeight ;
     }
     else if (row == 1) {
@@ -115,7 +123,13 @@
     else
     {
         RepairResult *result = [detailItems objectAtIndex:row];
-        return 182.0 + result.addViewHeight;
+        if ([stateSort isEqualToString:@"4"] == YES) {
+            return 250.0 + result.addViewHeight - 68;
+        }
+        else
+        {
+            return 250.0 + result.addViewHeight;
+        }
     }
 }
 
@@ -140,6 +154,9 @@
             }
         }
         RepairBasic *basic = [detailItems objectAtIndex:row];
+        
+        stateSort = basic.stateSort;
+        
         cell.repairTimeLb.text = basic.starttime;
         cell.repairTypeLb.text = basic.typeName;
         cell.repairContentLb.text = basic.repairContent;
@@ -229,14 +246,31 @@
         }
         RepairResult *result = [detailItems objectAtIndex:row];
         cell.resultContentTv.text = result.userRecontent;
+        self.userRecontent = cell.resultContentTv;
+        [cell.submitScoreBtn addTarget:self action:@selector(submitScoreAction:) forControlEvents:UIControlEventTouchUpInside];
+        self.submitScoreBtn = cell.submitScoreBtn;
+        
+        //绑定ResultContentTv委托
+        [cell bindResultContentTvDelegate];
+        
         //如果已评价则不能再修改
-        if ([result.userRecontent length] > 0) {
+        if ([stateSort isEqualToString:@"4"] == YES) {
             cell.resultContentTv.editable = NO;
+            cell.resultContentPlaceholder.hidden = YES;
+            cell.submitScoreBtn.hidden = YES;
+        }
+        else
+        {
+            cell.resultContentTv.editable = YES;
+            cell.resultContentPlaceholder.hidden = NO;
+            cell.submitScoreBtn.hidden = NO;
         }
         
         UIImage *dot, *star;
         dot = [UIImage imageNamed:@"star_gray.png"];
         star = [UIImage imageNamed:@"star_orange.png"];
+        
+        repairResultArray = result.repairResult;
         
         for (int i = 0; i < [result.repairResult count]; i++) {
             RepairResuleItem *item = [result.repairResult objectAtIndex:i];
@@ -253,22 +287,24 @@
             [itemView addSubview:bottomLb];
             
             //星级评价
-            AMRatingControl *totalControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(207, 10) emptyImage:dot solidImage:star andMaxRating:5];
-            totalControl.tag = item.dimensionId;
-            [totalControl setRating:item.score];
-            [totalControl addTarget:self action:@selector(updateEndRating:) forControlEvents:UIControlEventEditingDidEnd];
-            [itemView addSubview:totalControl];
+            AMRatingControl *scoreControl = [[AMRatingControl alloc] initWithLocation:CGPointMake(195, 10) emptyImage:dot solidImage:star andMaxRating:5];
+            scoreControl.tag = i;
+            scoreControl.update = @selector(updateScoreRating:);
+            scoreControl.targer = self;
+            [scoreControl setRating:item.score];
+
+            [itemView addSubview:scoreControl];
             //如果已评价则不能再修改分值
-            if ([result.userRecontent length] > 0) {
-                totalControl.enabled = NO;
+            if ([stateSort isEqualToString:@"4"] == YES) {
+                scoreControl.enabled = NO;
+            }
+            else
+            {
+                scoreControl.enabled = YES;
             }
             
             [cell.scoreFrameView addSubview:itemView];
         }
-        
-        CGRect scoreItemViewFrame = cell.scoreItemView.frame;
-        scoreItemViewFrame.size.height = result.scoreViewHeight;
-        cell.scoreItemView.frame = scoreItemViewFrame;
         
         CGRect scoreViewFrame = cell.scoreFrameView.frame;
         scoreViewFrame.size.height += result.addViewHeight;
@@ -276,20 +312,106 @@
         
         CGRect resultContentFrame = cell.resultContentView.frame;
         resultContentFrame.origin.y += result.addViewHeight;
+        //如果已评价则减去评价按钮高度
+        if ([stateSort isEqualToString:@"4"] == YES) {
+            resultContentFrame.size.height -= 68;
+        }
         cell.resultContentView.frame = resultContentFrame;
 
         return cell;
-
     }
+}
+
+- (void)updateScoreRating:(id)sender
+{
+    AMRatingControl *scoreControl = (AMRatingControl *)sender;
+    RepairResuleItem *item = [repairResultArray objectAtIndex:scoreControl.tag];
+    item.score = [scoreControl rating];
+}
+
+- (void)submitScoreAction:(id)sender
+{
+    self.submitScoreBtn.enabled = NO;
+    NSMutableString *scoreMutable = [[NSMutableString alloc] init];
+    for (RepairResuleItem *item in repairResultArray) {
+        NSString *scoreItem = [NSString stringWithFormat:@"%d,%d;", item.dimensionId, item.score];
+        [scoreMutable appendString:scoreItem];
+    }
+    NSString *sorce = [[NSString stringWithString:scoreMutable] substringToIndex:[scoreMutable length] -1];
+    NSString *userRecontent = self.userRecontent.text;
     
+    //生成提交报修评价URL
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    [param setValue:sorce forKey:@"sorce"];
+    [param setValue:self.repair.repairWorkId forKey:@"repairWorkId"];
+    if ([userRecontent length] > 0) {
+        [param setValue:userRecontent forKey:@"userRecontent"];
+    }
+    NSString *modiRepairWorkOverSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_modiRepairWorkOver] params:param];
+    NSString *modiRepairWorkOverUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_modiRepairWorkOver];
     
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:modiRepairWorkOverUrl]];
+    [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
+    [request setPostValue:Appkey forKey:@"accessId"];
+    [request setPostValue:sorce forKey:@"sorce"];
+    [request setPostValue:self.repair.repairWorkId forKey:@"repairWorkId"];
+    if ([userRecontent length] > 0) {
+        [request setPostValue:userRecontent forKey:@"userRecontent"];
+    }
+    [request setPostValue:modiRepairWorkOverSign forKey:@"sign"];
+    [request setDelegate:self];
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [request setDidFinishSelector:@selector(requestModiRepairWorkOver:)];
+    [request startAsynchronous];
     
+    request.hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"提交评价..." andView:self.view andHUD:request.hud];
 }
 
 //表格行点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    if (request.hud) {
+        [request.hud hide:NO];
+        
+    }
+    [Tool showCustomHUD:@"网络连接超时" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+    self.submitScoreBtn.enabled = YES;
+}
+- (void)requestModiRepairWorkOver:(ASIHTTPRequest *)request
+{
+    if (request.hud) {
+        [request.hud hide:YES];
+    }
+    
+    [request setUseCookiePersistence:YES];
+    NSData *data = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    
+    NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == NO) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                     message:[[json objectForKey:@"header"] objectForKey:@"msg"]
+                                                    delegate:nil
+                                           cancelButtonTitle:@"确定"
+                                           otherButtonTitles:nil];
+        [av show];
+        self.submitScoreBtn.enabled = YES;
+        return;
+    }
+    else
+    {
+        [Tool showCustomHUD:@"谢谢您的对我们的评价！" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        self.submitScoreBtn.hidden = YES;
+        [self getRepairDetailData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

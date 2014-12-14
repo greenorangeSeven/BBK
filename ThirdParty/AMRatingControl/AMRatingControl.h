@@ -16,6 +16,8 @@ typedef void (^EditingDidEndBlock)(NSUInteger rating);
 /**************************************************************************************************/
 #pragma mark - Getters and Setters
 
+@property SEL update;
+@property id targer;
 @property (nonatomic, assign) NSInteger maxRating;
 @property (nonatomic, assign) NSInteger rating;
 @property (nonatomic, readwrite) NSUInteger starFontSize;

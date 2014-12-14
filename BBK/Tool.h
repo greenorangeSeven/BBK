@@ -37,6 +37,7 @@
 #import "RepairFinish.h"
 #import "RepairResult.h"
 #import "RepairResuleItem.h"
+#import "Monthly.h"
 
 @interface Tool : NSObject
 
@@ -157,5 +158,7 @@
 + (NSMutableArray *)readJsonStrToShopInfoArray:(NSString *)str;
 //解析报修详情JSON
 + (NSMutableArray *)readJsonStrToRepairItemArray:(NSString *)str;
+//解析悦月刊JSON
++ (NSMutableArray *)readJsonStrToMonthlyArray:(NSString *)str;
 
 @end

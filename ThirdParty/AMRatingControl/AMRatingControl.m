@@ -320,6 +320,7 @@ static const NSString *kDefaultSolidChar = @"★";
         }
     }
     [self setNeedsDisplay];
+    [self.targer performSelector:self.update withObject:self];
 }
 
 @end

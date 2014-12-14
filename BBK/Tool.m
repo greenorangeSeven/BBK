@@ -987,4 +987,25 @@
     }
 }
 
+//解析悦月刊JSON
++ (NSMutableArray *)readJsonStrToMonthlyArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *monthlyJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( monthlyJsonDic == nil || [monthlyJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[monthlyJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *monthlyArrayJson = [[monthlyJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *monthlyArray = [RMMapper mutableArrayOfClass:[Monthly class] fromArrayOfDictionary:monthlyArrayJson];
+        return monthlyArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 @end
