@@ -57,8 +57,6 @@
 #define api_callService @"/zhxq_api/params/findManagerCompanyDepartmentAll.htm"
 //获得社区朋友圈
 #define api_CircleOfFriends @"/zhxq_api/topic/findTopicInfoByPage.htm"
-//获得物品借用
-#define api_BorrowGoods @"/zhxq_api/borrow/findBorrowGoodsByPage.htm"
 //获得快递查询
 #define api_Express @"/zhxq_api/express/findExpressInfoByPage.htm"
 //领取包裹
@@ -95,7 +93,12 @@
 #define api_findSuitWorkDetail @"/zhxq_api/suit/findSuitWorkDetail.htm"
 //投诉评价
 #define api_modiSuitWorkOver @"/zhxq_api/suit/modiSuitWorkOver.htm"
-
+//获得物品借用
+#define api_BorrowGoods @"/zhxq_api/borrow/findBorrowGoodsByPage.htm"
+//物品借用
+#define api_borrowGoods @"/zhxq_api/borrow/borrowGoods.htm"
+//物品借用记录
+#define api_findBorrowRecordsByUserId @"/zhxq_api/borrow/findBorrowRecordsByUserId.htm"
 
 
 //小区通知详情页面
@@ -127,6 +130,8 @@
 #define SuitBasicCellIdentifier @"SuitBasicCellIdentifier"
 #define SuitReplyCellIdentifier @"SuitReplyCellIdentifier"
 #define SuitResutCellIdentifier @"SuitResutCellIdentifier"
+#define BorrowRecordCellIdentifier @"BorrowRecordCellIdentifier"
+
 
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"

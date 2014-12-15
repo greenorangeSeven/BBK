@@ -44,11 +44,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aLl-BO-8SQ">
-                                        <rect key="frame" x="128" y="3" width="61" height="62"/>
+                                        <rect key="frame" x="129" y="3" width="61" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="life_bbgsc">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pushBuBuGaoWeb:" destination="-1" eventType="touchUpInside" id="Ah4-CA-etr"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sr0-D9-gwc">
                                         <rect key="frame" x="227" y="3" width="61" height="62"/>

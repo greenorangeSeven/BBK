@@ -542,4 +542,9 @@
     [self.navigationController pushViewController:monthlyView animated:YES];
 }
 
+//步步高商城
+- (IBAction)pushBuBuGaoWeb:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.bubugao.com"]];
+}
+
 @end

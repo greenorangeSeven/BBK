@@ -10,11 +10,6 @@
 #import "TQImageCache.h"
 
 @interface GoodBorrowView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource, IconDownloaderDelegate>
-{
-    NSMutableArray *goods;
-    TQImageCache * _iconCache;
-    MBProgressHUD *hud;
-}
 
 @property (weak, nonatomic) IBOutlet UIView *headView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;

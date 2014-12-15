@@ -674,6 +674,27 @@
     }
 }
 
+//解析物品借用记录JSON
++ (NSMutableArray *)readJsonStrToBorrowRecordsArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *recordJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( recordJsonDic == nil || [recordJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[recordJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *recordArrayJson = [recordJsonDic objectForKey:@"data"];
+        NSMutableArray *recordArray = [RMMapper mutableArrayOfClass:[BorrowRecord class] fromArrayOfDictionary:recordArrayJson];
+        return recordArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 //获得未收包裹数量
 + (NSString *)readJsonStrToExpressNum:(NSString *)str
 {

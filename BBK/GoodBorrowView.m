@@ -8,10 +8,16 @@
 
 #import "GoodBorrowView.h"
 #import "GoodBorrowCell.h"
+#import "BorrowGoodFromView.h"
+#import "BorrowRecordCell.h"
 
 @interface GoodBorrowView ()
 {
     UIWebView *phoneWebView;
+    NSMutableArray *goods;
+    NSMutableArray *borrowRecords;
+    TQImageCache * _iconCache;
+    MBProgressHUD *hud;
 }
 
 @end
@@ -29,11 +35,11 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
-    UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 21, 22)];
-    [rBtn addTarget:self action:@selector(telAction:) forControlEvents:UIControlEventTouchUpInside];
-    [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
-    UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
-    self.navigationItem.rightBarButtonItem = btnTel;
+    //    UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 21, 22)];
+    //    [rBtn addTarget:self action:@selector(telAction:) forControlEvents:UIControlEventTouchUpInside];
+    //    [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
+    //    UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
+    //    self.navigationItem.rightBarButtonItem = btnTel;
     
     hud = [[MBProgressHUD alloc] initWithView:self.view];
     
@@ -45,6 +51,13 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:248.0/255.0 blue:248.0/255.0 alpha:1.0];
     
     [self refreshGoodsData];
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    //    设置无分割线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 }
 
 - (void)refreshGoodsData
@@ -83,8 +96,9 @@
                                                    CGRect headFrame = self.headView.frame;
                                                    headFrame.size.height = headFrame.size.height + addHeight;
                                                    self.headView.frame = headFrame;
-                                                   
+//                                                   self.headView.hidden =YES;
                                                    self.tableView.tableHeaderView = self.headView;
+                                                   [self findBorrowRecords];
                                                }
                                                else
                                                {
@@ -119,9 +133,40 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (void)findBorrowRecords
 {
-    return 300;
+    //如果有网络连接
+    if ([UserModel Instance].isNetworkRunning) {
+        //查询指定用户的物品借用记录URL
+        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+        
+        NSString *findBorrowRecordsUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findBorrowRecordsByUserId] params:param];
+        [[AFOSCClient sharedClient]getPath:findBorrowRecordsUrl parameters:Nil
+                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       @try {
+                                           [borrowRecords removeAllObjects];
+                                           borrowRecords = [Tool readJsonStrToBorrowRecordsArray:operation.responseString];
+                                           [self.tableView reloadData];
+                                       }
+                                       @catch (NSException *exception) {
+                                           [NdUncaughtExceptionHandler TakeException:exception];
+                                       }
+                                       @finally {
+
+                                       }
+                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                       NSLog(@"列表获取出错");
+                                       
+                                       if ([UserModel Instance].isNetworkRunning == NO) {
+                                           return;
+                                       }
+                                       
+                                       if ([UserModel Instance].isNetworkRunning) {
+                                           [Tool showCustomHUD:@"网络不给力" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+                                       }
+                                   }];
+    }
 }
 
 //定义展示的UICollectionViewCell的个数
@@ -220,11 +265,11 @@
 {
     BorrowGood *good = [goods objectAtIndex:[indexPath row]];
     if (good != nil) {
-//        NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", project.departmentPhone]];
-//        if (!phoneWebView) {
-//            phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-//        }
-//        [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
+        BorrowGoodFromView *borrowGood = [[BorrowGoodFromView alloc] init];
+        borrowGood.good = good;
+        borrowGood.parentView = self.view;
+        borrowGood.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:borrowGood animated:YES];
     }
 }
 
@@ -269,6 +314,70 @@
     }
 }
 
+#pragma TableView的处理
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return borrowRecords.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50.0;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    cell.backgroundColor = [Tool getBackgroundColor];
+}
+
+//列表数据渲染
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BorrowRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:BorrowRecordCellIdentifier];
+    if (!cell) {
+        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"BorrowRecordCell" owner:self options:nil];
+        for (NSObject *o in objects) {
+            if ([o isKindOfClass:[BorrowRecordCell class]]) {
+                cell = (BorrowRecordCell *)o;
+                break;
+            }
+        }
+    }
+    int row = [indexPath row];
+    BorrowRecord *record = [borrowRecords objectAtIndex:row];
+    
+    if (record.starttime.length > 0 && record.userId.length == 0) {
+        cell.stateNameLb.text = @"发起申请";
+        cell.stateNameLb.textColor = [UIColor colorWithRed:130.0/255.0 green:130.0/255.0 blue:130.0/255.0 alpha:1.0];
+        cell.imageIv.image = [UIImage imageNamed:@"borrow_black"];
+        cell.infoLb.text = [NSString stringWithFormat:@"%@  %@  %d件", record.starttime, record.goodsName, record.borrowNum];
+    }
+    else if (record.starttime.length > 0 && record.userId.length > 0 && record.endtime.length == 0)
+    {
+        cell.stateNameLb.text = @"未归还";
+        cell.imageIv.image = [UIImage imageNamed:@"borrow_orange"];
+        cell.stateNameLb.textColor = [Tool getColorForMain];
+        NSMutableAttributedString *borrowInfo = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@  %@  %d件", record.starttime, record.goodsName, record.borrowNum]];
+        [borrowInfo addAttribute:NSForegroundColorAttributeName value:[Tool getColorForMain] range:NSMakeRange(record.starttime.length + 2,record.goodsName.length)];
+        cell.infoLb.attributedText = borrowInfo;
+    }
+    else if (record.starttime.length > 0 && record.userId.length > 0 && record.endtime.length > 0)
+    {
+        cell.stateNameLb.text = @"已归还";
+        cell.imageIv.image = [UIImage imageNamed:@"borrow_black"];
+        cell.stateNameLb.textColor = [UIColor colorWithRed:130.0/255.0 green:130.0/255.0 blue:130.0/255.0 alpha:1.0];
+        cell.infoLb.text = [NSString stringWithFormat:@"%@  %@  %d件", record.starttime, record.goodsName, record.borrowNum];
+    }
+    
+    return cell;
+}
+
+//表格行点击事件
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -304,6 +413,17 @@
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }
     [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTintColor:[Tool getColorForMain]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
 }
 
 /*

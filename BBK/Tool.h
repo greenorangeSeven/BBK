@@ -44,6 +44,7 @@
 #import "SuitReply.h"
 #import "SuitResult.h"
 #import "SuitResultItem.h"
+#import "BorrowRecord.h"
 
 @interface Tool : NSObject
 
@@ -144,6 +145,8 @@
 + (NSMutableArray *)readJsonStrToServiceArray:(NSString *)str;
 //解析物品借用JSON
 + (NSMutableArray *)readJsonStrToBorrowGoodsArray:(NSString *)str;
+//解析物品借用记录JSON
++ (NSMutableArray *)readJsonStrToBorrowRecordsArray:(NSString *)str;
 //获得未收包裹数量
 + (NSString *)readJsonStrToExpressNum:(NSString *)str;
 //解析快递包裹JSON

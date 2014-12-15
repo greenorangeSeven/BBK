@@ -54,5 +54,7 @@
 - (IBAction)ShopTypeAction:(id)sender;
 //悦月刊
 - (IBAction)pushMonthlyViewAction:(id)sender;
+//步步高商城
+- (IBAction)pushBuBuGaoWeb:(id)sender;
 
 @end
