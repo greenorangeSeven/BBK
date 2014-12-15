@@ -10,18 +10,23 @@
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
 
-@interface PropertyPageView : UIViewController<SGFocusImageFrameDelegate>
+@interface PropertyPageView : UIViewController<SGFocusImageFrameDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
 {
-    NSMutableArray *notices;
+    Notice *notice;
     
     NSMutableArray *advDatas;
     SGFocusImageFrame *bannerView;
     int advIndex;
+    
+    //下拉刷新
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    BOOL _reloading;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *noticeTitleLb;
 @property (weak, nonatomic) IBOutlet UIImageView *advIv;
+- (IBAction)noticeDetailAction:(id)sender;
 
 //物业通知
 - (IBAction)noticesAction:(id)sender;
@@ -35,5 +40,10 @@
 - (IBAction)addRepairAction:(id)sender;
 //投诉建议
 - (IBAction)addSuitWorkAction:(id)sender;
+
+//下拉刷新
+- (void)refresh;
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
 
 @end

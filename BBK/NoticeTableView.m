@@ -64,22 +64,6 @@
     [self reload:YES];
 }
 
-- (void)refreshed:(NSNotification *)notification
-{
-    if (notification.object) {
-        if ([(NSString *)notification.object isEqualToString:@"0"]) {
-            [self.tableView setContentOffset:CGPointMake(0, -75) animated:YES];
-            [self performSelector:@selector(doneManualRefresh) withObject:nil afterDelay:0.4];
-        }
-    }
-}
-
-- (void)doneManualRefresh
-{
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:self.tableView];
-    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:self.tableView];
-}
-
 - (void)viewDidUnload
 {
     [self setTableView:nil];

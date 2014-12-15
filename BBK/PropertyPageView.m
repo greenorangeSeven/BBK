@@ -15,6 +15,7 @@
 #import "AddRepairView.h"
 #import "ADInfo.h"
 #import "AddSuitWorkView.h"
+#import "CommDetailView.h"
 
 @interface PropertyPageView ()
 {
@@ -27,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.frame.size.height);
+    
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
@@ -42,9 +43,78 @@
     [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
+    
+    //添加的代码
+    if (_refreshHeaderView == nil) {
+        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, -320.0f, self.view.frame.size.width, 320)];
+        view.delegate = self;
+        [self.scrollView addSubview:view];
+        _refreshHeaderView = view;
+    }
+    [_refreshHeaderView refreshLastUpdatedDate];
+    
+    self.scrollView.delegate = self;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.view.bounds.size.height);
+    
     [self getADVData];
     [self getNotice];
 }
+
+- (void)viewDidUnload
+{
+    _refreshHeaderView = nil;
+    [super viewDidUnload];
+}
+
+//// tableView添加拉更新
+- (void)egoRefreshTableHeaderDidTriggerToBottom
+{
+    return;
+}
+
+#pragma 下提刷新
+- (void)reloadTableViewDataSource
+{
+    _reloading = YES;
+}
+
+- (void)doneLoadingTableViewData
+{
+    _reloading = NO;
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollView];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view
+{
+    [self reloadTableViewDataSource];
+    [self refresh];
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view
+{
+    return _reloading;
+}
+- (NSDate *)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view
+{
+    return [NSDate date];
+}
+- (void)refresh
+{
+    if ([UserModel Instance].isNetworkRunning) {
+        [self getNotice];
+    }
+}
+
 
 - (void)getADVData
 {
@@ -109,6 +179,12 @@
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
 {
     ADInfo *adv = (ADInfo *)[advDatas objectAtIndex:advIndex];
+//    self.scrollView.bounces = YES;
+////    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 460);
+//    NSLog(@"%f",self.scrollView.contentSize.height);
+//     NSLog(@"%f",self.scrollView.bounds.size.height);
+//    NSLog(@"%f",self.view.bounds.size.height);
+//      self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.bounds.size.height+1);
     if (adv)
     {
 //        ADVDetailView *advDetail = [[ADVDetailView alloc] init];
@@ -138,18 +214,20 @@
         [[AFOSCClient sharedClient]getPath:getNoticeListUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
-                                           [notices removeAllObjects];
-                                           notices = [Tool readJsonStrToNoticeArray:operation.responseString];
+                                           NSMutableArray *notices = [Tool readJsonStrToNoticeArray:operation.responseString];
                                            if ([notices count] > 0) {
-                                               Notice *notice = [notices objectAtIndex:0];
+                                               notice = [notices objectAtIndex:0];
                                                self.noticeTitleLb.text = notice.title;
                                            }
+                                           notices = nil;
+                                           [self doneLoadingTableViewData];
+                                           self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.bounds.size.height+1);
                                        }
                                        @catch (NSException *exception) {
                                            [NdUncaughtExceptionHandler TakeException:exception];
                                        }
                                        @finally {
-                                           
+                                           [self doneLoadingTableViewData];
                                        }
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        NSLog(@"列表获取出错");
@@ -241,4 +319,14 @@
     bannerView.delegate = nil;
 }
 
+- (IBAction)noticeDetailAction:(id)sender {
+    if (notice) {
+        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, api_pushDetailHtm , notice.pushId];
+        CommDetailView *detailView = [[CommDetailView alloc] init];
+        detailView.titleStr = @"物业通知";
+        detailView.urlStr = pushDetailHtm;
+        detailView.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailView animated:YES];
+    }
+}
 @end
