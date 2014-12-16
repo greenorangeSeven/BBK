@@ -75,6 +75,9 @@ BMKMapManager* _mapManager;
     //检查网络是否存在 如果不存在 则弹出提示
     [UserModel Instance].isNetworkRunning = [CheckNetwork isExistenceNetwork];
     
+    //显示系统托盘
+//    [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    
     //设置UINavigationController背景
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg"]  forBarMetrics:UIBarMetricsDefault];
 

@@ -16,6 +16,7 @@
 #import "ADInfo.h"
 #import "AddSuitWorkView.h"
 #import "CommDetailView.h"
+#import "PushGatePassView.h"
 
 @interface PropertyPageView ()
 {
@@ -301,6 +302,13 @@
     [self.navigationController pushViewController:addSuitView animated:YES];
 }
 
+//访客通行证
+- (IBAction)pushGatePassAction:(id)sender {
+    PushGatePassView *gatePassView = [[PushGatePassView alloc] init];
+    gatePassView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:gatePassView animated:YES];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -321,7 +329,7 @@
 
 - (IBAction)noticeDetailAction:(id)sender {
     if (notice) {
-        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, api_pushDetailHtm , notice.pushId];
+        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_pushDetailHtm , notice.pushId];
         CommDetailView *detailView = [[CommDetailView alloc] init];
         detailView.titleStr = @"物业通知";
         detailView.urlStr = pushDetailHtm;

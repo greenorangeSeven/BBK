@@ -40,6 +40,7 @@
     
     int residueGood = [self.good.goodsNum intValue] - [self.good.borrowCount intValue];
     self.goodNumberLb.text = [NSString stringWithFormat:@"剩余%d件", residueGood];
+    [Tool roundTextView:self.goodBoxView andBorderWidth:0.5 andCornerRadius:5.0];
     
     typeId = @"1";
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

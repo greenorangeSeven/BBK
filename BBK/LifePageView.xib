@@ -97,6 +97,9 @@
                                         <state key="normal" image="life_jyxs">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="orderServiceAction:" destination="-1" eventType="touchUpInside" id="7qC-AK-2jX"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5SZ-LG-ZJV">
                                         <rect key="frame" x="228" y="91" width="61" height="62"/>
@@ -145,6 +148,9 @@
                                         <state key="normal" image="life_sqhd">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="activityViewAction:" destination="-1" eventType="touchUpInside" id="OrZ-34-lnb"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月报刊" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UM9-JW-JFT">
                                         <rect key="frame" x="30" y="239" width="58" height="21"/>

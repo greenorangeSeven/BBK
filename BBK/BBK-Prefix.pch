@@ -39,7 +39,7 @@
 #define Appkey @"10000001"
 #define AppSecret @"Hr54hiz7"
 
-//#define api_base_url @"http://192.168.1.26:8080"
+//#define api_base_url @"http://192.168.1.24:8080"
 #define api_base_url @"http://114.215.145.29:8080"
 //登录接口
 #define api_login @"/zhxq_api/regUser/login.htm"
@@ -99,11 +99,27 @@
 #define api_borrowGoods @"/zhxq_api/borrow/borrowGoods.htm"
 //物品借用记录
 #define api_findBorrowRecordsByUserId @"/zhxq_api/borrow/findBorrowRecordsByUserId.htm"
+//添加访客通行证
+#define api_createPassCode @"/zhxq_api/pass/createPassCode.htm"
+//获得业主发布的访客通行证
+#define api_findPassInfoByPage @"/zhxq_api/pass/findPassInfoByPage.htm"
+//添加预约服务
+#define api_addCelebrationInfo @"/zhxq_api/pass/addCelebrationInfo.htm"
+// 查询当前有效的活动列表
+#define api_findCellActivityOnTime @"/zhxq_api/activity/findCellActivityOnTime.htm"
+
 
 
 //小区通知详情页面
-#define api_pushDetailHtm @"/zhxq_api/app/pushDetail.htm?pushId="
-#define api_monthlyDetailHtm @"/zhxq_api/app/monthlyDetail.htm?publicationId="
+#define htm_pushDetailHtm @"/zhxq_api/app/pushDetail.htm?pushId="
+//悦月刊详情页
+#define htm_monthlyDetailHtm @"/zhxq_api/app/monthlyDetail.htm?publicationId="
+//维修收费清单页面
+#define htm_repairItemList @"/zhxq_api/app/repairItemList.htm?accessId="
+//预约服务收费清单页面
+#define htm_celebrationItemsList @"/zhxq_api/app/celebrationItemsList.htm?accessId="
+//活动详情页面
+#define htm_activityDetail @"/zhxq_api/app/activityDetail.htm?activityId="
 
 
 #define servicephone @"0731-58661602"
@@ -131,6 +147,8 @@
 #define SuitReplyCellIdentifier @"SuitReplyCellIdentifier"
 #define SuitResutCellIdentifier @"SuitResutCellIdentifier"
 #define BorrowRecordCellIdentifier @"BorrowRecordCellIdentifier"
+#define GatePassInfoCellIdentifier @"GatePassInfoCellIdentifier"
+#define ActivityCollectionCellIdentifier @"ActivityCollectionCellIdentifier"
 
 
 

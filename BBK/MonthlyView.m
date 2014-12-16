@@ -227,7 +227,7 @@
     else
     {
         Monthly *monthly = [monthlys objectAtIndex:[indexPath row]];
-        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, api_monthlyDetailHtm ,monthly.publicationId];
+        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_monthlyDetailHtm ,monthly.publicationId];
         CommDetailView *detailView = [[CommDetailView alloc] init];
         detailView.titleStr = @"悦月刊";
         detailView.urlStr = pushDetailHtm;

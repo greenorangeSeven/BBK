@@ -619,7 +619,7 @@
         NSArray *noticeArrayJson = [[noticeJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
         NSMutableArray *noticeArray = [RMMapper mutableArrayOfClass:[Notice class] fromArrayOfDictionary:noticeArrayJson];
         for (Notice *n in noticeArray) {
-            n.starttime = [self TimestampToDateStr:n.starttimeStamp andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+            n.starttime = [self TimestampToDateStr:n.starttimeStamp andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
         }
         return noticeArray;
     }
@@ -687,6 +687,10 @@
     if ([state isEqualToString:@"0000"] == YES) {
         NSArray *recordArrayJson = [recordJsonDic objectForKey:@"data"];
         NSMutableArray *recordArray = [RMMapper mutableArrayOfClass:[BorrowRecord class] fromArrayOfDictionary:recordArrayJson];
+        for (BorrowRecord *borrowRecord in recordArray) {
+            borrowRecord.starttime = [Tool TimestampToDateStr:borrowRecord.starttimeStamp andFormatterStr:@"yyyy-MM-dd HH:mm:ss"];
+        }
+        
         return recordArray;
     }
     else
@@ -827,7 +831,7 @@
         NSArray *repairArrayJson = [[repairJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
         NSMutableArray *repairArray = [RMMapper mutableArrayOfClass:[Repair class] fromArrayOfDictionary:repairArrayJson];
         for (Repair *r in repairArray) {
-            r.starttime = [self TimestampToDateStr:r.starttimeStamp andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+            r.starttime = [self TimestampToDateStr:r.starttimeStamp andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
         }
         return repairArray;
     }
@@ -939,7 +943,7 @@
         NSDictionary *repairDicJson = [repairDic objectForKey:@"data"];
         //        NSMutableArray *serviceArray = [RMMapper mutableArrayOfClass:[CallService class] fromArrayOfDictionary:repairDicJson];
         RepairBasic *basic = [RMMapper objectWithClass:[RepairBasic class] fromDictionary:repairDicJson];
-        basic.starttime = [self TimestampToDateStr:[basic.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+        basic.starttime = [self TimestampToDateStr:[basic.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
         basic.contentHeight = [self getTextHeight:304 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:basic.repairContent];
         if (basic.contentHeight < 36)
         {
@@ -964,7 +968,7 @@
                 dispatch.repairmanName = basic.repairmanName;
                 dispatch.mobileNo = basic.mobileNo;
                 dispatch.starttimeStamp = [[basic.repairRunList objectAtIndex:l] objectForKey:@"starttimeStamp"];
-                dispatch.starttime = [self TimestampToDateStr:[dispatch.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+                dispatch.starttime = [self TimestampToDateStr:[dispatch.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
                 //添加报修派单数据
                 [items addObject:dispatch];
             }
@@ -973,7 +977,7 @@
                 finish.runContent = [[basic.repairRunList objectAtIndex:l] objectForKey:@"runContent"];
                 finish.cost = basic.cost;
                 finish.starttimeStamp = [[basic.repairRunList objectAtIndex:l] objectForKey:@"starttimeStamp"];
-                finish.starttime = [self TimestampToDateStr:[finish.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+                finish.starttime = [self TimestampToDateStr:[finish.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
                 
                 finish.contentHeight = [self getTextHeight:304 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:finish.runContent];
                 if (finish.contentHeight < 36)
@@ -1064,7 +1068,7 @@
         NSArray *suitArrayJson = [[suitJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
         NSMutableArray *suitArray = [RMMapper mutableArrayOfClass:[Suit class] fromArrayOfDictionary:suitArrayJson];
         for (Suit *s in suitArray) {
-            s.starttime = [self TimestampToDateStr:[s.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+            s.starttime = [self TimestampToDateStr:[s.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
         }
         return suitArray;
     }
@@ -1089,7 +1093,7 @@
         NSDictionary *suitDicJson = [suitDic objectForKey:@"data"];
 
         SuitBasic *basic = [RMMapper objectWithClass:[SuitBasic class] fromDictionary:suitDicJson];
-        basic.starttime = [self TimestampToDateStr:[basic.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+        basic.starttime = [self TimestampToDateStr:[basic.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
         basic.contentHeight = [self getTextHeight:304 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:basic.suitContent];
         if (basic.contentHeight < 36)
         {
@@ -1109,7 +1113,7 @@
         //添加投诉基础数据
         [items addObject:basic];
         if (basic.suitReply != nil) {
-            basic.suitReply.replyTime = [self TimestampToDateStr:[basic.suitReply.replyTimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm:ss"];
+            basic.suitReply.replyTime = [self TimestampToDateStr:[basic.suitReply.replyTimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
             basic.suitReply.contentHeight = [self getTextHeight:304 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:basic.suitReply.replyContent];
             if (basic.suitReply.contentHeight < 36)
             {
@@ -1134,6 +1138,54 @@
         }
         
         return items;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//解析访客通行证列表JSON
++ (NSMutableArray *)readJsonStrToPassInfoArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *passInfoJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( passInfoJsonDic == nil || [passInfoJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[passInfoJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *passinfoArrayJson = [[passInfoJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *passInfoArray = [RMMapper mutableArrayOfClass:[PassInfo class] fromArrayOfDictionary:passinfoArrayJson];
+        for (PassInfo *info in passInfoArray) {
+            info.starttime = [self TimestampToDateStr:[info.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
+        }
+        return passInfoArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//解析社区活动JSON
++ (NSMutableArray *)readJsonStrToActivityArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *activityJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( activityJsonDic == nil || [activityJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[activityJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *activityArrayJson = [activityJsonDic objectForKey:@"data"];
+        NSMutableArray *activityArray = [RMMapper mutableArrayOfClass:[Activity class] fromArrayOfDictionary:activityArrayJson];
+//        for (Activity *info in activityArray) {
+//            info.starttime = [self TimestampToDateStr:[info.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
+//        }
+        return activityArray;
     }
     else
     {

@@ -12,6 +12,8 @@
 #import "ConvenienceTypeView.h"
 #import "ShopTypeView.h"
 #import "MonthlyView.h"
+#import "ServiceOrderView.h"
+#import "ActivityCollectionView.h"
 
 @interface LifePageView ()
 {
@@ -545,6 +547,21 @@
 //步步高商城
 - (IBAction)pushBuBuGaoWeb:(id)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.bubugao.com"]];
+}
+
+//家有喜事（服务预约）
+- (IBAction)orderServiceAction:(id)sender {
+    ServiceOrderView *orderView = [[ServiceOrderView alloc] init];
+    orderView.parentView = self.view;
+    orderView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:orderView animated:YES];
+}
+
+//社区活动
+- (IBAction)activityViewAction:(id)sender {
+    ActivityCollectionView *activityView = [[ActivityCollectionView alloc] init];
+    activityView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:activityView animated:YES];
 }
 
 @end

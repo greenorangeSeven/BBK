@@ -24,5 +24,6 @@
 - (IBAction)selectRepairTypeAction:(id)sender;
 - (IBAction)telServiceAction:(id)sender;
 - (IBAction)submitRepairAction:(id)sender;
+- (IBAction)pushRepairCostView:(id)sender;
 
 @end

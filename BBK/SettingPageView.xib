@@ -23,7 +23,7 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="B7c-70-Waf">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <view contentMode="scaleToFill" id="imt-nQ-Z1t">
                             <rect key="frame" x="0.0" y="148" width="320" height="206"/>

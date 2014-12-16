@@ -188,6 +188,9 @@
                             <state key="normal" image="pro_fktxz">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="pushGatePassAction:" destination="-1" eventType="touchUpInside" id="2rV-Rb-5ag"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快递收发" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lpz-4Z-PP1">
                             <rect key="frame" x="32" y="431" width="58" height="21"/>

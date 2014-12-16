@@ -240,7 +240,7 @@
     else
     {
         Notice *n = [notices objectAtIndex:[indexPath row]];
-        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, api_pushDetailHtm ,n.pushId];
+        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_pushDetailHtm ,n.pushId];
         CommDetailView *detailView = [[CommDetailView alloc] init];
         detailView.titleStr = @"物业通知";
         detailView.urlStr = pushDetailHtm;

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *goodImageIv;
 @property (weak, nonatomic) IBOutlet UILabel *goodNameLb;
 @property (weak, nonatomic) IBOutlet UILabel *goodNumberLb;
+@property (weak, nonatomic) IBOutlet UIView *goodBoxView;
 
 @property (weak, nonatomic) IBOutlet UILabel *borrowTypeLb;
 @property (weak, nonatomic) IBOutlet UILabel *borrowTimeLb;

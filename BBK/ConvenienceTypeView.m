@@ -109,6 +109,7 @@
     ShopType *type = [types objectAtIndex:row];
     if ([type.shopTypeId isEqualToString:@"-1"]) {
         cell.referNameLb.text = nil;
+        cell.referIv.image = nil;
         return cell;
     }
     cell.referNameLb.text = type.shopTypeName;

@@ -40,6 +40,8 @@
 - (IBAction)addRepairAction:(id)sender;
 //投诉建议
 - (IBAction)addSuitWorkAction:(id)sender;
+//访客通行证
+- (IBAction)pushGatePassAction:(id)sender;
 
 //下拉刷新
 - (void)refresh;

@@ -45,6 +45,8 @@
 #import "SuitResult.h"
 #import "SuitResultItem.h"
 #import "BorrowRecord.h"
+#import "PassInfo.h"
+#import "Activity.h"
 
 @interface Tool : NSObject
 
@@ -175,5 +177,9 @@
 + (NSMutableArray *)readJsonStrToSuitArray:(NSString *)str;
 //解析投诉详情JSON
 + (NSMutableArray *)readJsonStrToSuitItemArray:(NSString *)str;
+//解析访客通行证列表JSON
++ (NSMutableArray *)readJsonStrToPassInfoArray:(NSString *)str;
+//解析社区活动JSON
++ (NSMutableArray *)readJsonStrToActivityArray:(NSString *)str;
 
 @end

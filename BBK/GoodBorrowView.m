@@ -35,12 +35,6 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
-    //    UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 21, 22)];
-    //    [rBtn addTarget:self action:@selector(telAction:) forControlEvents:UIControlEventTouchUpInside];
-    //    [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
-    //    UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
-    //    self.navigationItem.rightBarButtonItem = btnTel;
-    
     hud = [[MBProgressHUD alloc] initWithView:self.view];
     
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];

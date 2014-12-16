@@ -10,6 +10,7 @@
                 <outlet property="borrowNumLb" destination="1gz-Vo-hpH" id="NBe-PR-4L6"/>
                 <outlet property="borrowTimeLb" destination="pj0-8G-9Tn" id="jK8-mv-N9M"/>
                 <outlet property="borrowTypeLb" destination="FOL-O6-Sr1" id="d6g-yQ-n73"/>
+                <outlet property="goodBoxView" destination="fCM-2T-1JT" id="ek9-tN-nDJ"/>
                 <outlet property="goodImageIv" destination="QlJ-dN-T1x" id="5Tf-2i-a5V"/>
                 <outlet property="goodNameLb" destination="Twa-cZ-kDB" id="ixA-pc-GCZ"/>
                 <outlet property="goodNumberLb" destination="XcM-CP-KXU" id="mqy-P5-elw"/>

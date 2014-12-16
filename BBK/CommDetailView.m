@@ -29,6 +29,13 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
+    //适配iOS7uinavigationbar遮挡的问题
+    if(IS_IOS7)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
     hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"正在加载" andView:self.view andHUD:hud];
     //WebView的背景颜色去除

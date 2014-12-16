@@ -56,5 +56,10 @@
 - (IBAction)pushMonthlyViewAction:(id)sender;
 //步步高商城
 - (IBAction)pushBuBuGaoWeb:(id)sender;
+//家有喜事（服务预约）
+- (IBAction)orderServiceAction:(id)sender;
+//社区活动
+- (IBAction)activityViewAction:(id)sender;
+
 
 @end

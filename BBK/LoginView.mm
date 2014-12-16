@@ -68,6 +68,7 @@
 
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:loginUrl]];
     [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
     [request setDelegate:self];
     [request setDidFailSelector:@selector(requestFailed:)];
     [request setDidFinishSelector:@selector(requestLogin:)];
@@ -81,6 +82,11 @@
 {
     if (request.hud) {
         [request.hud hide:NO];
+    }
+    [Tool showCustomHUD:@"网络连接超时" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+    if(self.loginBtn.enabled == NO)
+    {
+        self.loginBtn.enabled = YES;
     }
 }
 - (void)requestLogin:(ASIHTTPRequest *)request

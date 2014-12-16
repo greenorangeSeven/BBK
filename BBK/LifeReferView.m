@@ -111,6 +111,7 @@
     LifeRefer *refer = [refers objectAtIndex:row];
     if ([refer.lifeTypeId isEqualToString:@"-1"]) {
         cell.referNameLb.text = nil;
+        cell.referIv.image = nil;
         return cell;
     }
     cell.referNameLb.text = refer.lifeTypeName;

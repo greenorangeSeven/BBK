@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142D9E0C1A3FD68D00EF59A1 /* PushGatePassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E0A1A3FD68D00EF59A1 /* PushGatePassView.m */; };
+		142D9E0D1A3FD68D00EF59A1 /* PushGatePassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E0B1A3FD68D00EF59A1 /* PushGatePassView.xib */; };
+		142D9E121A40072700EF59A1 /* GatePassInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E101A40072700EF59A1 /* GatePassInfoCell.m */; };
+		142D9E131A40072700EF59A1 /* GatePassInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E111A40072700EF59A1 /* GatePassInfoCell.xib */; };
+		142D9E161A4009FB00EF59A1 /* PassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E151A4009FB00EF59A1 /* PassInfo.m */; };
+		142D9E1A1A401AA000EF59A1 /* ServiceOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E181A401AA000EF59A1 /* ServiceOrderView.m */; };
+		142D9E1B1A401AA000EF59A1 /* ServiceOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E191A401AA000EF59A1 /* ServiceOrderView.xib */; };
+		142D9E221A4071A500EF59A1 /* ActivityCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E1D1A4071A500EF59A1 /* ActivityCollectionView.m */; };
+		142D9E231A4071A500EF59A1 /* ActivityCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E1E1A4071A500EF59A1 /* ActivityCollectionView.xib */; };
+		142D9E241A4071A500EF59A1 /* ActivityCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E201A4071A500EF59A1 /* ActivityCollectionCell.m */; };
+		142D9E251A4071A500EF59A1 /* ActivityCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E211A4071A500EF59A1 /* ActivityCollectionCell.xib */; };
+		142D9E281A40743500EF59A1 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E271A40743500EF59A1 /* Activity.m */; };
+		142D9E2D1A408AC400EF59A1 /* ActivityDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E2B1A408AC400EF59A1 /* ActivityDetailView.m */; };
+		142D9E2E1A408AC400EF59A1 /* ActivityDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E2C1A408AC400EF59A1 /* ActivityDetailView.xib */; };
 		1435426D1A2EA21800A8BBB7 /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435426C1A2EA21800A8BBB7 /* Notice.m */; };
 		143542761A2EF4F800A8BBB7 /* CallServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143542741A2EF4F800A8BBB7 /* CallServiceView.m */; };
 		143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143542751A2EF4F800A8BBB7 /* CallServiceView.xib */; };
@@ -323,6 +337,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		142D9E091A3FD68D00EF59A1 /* PushGatePassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushGatePassView.h; sourceTree = "<group>"; };
+		142D9E0A1A3FD68D00EF59A1 /* PushGatePassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushGatePassView.m; sourceTree = "<group>"; };
+		142D9E0B1A3FD68D00EF59A1 /* PushGatePassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PushGatePassView.xib; sourceTree = "<group>"; };
+		142D9E0F1A40072700EF59A1 /* GatePassInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GatePassInfoCell.h; sourceTree = "<group>"; };
+		142D9E101A40072700EF59A1 /* GatePassInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GatePassInfoCell.m; sourceTree = "<group>"; };
+		142D9E111A40072700EF59A1 /* GatePassInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GatePassInfoCell.xib; sourceTree = "<group>"; };
+		142D9E141A4009FB00EF59A1 /* PassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassInfo.h; sourceTree = "<group>"; };
+		142D9E151A4009FB00EF59A1 /* PassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassInfo.m; sourceTree = "<group>"; };
+		142D9E171A401AA000EF59A1 /* ServiceOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceOrderView.h; sourceTree = "<group>"; };
+		142D9E181A401AA000EF59A1 /* ServiceOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceOrderView.m; sourceTree = "<group>"; };
+		142D9E191A401AA000EF59A1 /* ServiceOrderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceOrderView.xib; sourceTree = "<group>"; };
+		142D9E1C1A4071A500EF59A1 /* ActivityCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCollectionView.h; sourceTree = "<group>"; };
+		142D9E1D1A4071A500EF59A1 /* ActivityCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCollectionView.m; sourceTree = "<group>"; };
+		142D9E1E1A4071A500EF59A1 /* ActivityCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCollectionView.xib; sourceTree = "<group>"; };
+		142D9E1F1A4071A500EF59A1 /* ActivityCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCollectionCell.h; sourceTree = "<group>"; };
+		142D9E201A4071A500EF59A1 /* ActivityCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCollectionCell.m; sourceTree = "<group>"; };
+		142D9E211A4071A500EF59A1 /* ActivityCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCollectionCell.xib; sourceTree = "<group>"; };
+		142D9E261A40743500EF59A1 /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
+		142D9E271A40743500EF59A1 /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
+		142D9E2A1A408AC400EF59A1 /* ActivityDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailView.h; sourceTree = "<group>"; };
+		142D9E2B1A408AC400EF59A1 /* ActivityDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailView.m; sourceTree = "<group>"; };
+		142D9E2C1A408AC400EF59A1 /* ActivityDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityDetailView.xib; sourceTree = "<group>"; };
 		1435426B1A2EA21800A8BBB7 /* Notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notice.h; sourceTree = "<group>"; };
 		1435426C1A2EA21800A8BBB7 /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notice.m; sourceTree = "<group>"; };
 		143542731A2EF4F800A8BBB7 /* CallServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallServiceView.h; sourceTree = "<group>"; };
@@ -1093,6 +1129,10 @@
 				14B4D49A1A3DC60100933A5A /* SuitResultItem.m */,
 				148AD7D41A3F1B3500290203 /* BorrowRecord.h */,
 				148AD7D51A3F1B3500290203 /* BorrowRecord.m */,
+				142D9E141A4009FB00EF59A1 /* PassInfo.h */,
+				142D9E151A4009FB00EF59A1 /* PassInfo.m */,
+				142D9E261A40743500EF59A1 /* Activity.h */,
+				142D9E271A40743500EF59A1 /* Activity.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1156,6 +1196,12 @@
 				14C117881A31E3B9009CAC7E /* ExpressHistoryCell.h */,
 				14C117891A31E3B9009CAC7E /* ExpressHistoryCell.m */,
 				14C1178A1A31E3B9009CAC7E /* ExpressHistoryCell.xib */,
+				142D9E091A3FD68D00EF59A1 /* PushGatePassView.h */,
+				142D9E0A1A3FD68D00EF59A1 /* PushGatePassView.m */,
+				142D9E0B1A3FD68D00EF59A1 /* PushGatePassView.xib */,
+				142D9E0F1A40072700EF59A1 /* GatePassInfoCell.h */,
+				142D9E101A40072700EF59A1 /* GatePassInfoCell.m */,
+				142D9E111A40072700EF59A1 /* GatePassInfoCell.xib */,
 				14B4D46D1A3D20A100933A5A /* Suit */,
 				14B4D46C1A3D1EA200933A5A /* Repair */,
 			);
@@ -1290,6 +1336,18 @@
 				14B4D4671A3C26BD00933A5A /* MonthlyCell.h */,
 				14B4D4681A3C26BD00933A5A /* MonthlyCell.m */,
 				14B4D4691A3C26BD00933A5A /* MonthlyCell.xib */,
+				142D9E171A401AA000EF59A1 /* ServiceOrderView.h */,
+				142D9E181A401AA000EF59A1 /* ServiceOrderView.m */,
+				142D9E191A401AA000EF59A1 /* ServiceOrderView.xib */,
+				142D9E1C1A4071A500EF59A1 /* ActivityCollectionView.h */,
+				142D9E1D1A4071A500EF59A1 /* ActivityCollectionView.m */,
+				142D9E1E1A4071A500EF59A1 /* ActivityCollectionView.xib */,
+				142D9E1F1A4071A500EF59A1 /* ActivityCollectionCell.h */,
+				142D9E201A4071A500EF59A1 /* ActivityCollectionCell.m */,
+				142D9E211A4071A500EF59A1 /* ActivityCollectionCell.xib */,
+				142D9E2A1A408AC400EF59A1 /* ActivityDetailView.h */,
+				142D9E2B1A408AC400EF59A1 /* ActivityDetailView.m */,
+				142D9E2C1A408AC400EF59A1 /* ActivityDetailView.xib */,
 			);
 			name = LifePage;
 			sourceTree = "<group>";
@@ -2113,19 +2171,25 @@
 				14B4D3E91A37418400933A5A /* ConvenienceTypeView.xib in Resources */,
 				14FDB9761A26C94E006EFFCC /* Alixpay.bundle in Resources */,
 				14C117C11A359C7B009CAC7E /* AddRepairView.xib in Resources */,
+				142D9E0D1A3FD68D00EF59A1 /* PushGatePassView.xib in Resources */,
 				14FDB4481A25B73A006EFFCC /* Images.xcassets in Resources */,
 				144A1AE11A2FF37D00E01E2B /* GoodBorrowView.xib in Resources */,
 				149575721A2CA2D100320CF8 /* PropertyPageView.xib in Resources */,
 				14B4D42C1A39D04A00933A5A /* RepairBasicCell.xib in Resources */,
+				142D9E1B1A401AA000EF59A1 /* ServiceOrderView.xib in Resources */,
 				14C1177B1A31633E009CAC7E /* ExpressCell.xib in Resources */,
 				14B4D3F41A37D8A900933A5A /* ConvenienceTableView.xib in Resources */,
 				14B4D48D1A3D6B8300933A5A /* SuitBasicCell.xib in Resources */,
 				144A1AEB1A2FFE9500E01E2B /* GoodBorrowCell.xib in Resources */,
+				142D9E131A40072700EF59A1 /* GatePassInfoCell.xib in Resources */,
 				144A1ADB1A2FEE5E00E01E2B /* CircleOfFriendsCell.xib in Resources */,
 				14B641D71A2DF89500C350A0 /* NoticeNewCell.xib in Resources */,
 				14B4D46B1A3C26BD00933A5A /* MonthlyCell.xib in Resources */,
 				1435427C1A2F11C900A8BBB7 /* CallServiceCell.xib in Resources */,
 				14E3A06A1A276C92009D0EB0 /* RegisterStep2View.xib in Resources */,
+				142D9E251A4071A500EF59A1 /* ActivityCollectionCell.xib in Resources */,
+				142D9E231A4071A500EF59A1 /* ActivityCollectionView.xib in Resources */,
+				142D9E2E1A408AC400EF59A1 /* ActivityDetailView.xib in Resources */,
 				144A1C061A302EE400E01E2B /* mapapi.bundle in Resources */,
 				14B4D3D91A36DCB500933A5A /* LifeReferCell.xib in Resources */,
 				14B4D47A1A3D362200933A5A /* SuitWorkTableView.xib in Resources */,
@@ -2170,6 +2234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14B4D4871A3D67D800933A5A /* SuitDetailView.m in Sources */,
+				142D9E1A1A401AA000EF59A1 /* ServiceOrderView.m in Sources */,
 				14B4D4931A3D759900933A5A /* SuitReply.m in Sources */,
 				14B4D47D1A3D5F4A00933A5A /* Suit.m in Sources */,
 				14D3C0831A285C43003E650A /* City.m in Sources */,
@@ -2178,6 +2243,7 @@
 				14FDB9881A26C94E006EFFCC /* ASIDownloadCache.m in Sources */,
 				14FDB99F1A26C94E006EFFCC /* DataSingleton.m in Sources */,
 				14FDB9C31A26C94F006EFFCC /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
+				142D9E241A4071A500EF59A1 /* ActivityCollectionCell.m in Sources */,
 				14B812F91A2F55D500506CD1 /* CallServiceReusable.m in Sources */,
 				14FDB98D1A26C94E006EFFCC /* CheckNetwork.m in Sources */,
 				14FDB9711A26C94E006EFFCC /* AFURLConnectionOperation.m in Sources */,
@@ -2209,6 +2275,7 @@
 				14E3A0641A275C77009D0EB0 /* RegisterStep1View.m in Sources */,
 				14B641CE1A2DA9DD00C350A0 /* NoticeTableView.m in Sources */,
 				14B4D4181A39253700933A5A /* ShopInfoCell.m in Sources */,
+				142D9E161A4009FB00EF59A1 /* PassInfo.m in Sources */,
 				14FDB9D71A26C94F006EFFCC /* SDWebImageDownloader.m in Sources */,
 				144A1AEA1A2FFE9500E01E2B /* GoodBorrowCell.m in Sources */,
 				14FDB9CB1A26C94F006EFFCC /* PSTCollectionViewUpdateItem.m in Sources */,
@@ -2233,6 +2300,7 @@
 				14FDB99E1A26C94E006EFFCC /* EGOImageView.m in Sources */,
 				14B4D49B1A3DC60100933A5A /* SuitResultItem.m in Sources */,
 				144A1AE01A2FF37D00E01E2B /* GoodBorrowView.m in Sources */,
+				142D9E0C1A3FD68D00EF59A1 /* PushGatePassView.m in Sources */,
 				14FDB9B11A26C94E006EFFCC /* FMDatabaseAdditions.m in Sources */,
 				14FDB9E51A26C94F006EFFCC /* NSObject+RMCopyable.m in Sources */,
 				14FDB9871A26C94E006EFFCC /* ASIDataDecompressor.m in Sources */,
@@ -2251,6 +2319,7 @@
 				14B4D4561A3B359700933A5A /* RepairResult.m in Sources */,
 				14FDB9C21A26C94F006EFFCC /* DACircularProgressView.m in Sources */,
 				14B4D4901A3D6D3D00933A5A /* SuitBasic.m in Sources */,
+				142D9E2D1A408AC400EF59A1 /* ActivityDetailView.m in Sources */,
 				14FDB97B1A26C94E006EFFCC /* NSString+SBJSON.m in Sources */,
 				14FDB9BF1A26C94F006EFFCC /* MWTapDetectingImageView.m in Sources */,
 				14FDB9731A26C94E006EFFCC /* UIImageView+AFNetworking.m in Sources */,
@@ -2263,11 +2332,13 @@
 				14FDB9CA1A26C94F006EFFCC /* PSTCollectionViewLayout.m in Sources */,
 				14FDB9D11A26C94F006EFFCC /* README.md in Sources */,
 				14B4D4321A39DAC000933A5A /* RepairDispatch.m in Sources */,
+				142D9E121A40072700EF59A1 /* GatePassInfoCell.m in Sources */,
 				14B4D46A1A3C26BD00933A5A /* MonthlyCell.m in Sources */,
 				14FDB99A1A26C94E006EFFCC /* EGOCache.m in Sources */,
 				14B4D3EC1A3744D500933A5A /* ShopType.m in Sources */,
 				14B4D44A1A3ACBE100933A5A /* Unit.m in Sources */,
 				14B4D4661A3C24A900933A5A /* Monthly.m in Sources */,
+				142D9E221A4071A500EF59A1 /* ActivityCollectionView.m in Sources */,
 				14FDB9DF1A26C94F006EFFCC /* UIImageView+HighlightedWebCache.m in Sources */,
 				14FDB9C71A26C94F006EFFCC /* PSTCollectionViewData.m in Sources */,
 				14FDB9D91A26C94F006EFFCC /* SDWebImageManager.m in Sources */,
@@ -2313,6 +2384,7 @@
 				14FDB9B41A26C94E006EFFCC /* FMResultSet.m in Sources */,
 				14FDB97A1A26C94E006EFFCC /* NSObject+SBJSON.m in Sources */,
 				14FDB97C1A26C94E006EFFCC /* SBJSON.m in Sources */,
+				142D9E281A40743500EF59A1 /* Activity.m in Sources */,
 				14FDB9E41A26C94F006EFFCC /* NSObject+RMArchivable.m in Sources */,
 				14C117861A31E2E8009CAC7E /* ExpressHistoryView.m in Sources */,
 				14FDB99D1A26C94E006EFFCC /* EGOImageLoader.m in Sources */,
@@ -2424,7 +2496,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2446,6 +2519,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2467,7 +2541,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2482,6 +2557,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2496,6 +2572,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Framework,
@@ -2512,15 +2589,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Seven/Desktop/ThirdParty/alipay,
-					/Users/Seven/Desktop/ThirdParty/BaiduMapSDK,
 					"$(PROJECT_DIR)/ThirdParty/alipay",
 					"$(PROJECT_DIR)/ThirdParty/BaiduMapSDK",
 					"$(PROJECT_DIR)/ThirdParty/XGPush",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e974077a-838c-4239-b643-b8970a5357a1";
+				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
 			};
 			name = Debug;
 		};
@@ -2533,6 +2608,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Framework,
@@ -2549,15 +2625,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Seven/Desktop/ThirdParty/alipay,
-					/Users/Seven/Desktop/ThirdParty/BaiduMapSDK,
 					"$(PROJECT_DIR)/ThirdParty/alipay",
 					"$(PROJECT_DIR)/ThirdParty/BaiduMapSDK",
 					"$(PROJECT_DIR)/ThirdParty/XGPush",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e974077a-838c-4239-b643-b8970a5357a1";
+				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
 			};
 			name = Release;
 		};

@@ -11,6 +11,7 @@
 #import "RepairType.h"
 #import "RepairImageCell.h"
 #import "RepairTableView.h"
+#import "CommDetailView.h"
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
@@ -524,6 +525,15 @@
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"提交报修" andView:self.view andHUD:request.hud];
+}
+
+- (IBAction)pushRepairCostView:(id)sender {
+    NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_repairItemList ,Appkey];
+    CommDetailView *detailView = [[CommDetailView alloc] init];
+    detailView.titleStr = @"收费标准";
+    detailView.urlStr = pushDetailHtm;
+    [self.navigationController pushViewController:detailView animated:YES];
+    
 }
 
 - (void)requestSubmit:(ASIHTTPRequest *)request

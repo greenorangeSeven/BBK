@@ -19,6 +19,7 @@
 @property int borrowType;
 
 @property (nonatomic, retain) NSString *starttime;
+@property (nonatomic, retain) NSString *starttimeStamp;
 @property (nonatomic, retain) NSString *endtime;
 
 @end
