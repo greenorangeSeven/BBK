@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivityDetailView">
             <connections>
+                <outlet property="attendBtn" destination="oaP-lo-IMg" id="vmu-ga-s8n"/>
+                <outlet property="praiseBtn" destination="Xk0-RJ-yON" id="dxe-ZJ-aWF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webView" destination="4Uq-uO-fFr" id="gtx-so-s1h"/>
             </connections>
@@ -28,6 +30,9 @@
                                 <color key="titleColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="praiseAction:" destination="-1" eventType="touchUpInside" id="5JN-K4-zPN"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oaP-lo-IMg">
                             <rect key="frame" x="164" y="9" width="147" height="23"/>
@@ -37,6 +42,9 @@
                                 <color key="titleColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="attendAction:" destination="-1" eventType="touchUpInside" id="zz5-QV-FNC"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>

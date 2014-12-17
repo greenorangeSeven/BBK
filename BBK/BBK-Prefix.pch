@@ -55,8 +55,6 @@
 #define api_findPushInfo @"/zhxq_api/push/findPushInfoByPage.htm"
 //获得小区服务
 #define api_callService @"/zhxq_api/params/findManagerCompanyDepartmentAll.htm"
-//获得社区朋友圈
-#define api_CircleOfFriends @"/zhxq_api/topic/findTopicInfoByPage.htm"
 //获得快递查询
 #define api_Express @"/zhxq_api/express/findExpressInfoByPage.htm"
 //领取包裹
@@ -77,7 +75,7 @@
 #define api_findLifeTypeAll @"/zhxq_api/shop/findLifeTypeAll.htm"
 //获取商家分类
 #define api_findShopType @"/zhxq_api/shop/findShopTypeList.htm"
-//获取商家分类
+//获取商家信息
 #define api_findShopInfoByPage @"/zhxq_api/shop/findShopInfoByPage.htm"
 //获取商家分类
 #define api_findShopInfoByPage @"/zhxq_api/shop/findShopInfoByPage.htm"
@@ -107,6 +105,14 @@
 #define api_addCelebrationInfo @"/zhxq_api/pass/addCelebrationInfo.htm"
 // 查询当前有效的活动列表
 #define api_findCellActivityOnTime @"/zhxq_api/activity/findCellActivityOnTime.htm"
+// 活动点赞
+#define api_addActivityHeart @"/zhxq_api/activity/addActivityHeart.htm"
+// 加入/取消相关活动
+#define api_addCancelInActivity @"/zhxq_api/activity/addCancelInActivity.htm"
+//获得社区朋友圈（生活页接口）
+#define api_CircleOfFriends @"/zhxq_api/topic/findTopicInfoByPage.htm"
+//获得社区朋友圈（社区朋友圈页面接口）
+#define api_findTopicInfoByPageForApp @"/zhxq_api/topic/findTopicInfoByPageForApp.htm"
 
 
 
@@ -120,6 +126,8 @@
 #define htm_celebrationItemsList @"/zhxq_api/app/celebrationItemsList.htm?accessId="
 //活动详情页面
 #define htm_activityDetail @"/zhxq_api/app/activityDetail.htm?activityId="
+//广告详情页面
+#define htm_adDetail @"/zhxq_api/app/adDetail.htm?adId="
 
 
 #define servicephone @"0731-58661602"

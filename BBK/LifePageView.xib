@@ -59,6 +59,9 @@
                                         <state key="normal" image="life_sqpyq">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pushCircleOfFriendsView:" destination="-1" eventType="touchUpInside" id="o3W-z9-2Y0"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="便民服务" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gbO-uV-mJS">
                                         <rect key="frame" x="29" y="65" width="58" height="21"/>

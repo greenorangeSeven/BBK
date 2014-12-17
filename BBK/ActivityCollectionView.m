@@ -57,6 +57,7 @@
         //查询当前有效的活动列表
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
         NSString *getActivityListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findCellActivityOnTime] params:param];
         [[AFOSCClient sharedClient]getPath:getActivityListUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -113,7 +114,16 @@
     [Tool roundView:cell.bg andCornerRadius:5.0f];
     
     [cell.praiseBtn setTitle:[NSString stringWithFormat:@"  赞(%d)", activity.heartCount] forState:UIControlStateNormal];
+    [cell.praiseBtn addTarget:self action:@selector(praiseAction:) forControlEvents:UIControlEventTouchUpInside];
+    cell.praiseBtn.tag = indexRow;
     
+    if ([activity.isJoin isEqualToString:@"1"]) {
+        [cell.attendBtn setTitle:@"  已参与" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [cell.attendBtn setTitle:@"  我要参与" forState:UIControlStateNormal];
+    }
     [cell.attendBtn addTarget:self action:@selector(attendAction:) forControlEvents:UIControlEventTouchUpInside];
     cell.attendBtn.tag = indexRow;
     
@@ -129,38 +139,159 @@
     return cell;
 }
 
+- (void)praiseAction:(id)sender
+{
+    UIButton *tap = (UIButton *)sender;
+    
+    if (tap) {
+        Activity *activity = [activities objectAtIndex:tap.tag];
+        if (activity)
+        {
+            tap.enabled = NO;
+            //如果有网络连接
+            if ([UserModel Instance].isNetworkRunning) {
+                //查询当前有效的活动列表
+                NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+                [param setValue:activity.activityId forKey:@"activityId"];
+                NSString *praiseActivityUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_addActivityHeart] params:param];
+                [[AFOSCClient sharedClient]getPath:praiseActivityUrl parameters:Nil
+                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                               @try {
+                                                   NSData *data = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+                                                   NSError *error;
+                                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                                   
+                                                   NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
+                                                   if ([state isEqualToString:@"0000"] == NO) {
+                                                       UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                                                                    message:[[json objectForKey:@"header"] objectForKey:@"msg"]
+                                                                                                   delegate:nil
+                                                                                          cancelButtonTitle:@"确定"
+                                                                                          otherButtonTitles:nil];
+                                                       [av show];
+                                                       return;
+                                                   }
+                                                   else
+                                                   {
+                                                       [Tool showCustomHUD:@"点赞成功" andView:self.view andImage:@"37x-Failure.png" andAfterDelay:2];
+                                                       activity.heartCount += 1;
+                                                       [self.activityCollection reloadData];
+                                                   }
+                                                   tap.enabled = YES;
+                                               }
+                                               @catch (NSException *exception) {
+                                                   [NdUncaughtExceptionHandler TakeException:exception];
+                                               }
+                                               @finally {
+                                                   
+                                               }
+                                           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                               if ([UserModel Instance].isNetworkRunning == NO) {
+                                                   return;
+                                               }
+                                               if ([UserModel Instance].isNetworkRunning) {
+                                                   [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                               }
+                                           }];
+            }
+        }
+    }
+}
+
 - (void)attendAction:(id)sender
 {
-
+    UIButton *tap = (UIButton *)sender;
+    if (tap) {
+        Activity *activity = [activities objectAtIndex:tap.tag];
+        if (activity)
+        {
+            tap.enabled = NO;
+            //如果有网络连接
+            if ([UserModel Instance].isNetworkRunning) {
+                //查询当前有效的活动列表
+                NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+                [param setValue:activity.activityId forKey:@"activityId"];
+                [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+                NSString *addCancelInActivityUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_addCancelInActivity] params:param];
+                [[AFOSCClient sharedClient]getPath:addCancelInActivityUrl parameters:Nil
+                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                               @try {
+                                                   NSData *data = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+                                                   NSError *error;
+                                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                                   
+                                                   NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
+                                                   if ([state isEqualToString:@"0000"] == NO) {
+                                                       UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                                                                    message:[[json objectForKey:@"header"] objectForKey:@"msg"]
+                                                                                                   delegate:nil
+                                                                                          cancelButtonTitle:@"确定"
+                                                                                          otherButtonTitles:nil];
+                                                       [av show];
+                                                       return;
+                                                   }
+                                                   else
+                                                   {
+                                                       NSString *hudStr = @"";
+                                                       if([activity.isJoin isEqualToString:@"1"] == YES)
+                                                       {
+                                                           activity.isJoin = @"0";
+                                                           hudStr = @"取消参与";
+                                                       }
+                                                       else
+                                                       {
+                                                           activity.isJoin = @"1";
+                                                           hudStr = @"已参与";
+                                                       }
+                                                       [Tool showCustomHUD:hudStr andView:self.view andImage:@"37x-Failure.png" andAfterDelay:2];
+                                                       [self.activityCollection reloadData];
+                                                   }
+                                                   tap.enabled = YES;
+                                               }
+                                               @catch (NSException *exception) {
+                                                   [NdUncaughtExceptionHandler TakeException:exception];
+                                               }
+                                               @finally {
+                                                   
+                                               }
+                                           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                               if ([UserModel Instance].isNetworkRunning == NO) {
+                                                   return;
+                                               }
+                                               if ([UserModel Instance].isNetworkRunning) {
+                                                   [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                               }
+                                           }];
+            }
+        }
+    }
 }
 
 - (void)checkDetailAction:(id)sender
 {
-        UIButton *tap = (UIButton *)sender;
-        if (tap) {
-            Activity *activity = [activities objectAtIndex:tap.tag];
-            if (activity)
-            {
-                ActivityDetailView *activityDetail = [[ActivityDetailView alloc] init];
-                NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_activityDetail ,activity.activityId];
-                activityDetail.titleStr = @"社区活动";
-                activityDetail.urlStr = pushDetailHtm;
-                [self.navigationController pushViewController:activityDetail animated:YES];
-            }
+    UIButton *tap = (UIButton *)sender;
+    if (tap) {
+        Activity *activity = [activities objectAtIndex:tap.tag];
+        if (activity)
+        {
+            ActivityDetailView *activityDetail = [[ActivityDetailView alloc] init];
+            NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_activityDetail ,activity.activityId];
+            activityDetail.titleStr = @"社区活动";
+            activityDetail.urlStr = pushDetailHtm;
+            activityDetail.activity = activity;
+            [self.navigationController pushViewController:activityDetail animated:YES];
         }
+    }
 }
 
 #pragma mark --UICollectionViewDelegateFlowLayout
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (IS_IPHONE_5) {
-        return CGSizeMake(320, 504);
-    }
-    else
-    {
-        return CGSizeMake(320, 416);
-    }
+    
+    return CGSizeMake(320, 504);
+    
+    
 }
 
 //定义每个UICollectionView 的 margin
@@ -176,11 +307,7 @@
     Activity *activity = [activities objectAtIndex:[indexPath row]];
     if (activity)
     {
-        ActivityDetailView *activityDetail = [[ActivityDetailView alloc] init];
-        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_activityDetail ,activity.activityId];
-        activityDetail.titleStr = @"社区活动";
-        activityDetail.urlStr = pushDetailHtm;
-        [self.navigationController pushViewController:activityDetail animated:YES];
+        
     }
 }
 

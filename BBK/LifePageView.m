@@ -14,6 +14,7 @@
 #import "MonthlyView.h"
 #import "ServiceOrderView.h"
 #import "ActivityCollectionView.h"
+#import "CircleOfFriendsView.h"
 
 @interface LifePageView ()
 {
@@ -40,9 +41,14 @@
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
     
-    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+    //适配iOS7uinavigationbar遮挡tableView的问题
+    if(IS_IOS7)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
-    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height-33);
+    self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -230,17 +236,25 @@
 {
     int row = [indexPath row];
     if (row < [topics count]) {
-        //出现异常问题暂时最后一条就加高行高
-        if (row == [topics count] -1) {
-            int row = [indexPath row];
-            Topic *topic = [topics objectAtIndex:row];
-            return 140.0 + topic.viewAddHeight;
+        
+        int row = [indexPath row];
+        Topic *topic = [topics objectAtIndex:row];
+        //没有照片就要缩短行高
+        if(topic.imageViewHeight == 0)
+        {
+            //没有图片viewAddHeight其实就是文字增加的行高，46=文字.y+文字.高度；90=头像区域最小高度，显示区域+上下边距
+            if(topic.viewAddHeight + 46 < 90 )
+            {
+                return 105.0;
+            }
+            else
+            {
+                return topic.viewAddHeight + 46 + 15;
+            }
         }
         else
         {
-            int row = [indexPath row];
-            Topic *topic = [topics objectAtIndex:row];
-            return 120.0 + topic.viewAddHeight;
+            return 130.0 + topic.viewAddHeight;
         }
     }
     else
@@ -292,13 +306,23 @@
             
             //计算图片区域高度
             CGRect imgFrame = cell.collectionView.frame;
-            imgFrame.origin.y = contentFrame.origin.y + contentFrame.size.height + 5;
+            imgFrame.origin.y = contentFrame.origin.y + contentFrame.size.height;
             imgFrame.size.height = topic.imageViewHeight;
             cell.collectionView.frame = imgFrame;
             
             //计算框架View的高度
             CGRect boxFrame = cell.boxView.frame;
-            boxFrame.size.height += topic.viewAddHeight;
+            if(topic.imageViewHeight == 0)
+            {
+                boxFrame.size.height += topic.viewAddHeight - 70;
+                if (boxFrame.size.height < 90) {
+                    boxFrame.size.height = 90;
+                }
+            }
+            else
+            {
+                boxFrame.size.height += topic.viewAddHeight;
+            }
             cell.boxView.frame = boxFrame;
             
             [cell loadCircleOfFriendsImage:topic];
@@ -562,6 +586,13 @@
     ActivityCollectionView *activityView = [[ActivityCollectionView alloc] init];
     activityView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:activityView animated:YES];
+}
+
+//社区朋友圈
+- (IBAction)pushCircleOfFriendsView:(id)sender {
+    CircleOfFriendsView *circleOfFriends = [[CircleOfFriendsView alloc] init];
+    circleOfFriends.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:circleOfFriends animated:YES];
 }
 
 @end

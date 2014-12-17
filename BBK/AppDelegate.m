@@ -274,6 +274,7 @@ BMKMapManager* _mapManager;
                                         settingPageNav,
                                         nil];
     [[tabBarController tabBar] setSelectedImageTintColor:[Tool getColorForMain]];
+    [[tabBarController tabBar] setBackgroundImage:[UIImage imageNamed:@"tabbar_bg"]];
 
     self.window.rootViewController = tabBarController;
 }

@@ -186,6 +186,7 @@
                                         settingPageNav,
                                         nil];
     [[tabBarController tabBar] setSelectedImageTintColor:[Tool getColorForMain]];
+    [[self.tabBarController tabBar] setBackgroundImage:[UIImage imageNamed:@"tabbar_bg"]];
 
     AppDelegate *appdele = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     appdele.window.rootViewController = tabBarController;

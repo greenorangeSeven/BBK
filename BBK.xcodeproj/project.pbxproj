@@ -21,6 +21,10 @@
 		142D9E281A40743500EF59A1 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E271A40743500EF59A1 /* Activity.m */; };
 		142D9E2D1A408AC400EF59A1 /* ActivityDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E2B1A408AC400EF59A1 /* ActivityDetailView.m */; };
 		142D9E2E1A408AC400EF59A1 /* ActivityDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E2C1A408AC400EF59A1 /* ActivityDetailView.xib */; };
+		142D9E371A41B55700EF59A1 /* CircleOfFriendsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E351A41B55700EF59A1 /* CircleOfFriendsView.m */; };
+		142D9E381A41B55700EF59A1 /* CircleOfFriendsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E361A41B55700EF59A1 /* CircleOfFriendsView.xib */; };
+		142D9E3C1A41CB9200EF59A1 /* TopicFull.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E3B1A41CB9200EF59A1 /* TopicFull.m */; };
+		142D9E3F1A41D0AD00EF59A1 /* TopicReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E3E1A41D0AD00EF59A1 /* TopicReply.m */; };
 		1435426D1A2EA21800A8BBB7 /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435426C1A2EA21800A8BBB7 /* Notice.m */; };
 		143542761A2EF4F800A8BBB7 /* CallServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143542741A2EF4F800A8BBB7 /* CallServiceView.m */; };
 		143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143542751A2EF4F800A8BBB7 /* CallServiceView.xib */; };
@@ -359,6 +363,13 @@
 		142D9E2A1A408AC400EF59A1 /* ActivityDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailView.h; sourceTree = "<group>"; };
 		142D9E2B1A408AC400EF59A1 /* ActivityDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailView.m; sourceTree = "<group>"; };
 		142D9E2C1A408AC400EF59A1 /* ActivityDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityDetailView.xib; sourceTree = "<group>"; };
+		142D9E341A41B55700EF59A1 /* CircleOfFriendsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFriendsView.h; sourceTree = "<group>"; };
+		142D9E351A41B55700EF59A1 /* CircleOfFriendsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFriendsView.m; sourceTree = "<group>"; };
+		142D9E361A41B55700EF59A1 /* CircleOfFriendsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFriendsView.xib; sourceTree = "<group>"; };
+		142D9E3A1A41CB9200EF59A1 /* TopicFull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicFull.h; sourceTree = "<group>"; };
+		142D9E3B1A41CB9200EF59A1 /* TopicFull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicFull.m; sourceTree = "<group>"; };
+		142D9E3D1A41D0AD00EF59A1 /* TopicReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicReply.h; sourceTree = "<group>"; };
+		142D9E3E1A41D0AD00EF59A1 /* TopicReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicReply.m; sourceTree = "<group>"; };
 		1435426B1A2EA21800A8BBB7 /* Notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notice.h; sourceTree = "<group>"; };
 		1435426C1A2EA21800A8BBB7 /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notice.m; sourceTree = "<group>"; };
 		143542731A2EF4F800A8BBB7 /* CallServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallServiceView.h; sourceTree = "<group>"; };
@@ -1091,6 +1102,10 @@
 				14C1177E1A31640C009CAC7E /* Express.m */,
 				14C117A41A343407009CAC7E /* Topic.h */,
 				14C117A51A343407009CAC7E /* Topic.m */,
+				142D9E3A1A41CB9200EF59A1 /* TopicFull.h */,
+				142D9E3B1A41CB9200EF59A1 /* TopicFull.m */,
+				142D9E3D1A41D0AD00EF59A1 /* TopicReply.h */,
+				142D9E3E1A41D0AD00EF59A1 /* TopicReply.m */,
 				14C117C71A35E3E6009CAC7E /* RepairType.h */,
 				14C117C81A35E3E6009CAC7E /* RepairType.m */,
 				14CCEE071A36A0D500ABBE7F /* Repair.h */,
@@ -1306,6 +1321,9 @@
 				14C117B71A357F60009CAC7E /* CircleOfFriendsImgCell.h */,
 				14C117B81A357F60009CAC7E /* CircleOfFriendsImgCell.m */,
 				14C117B91A357F60009CAC7E /* CircleOfFriendsImgCell.xib */,
+				142D9E341A41B55700EF59A1 /* CircleOfFriendsView.h */,
+				142D9E351A41B55700EF59A1 /* CircleOfFriendsView.m */,
+				142D9E361A41B55700EF59A1 /* CircleOfFriendsView.xib */,
 				14B4D3CD1A36D82200933A5A /* LifeReferView.h */,
 				14B4D3CE1A36D82200933A5A /* LifeReferView.m */,
 				14B4D3CF1A36D82300933A5A /* LifeReferView.xib */,
@@ -2186,6 +2204,7 @@
 				14B641D71A2DF89500C350A0 /* NoticeNewCell.xib in Resources */,
 				14B4D46B1A3C26BD00933A5A /* MonthlyCell.xib in Resources */,
 				1435427C1A2F11C900A8BBB7 /* CallServiceCell.xib in Resources */,
+				142D9E381A41B55700EF59A1 /* CircleOfFriendsView.xib in Resources */,
 				14E3A06A1A276C92009D0EB0 /* RegisterStep2View.xib in Resources */,
 				142D9E251A4071A500EF59A1 /* ActivityCollectionCell.xib in Resources */,
 				142D9E231A4071A500EF59A1 /* ActivityCollectionView.xib in Resources */,
@@ -2355,6 +2374,7 @@
 				1435427F1A2F40B000A8BBB7 /* CallService.m in Sources */,
 				14B4D42F1A39D77300933A5A /* RepairBasic.m in Sources */,
 				14B4D4621A3C179100933A5A /* MonthlyView.m in Sources */,
+				142D9E3F1A41D0AD00EF59A1 /* TopicReply.m in Sources */,
 				14FDB43D1A25B73A006EFFCC /* main.m in Sources */,
 				14FDB99C1A26C94E006EFFCC /* EGOImageLoadConnection.m in Sources */,
 				14FDB9C51A26C94F006EFFCC /* PSTCollectionViewCell.m in Sources */,
@@ -2388,6 +2408,8 @@
 				14FDB9E41A26C94F006EFFCC /* NSObject+RMArchivable.m in Sources */,
 				14C117861A31E2E8009CAC7E /* ExpressHistoryView.m in Sources */,
 				14FDB99D1A26C94E006EFFCC /* EGOImageLoader.m in Sources */,
+				142D9E371A41B55700EF59A1 /* CircleOfFriendsView.m in Sources */,
+				142D9E3C1A41CB9200EF59A1 /* TopicFull.m in Sources */,
 				14B4D3DE1A37262700933A5A /* LifeReferFooterReusableView.m in Sources */,
 				14B4D3F31A37D8A900933A5A /* ConvenienceTableView.m in Sources */,
 				14FDB9D21A26C94F006EFFCC /* MKAnnotationView+WebCache.m in Sources */,

@@ -180,18 +180,14 @@
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
 {
     ADInfo *adv = (ADInfo *)[advDatas objectAtIndex:advIndex];
-//    self.scrollView.bounces = YES;
-////    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 460);
-//    NSLog(@"%f",self.scrollView.contentSize.height);
-//     NSLog(@"%f",self.scrollView.bounds.size.height);
-//    NSLog(@"%f",self.view.bounds.size.height);
-//      self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.bounds.size.height+1);
     if (adv)
     {
-//        ADVDetailView *advDetail = [[ADVDetailView alloc] init];
-//        advDetail.hidesBottomBarWhenPushed = YES;
-//        advDetail.adv = adv;
-//        [self.navigationController pushViewController:advDetail animated:YES];
+        NSString *adDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_adDetail ,adv.adId];
+        CommDetailView *detailView = [[CommDetailView alloc] init];
+        detailView.titleStr = @"详情";
+        detailView.urlStr = adDetailHtm;
+        detailView.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 

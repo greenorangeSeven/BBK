@@ -60,6 +60,8 @@
 - (IBAction)orderServiceAction:(id)sender;
 //社区活动
 - (IBAction)activityViewAction:(id)sender;
+//社区朋友圈
+- (IBAction)pushCircleOfFriendsView:(id)sender;
 
 
 @end

@@ -247,6 +247,11 @@
     return fHeight;
 }
 
+- (float) heightForString:(UITextView *)textView andWidth:(float)width{
+    CGSize sizeToFit = [textView sizeThatFits:CGSizeMake(width, MAXFLOAT)];
+    return sizeToFit.height;
+}
+
 +(int)getTextHeight:(int)width andUIFont:(UIFont *)font andText:(NSString *)txt
 {
     float fPadding = 16.0;
@@ -254,6 +259,19 @@
     CGSize size = [txt sizeWithFont:font constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
     float fHeight = size.height + 16.0;
     return fHeight;
+}
+
+/**
+ @method 获取指定宽度情况ixa，字符串value的高度
+ @param value 待计算的字符串
+ @param fontSize 字体的大小
+ @param andWidth 限制字符串显示区域的宽度
+ @result float 返回的高度
+ */
++ (float) heightForString:(NSString *)value fontSize:(float)fontSize andWidth:(float)width
+{
+    CGSize sizeToFit = [value sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:CGSizeMake(width - 16, CGFLOAT_MAX) lineBreakMode:UILineBreakModeTailTruncation];//此处的换行类型（lineBreakMode）可根据自己的实际情况进行设置
+    return sizeToFit.height;
 }
 
 + (int)getDaysCount:(int)year andMonth:(int)month andDay:(int)day
@@ -759,10 +777,15 @@
         NSMutableArray *topicArray = [RMMapper mutableArrayOfClass:[Topic class] fromArrayOfDictionary:topicArrayJson];
         for (Topic *exp in topicArray) {
             exp.starttime = [Tool intervalSinceNow:[Tool TimestampToDateStr:[exp.starttimeStamp stringValue] andFormatterStr:@"yyyy-MM-dd HH:mm:ss"]];
-            exp.contentHeight = [self getTextHeight:236 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:exp.content];
-            if (exp.contentHeight < 36)
+            exp.contentHeight = [self heightForString:exp.content fontSize:14.0 andWidth:236.0];
+//            exp.contentHeight = [self getTextHeight:236 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:exp.content];
+            if (exp.contentHeight < 21)
             {
-                exp.contentHeight = 23;
+                exp.contentHeight = 21;
+            }
+            else
+            {
+                exp.contentHeight -= 10;
             }
             int imgCount = [exp.imgUrlList count];
             if (imgCount > 0) {
@@ -774,18 +797,18 @@
                 {
                     row = imgCount / 3;
                 }
-                exp.imageViewHeight = 60 * row;
+                exp.imageViewHeight = 70 * row;
             }
             else
             {
                 exp.imageViewHeight = 0;
             }
             
-            if (exp.contentHeight > 23) {
-                exp.viewAddHeight += exp.contentHeight - 23;
+            if (exp.contentHeight > 30) {
+                exp.viewAddHeight += exp.contentHeight - 21;
             }
-            if (exp.imageViewHeight > 60) {
-                exp.viewAddHeight += exp.imageViewHeight - 60;
+            if (exp.imageViewHeight > 70) {
+                exp.viewAddHeight += exp.imageViewHeight - 70;
             }
         }
         return topicArray;
@@ -1182,9 +1205,10 @@
     if ([state isEqualToString:@"0000"] == YES) {
         NSArray *activityArrayJson = [activityJsonDic objectForKey:@"data"];
         NSMutableArray *activityArray = [RMMapper mutableArrayOfClass:[Activity class] fromArrayOfDictionary:activityArrayJson];
-//        for (Activity *info in activityArray) {
-//            info.starttime = [self TimestampToDateStr:[info.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
-//        }
+        for (Activity *info in activityArray) {
+            info.starttime = [self TimestampToDateStr:[info.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日"];
+            info.endtime = [self TimestampToDateStr:[info.endtimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日"];
+        }
         return activityArray;
     }
     else
