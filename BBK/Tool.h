@@ -47,6 +47,8 @@
 #import "BorrowRecord.h"
 #import "PassInfo.h"
 #import "Activity.h"
+#import "TopicFull.h"
+#import "TopicReply.h"
 
 @interface Tool : NSObject
 
@@ -163,6 +165,8 @@
 + (NSMutableArray *)readJsonStrToExpressArray:(NSString *)str;
 //解析社区朋友圈
 + (NSMutableArray *)readJsonStrToTopicArray:(NSString *)str;
+//解析社区朋友圈（带评论）
++ (NSMutableArray *)readJsonStrToTopicFullArray:(NSString *)str;
 //解析报修类型JSON
 + (NSMutableArray *)readJsonStrToRepairTypeArray:(NSString *)str;
 //解析报修列表JSON

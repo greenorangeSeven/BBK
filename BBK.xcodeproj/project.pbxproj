@@ -25,6 +25,10 @@
 		142D9E381A41B55700EF59A1 /* CircleOfFriendsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E361A41B55700EF59A1 /* CircleOfFriendsView.xib */; };
 		142D9E3C1A41CB9200EF59A1 /* TopicFull.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E3B1A41CB9200EF59A1 /* TopicFull.m */; };
 		142D9E3F1A41D0AD00EF59A1 /* TopicReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E3E1A41D0AD00EF59A1 /* TopicReply.m */; };
+		142D9E431A41D47B00EF59A1 /* CircleOfFriendsFullCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E411A41D47B00EF59A1 /* CircleOfFriendsFullCell.m */; };
+		142D9E441A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E421A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib */; };
+		142D9E4F1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E4D1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.m */; };
+		142D9E501A42AF8600EF59A1 /* CircleOfFriendsReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E4E1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.xib */; };
 		1435426D1A2EA21800A8BBB7 /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435426C1A2EA21800A8BBB7 /* Notice.m */; };
 		143542761A2EF4F800A8BBB7 /* CallServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143542741A2EF4F800A8BBB7 /* CallServiceView.m */; };
 		143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143542751A2EF4F800A8BBB7 /* CallServiceView.xib */; };
@@ -370,6 +374,12 @@
 		142D9E3B1A41CB9200EF59A1 /* TopicFull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicFull.m; sourceTree = "<group>"; };
 		142D9E3D1A41D0AD00EF59A1 /* TopicReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicReply.h; sourceTree = "<group>"; };
 		142D9E3E1A41D0AD00EF59A1 /* TopicReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicReply.m; sourceTree = "<group>"; };
+		142D9E401A41D47B00EF59A1 /* CircleOfFriendsFullCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFriendsFullCell.h; sourceTree = "<group>"; };
+		142D9E411A41D47B00EF59A1 /* CircleOfFriendsFullCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFriendsFullCell.m; sourceTree = "<group>"; };
+		142D9E421A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFriendsFullCell.xib; sourceTree = "<group>"; };
+		142D9E4C1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFriendsReplyCell.h; sourceTree = "<group>"; };
+		142D9E4D1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFriendsReplyCell.m; sourceTree = "<group>"; };
+		142D9E4E1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFriendsReplyCell.xib; sourceTree = "<group>"; };
 		1435426B1A2EA21800A8BBB7 /* Notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notice.h; sourceTree = "<group>"; };
 		1435426C1A2EA21800A8BBB7 /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notice.m; sourceTree = "<group>"; };
 		143542731A2EF4F800A8BBB7 /* CallServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallServiceView.h; sourceTree = "<group>"; };
@@ -1324,6 +1334,12 @@
 				142D9E341A41B55700EF59A1 /* CircleOfFriendsView.h */,
 				142D9E351A41B55700EF59A1 /* CircleOfFriendsView.m */,
 				142D9E361A41B55700EF59A1 /* CircleOfFriendsView.xib */,
+				142D9E401A41D47B00EF59A1 /* CircleOfFriendsFullCell.h */,
+				142D9E411A41D47B00EF59A1 /* CircleOfFriendsFullCell.m */,
+				142D9E421A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib */,
+				142D9E4C1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.h */,
+				142D9E4D1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.m */,
+				142D9E4E1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.xib */,
 				14B4D3CD1A36D82200933A5A /* LifeReferView.h */,
 				14B4D3CE1A36D82200933A5A /* LifeReferView.m */,
 				14B4D3CF1A36D82300933A5A /* LifeReferView.xib */,
@@ -2179,6 +2195,7 @@
 				14B4D4521A3B2D1D00933A5A /* RepairResultCell.xib in Resources */,
 				14B4D3DF1A37262700933A5A /* LifeReferFooterReusableView.xib in Resources */,
 				14B4D4451A3A9CE900933A5A /* RepairFinishCell.xib in Resources */,
+				142D9E441A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib in Resources */,
 				14C1178C1A31E3B9009CAC7E /* ExpressHistoryCell.xib in Resources */,
 				14B4D4981A3D77E300933A5A /* SuitReplyCell.xib in Resources */,
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
@@ -2231,6 +2248,7 @@
 				14CCEDFE1A36936300ABBE7F /* RepairTableView.xib in Resources */,
 				14B4D4221A3976E600933A5A /* RepairDetailView.xib in Resources */,
 				14B4D4131A389E9A00933A5A /* ShopTypeView.xib in Resources */,
+				142D9E501A42AF8600EF59A1 /* CircleOfFriendsReplyCell.xib in Resources */,
 				148AD7DB1A3F23AC00290203 /* BorrowRecordCell.xib in Resources */,
 				14B812FA1A2F55D500506CD1 /* CallServiceReusable.xib in Resources */,
 				148AD7D11A3EC5F700290203 /* BorrowGoodFromView.xib in Resources */,
@@ -2275,6 +2293,7 @@
 				14FDB9DA1A26C94F006EFFCC /* SDWebImagePrefetcher.m in Sources */,
 				14FDB9FD1A26C94F006EFFCC /* StrikeThroughLabel.m in Sources */,
 				14FDB9901A26C94E006EFFCC /* ImgRecord.m in Sources */,
+				142D9E431A41D47B00EF59A1 /* CircleOfFriendsFullCell.m in Sources */,
 				14D3C07D1A2819EA003E650A /* UserHouse.m in Sources */,
 				1469FD6B1A270E10002685A0 /* PrintObject.m in Sources */,
 				14B4D4A21A3DC92C00933A5A /* SuitResutCell.m in Sources */,
@@ -2452,6 +2471,7 @@
 				14B4D43C1A3A8AD800933A5A /* RepairDispatchCell.m in Sources */,
 				14FDB98E1A26C94E006EFFCC /* Reachability.m in Sources */,
 				14FDB9B81A26C94F006EFFCC /* KxMenu.m in Sources */,
+				142D9E4F1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.m in Sources */,
 				1435426D1A2EA21800A8BBB7 /* Notice.m in Sources */,
 				14FDB9681A26C94E006EFFCC /* NSString+Base64.m in Sources */,
 				14B4D3D41A36DB9600933A5A /* LifeRefer.m in Sources */,
@@ -2518,8 +2538,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2541,7 +2561,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
+				PROVISIONING_PROFILE = "e974077a-838c-4239-b643-b8970a5357a1";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2563,8 +2583,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2579,7 +2599,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
+				PROVISIONING_PROFILE = "e974077a-838c-4239-b643-b8970a5357a1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2594,7 +2614,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Framework,
@@ -2617,7 +2637,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
+				PROVISIONING_PROFILE = "e974077a-838c-4239-b643-b8970a5357a1";
 			};
 			name = Debug;
 		};
@@ -2630,7 +2650,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Framework,
@@ -2653,7 +2673,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
+				PROVISIONING_PROFILE = "e974077a-838c-4239-b643-b8970a5357a1";
 			};
 			name = Release;
 		};
@@ -2661,6 +2681,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2672,6 +2693,7 @@
 				INFOPLIST_FILE = BBKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBK.app/BBK";
 			};
 			name = Debug;
@@ -2680,6 +2702,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2687,6 +2710,7 @@
 				INFOPLIST_FILE = BBKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBK.app/BBK";
 			};
 			name = Release;

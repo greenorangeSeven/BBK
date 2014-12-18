@@ -17,7 +17,10 @@
 @property (nonatomic, retain) NSString *regUserId;
 @property (nonatomic, retain) NSString *replyTime;
 @property (nonatomic, retain) NSString *replyContent;
+@property (nonatomic, retain) NSMutableAttributedString *replyContentAttr;
 @property int stateId;
 @property (nonatomic, retain) NSString *stateName;
+
+@property int contentHeight;
 
 @end

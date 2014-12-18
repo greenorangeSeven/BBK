@@ -29,6 +29,7 @@
 
 @property int contentHeight;
 @property int imageViewHeight;
+@property int replyHeight;
 @property int viewAddHeight;
 
 @end

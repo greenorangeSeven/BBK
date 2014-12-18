@@ -157,7 +157,8 @@
 #define BorrowRecordCellIdentifier @"BorrowRecordCellIdentifier"
 #define GatePassInfoCellIdentifier @"GatePassInfoCellIdentifier"
 #define ActivityCollectionCellIdentifier @"ActivityCollectionCellIdentifier"
-
+#define CircleOfFriendsFullCellIdentifier @"CircleOfFriendsFullCellIdentifier"
+#define CircleOfFriendsReplyCellIdentifier @"CircleOfFriendsReplyCellIdentifier"
 
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"
