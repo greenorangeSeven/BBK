@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CircleOfFriendsView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate>
+@interface CircleOfFriendsView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate, UITextFieldDelegate>
 {
     NSMutableArray *topics;
     BOOL isLoading;
@@ -20,6 +20,7 @@
     BOOL _reloading;
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *recordNumLb;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (void)reload:(BOOL)noRefresh;

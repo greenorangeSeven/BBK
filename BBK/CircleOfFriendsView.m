@@ -10,8 +10,13 @@
 #import "NoticeNewCell.h"
 #import "CircleOfFriendsFullCell.h"
 #import "UIImageView+WebCache.h"
+#import "IQKeyboardManager/KeyboardManager.framework/Headers/IQKeyboardManager.h"
 
 @interface CircleOfFriendsView ()
+
+@property(nonatomic, strong) IBOutlet UIToolbar *toolbar;
+@property(nonatomic, strong) IBOutlet UITextField *textField;
+@property(nonatomic, strong) IBOutlet UITextField *textFieldOnToolbar;
 
 @end
 
@@ -53,6 +58,56 @@
     
     topics = [[NSMutableArray alloc] initWithCapacity:20];
     [self reload:YES];
+    
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(-10, 0, 0, 0)];
+    [self.tableView addSubview:self.textField];
+    self.textField.returnKeyType = UIReturnKeyDone;
+    self.textField.delegate = self;
+    self.textFieldOnToolbar.delegate = self;
+    
+    self.textField.inputAccessoryView = [self keyboardToolBar];
+}
+
+- (void)textFieldBecomeFirstResponder
+{
+    [self.textFieldOnToolbar becomeFirstResponder];
+    [self.textField resignFirstResponder];
+}
+
+- (void)doneClicked:(id)sender
+{
+    [self.textField resignFirstResponder];
+    [self.textFieldOnToolbar resignFirstResponder];
+}
+
+- (UIToolbar *)keyboardToolBar
+{
+    UIToolbar *toolBar = [[UIToolbar alloc] init];
+    [toolBar sizeToFit];
+    
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 4, 250, 32)];
+    textField.delegate = self;
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    self.textFieldOnToolbar = textField;
+    self.textFieldOnToolbar.returnKeyType = UIReturnKeyDone;
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:textField];
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] init];
+    doneButton.title = @"评论";
+    doneButton.style = UIBarButtonItemStyleDone;
+    doneButton.action = @selector(doneClicked:);
+    doneButton.target = self;
+    
+    [toolBar setItems:@[item,doneButton]];
+    
+    return toolBar;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.textFieldOnToolbar resignFirstResponder];
+    [self.textField resignFirstResponder];
+    return YES;
 }
 
 - (void)viewDidUnload
@@ -95,20 +150,26 @@
         [[AFOSCClient sharedClient]getPath:topicInfoByPageUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        
-                                       NSMutableArray *noticeNews = [Tool readJsonStrToTopicFullArray:operation.responseString];
+                                       NSMutableArray *topicNews = [Tool readJsonStrToTopicFullArray:operation.responseString];
                                        isLoading = NO;
                                        if (!noRefresh) {
                                            [self clear];
                                        }
                                        
                                        @try {
-                                           int count = [noticeNews count];
+                                           NSData *data = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+                                           NSError *error;
+                                           NSDictionary *topicJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                           int totalRecord = [[[topicJsonDic objectForKey:@"data"] objectForKey:@"totalRecord"] intValue];
+                                           self.recordNumLb.text = [NSString stringWithFormat:@"共%d条朋友圈动态", totalRecord];
+                                           
+                                           int count = [topicNews count];
                                            allCount += count;
                                            if (count < 20)
                                            {
                                                isLoadOver = YES;
                                            }
-                                           [topics addObjectsFromArray:noticeNews];
+                                           [topics addObjectsFromArray:topicNews];
                                            [self.tableView reloadData];
                                            [self doneLoadingTableViewData];
                                        }
@@ -206,6 +267,34 @@
             cell.timeLb.text = topic.starttime;
             cell.contentLb.text = topic.content;
             
+            cell.typeNameLb.text = [NSString stringWithFormat:@"【%@】", topic.typeName];
+            
+            if ([topic.regUserId isEqualToString:[[UserModel Instance] getUserValueForKey:@"regUserId"]]) {
+                cell.deleteBtn.hidden = NO;
+            }
+            else
+            {
+                cell.deleteBtn.hidden = YES;
+            }
+            
+            [cell.deleteBtn addTarget:self action:@selector(deteleAction:) forControlEvents:UIControlEventTouchUpInside];
+            cell.deleteBtn.tag = row;
+            
+            [cell.heartBtn setTitle:[NSString stringWithFormat:@" 赞(%d)", topic.heartCount] forState:UIControlStateNormal];
+            [cell.heartBtn addTarget:self action:@selector(topicHeartAction:) forControlEvents:UIControlEventTouchUpInside];
+            if (topic.isHeart == 1) {
+                [cell.heartBtn setImage:[UIImage imageNamed:@"heart_orange"] forState:UIControlStateNormal];
+            }
+            else
+            {
+                [cell.heartBtn setImage:[UIImage imageNamed:@"heart_gray"] forState:UIControlStateNormal];
+            }
+            
+            cell.heartBtn.tag = row;
+            
+            [cell.replyBtn addTarget:self action:@selector(replyAction:) forControlEvents:UIControlEventTouchUpInside];
+            cell.replyBtn.tag = row;
+            
             //计算话题内容高度
             CGRect contentFrame = cell.contentLb.frame;
             contentFrame.size.height = topic.contentHeight;
@@ -260,7 +349,7 @@
                 cell.replyView.hidden = YES;
             }
             
-            [cell.userFaceIv setImageWithURL:[NSURL URLWithString:topic.photoFull] placeholderImage:[UIImage imageNamed:@"loadpic.png"]];
+            [cell.userFaceIv setImageWithURL:[NSURL URLWithString:topic.photoFull] placeholderImage:[UIImage imageNamed:@"default_head"]];
             
             return cell;
         }
@@ -275,9 +364,97 @@
     }
 }
 
+- (void)topicHeartAction:(id)sender
+{
+    UIButton *tap = (UIButton *)sender;
+    
+    if (tap) {
+        TopicFull *topic = [topics objectAtIndex:tap.tag];
+        if (topic)
+        {
+            tap.enabled = NO;
+            //如果有网络连接
+            if ([UserModel Instance].isNetworkRunning) {
+                //查询当前有效的活动列表
+                NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+                [param setValue:topic.topicId forKey:@"topicId"];
+                [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
+                NSString *topicHeartUrl = @"";
+                if (topic.isHeart == 1) {
+                    topicHeartUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_delTopicHeart] params:param];
+                }
+                else
+                {
+                    topicHeartUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_addTopicHeart] params:param];
+                }
+                [[AFOSCClient sharedClient]getPath:topicHeartUrl parameters:Nil
+                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                               @try {
+                                                   NSData *data = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+                                                   NSError *error;
+                                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                                   
+                                                   NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
+                                                   if ([state isEqualToString:@"0000"] == NO) {
+                                                       UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                                                                    message:[[json objectForKey:@"header"] objectForKey:@"msg"]
+                                                                                                   delegate:nil
+                                                                                          cancelButtonTitle:@"确定"
+                                                                                          otherButtonTitles:nil];
+                                                       [av show];
+                                                       //                                                       return;
+                                                   }
+                                                   else
+                                                   {
+                                                       //                                                       [Tool showCustomHUD:@"点赞成功" andView:self.view andImage:@"37x-Failure.png" andAfterDelay:2];
+                                                       if (topic.isHeart == 1) {
+                                                           topic.heartCount -= 1;
+                                                           [tap setImage:[UIImage imageNamed:@"heart_gray"] forState:UIControlStateNormal];
+                                                           topic.isHeart = 0;
+                                                       }
+                                                       else
+                                                       {
+                                                           topic.heartCount += 1;
+                                                           [tap setImage:[UIImage imageNamed:@"heart_orange"] forState:UIControlStateNormal];
+                                                           topic.isHeart = 1;
+                                                       }
+                                                       [self.tableView reloadData];
+                                                   }
+                                                   tap.enabled = YES;
+                                               }
+                                               @catch (NSException *exception) {
+                                                   [NdUncaughtExceptionHandler TakeException:exception];
+                                               }
+                                               @finally {
+                                                   
+                                               }
+                                           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                               if ([UserModel Instance].isNetworkRunning == NO) {
+                                                   return;
+                                               }
+                                               if ([UserModel Instance].isNetworkRunning) {
+                                                   [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                               }
+                                           }];
+            }
+        }
+    }
+}
+
+- (void)replyAction:(id)sender
+{
+    UIButton *tap = (UIButton *)sender;
+    if (tap) {
+        TopicFull *topic = [topics objectAtIndex:tap.tag];
+        [self.textField becomeFirstResponder];
+    }
+}
+
 //表格行点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.textField resignFirstResponder];
+    [self.textFieldOnToolbar resignFirstResponder];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     int row = [indexPath row];
     //点击“下面20条”
@@ -365,6 +542,15 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"返回";
     self.navigationItem.backBarButtonItem = backItem;
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
 }
 
 @end

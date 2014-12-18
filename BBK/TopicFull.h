@@ -11,6 +11,7 @@
 @interface TopicFull : NSObject
 
 @property (nonatomic, retain) NSString *topicId;
+@property (nonatomic, retain) NSString *regUserId;
 @property (nonatomic, retain) NSString *regUserName;
 @property (nonatomic, retain) NSString *nickName;
 @property int replyCount;

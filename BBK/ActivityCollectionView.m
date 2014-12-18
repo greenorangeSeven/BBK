@@ -169,7 +169,7 @@
                                                                                           cancelButtonTitle:@"确定"
                                                                                           otherButtonTitles:nil];
                                                        [av show];
-                                                       return;
+//                                                       return;
                                                    }
                                                    else
                                                    {
@@ -228,7 +228,7 @@
                                                                                           cancelButtonTitle:@"确定"
                                                                                           otherButtonTitles:nil];
                                                        [av show];
-                                                       return;
+//                                                       return;
                                                    }
                                                    else
                                                    {

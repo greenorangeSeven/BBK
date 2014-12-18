@@ -79,16 +79,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZIH-3k-zpA">
-                                        <rect key="frame" x="127" y="3" width="77" height="22"/>
+                                        <rect key="frame" x="138" y="3" width="77" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title=" 赞(100)" image="heart_orange">
+                                        <state key="normal" title=" 赞(0)" image="heart_orange">
                                             <color key="titleColor" red="0.92549019610000005" green="0.46666666670000001" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0y6-Wa-p5K">
-                                        <rect key="frame" x="212" y="3" width="74" height="22"/>
+                                        <rect key="frame" x="229" y="3" width="62" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title=" 回复" image="topic_reply">
@@ -125,10 +125,14 @@
                 <outlet property="buttomView" destination="S9H-rQ-ZAa" id="JUT-UD-xNW"/>
                 <outlet property="collectionView" destination="rtS-Pi-bqn" id="mXo-G3-sCQ"/>
                 <outlet property="contentLb" destination="cON-Zk-6B3" id="Ttv-Gx-eqh"/>
+                <outlet property="deleteBtn" destination="N0n-vC-RiS" id="cb3-ob-ZTa"/>
+                <outlet property="heartBtn" destination="ZIH-3k-zpA" id="2B1-RW-yFJ"/>
                 <outlet property="nickNameLb" destination="azK-5H-agX" id="6Vp-06-bEF"/>
+                <outlet property="replyBtn" destination="0y6-Wa-p5K" id="o7I-gx-UOP"/>
                 <outlet property="replyView" destination="bME-q5-9Ok" id="wKg-lr-0QO"/>
                 <outlet property="tableView" destination="9en-60-HJe" id="5Gs-JA-Xl7"/>
                 <outlet property="timeLb" destination="3nU-pI-QCo" id="QqP-aV-Rkh"/>
+                <outlet property="typeNameLb" destination="B5K-xF-dpw" id="YN6-Vz-v3x"/>
                 <outlet property="userFaceIv" destination="CeH-av-9jW" id="0JS-dg-uOg"/>
             </connections>
             <point key="canvasLocation" x="-248" y="98.5"/>

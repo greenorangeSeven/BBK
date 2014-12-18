@@ -113,6 +113,11 @@
 #define api_CircleOfFriends @"/zhxq_api/topic/findTopicInfoByPage.htm"
 //获得社区朋友圈（社区朋友圈页面接口）
 #define api_findTopicInfoByPageForApp @"/zhxq_api/topic/findTopicInfoByPageForApp.htm"
+//社区朋友圈取消点赞
+#define api_delTopicHeart @"/zhxq_api/topic/delTopicHeart.htm"
+//社区朋友圈点赞
+#define api_addTopicHeart @"/zhxq_api/topic/addTopicHeart.htm"
+
 
 
 

@@ -151,4 +151,12 @@
     return cell;
 }
 
+- (IBAction)deteleAction:(id)sender {
+}
+
+- (IBAction)heartAction:(id)sender {
+}
+
+- (IBAction)replyAction:(id)sender {
+}
 @end

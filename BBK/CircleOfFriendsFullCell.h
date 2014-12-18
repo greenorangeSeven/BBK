@@ -23,6 +23,11 @@
 @property (weak, nonatomic) IBOutlet UIView *buttomView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UILabel *typeNameLb;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
+@property (weak, nonatomic) IBOutlet UIButton *heartBtn;
+@property (weak, nonatomic) IBOutlet UIButton *replyBtn;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 - (void)loadCircleOfFriendsImage:(TopicFull *)topic;
