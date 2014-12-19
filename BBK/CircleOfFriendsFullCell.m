@@ -14,8 +14,17 @@
 
 @implementation CircleOfFriendsFullCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (void)awakeFromNib
+{
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self.collectionView registerClass:[CircleOfFriendsImgCell class] forCellWithReuseIdentifier:CircleOfFriendsImgCellIdentifier];
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    //    设置无分割线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -26,9 +35,6 @@
 
 - (void)loadCircleOfFriendsImage:(TopicFull *)topic
 {
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    [self.collectionView registerClass:[CircleOfFriendsImgCell class] forCellWithReuseIdentifier:CircleOfFriendsImgCellIdentifier];
     imageList = topic.imgUrlList;
     [self.collectionView reloadData];
 }
@@ -101,11 +107,6 @@
 
 - (void)loadCircleOfFriendsReply:(TopicFull *)topic
 {
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    self.tableView.backgroundColor = [UIColor clearColor];
-    //    设置无分割线
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     replyList = topic.replyList;
     [self.tableView reloadData];
 }

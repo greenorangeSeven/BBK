@@ -221,6 +221,7 @@ BMKMapManager* _mapManager;
         LoginView *loginView = [[LoginView alloc] initWithNibName:@"LoginView" bundle:nil];
         UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:loginView];
         self.window.rootViewController = loginNav;
+        [self.window makeKeyAndVisible];
     }
     else
     {
@@ -277,6 +278,7 @@ BMKMapManager* _mapManager;
     [[tabBarController tabBar] setBackgroundImage:[UIImage imageNamed:@"tabbar_bg"]];
 
     self.window.rootViewController = tabBarController;
+    [self.window makeKeyAndVisible];
 }
 
 //信鸽

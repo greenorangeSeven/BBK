@@ -49,6 +49,7 @@
 #import "Activity.h"
 #import "TopicFull.h"
 #import "TopicReply.h"
+#import "TopicType.h"
 
 @interface Tool : NSObject
 
@@ -167,6 +168,8 @@
 + (NSMutableArray *)readJsonStrToTopicArray:(NSString *)str;
 //解析社区朋友圈（带评论）
 + (NSMutableArray *)readJsonStrToTopicFullArray:(NSString *)str;
+//解析朋友圈类型JSON
++ (NSMutableArray *)readJsonStrToTopicTypeArray:(NSString *)str;
 //解析报修类型JSON
 + (NSMutableArray *)readJsonStrToRepairTypeArray:(NSString *)str;
 //解析报修列表JSON

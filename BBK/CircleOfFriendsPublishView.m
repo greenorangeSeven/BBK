@@ -1,77 +1,130 @@
 //
-//  AddSuitWorkView.m
+//  CircleOfFriendsPublishView.m
 //  BBK
 //
-//  Created by Seven on 14-12-14.
+//  Created by Seven on 14-12-19.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "AddSuitWorkView.h"
-#import "RepairImageCell.h"
+#import "CircleOfFriendsPublishView.h"
 #import "UIImageView+WebCache.h"
-#import "SuitType.h"
-#import "SuitWorkTableView.h"
+#import "RepairImageCell.h"
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
-@interface AddSuitWorkView ()
+@interface CircleOfFriendsPublishView ()
 {
-    int suitTypeId;
-    NSArray *suitTypeArray;
-    NSMutableArray *suitImageArray;
+    int topicTypeId;
+    NSArray *topicTypeArray;
+    NSMutableArray *topicImageArray;
     int selectCaremaIndex;
-    
-    UIWebView *phoneWebView;
 }
 
 @end
 
-@implementation AddSuitWorkView
+@implementation CircleOfFriendsPublishView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.text = @"投诉建议";
+    titleLabel.text = @"社区朋友圈";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = [Tool getColorForMain];
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle: @"我的" style:UIBarButtonItemStyleBordered target:self action:@selector(pushSuitWorkListAction:)];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle: @"发布" style:UIBarButtonItemStyleBordered target:self action:@selector(submitTopicAction:)];
     self.navigationItem.rightBarButtonItem = rightBtn;
     
-    UserModel *userModel = [UserModel Instance];
-    [self.userFaceIv setImageWithURL:[NSURL URLWithString:[userModel getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
-    
-    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [userModel getUserValueForKey:@"regUserName"], [userModel getUserValueForKey:@"mobileNo"]];
-    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [userModel getUserValueForKey:@"cellName"], [userModel getUserValueForKey:@"buildingName"], [userModel getUserValueForKey:@"numberName"], [userModel getUserValueForKey:@"userTypeName"]];
-    
-    self.suitContentTv.delegate = self;
-    
-    suitImageArray = [[NSMutableArray alloc] initWithCapacity:4];
+    self.topicContentTv.delegate = self;
+    topicImageArray = [[NSMutableArray alloc] initWithCapacity:9];
     UIImage *myImage = [UIImage imageNamed:@"cameralogo"];
-    [suitImageArray addObject:myImage];
+    [topicImageArray addObject:myImage];
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.collectionView registerClass:[RepairImageCell class] forCellWithReuseIdentifier:RepairImageCellIdentifier];
     
-    [self getSuitTypeData];
+    [self getTopicTypeData];
 }
 
-- (void)pushSuitWorkListAction:(id)sender
+- (IBAction)submitTopicAction:(id)sender {
+    NSString *contentStr = self.topicContentTv.text;
+    if (contentStr == nil || [contentStr length] == 0) {
+        [Tool showCustomHUD:@"请发表您这一刻的想法" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        return;
+    }
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+
+    UserModel *userModel = [UserModel Instance];
+
+    //生成新增报修Sign
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    [param setValue:[NSString stringWithFormat:@"%d", topicTypeId] forKey:@"typeId"];
+    [param setValue:contentStr forKey:@"content"];
+    [param setValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"userId"];
+    [param setValue:[userModel getUserValueForKey:@"cellId"] forKey:@"cellId"];
+    NSString *addTopicSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_addTopicInfo] params:param];
+
+    NSString *addTopicUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_addTopicInfo];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:addTopicUrl]];
+    [request setUseCookiePersistence:[[UserModel Instance] isLogin]];
+    [request setTimeOutSeconds:30];
+    [request setPostValue:Appkey forKey:@"accessId"];
+    [request setPostValue:addTopicSign forKey:@"sign"];
+    [request setPostValue:[NSString stringWithFormat:@"%d", topicTypeId] forKey:@"typeId"];
+    [request setPostValue:contentStr forKey:@"content"];
+    [request setPostValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"userId"];
+    [request setPostValue:[userModel getUserValueForKey:@"cellId"] forKey:@"cellId"];
+    for (int i = 0 ; i < [topicImageArray count] - 1; i++) {
+        UIImage *topicImage = [topicImageArray objectAtIndex:i];
+        [request addData:UIImageJPEGRepresentation(topicImage, 0.8f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:[NSString stringWithFormat:@"pic%d", i]];
+    }
+    request.tag = 1;
+
+    request.delegate = self;
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [request setDidFinishSelector:@selector(requestSubmit:)];
+    [request startAsynchronous];
+    request.hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"提交朋友圈" andView:self.view andHUD:request.hud];
+}
+
+- (void)requestSubmit:(ASIHTTPRequest *)request
 {
-    SuitWorkTableView *suitTableView = [[SuitWorkTableView alloc] init];
-    suitTableView.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:suitTableView animated:YES];
+    if (request.hud) {
+        [request.hud hide:YES];
+    }
+
+    [request setUseCookiePersistence:YES];
+    NSData *data = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+    NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == NO) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                     message:[[json objectForKey:@"header"] objectForKey:@"msg"]
+                                                    delegate:nil
+                                           cancelButtonTitle:@"确定"
+                                           otherButtonTitles:nil];
+        [av show];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        return;
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_RefreshTopic object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
-- (void)getSuitTypeData
+- (void)getTopicTypeData
 {
     //生成获取报修类型URL
-    NSString *typeUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findAllSuitType] params:nil];
+    NSString *typeUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findAllTopicType] params:nil];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:typeUrl]];
     [request setUseCookiePersistence:NO];
@@ -79,8 +132,6 @@
     [request setDidFailSelector:@selector(requestFailed:)];
     [request setDidFinishSelector:@selector(requestSucceed:)];
     [request startAsynchronous];
-    request.tag = 0;
-    
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"加载中..." andView:self.view andHUD:request.hud];
 }
@@ -114,12 +165,10 @@
     }
     else
     {
-        if (request.tag == 0) {
-            suitTypeArray = [Tool readJsonStrToSuitTypeArray:request.responseString];
-            SuitType *suitType = [suitTypeArray objectAtIndex:0];
-            self.suitTypeNameLb.text = suitType.suitTypeName;
-            suitTypeId = suitType.suitTypeId;
-        }
+        topicTypeArray = [Tool readJsonStrToTopicTypeArray:request.responseString];
+        TopicType *topicType = [topicTypeArray objectAtIndex:0];
+        self.topicTypeNameLb.text = [NSString stringWithFormat:@"【%@】", topicType.typeName];
+        topicTypeId = topicType.typeId;
     }
 }
 
@@ -127,16 +176,16 @@
 {
     int textLength = [textView.text length];
     if (textLength == 0) {
-        [self.suitContentPlaceholder setHidden:NO];
+        [self.topicContentPlaceholder setHidden:NO];
     }else{
-        [self.suitContentPlaceholder setHidden:YES];
+        [self.topicContentPlaceholder setHidden:YES];
     }
 }
 
 //定义展示的UICollectionViewCell的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [suitImageArray count];
+    return [topicImageArray count];
 }
 
 //定义展示的Section的个数
@@ -159,7 +208,7 @@
         }
     }
     int row = [indexPath row];
-    UIImage *repairImage = [suitImageArray objectAtIndex:row];
+    UIImage *repairImage = [topicImageArray objectAtIndex:row];
     cell.repairIv.image = repairImage;
     
     return cell;
@@ -169,7 +218,7 @@
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(75, 65);
+    return CGSizeMake(100, 80);
 }
 
 //定义每个UICollectionView 的 margin
@@ -183,7 +232,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     int row = [indexPath row];
-    if (row == [suitImageArray count] -1) {
+    if (row == [topicImageArray count] -1) {
         UIActionSheet *cameraSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
                                                         cancelButtonTitle:@"取消"
@@ -215,16 +264,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -261,10 +300,11 @@
                                  }];
             }
         }
+        
     }
     if (actionSheet.tag == 2) {
         if (buttonIndex == 0) {
-            [suitImageArray removeObjectAtIndex:selectCaremaIndex];
+            [topicImageArray removeObjectAtIndex:selectCaremaIndex];
             [self.collectionView reloadData];
         }
     }
@@ -275,7 +315,7 @@
     [picker dismissViewControllerAnimated:YES completion:^() {
         UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         UIImage *smallImage = [self imageByScalingToMaxSize:portraitImg];
-        [suitImageArray insertObject:smallImage atIndex:[suitImageArray count] -1];
+        [topicImageArray insertObject:smallImage atIndex:[topicImageArray count] -1];
         [self.collectionView reloadData];
     }];
 }
@@ -406,15 +446,15 @@
 }
 //拍照处理
 
-- (IBAction)selectSuitTypeAction:(id)sender {
-    if ([suitTypeArray count]> 0) {
-        SuitType *suitType = [suitTypeArray objectAtIndex:0];
-        self.suitTypeNameLb.text = suitType.suitTypeName;
-        suitTypeId = suitType.suitTypeId;
+- (IBAction)selectTopicTypeAction:(id)sender {
+    if ([topicTypeArray count]> 0) {
+        TopicType *topicType = [topicTypeArray objectAtIndex:0];
+        self.topicTypeNameLb.text = [NSString stringWithFormat:@"【%@】", topicType.typeName];
+        topicTypeId = topicType.typeId;
     }
     else
     {
-        [Tool showCustomHUD:@"暂无报修类型" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        [Tool showCustomHUD:@"暂无标签" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
         return;
     }
     if (IS_IOS8) {
@@ -459,7 +499,7 @@
 //返回当前列显示的行数
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [suitTypeArray count];
+    return [topicTypeArray count];
 }
 
 #pragma mark Picker Delegate Methods
@@ -467,115 +507,15 @@
 //返回当前行的内容,此处是将数组中数值添加到滚动的那个显示栏上
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    SuitType *type = (SuitType *)[suitTypeArray objectAtIndex:row];
-    return type.suitTypeName;
+    TopicType *type = (TopicType *)[topicTypeArray objectAtIndex:row];
+    return [NSString stringWithFormat:@"【%@】", type.typeName];
 }
 
 -(void) pickerView: (UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent: (NSInteger)component
 {
-    SuitType *type = (SuitType *)[suitTypeArray objectAtIndex:row];
-    suitTypeId = type.suitTypeId;
-    self.suitTypeNameLb.text = type.suitTypeName;
-}
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
-{
-    UILabel *myView = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 300, 30)];
-    myView.textAlignment = UITextAlignmentCenter;
-    SuitType *type = (SuitType *)[suitTypeArray objectAtIndex:row];
-    myView.text = type.suitTypeName;
-    myView.font = [UIFont systemFontOfSize:18];         //用label来设置字体大小
-    myView.backgroundColor = [UIColor clearColor];
-    return myView;
-}
-
-- (IBAction)telServiceAction:(id)sender {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
-    if (!phoneWebView) {
-        phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    }
-    [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
-}
-
-- (IBAction)submitSuitAction:(id)sender {
-    NSString *contentStr = self.suitContentTv.text;
-    if (contentStr == nil || [contentStr length] == 0) {
-        [Tool showCustomHUD:@"请填写投诉描述" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
-        return;
-    }
-    self.submitSuitBtn.enabled = NO;
-    
-    UserModel *userModel = [UserModel Instance];
-    
-    //生成新增投诉Sign
-    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    [param setValue:[NSString stringWithFormat:@"%d", suitTypeId] forKey:@"suitTypeId"];
-    [param setValue:contentStr forKey:@"suitContent"];
-    [param setValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
-    [param setValue:[userModel getUserValueForKey:@"numberId"] forKey:@"numberId"];
-    NSString *addSuitSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_addSuitWork] params:param];
-    
-    NSString *addSuitUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_addSuitWork];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:addSuitUrl]];
-    [request setUseCookiePersistence:[[UserModel Instance] isLogin]];
-    [request setTimeOutSeconds:30];
-    [request setPostValue:Appkey forKey:@"accessId"];
-    [request setPostValue:addSuitSign forKey:@"sign"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", suitTypeId] forKey:@"suitTypeId"];
-    [request setPostValue:contentStr forKey:@"suitContent"];
-    [request setPostValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
-    [request setPostValue:[userModel getUserValueForKey:@"numberId"] forKey:@"numberId"];
-    for (int i = 0 ; i < [suitImageArray count] - 1; i++) {
-        UIImage *repairImage = [suitImageArray objectAtIndex:i];
-        [request addData:UIImageJPEGRepresentation(repairImage, 0.8f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:[NSString stringWithFormat:@"pic%d", i]];
-    }
-    request.tag = 1;
-    
-    request.delegate = self;
-    [request setDidFailSelector:@selector(requestFailed:)];
-    [request setDidFinishSelector:@selector(requestSubmit:)];
-    [request startAsynchronous];
-    request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"提交报修" andView:self.view andHUD:request.hud];
-}
-
-- (void)requestSubmit:(ASIHTTPRequest *)request
-{
-    if (request.hud) {
-        [request.hud hide:YES];
-    }
-    
-    [request setUseCookiePersistence:YES];
-    NSData *data = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error;
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    NSLog(request.responseString);
-    NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
-    if ([state isEqualToString:@"0000"] == NO) {
-        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
-                                                     message:[[json objectForKey:@"header"] objectForKey:@"msg"]
-                                                    delegate:nil
-                                           cancelButtonTitle:@"确定"
-                                           otherButtonTitles:nil];
-        [av show];
-        self.submitSuitBtn.enabled = YES;
-        return;
-    }
-    else
-    {
-        SuitWorkTableView *suitTableView = [[SuitWorkTableView alloc] init];
-        suitTableView.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:suitTableView animated:YES];
-        
-        [suitImageArray removeAllObjects];
-        UIImage *myImage = [UIImage imageNamed:@"cameralogo"];
-        [suitImageArray addObject:myImage];
-        [self.collectionView reloadData];
-        
-        self.suitContentTv.text = @"";
-        self.suitContentPlaceholder.hidden = NO;
-        self.submitSuitBtn.enabled = YES;
-    }
+    TopicType *type = (TopicType *)[topicTypeArray objectAtIndex:row];
+    topicTypeId = type.typeId;
+    self.topicTypeNameLb.text = [NSString stringWithFormat:@"【%@】", type.typeName];
 }
 
 - (void)viewWillAppear:(BOOL)animated

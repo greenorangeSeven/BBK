@@ -888,6 +888,27 @@
     }
 }
 
+//解析朋友圈类型JSON
++ (NSMutableArray *)readJsonStrToTopicTypeArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *typeJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( typeJsonDic == nil || [typeJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[typeJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *typeArrayJson = [typeJsonDic objectForKey:@"data"];
+        NSMutableArray *typeArray = [RMMapper mutableArrayOfClass:[TopicType class] fromArrayOfDictionary:typeArrayJson];
+        return typeArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 //解析报修类型JSON
 + (NSMutableArray *)readJsonStrToRepairTypeArray:(NSString *)str
 {

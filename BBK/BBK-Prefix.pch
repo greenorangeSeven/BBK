@@ -117,8 +117,14 @@
 #define api_delTopicHeart @"/zhxq_api/topic/delTopicHeart.htm"
 //社区朋友圈点赞
 #define api_addTopicHeart @"/zhxq_api/topic/addTopicHeart.htm"
-
-
+//新增社区朋友圈回复
+#define api_addTopicReply @"/zhxq_api/topic/addTopicReply.htm"
+//删除社区朋友圈
+#define api_delTopicInfo @"/zhxq_api/topic/delTopicInfo.htm"
+//获取所有话题类型
+#define api_findAllTopicType @"/zhxq_api/topic/findAllTopicType.htm"
+//获取朋友圈话题
+#define api_addTopicInfo @"/zhxq_api/topic/addTopicInfo.htm"
 
 
 //小区通知详情页面
@@ -170,6 +176,8 @@
 #define Notification_ShowPackAlertView @"Notification_ShowPackAlertView"
 #define Notification_RefreshSetting @"Notification_RefreshSetting"
 #define Notification_RefreshMyInbox @"Notification_RefreshMyInbox"
+#define Notification_RefreshTopic @"Notification_RefreshTopic"
+
 
 #define UserInfoCache @"UserInfoCache"
 

@@ -29,6 +29,9 @@
 		142D9E441A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E421A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib */; };
 		142D9E4F1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E4D1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.m */; };
 		142D9E501A42AF8600EF59A1 /* CircleOfFriendsReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E4E1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.xib */; };
+		142D9E571A43F68300EF59A1 /* CircleOfFriendsPublishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E551A43F68300EF59A1 /* CircleOfFriendsPublishView.m */; };
+		142D9E581A43F68300EF59A1 /* CircleOfFriendsPublishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E561A43F68300EF59A1 /* CircleOfFriendsPublishView.xib */; };
+		142D9E5C1A43FE4100EF59A1 /* TopicType.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E5B1A43FE4100EF59A1 /* TopicType.m */; };
 		1435426D1A2EA21800A8BBB7 /* Notice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435426C1A2EA21800A8BBB7 /* Notice.m */; };
 		143542761A2EF4F800A8BBB7 /* CallServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143542741A2EF4F800A8BBB7 /* CallServiceView.m */; };
 		143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143542751A2EF4F800A8BBB7 /* CallServiceView.xib */; };
@@ -380,6 +383,11 @@
 		142D9E4C1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFriendsReplyCell.h; sourceTree = "<group>"; };
 		142D9E4D1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFriendsReplyCell.m; sourceTree = "<group>"; };
 		142D9E4E1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFriendsReplyCell.xib; sourceTree = "<group>"; };
+		142D9E541A43F68300EF59A1 /* CircleOfFriendsPublishView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfFriendsPublishView.h; sourceTree = "<group>"; };
+		142D9E551A43F68300EF59A1 /* CircleOfFriendsPublishView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFriendsPublishView.m; sourceTree = "<group>"; };
+		142D9E561A43F68300EF59A1 /* CircleOfFriendsPublishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFriendsPublishView.xib; sourceTree = "<group>"; };
+		142D9E5A1A43FE4100EF59A1 /* TopicType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicType.h; sourceTree = "<group>"; };
+		142D9E5B1A43FE4100EF59A1 /* TopicType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicType.m; sourceTree = "<group>"; };
 		1435426B1A2EA21800A8BBB7 /* Notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notice.h; sourceTree = "<group>"; };
 		1435426C1A2EA21800A8BBB7 /* Notice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notice.m; sourceTree = "<group>"; };
 		143542731A2EF4F800A8BBB7 /* CallServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallServiceView.h; sourceTree = "<group>"; };
@@ -1015,6 +1023,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		142D9E5E1A4406FF00EF59A1 /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				144A1AD71A2FEE5E00E01E2B /* CircleOfFriendsCell.h */,
+				144A1AD81A2FEE5E00E01E2B /* CircleOfFriendsCell.m */,
+				144A1AD91A2FEE5E00E01E2B /* CircleOfFriendsCell.xib */,
+				14C117B71A357F60009CAC7E /* CircleOfFriendsImgCell.h */,
+				14C117B81A357F60009CAC7E /* CircleOfFriendsImgCell.m */,
+				14C117B91A357F60009CAC7E /* CircleOfFriendsImgCell.xib */,
+				142D9E341A41B55700EF59A1 /* CircleOfFriendsView.h */,
+				142D9E351A41B55700EF59A1 /* CircleOfFriendsView.m */,
+				142D9E361A41B55700EF59A1 /* CircleOfFriendsView.xib */,
+				142D9E401A41D47B00EF59A1 /* CircleOfFriendsFullCell.h */,
+				142D9E411A41D47B00EF59A1 /* CircleOfFriendsFullCell.m */,
+				142D9E421A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib */,
+				142D9E4C1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.h */,
+				142D9E4D1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.m */,
+				142D9E4E1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.xib */,
+				142D9E541A43F68300EF59A1 /* CircleOfFriendsPublishView.h */,
+				142D9E551A43F68300EF59A1 /* CircleOfFriendsPublishView.m */,
+				142D9E561A43F68300EF59A1 /* CircleOfFriendsPublishView.xib */,
+			);
+			name = Topic;
+			sourceTree = "<group>";
+		};
 		144A1C081A302EED00E01E2B /* inc */ = {
 			isa = PBXGroup;
 			children = (
@@ -1116,6 +1149,8 @@
 				142D9E3B1A41CB9200EF59A1 /* TopicFull.m */,
 				142D9E3D1A41D0AD00EF59A1 /* TopicReply.h */,
 				142D9E3E1A41D0AD00EF59A1 /* TopicReply.m */,
+				142D9E5A1A43FE4100EF59A1 /* TopicType.h */,
+				142D9E5B1A43FE4100EF59A1 /* TopicType.m */,
 				14C117C71A35E3E6009CAC7E /* RepairType.h */,
 				14C117C81A35E3E6009CAC7E /* RepairType.m */,
 				14CCEE071A36A0D500ABBE7F /* Repair.h */,
@@ -1325,21 +1360,7 @@
 				14B641B71A2D42AC00C350A0 /* LifePageView.h */,
 				14B641B81A2D42AC00C350A0 /* LifePageView.m */,
 				14B641B91A2D42AC00C350A0 /* LifePageView.xib */,
-				144A1AD71A2FEE5E00E01E2B /* CircleOfFriendsCell.h */,
-				144A1AD81A2FEE5E00E01E2B /* CircleOfFriendsCell.m */,
-				144A1AD91A2FEE5E00E01E2B /* CircleOfFriendsCell.xib */,
-				14C117B71A357F60009CAC7E /* CircleOfFriendsImgCell.h */,
-				14C117B81A357F60009CAC7E /* CircleOfFriendsImgCell.m */,
-				14C117B91A357F60009CAC7E /* CircleOfFriendsImgCell.xib */,
-				142D9E341A41B55700EF59A1 /* CircleOfFriendsView.h */,
-				142D9E351A41B55700EF59A1 /* CircleOfFriendsView.m */,
-				142D9E361A41B55700EF59A1 /* CircleOfFriendsView.xib */,
-				142D9E401A41D47B00EF59A1 /* CircleOfFriendsFullCell.h */,
-				142D9E411A41D47B00EF59A1 /* CircleOfFriendsFullCell.m */,
-				142D9E421A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib */,
-				142D9E4C1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.h */,
-				142D9E4D1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.m */,
-				142D9E4E1A42AF8600EF59A1 /* CircleOfFriendsReplyCell.xib */,
+				142D9E5E1A4406FF00EF59A1 /* Topic */,
 				14B4D3CD1A36D82200933A5A /* LifeReferView.h */,
 				14B4D3CE1A36D82200933A5A /* LifeReferView.m */,
 				14B4D3CF1A36D82300933A5A /* LifeReferView.xib */,
@@ -2199,6 +2220,7 @@
 				14C1178C1A31E3B9009CAC7E /* ExpressHistoryCell.xib in Resources */,
 				14B4D4981A3D77E300933A5A /* SuitReplyCell.xib in Resources */,
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
+				142D9E581A43F68300EF59A1 /* CircleOfFriendsPublishView.xib in Resources */,
 				14B4D3E41A372C8B00933A5A /* CommDetailView.xib in Resources */,
 				14B4D4721A3D20CF00933A5A /* AddSuitWorkView.xib in Resources */,
 				14B4D43D1A3A8AD800933A5A /* RepairDispatchCell.xib in Resources */,
@@ -2310,6 +2332,7 @@
 				14B4D3D81A36DCB500933A5A /* LifeReferCell.m in Sources */,
 				14FDB9991A26C94E006EFFCC /* UIViewController+CWPopup.m in Sources */,
 				14FDB9D51A26C94F006EFFCC /* SDWebImageCompat.m in Sources */,
+				142D9E571A43F68300EF59A1 /* CircleOfFriendsPublishView.m in Sources */,
 				14E3A0641A275C77009D0EB0 /* RegisterStep1View.m in Sources */,
 				14B641CE1A2DA9DD00C350A0 /* NoticeTableView.m in Sources */,
 				14B4D4181A39253700933A5A /* ShopInfoCell.m in Sources */,
@@ -2344,6 +2367,7 @@
 				14FDB9871A26C94E006EFFCC /* ASIDataDecompressor.m in Sources */,
 				14FDB97D1A26C94E006EFFCC /* SBJsonBase.m in Sources */,
 				14FDB9FF1A26C94F006EFFCC /* ZJSwitch.m in Sources */,
+				142D9E5C1A43FE4100EF59A1 /* TopicType.m in Sources */,
 				14FDB9AC1A26C94E006EFFCC /* UIButton+TitleImage.m in Sources */,
 				14B4D4121A389E9A00933A5A /* ShopTypeView.m in Sources */,
 				14CCEE091A36A0D500ABBE7F /* Repair.m in Sources */,
@@ -2614,7 +2638,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Framework,
@@ -2637,7 +2661,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e974077a-838c-4239-b643-b8970a5357a1";
+				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
 			};
 			name = Debug;
 		};
@@ -2650,7 +2674,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Framework,
@@ -2673,7 +2697,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e974077a-838c-4239-b643-b8970a5357a1";
+				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
 			};
 			name = Release;
 		};

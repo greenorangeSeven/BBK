@@ -20,7 +20,7 @@
 @property int isHeart;//当前用户有无点赞
 @property (nonatomic, retain) NSString *starttimeStamp;
 @property (nonatomic, retain) NSArray *imgUrlList;
-@property (nonatomic, retain) NSArray *replyList;
+@property (nonatomic, retain) NSMutableArray *replyList;
 @property int typeId;
 @property (nonatomic, retain) NSString *typeName;
 @property (nonatomic, retain) NSString *starttime;

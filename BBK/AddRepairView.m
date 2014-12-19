@@ -193,7 +193,7 @@
                                                                  delegate:self
                                                         cancelButtonTitle:@"取消"
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:@"拍照", nil];
+                                                        otherButtonTitles:@"拍照", @"从相册中选取", nil];
         cameraSheet.tag = 0;
         [cameraSheet showInView:self.view];
     }
@@ -250,6 +250,22 @@
                                  }];
             }
         }
+        else if (buttonIndex == 1) {
+            // 从相册中选取
+            if ([self isPhotoLibraryAvailable]) {
+                UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+                controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+                [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+                controller.mediaTypes = mediaTypes;
+                controller.delegate = self;
+                [self presentViewController:controller
+                                   animated:YES
+                                 completion:^(void){
+                                     NSLog(@"Picker View Controller is presented");
+                                 }];
+            }
+        }
     }
     if (actionSheet.tag == 2) {
         if (buttonIndex == 0) {
@@ -263,7 +279,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:YES completion:^() {
         UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        [repairImageArray insertObject:portraitImg atIndex:[repairImageArray count] -1];
+        UIImage *smallImage = [self imageByScalingToMaxSize:portraitImg];
+        [repairImageArray insertObject:smallImage atIndex:[repairImageArray count] -1];
         [self.collectionView reloadData];
     }];
 }
@@ -515,7 +532,7 @@
     [request setPostValue:[userModel getUserValueForKey:@"numberId"] forKey:@"numberId"];
     for (int i = 0 ; i < [repairImageArray count] - 1; i++) {
         UIImage *repairImage = [repairImageArray objectAtIndex:i];
-        [request addData:UIImageJPEGRepresentation(repairImage, 0.6f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:[NSString stringWithFormat:@"pic%d", i]];
+        [request addData:UIImageJPEGRepresentation(repairImage, 0.8f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:[NSString stringWithFormat:@"pic%d", i]];
     }
     request.tag = 1;
     
