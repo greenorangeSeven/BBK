@@ -1307,4 +1307,49 @@
     }
 }
 
+//解析账单列表列表JSON
++ (NSMutableArray *)readJsonStrToPaymentArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *paymentJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( paymentJsonDic == nil || [paymentJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[paymentJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *paymentArrayJson = [[paymentJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *paymentArray = [RMMapper mutableArrayOfClass:[Payment class] fromArrayOfDictionary:paymentArrayJson];
+        return paymentArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//解析月账单明细JSON
++ (NSMutableArray *)readJsonStrToPaymentItemArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *itemJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( itemJsonDic == nil || [itemJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[itemJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *itemArrayJson = [itemJsonDic objectForKey:@"data"];
+        NSMutableArray *itemArray = [RMMapper mutableArrayOfClass:[PaymentItem class] fromArrayOfDictionary:itemArrayJson];
+        for (PaymentItem *item in itemArray) {
+            item.dbildate = [self TimestampToDateStr:[item.dbildateStamp stringValue] andFormatterStr:@"yyyy-MM-dd"];
+        }
+        return itemArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 @end

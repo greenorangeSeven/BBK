@@ -80,7 +80,7 @@ BMKMapManager* _mapManager;
     
     //设置UINavigationController背景
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg"]  forBarMetrics:UIBarMetricsDefault];
-
+[UIApplication sharedApplication] isRegisteredForRemoteNotifications
     //启动判断登陆
     [self userLogin];
     

@@ -50,6 +50,8 @@
 #import "TopicFull.h"
 #import "TopicReply.h"
 #import "TopicType.h"
+#import "Payment.h"
+#import "PaymentItem.h"
 
 @interface Tool : NSObject
 
@@ -196,5 +198,9 @@
 + (NSMutableArray *)readJsonStrToPassInfoArray:(NSString *)str;
 //解析社区活动JSON
 + (NSMutableArray *)readJsonStrToActivityArray:(NSString *)str;
+//解析账单列表列表JSON
++ (NSMutableArray *)readJsonStrToPaymentArray:(NSString *)str;
+//解析月账单明细JSON
++ (NSMutableArray *)readJsonStrToPaymentItemArray:(NSString *)str;
 
 @end

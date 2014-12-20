@@ -89,6 +89,9 @@
                             <state key="normal" image="pro_zdts">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="pushPaymentListView:" destination="-1" eventType="touchUpInside" id="IXv-ut-XRQ"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Y2A-cc-PA0">
                             <rect key="frame" x="229" y="191" width="61" height="62"/>

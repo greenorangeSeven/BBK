@@ -52,6 +52,16 @@
 		1469FD651A270DF4002685A0 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD641A270DF4002685A0 /* UserModel.m */; };
 		1469FD6A1A270E10002685A0 /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD671A270E10002685A0 /* Tool.m */; };
 		1469FD6B1A270E10002685A0 /* PrintObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469FD691A270E10002685A0 /* PrintObject.m */; };
+		146E22761A451025003EB640 /* PaymentListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146E22741A451025003EB640 /* PaymentListView.m */; };
+		146E22771A451025003EB640 /* PaymentListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E22751A451025003EB640 /* PaymentListView.xib */; };
+		146E227B1A4517CC003EB640 /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = 146E227A1A4517CC003EB640 /* Payment.m */; };
+		146E227F1A45B134003EB640 /* PaymentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146E227D1A45B134003EB640 /* PaymentCell.m */; };
+		146E22801A45B134003EB640 /* PaymentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E227E1A45B134003EB640 /* PaymentCell.xib */; };
+		146E22841A45B5B9003EB640 /* PaymentMonthDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146E22821A45B5B9003EB640 /* PaymentMonthDetailView.m */; };
+		146E22851A45B5B9003EB640 /* PaymentMonthDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E22831A45B5B9003EB640 /* PaymentMonthDetailView.xib */; };
+		146E22881A45B962003EB640 /* PaymentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 146E22871A45B962003EB640 /* PaymentItem.m */; };
+		146E228C1A45BC10003EB640 /* PaymentItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146E228A1A45BC10003EB640 /* PaymentItemCell.m */; };
+		146E228D1A45BC10003EB640 /* PaymentItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E228B1A45BC10003EB640 /* PaymentItemCell.xib */; };
 		148AD7D01A3EC5F700290203 /* BorrowGoodFromView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148AD7CE1A3EC5F700290203 /* BorrowGoodFromView.m */; };
 		148AD7D11A3EC5F700290203 /* BorrowGoodFromView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148AD7CF1A3EC5F700290203 /* BorrowGoodFromView.xib */; };
 		148AD7D61A3F1B3500290203 /* BorrowRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 148AD7D51A3F1B3500290203 /* BorrowRecord.m */; };
@@ -480,6 +490,22 @@
 		1469FD671A270E10002685A0 /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
 		1469FD681A270E10002685A0 /* PrintObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintObject.h; sourceTree = "<group>"; };
 		1469FD691A270E10002685A0 /* PrintObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintObject.m; sourceTree = "<group>"; };
+		146E22731A451025003EB640 /* PaymentListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentListView.h; sourceTree = "<group>"; };
+		146E22741A451025003EB640 /* PaymentListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentListView.m; sourceTree = "<group>"; };
+		146E22751A451025003EB640 /* PaymentListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentListView.xib; sourceTree = "<group>"; };
+		146E22791A4517CC003EB640 /* Payment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
+		146E227A1A4517CC003EB640 /* Payment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Payment.m; sourceTree = "<group>"; };
+		146E227C1A45B134003EB640 /* PaymentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCell.h; sourceTree = "<group>"; };
+		146E227D1A45B134003EB640 /* PaymentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentCell.m; sourceTree = "<group>"; };
+		146E227E1A45B134003EB640 /* PaymentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentCell.xib; sourceTree = "<group>"; };
+		146E22811A45B5B9003EB640 /* PaymentMonthDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentMonthDetailView.h; sourceTree = "<group>"; };
+		146E22821A45B5B9003EB640 /* PaymentMonthDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentMonthDetailView.m; sourceTree = "<group>"; };
+		146E22831A45B5B9003EB640 /* PaymentMonthDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentMonthDetailView.xib; sourceTree = "<group>"; };
+		146E22861A45B962003EB640 /* PaymentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentItem.h; sourceTree = "<group>"; };
+		146E22871A45B962003EB640 /* PaymentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentItem.m; sourceTree = "<group>"; };
+		146E22891A45BC10003EB640 /* PaymentItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentItemCell.h; sourceTree = "<group>"; };
+		146E228A1A45BC10003EB640 /* PaymentItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentItemCell.m; sourceTree = "<group>"; };
+		146E228B1A45BC10003EB640 /* PaymentItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentItemCell.xib; sourceTree = "<group>"; };
 		148AD7CD1A3EC5F700290203 /* BorrowGoodFromView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorrowGoodFromView.h; sourceTree = "<group>"; };
 		148AD7CE1A3EC5F700290203 /* BorrowGoodFromView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorrowGoodFromView.m; sourceTree = "<group>"; };
 		148AD7CF1A3EC5F700290203 /* BorrowGoodFromView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorrowGoodFromView.xib; sourceTree = "<group>"; };
@@ -1193,6 +1219,10 @@
 				142D9E151A4009FB00EF59A1 /* PassInfo.m */,
 				142D9E261A40743500EF59A1 /* Activity.h */,
 				142D9E271A40743500EF59A1 /* Activity.m */,
+				146E22791A4517CC003EB640 /* Payment.h */,
+				146E227A1A4517CC003EB640 /* Payment.m */,
+				146E22861A45B962003EB640 /* PaymentItem.h */,
+				146E22871A45B962003EB640 /* PaymentItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1262,6 +1292,18 @@
 				142D9E0F1A40072700EF59A1 /* GatePassInfoCell.h */,
 				142D9E101A40072700EF59A1 /* GatePassInfoCell.m */,
 				142D9E111A40072700EF59A1 /* GatePassInfoCell.xib */,
+				146E22731A451025003EB640 /* PaymentListView.h */,
+				146E22741A451025003EB640 /* PaymentListView.m */,
+				146E22751A451025003EB640 /* PaymentListView.xib */,
+				146E227C1A45B134003EB640 /* PaymentCell.h */,
+				146E227D1A45B134003EB640 /* PaymentCell.m */,
+				146E227E1A45B134003EB640 /* PaymentCell.xib */,
+				146E22811A45B5B9003EB640 /* PaymentMonthDetailView.h */,
+				146E22821A45B5B9003EB640 /* PaymentMonthDetailView.m */,
+				146E22831A45B5B9003EB640 /* PaymentMonthDetailView.xib */,
+				146E22891A45BC10003EB640 /* PaymentItemCell.h */,
+				146E228A1A45BC10003EB640 /* PaymentItemCell.m */,
+				146E228B1A45BC10003EB640 /* PaymentItemCell.xib */,
 				14B4D46D1A3D20A100933A5A /* Suit */,
 				14B4D46C1A3D1EA200933A5A /* Repair */,
 			);
@@ -2219,9 +2261,11 @@
 				142D9E441A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib in Resources */,
 				14C1178C1A31E3B9009CAC7E /* ExpressHistoryCell.xib in Resources */,
 				14B4D4981A3D77E300933A5A /* SuitReplyCell.xib in Resources */,
+				146E22851A45B5B9003EB640 /* PaymentMonthDetailView.xib in Resources */,
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
 				142D9E581A43F68300EF59A1 /* CircleOfFriendsPublishView.xib in Resources */,
 				14B4D3E41A372C8B00933A5A /* CommDetailView.xib in Resources */,
+				146E22801A45B134003EB640 /* PaymentCell.xib in Resources */,
 				14B4D4721A3D20CF00933A5A /* AddSuitWorkView.xib in Resources */,
 				14B4D43D1A3A8AD800933A5A /* RepairDispatchCell.xib in Resources */,
 				143542771A2EF4F800A8BBB7 /* CallServiceView.xib in Resources */,
@@ -2239,6 +2283,7 @@
 				14B4D48D1A3D6B8300933A5A /* SuitBasicCell.xib in Resources */,
 				144A1AEB1A2FFE9500E01E2B /* GoodBorrowCell.xib in Resources */,
 				142D9E131A40072700EF59A1 /* GatePassInfoCell.xib in Resources */,
+				146E22771A451025003EB640 /* PaymentListView.xib in Resources */,
 				144A1ADB1A2FEE5E00E01E2B /* CircleOfFriendsCell.xib in Resources */,
 				14B641D71A2DF89500C350A0 /* NoticeNewCell.xib in Resources */,
 				14B4D46B1A3C26BD00933A5A /* MonthlyCell.xib in Resources */,
@@ -2274,6 +2319,7 @@
 				148AD7DB1A3F23AC00290203 /* BorrowRecordCell.xib in Resources */,
 				14B812FA1A2F55D500506CD1 /* CallServiceReusable.xib in Resources */,
 				148AD7D11A3EC5F700290203 /* BorrowGoodFromView.xib in Resources */,
+				146E228D1A45BC10003EB640 /* PaymentItemCell.xib in Resources */,
 				14B4D4A31A3DC92C00933A5A /* SuitResutCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2307,6 +2353,7 @@
 				14FDB98D1A26C94E006EFFCC /* CheckNetwork.m in Sources */,
 				14FDB9711A26C94E006EFFCC /* AFURLConnectionOperation.m in Sources */,
 				14B4D4441A3A9CE900933A5A /* RepairFinishCell.m in Sources */,
+				146E227F1A45B134003EB640 /* PaymentCell.m in Sources */,
 				14FDB9841A26C94E006EFFCC /* ASIWebPageRequest.m in Sources */,
 				14FDB9E11A26C94F006EFFCC /* UIView+WebCacheOperation.m in Sources */,
 				148AD7D61A3F1B3500290203 /* BorrowRecord.m in Sources */,
@@ -2316,6 +2363,7 @@
 				14FDB9FD1A26C94F006EFFCC /* StrikeThroughLabel.m in Sources */,
 				14FDB9901A26C94E006EFFCC /* ImgRecord.m in Sources */,
 				142D9E431A41D47B00EF59A1 /* CircleOfFriendsFullCell.m in Sources */,
+				146E227B1A4517CC003EB640 /* Payment.m in Sources */,
 				14D3C07D1A2819EA003E650A /* UserHouse.m in Sources */,
 				1469FD6B1A270E10002685A0 /* PrintObject.m in Sources */,
 				14B4D4A21A3DC92C00933A5A /* SuitResutCell.m in Sources */,
@@ -2343,6 +2391,7 @@
 				14FDB9DD1A26C94F006EFFCC /* UIImage+MultiFormat.m in Sources */,
 				148AD7D01A3EC5F700290203 /* BorrowGoodFromView.m in Sources */,
 				14C117C91A35E3E6009CAC7E /* RepairType.m in Sources */,
+				146E228C1A45BC10003EB640 /* PaymentItemCell.m in Sources */,
 				14FDB7A21A26B6E3006EFFCC /* LoginView.mm in Sources */,
 				14FDB9AB1A26C94E006EFFCC /* NSString+URLEncoding.m in Sources */,
 				14B641C11A2D691A00C350A0 /* SettingPageView.m in Sources */,
@@ -2351,6 +2400,7 @@
 				1469FD651A270DF4002685A0 /* UserModel.m in Sources */,
 				14FDB9DB1A26C94F006EFFCC /* UIButton+WebCache.m in Sources */,
 				14B4D3E81A37418400933A5A /* ConvenienceTypeView.m in Sources */,
+				146E22881A45B962003EB640 /* PaymentItem.m in Sources */,
 				14FDB9781A26C94E006EFFCC /* AlixPayOrder.m in Sources */,
 				14D3C0AA1A2878E0003E650A /* Building.m in Sources */,
 				14FDB9B31A26C94E006EFFCC /* FMDatabaseQueue.m in Sources */,
@@ -2413,6 +2463,7 @@
 				14CCEE051A3696CE00ABBE7F /* RepairTableCell.m in Sources */,
 				14FDB9D61A26C94F006EFFCC /* SDWebImageDecoder.m in Sources */,
 				14FDB9861A26C94E006EFFCC /* ASIDataCompressor.m in Sources */,
+				146E22761A451025003EB640 /* PaymentListView.m in Sources */,
 				14FDB96B1A26C94E006EFFCC /* AFImageRequestOperation.m in Sources */,
 				1435427F1A2F40B000A8BBB7 /* CallService.m in Sources */,
 				14B4D42F1A39D77300933A5A /* RepairBasic.m in Sources */,
@@ -2454,6 +2505,7 @@
 				142D9E371A41B55700EF59A1 /* CircleOfFriendsView.m in Sources */,
 				142D9E3C1A41CB9200EF59A1 /* TopicFull.m in Sources */,
 				14B4D3DE1A37262700933A5A /* LifeReferFooterReusableView.m in Sources */,
+				146E22841A45B5B9003EB640 /* PaymentMonthDetailView.m in Sources */,
 				14B4D3F31A37D8A900933A5A /* ConvenienceTableView.m in Sources */,
 				14FDB9D21A26C94F006EFFCC /* MKAnnotationView+WebCache.m in Sources */,
 				14FDB9A91A26C94E006EFFCC /* NSString+AES.m in Sources */,

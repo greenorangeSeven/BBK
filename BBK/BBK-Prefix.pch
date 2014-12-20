@@ -125,6 +125,10 @@
 #define api_findAllTopicType @"/zhxq_api/topic/findAllTopicType.htm"
 //获取朋友圈话题
 #define api_addTopicInfo @"/zhxq_api/topic/addTopicInfo.htm"
+//按月分组查询账单数据
+#define api_findPaymentByGroup @"/zhxq_api/payment/findPaymentByGroup.htm"
+//查询月账单详情
+#define api_findPaymentListByMonth @"/zhxq_api/payment/findPaymentListByMonth.htm"
 
 
 //小区通知详情页面
@@ -170,6 +174,8 @@
 #define ActivityCollectionCellIdentifier @"ActivityCollectionCellIdentifier"
 #define CircleOfFriendsFullCellIdentifier @"CircleOfFriendsFullCellIdentifier"
 #define CircleOfFriendsReplyCellIdentifier @"CircleOfFriendsReplyCellIdentifier"
+#define PaymentCellIdentifier @"PaymentCellIdentifier"
+#define PaymentItemCellIdentifier @"PaymentItemCellIdentifier"
 
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"

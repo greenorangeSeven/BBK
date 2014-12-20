@@ -42,6 +42,8 @@
 - (IBAction)addSuitWorkAction:(id)sender;
 //访客通行证
 - (IBAction)pushGatePassAction:(id)sender;
+//账单推送
+- (IBAction)pushPaymentListView:(id)sender;
 
 //下拉刷新
 - (void)refresh;

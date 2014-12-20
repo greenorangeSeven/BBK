@@ -17,6 +17,7 @@
 #import "AddSuitWorkView.h"
 #import "CommDetailView.h"
 #import "PushGatePassView.h"
+#import "PaymentListView.h"
 
 @interface PropertyPageView ()
 {
@@ -303,6 +304,13 @@
     PushGatePassView *gatePassView = [[PushGatePassView alloc] init];
     gatePassView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:gatePassView animated:YES];
+}
+
+//账单推送
+- (IBAction)pushPaymentListView:(id)sender {
+    PaymentListView *paymentListView = [[PaymentListView alloc] init];
+    paymentListView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:paymentListView animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
