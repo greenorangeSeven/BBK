@@ -129,6 +129,8 @@
 #define api_findPaymentByGroup @"/zhxq_api/payment/findPaymentByGroup.htm"
 //查询月账单详情
 #define api_findPaymentListByMonth @"/zhxq_api/payment/findPaymentListByMonth.htm"
+//分页查询交易数据
+#define api_findBusinessInfoByPage @"/zhxq_api/business/findBusinessInfoByPage.htm"
 
 
 //小区通知详情页面
@@ -143,6 +145,8 @@
 #define htm_activityDetail @"/zhxq_api/app/activityDetail.htm?activityId="
 //广告详情页面
 #define htm_adDetail @"/zhxq_api/app/adDetail.htm?adId="
+//交易详情页面
+#define htm_businessDetail @"/zhxq_api/app/businessDetail.htm"
 
 
 #define servicephone @"0731-58661602"
@@ -176,6 +180,7 @@
 #define CircleOfFriendsReplyCellIdentifier @"CircleOfFriendsReplyCellIdentifier"
 #define PaymentCellIdentifier @"PaymentCellIdentifier"
 #define PaymentItemCellIdentifier @"PaymentItemCellIdentifier"
+#define TradeListCellIdentifier @"TradeListCellIdentifier"
 
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"

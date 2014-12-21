@@ -1352,4 +1352,25 @@
     }
 }
 
+//解析交易买卖JSON
++ (NSMutableArray *)readJsonStrToTradeArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *tradeJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( tradeJsonDic == nil || [tradeJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[tradeJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *tradeArrayJson = [[tradeJsonDic objectForKey:@"data"] objectForKey:@"resultsList"];
+        NSMutableArray *tradeArray = [RMMapper mutableArrayOfClass:[Trade class] fromArrayOfDictionary:tradeArrayJson];
+        return tradeArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 @end

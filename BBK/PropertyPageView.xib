@@ -150,6 +150,9 @@
                             <state key="normal" image="pro_fwjy">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="pushTradeViewAction:" destination="-1" eventType="touchUpInside" id="ehO-8v-dc1"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物业呼叫" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ISF-bs-jLx">
                             <rect key="frame" x="32" y="342" width="58" height="21"/>

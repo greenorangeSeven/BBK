@@ -183,6 +183,13 @@
 		14E3A06F1A276F9C009D0EB0 /* RegisterStep3View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E3A06D1A276F9C009D0EB0 /* RegisterStep3View.xib */; };
 		14E8F4121A2D5CE900017CA5 /* MyPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8F4101A2D5CE900017CA5 /* MyPageView.m */; };
 		14E8F4131A2D5CE900017CA5 /* MyPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E8F4111A2D5CE900017CA5 /* MyPageView.xib */; };
+		14F8013B1A46A97E00DAD296 /* TradeFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F801391A46A97E00DAD296 /* TradeFrameView.m */; };
+		14F8013C1A46A97E00DAD296 /* TradeFrameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F8013A1A46A97E00DAD296 /* TradeFrameView.xib */; };
+		14F801431A46AD0500DAD296 /* TradeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F801411A46AD0500DAD296 /* TradeListView.m */; };
+		14F801441A46AD0500DAD296 /* TradeListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F801421A46AD0500DAD296 /* TradeListView.xib */; };
+		14F801481A46AE9F00DAD296 /* TradeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F801461A46AE9F00DAD296 /* TradeListCell.m */; };
+		14F801491A46AE9F00DAD296 /* TradeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F801471A46AE9F00DAD296 /* TradeListCell.xib */; };
+		14F8014C1A46C0B900DAD296 /* Trade.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8014B1A46C0B900DAD296 /* Trade.m */; };
 		14FDB43D1A25B73A006EFFCC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB43C1A25B73A006EFFCC /* main.m */; };
 		14FDB4401A25B73A006EFFCC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FDB43F1A25B73A006EFFCC /* AppDelegate.m */; };
 		14FDB4481A25B73A006EFFCC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14FDB4471A25B73A006EFFCC /* Images.xcassets */; };
@@ -704,6 +711,17 @@
 		14E8F40F1A2D5CE900017CA5 /* MyPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageView.h; sourceTree = "<group>"; };
 		14E8F4101A2D5CE900017CA5 /* MyPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageView.m; sourceTree = "<group>"; };
 		14E8F4111A2D5CE900017CA5 /* MyPageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPageView.xib; sourceTree = "<group>"; };
+		14F801381A46A97E00DAD296 /* TradeFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeFrameView.h; sourceTree = "<group>"; };
+		14F801391A46A97E00DAD296 /* TradeFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeFrameView.m; sourceTree = "<group>"; };
+		14F8013A1A46A97E00DAD296 /* TradeFrameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeFrameView.xib; sourceTree = "<group>"; };
+		14F801401A46AD0500DAD296 /* TradeListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeListView.h; sourceTree = "<group>"; };
+		14F801411A46AD0500DAD296 /* TradeListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeListView.m; sourceTree = "<group>"; };
+		14F801421A46AD0500DAD296 /* TradeListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeListView.xib; sourceTree = "<group>"; };
+		14F801451A46AE9F00DAD296 /* TradeListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeListCell.h; sourceTree = "<group>"; };
+		14F801461A46AE9F00DAD296 /* TradeListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeListCell.m; sourceTree = "<group>"; };
+		14F801471A46AE9F00DAD296 /* TradeListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeListCell.xib; sourceTree = "<group>"; };
+		14F8014A1A46C0B900DAD296 /* Trade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trade.h; sourceTree = "<group>"; };
+		14F8014B1A46C0B900DAD296 /* Trade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trade.m; sourceTree = "<group>"; };
 		14FDB4371A25B73A006EFFCC /* BBK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FDB43B1A25B73A006EFFCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14FDB43C1A25B73A006EFFCC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1223,6 +1241,8 @@
 				146E227A1A4517CC003EB640 /* Payment.m */,
 				146E22861A45B962003EB640 /* PaymentItem.h */,
 				146E22871A45B962003EB640 /* PaymentItem.m */,
+				14F8014A1A46C0B900DAD296 /* Trade.h */,
+				14F8014B1A46C0B900DAD296 /* Trade.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1304,6 +1324,7 @@
 				146E22891A45BC10003EB640 /* PaymentItemCell.h */,
 				146E228A1A45BC10003EB640 /* PaymentItemCell.m */,
 				146E228B1A45BC10003EB640 /* PaymentItemCell.xib */,
+				14F8013E1A46A98300DAD296 /* Trade */,
 				14B4D46D1A3D20A100933A5A /* Suit */,
 				14B4D46C1A3D1EA200933A5A /* Repair */,
 			);
@@ -1467,6 +1488,22 @@
 				14E8F4111A2D5CE900017CA5 /* MyPageView.xib */,
 			);
 			name = MyPage;
+			sourceTree = "<group>";
+		};
+		14F8013E1A46A98300DAD296 /* Trade */ = {
+			isa = PBXGroup;
+			children = (
+				14F801381A46A97E00DAD296 /* TradeFrameView.h */,
+				14F801391A46A97E00DAD296 /* TradeFrameView.m */,
+				14F8013A1A46A97E00DAD296 /* TradeFrameView.xib */,
+				14F801401A46AD0500DAD296 /* TradeListView.h */,
+				14F801411A46AD0500DAD296 /* TradeListView.m */,
+				14F801421A46AD0500DAD296 /* TradeListView.xib */,
+				14F801451A46AE9F00DAD296 /* TradeListCell.h */,
+				14F801461A46AE9F00DAD296 /* TradeListCell.m */,
+				14F801471A46AE9F00DAD296 /* TradeListCell.xib */,
+			);
+			name = Trade;
 			sourceTree = "<group>";
 		};
 		14FDB42E1A25B73A006EFFCC = {
@@ -2255,12 +2292,14 @@
 				14FDB7A31A26B6E3006EFFCC /* LoginView.xib in Resources */,
 				14B641BB1A2D42AC00C350A0 /* LifePageView.xib in Resources */,
 				14B4D4881A3D67D800933A5A /* SuitDetailView.xib in Resources */,
+				14F801441A46AD0500DAD296 /* TradeListView.xib in Resources */,
 				14B4D4521A3B2D1D00933A5A /* RepairResultCell.xib in Resources */,
 				14B4D3DF1A37262700933A5A /* LifeReferFooterReusableView.xib in Resources */,
 				14B4D4451A3A9CE900933A5A /* RepairFinishCell.xib in Resources */,
 				142D9E441A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib in Resources */,
 				14C1178C1A31E3B9009CAC7E /* ExpressHistoryCell.xib in Resources */,
 				14B4D4981A3D77E300933A5A /* SuitReplyCell.xib in Resources */,
+				14F8013C1A46A97E00DAD296 /* TradeFrameView.xib in Resources */,
 				146E22851A45B5B9003EB640 /* PaymentMonthDetailView.xib in Resources */,
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
 				142D9E581A43F68300EF59A1 /* CircleOfFriendsPublishView.xib in Resources */,
@@ -2304,6 +2343,7 @@
 				14B641CF1A2DA9DD00C350A0 /* NoticeTableView.xib in Resources */,
 				14B4D4191A39253700933A5A /* ShopInfoCell.xib in Resources */,
 				14E3A06F1A276F9C009D0EB0 /* RegisterStep3View.xib in Resources */,
+				14F801491A46AE9F00DAD296 /* TradeListCell.xib in Resources */,
 				144A1C031A302E4600E01E2B /* IQKeyboardManager.bundle in Resources */,
 				14B4D3FA1A37D91700933A5A /* ConvenienceCell.xib in Resources */,
 				14C117CF1A35F452009CAC7E /* RepairImageCell.xib in Resources */,
@@ -2372,6 +2412,7 @@
 				14B4D4211A3976E600933A5A /* RepairDetailView.m in Sources */,
 				14FDB9A61A26C94E006EFFCC /* UITap.m in Sources */,
 				14FDB9C01A26C94F006EFFCC /* MWTapDetectingView.m in Sources */,
+				14F8014C1A46C0B900DAD296 /* Trade.m in Sources */,
 				14B4D4711A3D20CF00933A5A /* AddSuitWorkView.m in Sources */,
 				14B641BA1A2D42AC00C350A0 /* LifePageView.m in Sources */,
 				14FDB96C1A26C94E006EFFCC /* AFJSONRequestOperation.m in Sources */,
@@ -2435,6 +2476,7 @@
 				14FDB97B1A26C94E006EFFCC /* NSString+SBJSON.m in Sources */,
 				14FDB9BF1A26C94F006EFFCC /* MWTapDetectingImageView.m in Sources */,
 				14FDB9731A26C94E006EFFCC /* UIImageView+AFNetworking.m in Sources */,
+				14F801481A46AE9F00DAD296 /* TradeListCell.m in Sources */,
 				1469FD6A1A270E10002685A0 /* Tool.m in Sources */,
 				14B4D3D01A36D82300933A5A /* LifeReferView.m in Sources */,
 				14FDB9A11A26C94E006EFFCC /* ImageStore.m in Sources */,
@@ -2443,6 +2485,7 @@
 				14FDB9791A26C94E006EFFCC /* AlixPayResult.m in Sources */,
 				14FDB9CA1A26C94F006EFFCC /* PSTCollectionViewLayout.m in Sources */,
 				14FDB9D11A26C94F006EFFCC /* README.md in Sources */,
+				14F801431A46AD0500DAD296 /* TradeListView.m in Sources */,
 				14B4D4321A39DAC000933A5A /* RepairDispatch.m in Sources */,
 				142D9E121A40072700EF59A1 /* GatePassInfoCell.m in Sources */,
 				14B4D46A1A3C26BD00933A5A /* MonthlyCell.m in Sources */,
@@ -2505,6 +2548,7 @@
 				142D9E371A41B55700EF59A1 /* CircleOfFriendsView.m in Sources */,
 				142D9E3C1A41CB9200EF59A1 /* TopicFull.m in Sources */,
 				14B4D3DE1A37262700933A5A /* LifeReferFooterReusableView.m in Sources */,
+				14F8013B1A46A97E00DAD296 /* TradeFrameView.m in Sources */,
 				146E22841A45B5B9003EB640 /* PaymentMonthDetailView.m in Sources */,
 				14B4D3F31A37D8A900933A5A /* ConvenienceTableView.m in Sources */,
 				14FDB9D21A26C94F006EFFCC /* MKAnnotationView+WebCache.m in Sources */,

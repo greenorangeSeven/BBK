@@ -18,6 +18,7 @@
 #import "CommDetailView.h"
 #import "PushGatePassView.h"
 #import "PaymentListView.h"
+#import "TradeFrameView.h"
 
 @interface PropertyPageView ()
 {
@@ -311,6 +312,13 @@
     PaymentListView *paymentListView = [[PaymentListView alloc] init];
     paymentListView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:paymentListView animated:YES];
+}
+
+//交易买卖
+- (IBAction)pushTradeViewAction:(id)sender {
+    TradeFrameView *tradeView = [[TradeFrameView alloc] init];
+    tradeView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:tradeView animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

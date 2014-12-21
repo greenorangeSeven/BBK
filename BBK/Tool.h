@@ -52,6 +52,7 @@
 #import "TopicType.h"
 #import "Payment.h"
 #import "PaymentItem.h"
+#import "Trade.h"
 
 @interface Tool : NSObject
 
@@ -202,5 +203,7 @@
 + (NSMutableArray *)readJsonStrToPaymentArray:(NSString *)str;
 //解析月账单明细JSON
 + (NSMutableArray *)readJsonStrToPaymentItemArray:(NSString *)str;
+//解析交易买卖JSON
++ (NSMutableArray *)readJsonStrToTradeArray:(NSString *)str;
 
 @end

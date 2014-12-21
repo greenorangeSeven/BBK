@@ -44,6 +44,8 @@
 - (IBAction)pushGatePassAction:(id)sender;
 //账单推送
 - (IBAction)pushPaymentListView:(id)sender;
+//交易买卖
+- (IBAction)pushTradeViewAction:(id)sender;
 
 //下拉刷新
 - (void)refresh;

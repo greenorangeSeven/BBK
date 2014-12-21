@@ -36,6 +36,9 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
+//    _locService = [[BMKLocationService alloc] init];
+//    _locService.delegate = self;
+    
     // 判断定位操作是否被允许
     if([CLLocationManager locationServicesEnabled]) {
         self.locationManager = [[CLLocationManager alloc] init];
@@ -44,14 +47,14 @@
         }
         self.locationManager.delegate = self;
     }else {
-        //提示用户无法进行定位操作
+        latitude = 0.0;
+        longitude = 0.0;
+        self.tableView.dataSource = self;
+        self.tableView.delegate = self;
+        [self reload:YES];
     }
     // 开始定位
     [self.locationManager startUpdatingLocation];
-    _locService = [[BMKLocationService alloc]init];
-    _locService.delegate = self;
-    
-//    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height-33);
     
     
     self.tableView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:248.0/255.0 blue:248.0/255.0 alpha:1.0];
@@ -74,8 +77,13 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    if(_locService == nil)
+    {
+        _locService = [[BMKLocationService alloc] init];
+        _locService.delegate = self;
+        [self startLocation];
+    }
     [self.locationManager stopUpdatingLocation];
-    [self startLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -90,6 +98,7 @@
 -(void)startLocation
 {
     NSLog(@"进入定位");
+    [Tool showHUD:@"加载中..." andView:self.view andHUD:hud];
     [_locService startUserLocationService];
 }
 
@@ -100,6 +109,7 @@
 - (void)mapViewWillStartLocatingUser:(BMKMapView *)mapView
 {
     NSLog(@"start locate");
+    
 }
 
 /**
@@ -108,7 +118,7 @@
  */
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-    
+     NSLog(@"改变位置");
 }
 
 /**
@@ -146,7 +156,11 @@
  */
 - (void)mapView:(BMKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
 {
-    NSLog(@"location error");
+    latitude = 0.0;
+    longitude = 0.0;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self reload:YES];
 }
 
 - (void)refreshed:(NSNotification *)notification
@@ -163,6 +177,27 @@
 {
     [_refreshHeaderView egoRefreshScrollViewDidScroll:self.tableView];
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:self.tableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTintColor:[Tool getColorForMain]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.locationManager = nil;
+    self.locationManager.delegate = nil;
+    _locService = nil;
+    _locService.delegate = nil;
+    
 }
 
 - (void)viewDidUnload

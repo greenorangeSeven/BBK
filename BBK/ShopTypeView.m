@@ -44,11 +44,6 @@
     }
     // 开始定位
     [self.locationManager startUpdatingLocation];
-    _locService = [[BMKLocationService alloc]init];
-    _locService.delegate = self;
-    
-//    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height-33);
-    
     
     self.tableView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:248.0/255.0 blue:248.0/255.0 alpha:1.0];
     //    设置无分割线
@@ -288,8 +283,13 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    if(_locService == nil)
+    {
+        _locService = [[BMKLocationService alloc] init];
+        _locService.delegate = self;
+        [self startLocation];
+    }
     [self.locationManager stopUpdatingLocation];
-    [self startLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -304,6 +304,7 @@
 -(void)startLocation
 {
     NSLog(@"进入定位");
+    [Tool showHUD:@"加载中..." andView:self.view andHUD:hud];
     [_locService startUserLocationService];
 }
 
