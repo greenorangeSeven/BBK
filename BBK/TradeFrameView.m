@@ -7,6 +7,7 @@
 //
 
 #import "TradeFrameView.h"
+#import "PublishTradeView.h"
 
 @interface TradeFrameView ()
 
@@ -42,6 +43,13 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+}
+
+- (void)publishTradeAction:(id)sender
+{
+    PublishTradeView *publishTrade = [[PublishTradeView alloc] init];
+    publishTrade.parentView = self.view;
+    [self.navigationController pushViewController:publishTrade animated:YES];
 }
 
 - (void)getTradeType

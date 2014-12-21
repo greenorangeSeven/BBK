@@ -21,9 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    titleLabel.text = @"周边商家";
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textColor = [Tool getColorForMain];
+    titleLabel.textAlignment = UITextAlignmentCenter;
+    self.navigationItem.titleView = titleLabel;
+    
     hud = [[MBProgressHUD alloc] initWithView:self.view];
-    
-    
     
     //适配iOS7uinavigationbar遮挡的问题
 //    if(IS_IOS7)
@@ -136,6 +142,14 @@
         return cell;
     }
     cell.referNameLb.text = type.shopTypeName;
+    
+    CGRect imageframe = cell.referIv.frame;
+    imageframe.origin.y -= 2;
+    cell.referIv.frame = imageframe;
+    
+    CGRect nameframe = cell.referNameLb.frame;
+    nameframe.origin.y -= 4;
+    cell.referNameLb.frame = nameframe;
     
     //图片显示及缓存
     if (type.imgData) {

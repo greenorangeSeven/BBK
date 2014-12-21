@@ -41,6 +41,9 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithTitle: @"签到有奖" style:UIBarButtonItemStyleBordered target:self action:@selector(signInAction:)];
+    self.navigationItem.leftBarButtonItem = leftBtn;
+    
     UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 21, 22)];
     [rBtn addTarget:self action:@selector(telAction:) forControlEvents:UIControlEventTouchUpInside];
     [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
@@ -61,6 +64,11 @@
     
     [self getADVData];
     [self getNotice];
+}
+
+- (void)signInAction:(id *)sender
+{
+    
 }
 
 - (void)viewDidUnload

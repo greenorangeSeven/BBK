@@ -131,6 +131,8 @@
 #define api_findPaymentListByMonth @"/zhxq_api/payment/findPaymentListByMonth.htm"
 //分页查询交易数据
 #define api_findBusinessInfoByPage @"/zhxq_api/business/findBusinessInfoByPage.htm"
+//发布交易
+#define api_addBusinessInfoForApp @"/zhxq_api/business/addBusinessInfoForApp.htm"
 
 
 //小区通知详情页面
@@ -188,6 +190,7 @@
 #define Notification_RefreshSetting @"Notification_RefreshSetting"
 #define Notification_RefreshMyInbox @"Notification_RefreshMyInbox"
 #define Notification_RefreshTopic @"Notification_RefreshTopic"
+#define Notification_RefreshTrade @"Notification_RefreshTrade"
 
 
 #define UserInfoCache @"UserInfoCache"

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140225C21A46FDC300D811B8 /* PublishTradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 140225C01A46FDC300D811B8 /* PublishTradeView.m */; };
+		140225C31A46FDC300D811B8 /* PublishTradeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140225C11A46FDC300D811B8 /* PublishTradeView.xib */; };
 		142D9E0C1A3FD68D00EF59A1 /* PushGatePassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E0A1A3FD68D00EF59A1 /* PushGatePassView.m */; };
 		142D9E0D1A3FD68D00EF59A1 /* PushGatePassView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D9E0B1A3FD68D00EF59A1 /* PushGatePassView.xib */; };
 		142D9E121A40072700EF59A1 /* GatePassInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142D9E101A40072700EF59A1 /* GatePassInfoCell.m */; };
@@ -365,6 +367,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		140225BF1A46FDC300D811B8 /* PublishTradeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishTradeView.h; sourceTree = "<group>"; };
+		140225C01A46FDC300D811B8 /* PublishTradeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishTradeView.m; sourceTree = "<group>"; };
+		140225C11A46FDC300D811B8 /* PublishTradeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishTradeView.xib; sourceTree = "<group>"; };
 		142D9E091A3FD68D00EF59A1 /* PushGatePassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushGatePassView.h; sourceTree = "<group>"; };
 		142D9E0A1A3FD68D00EF59A1 /* PushGatePassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushGatePassView.m; sourceTree = "<group>"; };
 		142D9E0B1A3FD68D00EF59A1 /* PushGatePassView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PushGatePassView.xib; sourceTree = "<group>"; };
@@ -1502,6 +1507,9 @@
 				14F801451A46AE9F00DAD296 /* TradeListCell.h */,
 				14F801461A46AE9F00DAD296 /* TradeListCell.m */,
 				14F801471A46AE9F00DAD296 /* TradeListCell.xib */,
+				140225BF1A46FDC300D811B8 /* PublishTradeView.h */,
+				140225C01A46FDC300D811B8 /* PublishTradeView.m */,
+				140225C11A46FDC300D811B8 /* PublishTradeView.xib */,
 			);
 			name = Trade;
 			sourceTree = "<group>";
@@ -2301,6 +2309,7 @@
 				14B4D4981A3D77E300933A5A /* SuitReplyCell.xib in Resources */,
 				14F8013C1A46A97E00DAD296 /* TradeFrameView.xib in Resources */,
 				146E22851A45B5B9003EB640 /* PaymentMonthDetailView.xib in Resources */,
+				140225C31A46FDC300D811B8 /* PublishTradeView.xib in Resources */,
 				14FDB44B1A25B73A006EFFCC /* LaunchScreen.xib in Resources */,
 				142D9E581A43F68300EF59A1 /* CircleOfFriendsPublishView.xib in Resources */,
 				14B4D3E41A372C8B00933A5A /* CommDetailView.xib in Resources */,
@@ -2582,6 +2591,7 @@
 				14B4D3F91A37D91700933A5A /* ConvenienceCell.m in Sources */,
 				14B4D49E1A3DC79E00933A5A /* SuitResult.m in Sources */,
 				14FDB9E31A26C94F006EFFCC /* NSString+STRegex.m in Sources */,
+				140225C21A46FDC300D811B8 /* PublishTradeView.m in Sources */,
 				14FDB97F1A26C94E006EFFCC /* SBJsonWriter.m in Sources */,
 				14B641DC1A2DFA7D00C350A0 /* NoticeOldCell.m in Sources */,
 				14B4D3CA1A36CE4D00933A5A /* SGFocusImageFrame.m in Sources */,
