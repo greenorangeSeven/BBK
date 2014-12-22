@@ -7,11 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SGFocusImageFrame.h"
+#import "SGFocusImageItem.h"
 
-@interface SettingPageView : UIViewController
+@interface SettingPageView : UIViewController<SGFocusImageFrameDelegate>
+{
+    NSMutableArray *advDatas;
+    SGFocusImageFrame *bannerView;
+    int advIndex;
+}
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *switchLb;
+@property (weak, nonatomic) IBOutlet UIImageView *advIv;
 - (IBAction)logoutAction:(id)sender;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface CallServiceReusable : UICollectionReusableView
 
+@property (weak, nonatomic) IBOutlet UIImageView *advIv;
+
 @end

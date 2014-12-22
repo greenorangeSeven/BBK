@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyPageView">
             <connections>
+                <outlet property="tableView" destination="uuW-t1-1LO" id="AF8-0D-Xwa"/>
                 <outlet property="userAddressLb" destination="Yd0-yf-ybO" id="dYo-PU-HPo"/>
                 <outlet property="userFaceIv" destination="wA2-5y-XTj" id="K6z-gx-Ghx"/>
                 <outlet property="userInfoLb" destination="53Y-bi-Ogx" id="FIl-Dv-wzr"/>
@@ -22,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                     <view key="tableHeaderView" contentMode="scaleToFill" id="EBN-Mu-Diz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="314"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="307"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xYa-ue-eXZ">
@@ -67,11 +68,29 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_head" translatesAutoresizingMaskIntoConstraints="NO" id="wA2-5y-XTj">
                                         <rect key="frame" x="8" y="10" width="65" height="65"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qu-jO-iHy">
+                                        <rect key="frame" x="8" y="10" width="64" height="65"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="uploadFaceAction:" destination="-1" eventType="touchUpInside" id="PB8-gK-J1V"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRX-io-7aQ">
+                                        <rect key="frame" x="80" y="8" width="229" height="56"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="modifyUserInfoAction:" destination="-1" eventType="touchUpInside" id="ZMv-E5-0Sp"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f3N-pD-4OB">
-                                <rect key="frame" x="0.0" y="116" width="320" height="203"/>
+                                <rect key="frame" x="0.0" y="116" width="320" height="190"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgn-zu-l8C">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -174,7 +193,7 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="230" y="296"/>
+            <point key="canvasLocation" x="394" y="242"/>
         </view>
     </objects>
     <resources>

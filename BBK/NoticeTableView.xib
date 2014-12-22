@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoticeTableView">
             <connections>
+                <outlet property="advIv" destination="yHa-gE-PiF" id="vzQ-0D-bLN"/>
                 <outlet property="tableView" destination="Yft-wH-Vcl" id="FvA-X3-Mhm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,7 +25,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="yHa-gE-PiF">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadpic" id="yHa-gE-PiF">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -38,6 +39,9 @@
             <point key="canvasLocation" x="-21" y="113"/>
         </view>
     </objects>
+    <resources>
+        <image name="loadpic" width="320" height="135"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

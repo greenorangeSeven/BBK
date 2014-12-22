@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MWPhotoBrowser.h"
 
 @interface SuitBasicCell : UITableViewCell
 <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     NSArray *imageList;
+    NSMutableArray *_photos;
 }
+
+@property (nonatomic, retain) NSMutableArray *photos;
+@property (weak, nonatomic) UINavigationController *navigationController;
 
 @property (weak, nonatomic) IBOutlet UIView *basicView;
 @property (weak, nonatomic) IBOutlet UILabel *suitTimeLb;

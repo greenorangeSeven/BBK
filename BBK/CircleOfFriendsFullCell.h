@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MWPhotoBrowser.h"
 
-@interface CircleOfFriendsFullCell : UITableViewCell<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource, UITableViewDelegate>
+@interface CircleOfFriendsFullCell : UITableViewCell<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource, UITableViewDelegate,MWPhotoBrowserDelegate>
 {
     NSArray *imageList;
     NSArray *replyList;
+    NSMutableArray *_photos;
 }
+
+@property (nonatomic, retain) NSMutableArray *photos;
+@property (weak, nonatomic) UINavigationController *navigationController;
 
 @property (weak, nonatomic) IBOutlet UIView *boxView;
 @property (weak, nonatomic) IBOutlet UIImageView *userFaceIv;

@@ -11,6 +11,7 @@
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
 
+
 @interface LifePageView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate,IconDownloaderDelegate,SGFocusImageFrameDelegate>
 {
     NSMutableArray *topics;

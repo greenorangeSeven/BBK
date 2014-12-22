@@ -39,7 +39,7 @@
 #define Appkey @"10000001"
 #define AppSecret @"Hr54hiz7"
 
-//#define api_base_url @"http://192.168.1.24:8080"
+//#define api_base_url @"http://192.168.1.23:8080"
 #define api_base_url @"http://114.215.145.29:8080"
 //登录接口
 #define api_login @"/zhxq_api/regUser/login.htm"
@@ -133,6 +133,14 @@
 #define api_findBusinessInfoByPage @"/zhxq_api/business/findBusinessInfoByPage.htm"
 //发布交易
 #define api_addBusinessInfoForApp @"/zhxq_api/business/addBusinessInfoForApp.htm"
+//签到
+#define api_signin @"/zhxq_api/integral/signin.htm"
+//获取用户信息
+#define api_findRegUserInfoByUserId @"/zhxq_api/regUser/findRegUserInfoByUserId.htm"
+//更换头像
+#define api_changeUserPhoto @"/zhxq_api/regUser/changeUserPhoto.htm"
+//修改个人资料
+#define api_modiUserInfo @"/zhxq_api/regUser/modiUserInfo.htm"
 
 
 //小区通知详情页面
@@ -149,6 +157,11 @@
 #define htm_adDetail @"/zhxq_api/app/adDetail.htm?adId="
 //交易详情页面
 #define htm_businessDetail @"/zhxq_api/app/businessDetail.htm"
+//抽奖页面
+#define htm_lottery @"/zhxq_api/app/lottery.htm?accessId=&userId="
+//便民服务页面
+#define htm_shopDetail @"/zhxq_api/app/shopDetail.htm?shopId="
+
 
 
 #define servicephone @"0731-58661602"

@@ -14,7 +14,9 @@
 @implementation CircleOfFriendsCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self.collectionView registerClass:[CircleOfFriendsImgCell class] forCellWithReuseIdentifier:CircleOfFriendsImgCellIdentifier];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,9 +27,6 @@
 
 - (void)loadCircleOfFriendsImage:(Topic *)topic
 {
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    [self.collectionView registerClass:[CircleOfFriendsImgCell class] forCellWithReuseIdentifier:CircleOfFriendsImgCellIdentifier];
     imageList = topic.imgUrlList;
     [self.collectionView reloadData];
 }
@@ -82,14 +81,35 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *project = [imageList objectAtIndex:[indexPath row]];
-//    if (project != nil) {
-//        NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", project.departmentPhone]];
-//        if (!phoneWebView) {
-//            phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-//        }
-//        [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
-//    }
+    if ([self.photos count] == 0) {
+        NSMutableArray *photos = [[NSMutableArray alloc] init];
+        for (NSString *d in imageList) {
+            MWPhoto * photo = [MWPhoto photoWithURL:[NSURL URLWithString:d]];
+            [photos addObject:photo];
+        }
+        self.photos = photos;
+    }
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.displayActionButton = YES;
+    browser.displayNavArrows = NO;//左右分页切换,默认否
+    browser.displaySelectionButtons = NO;//是否显示选择按钮在图片上,默认否
+    browser.alwaysShowControls = YES;//控制条件控件 是否显示,默认否
+    browser.zoomPhotosToFill = NO;//是否全屏,默认是
+    //    browser.wantsFullScreenLayout = YES;//是否全屏
+    [browser setCurrentPhotoIndex:[indexPath row]];
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+//MWPhotoBrowserDelegate委托事件
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
 }
 
 //返回这个UICollectionView是否可以被选择

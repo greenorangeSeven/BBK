@@ -26,6 +26,7 @@
     int advIndex;
 }
 
+@property (weak, nonatomic) IBOutlet UIImageView *advIv;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (void)reload:(BOOL)noRefresh;

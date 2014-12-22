@@ -167,6 +167,8 @@
         cell.basicView.frame = basicFrame;
         
         if ([basic.fullImgList count] > 0) {
+            //加载图片
+            cell.navigationController = self.navigationController;
             [cell loadSuitImage:basic.fullImgList];
         }
         else
@@ -400,5 +402,17 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar setTintColor:[Tool getColorForMain]];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
+}
 
 @end

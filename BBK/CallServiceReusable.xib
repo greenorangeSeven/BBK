@@ -11,14 +11,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadpic" translatesAutoresizingMaskIntoConstraints="NO" id="sCF-iB-6VN">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadpic" translatesAutoresizingMaskIntoConstraints="NO" id="sCF-iB-6VN">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                 </imageView>
             </subviews>
+            <connections>
+                <outlet property="advIv" destination="sCF-iB-6VN" id="GMs-b9-pU0"/>
+            </connections>
             <point key="canvasLocation" x="61" y="69.5"/>
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="loadpic" width="720" height="303"/>
+        <image name="loadpic" width="320" height="135"/>
     </resources>
 </document>

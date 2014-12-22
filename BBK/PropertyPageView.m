@@ -19,6 +19,7 @@
 #import "PushGatePassView.h"
 #import "PaymentListView.h"
 #import "TradeFrameView.h"
+#import "SignInView.h"
 
 @interface PropertyPageView ()
 {
@@ -68,7 +69,9 @@
 
 - (void)signInAction:(id *)sender
 {
-    
+    SignInView *signInView = [[SignInView alloc] init];
+    signInView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:signInView animated:YES];
 }
 
 - (void)viewDidUnload
@@ -125,7 +128,6 @@
         [self getNotice];
     }
 }
-
 
 - (void)getADVData
 {

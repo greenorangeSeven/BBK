@@ -15,6 +15,7 @@
 #import "ServiceOrderView.h"
 #import "ActivityCollectionView.h"
 #import "CircleOfFriendsView.h"
+#import "CommDetailView.h"
 
 @interface LifePageView ()
 {
@@ -136,10 +137,12 @@
     ADInfo *adv = (ADInfo *)[advDatas objectAtIndex:advIndex];
     if (adv)
     {
-        //        ADVDetailView *advDetail = [[ADVDetailView alloc] init];
-        //        advDetail.hidesBottomBarWhenPushed = YES;
-        //        advDetail.adv = adv;
-        //        [self.navigationController pushViewController:advDetail animated:YES];
+        NSString *adDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_adDetail ,adv.adId];
+        CommDetailView *detailView = [[CommDetailView alloc] init];
+        detailView.titleStr = @"详情";
+        detailView.urlStr = adDetailHtm;
+        detailView.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 
@@ -325,6 +328,8 @@
             }
             cell.boxView.frame = boxFrame;
             
+            //加载图片
+            cell.navigationController = self.navigationController;
             [cell loadCircleOfFriendsImage:topic];
             
             //图片显示及缓存
@@ -383,13 +388,9 @@
     }
     else
     {
-        //        News *n = [news objectAtIndex:[indexPath row]];
-        //        if (n) {
-        //            NewsDetailView *newsDetail = [[NewsDetailView alloc] init];
-        //            newsDetail.news = n;
-        //            newsDetail.catalog = catalog;
-        //            [self.navigationController pushViewController:newsDetail animated:YES];
-        //        }
+        CircleOfFriendsView *circleOfFriends = [[CircleOfFriendsView alloc] init];
+        circleOfFriends.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:circleOfFriends animated:YES];
     }
 }
 

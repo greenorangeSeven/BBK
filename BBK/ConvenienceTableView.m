@@ -9,6 +9,7 @@
 #import "ConvenienceTableView.h"
 #import "ConvenienceCell.h"
 #import "ShopInfo.h"
+#import "ConvenienceDetailView.h"
 
 @interface ConvenienceTableView ()
 
@@ -36,8 +37,8 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-//    _locService = [[BMKLocationService alloc] init];
-//    _locService.delegate = self;
+    //    _locService = [[BMKLocationService alloc] init];
+    //    _locService.delegate = self;
     
     // 判断定位操作是否被允许
     if([CLLocationManager locationServicesEnabled]) {
@@ -72,7 +73,7 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     
     shops = [[NSMutableArray alloc] initWithCapacity:20];
-//    [self reload:YES];
+    //    [self reload:YES];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -118,7 +119,7 @@
  */
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-     NSLog(@"改变位置");
+    NSLog(@"改变位置");
 }
 
 /**
@@ -378,13 +379,15 @@
     }
     else
     {
-        //        News *n = [news objectAtIndex:[indexPath row]];
-        //        if (n) {
-        //            NewsDetailView *newsDetail = [[NewsDetailView alloc] init];
-        //            newsDetail.news = n;
-        //            newsDetail.catalog = catalog;
-        //            [self.navigationController pushViewController:newsDetail animated:YES];
-        //        }
+        ShopInfo *s = [shops objectAtIndex:[indexPath row]];
+        if (s) {
+            ConvenienceDetailView *shopDetail = [[ConvenienceDetailView alloc] init];
+            NSString *shopDetailHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_shopDetail ,s.shopId];
+            shopDetail.titleStr = s.shopName;
+            shopDetail.urlStr = shopDetailHtm;
+            shopDetail.shopInfo = s;
+            [self.navigationController pushViewController:shopDetail animated:YES];
+        }
     }
 }
 

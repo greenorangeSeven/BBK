@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MWPhotoBrowser.h"
 
 @interface RepairBasicCell : UITableViewCell
-<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MWPhotoBrowserDelegate>
 {
     NSArray *imageList;
+    NSMutableArray *_photos;
 }
+
+@property (nonatomic, retain) NSMutableArray *photos;
 
 @property (weak, nonatomic) IBOutlet UIView *basicView;
 @property (weak, nonatomic) IBOutlet UILabel *repairTimeLb;
@@ -24,5 +28,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 - (void)loadRepairImage:(NSArray *)imageList;
+@property (weak, nonatomic) UINavigationController *navigationController;
 
 @end

@@ -435,6 +435,8 @@
             cell.boxView.frame = boxFrame;
             
             if ([topic.imgUrlList count] > 0) {
+                //加载图片
+                cell.navigationController = self.navigationController;
                 [cell loadCircleOfFriendsImage:topic];
                 cell.collectionView.hidden = NO;
             }
