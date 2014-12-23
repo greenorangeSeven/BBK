@@ -24,6 +24,7 @@
 @interface PropertyPageView ()
 {
     UIWebView *phoneWebView;
+    UserInfo *userInfo;
 }
 
 @end
@@ -33,10 +34,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    userInfo = [[UserModel Instance] getUserInfo];
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.text = [[UserModel Instance] getUserValueForKey:@"cellName"];
+    titleLabel.text = userInfo.defaultUserHouse.cellName;
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor = [Tool getColorForMain];
     titleLabel.textAlignment = UITextAlignmentCenter;
@@ -136,7 +138,7 @@
         //生成获取广告URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:@"1141788149430600" forKey:@"typeId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
         [param setValue:@"1" forKey:@"timeCon"];
         NSString *getADDataUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findAdInfoList] params:param];
         
@@ -215,7 +217,7 @@
     if ([UserModel Instance].isNetworkRunning) {
         //生成获取新闻列表URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
         [param setValue:@"1" forKey:@"pageNumbers"];
         [param setValue:@"1" forKey:@"countPerPages"];
         NSString *getNoticeListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findPushInfo] params:param];
@@ -261,7 +263,7 @@
 
 - (IBAction)telAction:(id)sender
 {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", userInfo.defaultUserHouse.phone]];
     if (!phoneWebView) {
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }

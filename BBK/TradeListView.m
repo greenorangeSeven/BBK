@@ -96,6 +96,7 @@
         [param setValue:self.typeId forKey:@"typeId"];
         [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
         [param setValue:@"20" forKey:@"countPerPages"];
+        [param setValue:@"1" forKey:@"stateId"];
         
         NSString *businessInfoUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findBusinessInfoByPage] params:param];
         [[AFOSCClient sharedClient] getPath:businessInfoUrl parameters:nil

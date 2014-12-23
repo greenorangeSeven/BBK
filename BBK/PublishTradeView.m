@@ -12,6 +12,9 @@
 #define ORIGINAL_MAX_WIDTH 640.0f
 
 @interface PublishTradeView ()
+{
+    UserInfo *userInfo;
+}
 
 @end
 
@@ -30,7 +33,9 @@
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle: @"发布" style:UIBarButtonItemStyleBordered target:self action:@selector(publishAction:)];
     self.navigationItem.rightBarButtonItem = rightBtn;
     
-    self.phoneTf.text = [[UserModel Instance] getUserValueForKey:@"mobileNo"];
+    userInfo = [[UserModel Instance] getUserInfo];
+    
+    self.phoneTf.text = userInfo.mobileNo;
     self.contentTv.delegate = self;
 }
 
@@ -73,7 +78,7 @@
     [param setValue:contentStr forKey:@"content"];
     [param setValue:phoneStr forKey:@"phone"];
     [param setValue:priceStr forKey:@"price"];
-    [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
+    [param setValue:userInfo.regUserId forKey:@"userId"];
     [param setValue:@"0" forKey:@"typeId"];
     NSString *addBusinessSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_addBusinessInfoForApp] params:param];
     
@@ -88,7 +93,7 @@
     [request setPostValue:contentStr forKey:@"content"];
     [request setPostValue:phoneStr forKey:@"phone"];
     [request setPostValue:priceStr forKey:@"price"];
-    [request setPostValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
+    [request setPostValue:userInfo.regUserId forKey:@"userId"];
     [request setPostValue:@"0" forKey:@"typeId"];
     if (self.cameraImage != nil) {
         [request addData:UIImageJPEGRepresentation(self.cameraImage, 0.8f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:@"pic"];
@@ -99,7 +104,7 @@
     [request startAsynchronous];
     
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"登录中..." andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"发布中..." andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -138,7 +143,7 @@
     }
     else
     {
-        [Tool showCustomHUD:@"发布成功" andView:self.parentView  andImage:@"37x-Failure.png" andAfterDelay:1];
+        [Tool showCustomHUD:@"已发布，请等待审核" andView:self.parentView  andImage:@"37x-Failure.png" andAfterDelay:1];
         [self.navigationController popViewControllerAnimated:YES];
         
     }

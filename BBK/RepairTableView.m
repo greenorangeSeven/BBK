@@ -13,6 +13,9 @@
 #import "RepairDetailView.h"
 
 @interface RepairTableView ()
+{
+    UserInfo *userInfo;
+}
 
 @end
 
@@ -29,8 +32,9 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
-    UserModel *userModel = [UserModel Instance];
-    [self.userFaceIv setImageWithURL:[NSURL URLWithString:[userModel getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+    userInfo = [[UserModel Instance] getUserInfo];
+    
+    [self.userFaceIv setImageWithURL:[NSURL URLWithString:userInfo.photoFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
     
     //适配iOS7uinavigationbar遮挡的问题
     if(IS_IOS7)
@@ -39,8 +43,8 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [userModel getUserValueForKey:@"regUserName"], [userModel getUserValueForKey:@"mobileNo"]];
-    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [userModel getUserValueForKey:@"cellName"], [userModel getUserValueForKey:@"buildingName"], [userModel getUserValueForKey:@"numberName"], [userModel getUserValueForKey:@"userTypeName"]];
+    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", userInfo.regUserName, userInfo.mobileNo];
+    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", userInfo.defaultUserHouse.cellName, userInfo.defaultUserHouse.buildingName, userInfo.defaultUserHouse.numberName, userInfo.defaultUserHouse.userTypeName];
     
 //    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height-33);
     
@@ -110,8 +114,8 @@
         
         //生成获取报修列表URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
+        [param setValue:userInfo.regUserId forKey:@"userId"];
         [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
         [param setValue:@"20" forKey:@"countPerPages"];
         NSString *getRepairListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_FindRepairWorkByPage] params:param];

@@ -1373,4 +1373,25 @@
     }
 }
 
+//解析房间所绑定的用户JSON
++ (NSMutableArray *)readJsonStrToHouseUserArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *userJsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( userJsonDic == nil || [userJsonDic count] <= 0) {
+        return nil;
+    }
+    NSString *state = [[userJsonDic objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == YES) {
+        NSArray *userArrayJson = [userJsonDic objectForKey:@"data"];
+        NSMutableArray *userArray = [RMMapper mutableArrayOfClass:[HouseUser class] fromArrayOfDictionary:userArrayJson];
+        return userArray;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 @end

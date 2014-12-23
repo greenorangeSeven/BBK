@@ -55,7 +55,7 @@
             <connections>
                 <outlet property="timeLb" destination="RXu-23-1d8" id="UpH-Kz-oFk"/>
             </connections>
-            <point key="canvasLocation" x="151" y="142"/>
+            <point key="canvasLocation" x="421" y="124"/>
         </tableViewCell>
     </objects>
     <resources>

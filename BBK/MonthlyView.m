@@ -56,10 +56,12 @@
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+        
         //生成获取广告URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:@"1141895702711700" forKey:@"typeId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
         [param setValue:@"1" forKey:@"timeCon"];
         NSString *getADDataUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findAdInfoList] params:param];
         

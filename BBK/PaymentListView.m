@@ -13,6 +13,9 @@
 #import "PaymentMonthDetailView.h"
 
 @interface PaymentListView ()
+{
+    UserInfo *userInfo;
+}
 
 @end
 
@@ -28,11 +31,12 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
-    UserModel *userModel = [UserModel Instance];
-    [self.userFaceIv setImageWithURL:[NSURL URLWithString:[userModel getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+    userInfo = [[UserModel Instance] getUserInfo];
     
-    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [userModel getUserValueForKey:@"regUserName"], [userModel getUserValueForKey:@"mobileNo"]];
-    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [userModel getUserValueForKey:@"cellName"], [userModel getUserValueForKey:@"buildingName"], [userModel getUserValueForKey:@"numberName"], [userModel getUserValueForKey:@"userTypeName"]];
+    [self.userFaceIv setImageWithURL:[NSURL URLWithString:userInfo.photoFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+    
+    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", userInfo.regUserName, userInfo.mobileNo];
+    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", userInfo.defaultUserHouse.cellName, userInfo.defaultUserHouse.buildingName, userInfo.defaultUserHouse.numberName, userInfo.defaultUserHouse.userTypeName];
     
     //适配iOS7uinavigationbar遮挡的问题
     if(IS_IOS7)
@@ -59,6 +63,7 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     
     payments = [[NSMutableArray alloc] initWithCapacity:20];
+    
     [self reload:YES];
 }
 
@@ -92,9 +97,9 @@
         
         //月账单列表
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"buildingName"] forKey:@"buildName"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"numberName"] forKey:@"numberName"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserName"] forKey:@"regUserName"];
+        [param setValue:userInfo.defaultUserHouse.buildingName forKey:@"buildName"];
+        [param setValue:userInfo.defaultUserHouse.numberName forKey:@"numberName"];
+        [param setValue:userInfo.regUserName forKey:@"regUserName"];
         [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
         [param setValue:@"20" forKey:@"countPerPages"];
         

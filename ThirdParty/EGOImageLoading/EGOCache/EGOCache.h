@@ -37,6 +37,8 @@
 // Global cache for easy use
 + (instancetype)globalCache;
 
+- (void)setObjectForSync:(id<NSCoding>)anObject forKey:(NSString *)key;
+
 // Opitionally create a different EGOCache instance with it's own cache directory
 - (id)initWithCacheDirectory:(NSString*)cacheDirectory;
 

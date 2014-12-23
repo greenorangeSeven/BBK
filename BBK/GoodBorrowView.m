@@ -59,9 +59,11 @@
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
         [Tool showHUD:@"加载中..." andView:self.view andHUD:hud];
+        
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
         //生成获取物业物品URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
         [param setValue:@"1" forKey:@"pageNumbers"];
         [param setValue:@"40" forKey:@"countPerPages"];
         
@@ -131,9 +133,11 @@
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
+        
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
         //查询指定用户的物品借用记录URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+        [param setValue:userInfo.regUserId forKey:@"regUserId"];
         
         NSString *findBorrowRecordsUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findBorrowRecordsByUserId] params:param];
         [[AFOSCClient sharedClient]getPath:findBorrowRecordsUrl parameters:Nil
@@ -402,7 +406,8 @@
 
 - (IBAction)telAction:(id)sender
 {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", userInfo.defaultUserHouse.phone]];
     if (!phoneWebView) {
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }

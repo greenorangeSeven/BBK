@@ -255,19 +255,28 @@
         [userModel saveValue:userInfo.mobileNo ForKey:@"mobileNo"];
         [userModel saveValue:userInfo.nickName ForKey:@"nickName"];
         [userModel saveValue:userInfo.photoFull ForKey:@"photoFull"];
-        [[EGOCache globalCache] setObject:userInfo forKey:UserInfoCache withTimeoutInterval:3600 * 24 * 356];
         
         if([userInfo.rhUserHouseList count] > 0)
         {
-            UserHouse *userHouse = (UserHouse *)[userInfo.rhUserHouseList objectAtIndex:0];
-            [userModel saveValue:[userHouse.userTypeId stringValue] ForKey:@"userTypeId"];
-            [userModel saveValue:userHouse.userTypeName ForKey:@"userTypeName"];
-            [userModel saveValue:userHouse.numberName ForKey:@"numberName"];
-            [userModel saveValue:userHouse.buildingName ForKey:@"buildingName"];
-            [userModel saveValue:userHouse.cellName ForKey:@"cellName"];
-            [userModel saveValue:userHouse.cellId ForKey:@"cellId"];
-            [userModel saveValue:userHouse.phone ForKey:@"cellPhone"];
-            [userModel saveValue:userHouse.numberId ForKey:@"numberId"];
+            for (int i = 0; i < [userInfo.rhUserHouseList count]; i++) {
+                UserHouse *userHouse = (UserHouse *)[userInfo.rhUserHouseList objectAtIndex:1];
+                if (i == 0) {
+                    [userModel saveValue:[userHouse.userTypeId stringValue] ForKey:@"userTypeId"];
+                    [userModel saveValue:userHouse.userTypeName ForKey:@"userTypeName"];
+                    [userModel saveValue:userHouse.numberName ForKey:@"numberName"];
+                    [userModel saveValue:userHouse.buildingName ForKey:@"buildingName"];
+                    [userModel saveValue:userHouse.cellName ForKey:@"cellName"];
+                    [userModel saveValue:userHouse.cellId ForKey:@"cellId"];
+                    [userModel saveValue:userHouse.phone ForKey:@"cellPhone"];
+                    [userModel saveValue:userHouse.numberId ForKey:@"numberId"];
+                    userHouse.isDefault = YES;
+                    userInfo.defaultUserHouse = userHouse;
+                }
+                else
+                {
+                    userHouse.isDefault = NO;
+                }
+            }
         }
         else
         {
@@ -280,6 +289,8 @@
             [userModel saveValue:@"" ForKey:@"cellPhone"];
             [userModel saveValue:@"" ForKey:@"numberId"];
         }
+//        [[EGOCache globalCache] setObject:userInfo forKey:UserInfoCache withTimeoutInterval:3600 * 24 * 356];
+        [[UserModel Instance] saveUserInfo:userInfo];
         
         [self gotoTabbar];
     }

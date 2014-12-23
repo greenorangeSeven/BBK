@@ -31,8 +31,8 @@
     self.navigationItem.rightBarButtonItem = rightBtn;
     
     self.fieldArray = @[self.nickNameTf, self.oldPassWordTf, self.newsPassWordTf, self.newsPassWordAginTf];
-    
-    self.nickNameTf.text = [[UserModel Instance] getUserValueForKey:@"nickName"];
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    self.nickNameTf.text = userInfo.nickName;
 }
 
 - (void)modifyAction:(id)sender
@@ -74,10 +74,10 @@
     }
     
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
     //资料修改URL
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+    [param setValue:userInfo.regUserId forKey:@"regUserId"];
     [param setValue:nickNameStr forKey:@"nickName"];
     if ([oldPassWordStr length] > 0 && [newsPassWordStr length] > 0)
     {
@@ -92,7 +92,7 @@
     [request setTimeOutSeconds:30];
     [request setPostValue:Appkey forKey:@"accessId"];
     [request setPostValue:modifySign forKey:@"sign"];
-    [request setPostValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+    [request setPostValue:userInfo.regUserId forKey:@"regUserId"];
     [request setPostValue:nickNameStr forKey:@"nickName"];
     if ([oldPassWordStr length] > 0 && [newsPassWordStr length] > 0)
     {
@@ -143,7 +143,6 @@
     }
     else
     {
-        //设置登录并保存用户信息
         UserModel *userModel = [UserModel Instance];
         if ([self.oldPassWordTf.text length] > 0 && [self.newsPassWordTf.text length] > 0)
         {

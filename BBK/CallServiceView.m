@@ -62,9 +62,11 @@
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
         [Tool showHUD:@"加载中..." andView:self.view andHUD:hud];
+        
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
         //生成获取物业物品URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
         
         NSString *getCallServiceListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_callService] params:param];
         
@@ -272,10 +274,12 @@
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
+        
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
         //生成获取广告URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:@"1141857157067500" forKey:@"typeId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
         [param setValue:@"1" forKey:@"timeCon"];
         NSString *getADDataUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findAdInfoList] params:param];
         
@@ -368,7 +372,8 @@
 
 - (IBAction)telAction:(id)sender
 {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", userInfo.defaultUserHouse.phone]];
     if (!phoneWebView) {
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }

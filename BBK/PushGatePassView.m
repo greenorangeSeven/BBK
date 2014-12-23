@@ -11,6 +11,9 @@
 #import "GatePassInfoCell.h"
 
 @interface PushGatePassView ()
+{
+    UserInfo *userInfo;
+}
 
 @end
 
@@ -54,6 +57,9 @@
     self.tableView.tableHeaderView = self.headerView;
     
     passinfos = [[NSMutableArray alloc] initWithCapacity:20];
+    
+    userInfo = [[UserModel Instance] getUserInfo];
+    
     [self reload:YES];
 }
 
@@ -72,8 +78,8 @@
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setValue:mobileNo forKey:@"mobileNo"];
     [param setValue:@"24" forKey:@"hours"];
-    [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
-    [param setValue:[[UserModel Instance] getUserValueForKey:@"numberId"] forKey:@"numberId"];
+    [param setValue:userInfo.regUserId forKey:@"regUserId"];
+    [param setValue:userInfo.defaultUserHouse.numberId forKey:@"numberId"];
     NSString *createPassCodeSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_createPassCode] params:param];
     NSString *createPassCodeUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_createPassCode];
     
@@ -85,8 +91,8 @@
     [request setPostValue:createPassCodeSign forKey:@"sign"];
     [request setPostValue:mobileNo forKey:@"mobileNo"];
     [request setPostValue:@"24" forKey:@"hours"];
-    [request setPostValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
-    [request setPostValue:[[UserModel Instance] getUserValueForKey:@"numberId"] forKey:@"numberId"];
+    [request setPostValue:userInfo.regUserId forKey:@"regUserId"];
+    [request setPostValue:userInfo.defaultUserHouse.numberId forKey:@"numberId"];
     
     [request setDelegate:self];
     [request setDidFailSelector:@selector(requestFailed:)];
@@ -166,8 +172,8 @@
         
         //生成获取业主放行单列表URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
+        [param setValue:userInfo.regUserId forKey:@"regUserId"];
         [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
         [param setValue:@"20" forKey:@"countPerPages"];
         NSString *findPassInfoListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findPassInfoByPage] params:param];

@@ -22,9 +22,18 @@
 
 -(NSString *)getPwd;
 
+
 -(NSString *)getUserValueForKey:(NSString *)key;
 -(void)removeUserValueForKey:(NSString *)key;
 -(void)saveValue:(NSString *)value ForKey:(NSString *)key;
+
+-(UserInfo *)getUserInfo;
+
+-(void)saveUserInfo:(UserInfo *)userinfo;
+-(void)logoutUser;
+
+//用户信息
+@property (strong, nonatomic) UserInfo *userInfo;
 
 //话题缓存
 @property (copy,nonatomic) NSString * topicTitle;

@@ -8,6 +8,7 @@
 
 #import "UserModel.h"
 #import "AESCrypt.h"
+#import "EGOCache.h"
 
 @implementation UserModel
 
@@ -124,6 +125,33 @@ static UserModel * instance = nil;
         [settings setObject:uuidString forKey:@"guid"];
         [settings synchronize];
         return uuidString;
+    }
+}
+
+-(void)saveUserInfo:(UserInfo *)userinfo
+{
+    self.userInfo = userinfo;
+    EGOCache *cache = [EGOCache globalCache];
+    [cache setObjectForSync:userinfo forKey:@"userinfo"];
+}
+
+-(UserInfo *)getUserInfo
+{
+    if(!self.userInfo)
+    {
+        EGOCache *cache = [EGOCache globalCache];
+        self.userInfo = (UserInfo *)[cache objectForKey:@"userinfo"];
+    }
+    return self.userInfo;
+}
+
+-(void)logoutUser
+{
+    if(self.isLogin)
+    {
+        EGOCache *cache = [EGOCache globalCache];
+        [cache removeCacheForKey:@"userinfo"];
+        self.userInfo = nil;
     }
 }
 

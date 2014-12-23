@@ -61,10 +61,13 @@
 - (void)borrowGoodAction:(id *)sender
 {
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    
     //生成物品借用URL
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setValue:self.good.goodsId forKey:@"goodsId"];
-    [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+    [param setValue:userInfo.regUserId forKey:@"regUserId"];
     [param setValue:self.borrowNumLb.text forKey:@"borrowNum"];
     [param setValue:self.borrowTimeLb.text forKey:@"starttime"];
     [param setValue:typeId forKey:@"borrowType"];
@@ -78,7 +81,7 @@
     [request setPostValue:Appkey forKey:@"accessId"];
     [request setPostValue:borrowGoodsSign forKey:@"sign"];
     [request setPostValue:self.good.goodsId forKey:@"goodsId"];
-    [request setPostValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+    [request setPostValue:userInfo.regUserId forKey:@"regUserId"];
     [request setPostValue:self.borrowNumLb.text forKey:@"borrowNum"];
     [request setPostValue:self.borrowTimeLb.text forKey:@"starttime"];
     [request setPostValue:typeId forKey:@"borrowType"];

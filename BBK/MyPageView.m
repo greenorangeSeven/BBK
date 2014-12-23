@@ -9,6 +9,11 @@
 #import "MyPageView.h"
 #import "UIImageView+WebCache.h"
 #import "ModifyUserInfoView.h"
+#import "InviteView.h"
+#import "MyHouseUserView.h"
+#import "ExpressView.h"
+#import "ChangeHouseView.h"
+#import "ReleasepermitView.h"
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
@@ -39,12 +44,6 @@
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
     
-    UserModel *userModel = [UserModel Instance];
-    [self.userFaceIv setImageWithURL:[NSURL URLWithString:[userModel getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
-    
-    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [userModel getUserValueForKey:@"regUserName"], [userModel getUserValueForKey:@"mobileNo"]];
-    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [userModel getUserValueForKey:@"cellName"], [userModel getUserValueForKey:@"buildingName"], [userModel getUserValueForKey:@"numberName"], [userModel getUserValueForKey:@"userTypeName"]];
-    
     self.tableView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:248.0/255.0 blue:248.0/255.0 alpha:1.0];
     //    设置无分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -58,13 +57,15 @@
 
 - (IBAction)telAction:(id)sender
 {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", userInfo.defaultUserHouse.phone]];
     if (!phoneWebView) {
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }
     [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
 }
 
+//更新头像
 - (IBAction)uploadFaceAction:(id)sender {
     UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
@@ -74,11 +75,48 @@
     [choiceSheet showInView:self.view];
 }
 
+//修改信息
 - (IBAction)modifyUserInfoAction:(id)sender {
     ModifyUserInfoView *modifyView = [[ModifyUserInfoView alloc] init];
     modifyView.parentView = self.view;
     modifyView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:modifyView animated:YES];
+}
+
+//邀请注册
+- (IBAction)InviteAction:(id)sender {
+    InviteView *inviteView = [[InviteView alloc] init];
+    inviteView.parentView = self.view;
+    inviteView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:inviteView animated:YES];
+}
+
+//我的房间有谁
+- (IBAction)houseUserAction:(id)sender {
+    MyHouseUserView *houseUserView = [[MyHouseUserView alloc] init];
+    houseUserView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:houseUserView animated:YES];
+}
+
+//我的包裹
+- (IBAction)myExpressAction:(id)sender {
+    ExpressView *expressView = [[ExpressView alloc] init];
+    expressView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:expressView animated:YES];
+}
+
+//切换房间
+- (IBAction)changeHouseAction:(id)sender {
+    ChangeHouseView *changeView = [[ChangeHouseView alloc] init];
+    changeView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:changeView animated:YES];
+}
+
+//电子放行单
+- (IBAction)releasepermitActon:(id)sender {
+    ReleasepermitView *releaseView = [[ReleasepermitView alloc] init];
+    releaseView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:releaseView animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -90,6 +128,12 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"返回";
     self.navigationItem.backBarButtonItem = backItem;
+    
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    [self.userFaceIv setImageWithURL:[NSURL URLWithString:userInfo.photoFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+    
+    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", userInfo.regUserName, userInfo.mobileNo];
+    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", userInfo.defaultUserHouse.cellName, userInfo.defaultUserHouse.buildingName, userInfo.defaultUserHouse.numberName, userInfo.defaultUserHouse.userTypeName];
 }
 
 #pragma mark VPImageCropperDelegate
@@ -97,10 +141,10 @@
     self.userFaceIv.image = editedImage;
     userFace = editedImage;
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
-        
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
         //生成更换头像URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+        [param setValue:userInfo.regUserId forKey:@"regUserId"];
         NSString *changePhotoSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_changeUserPhoto] params:param];
         
         NSString *changePhotoUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_changeUserPhoto] params:param];
@@ -110,7 +154,7 @@
         [request setTimeOutSeconds:30];
         [request setPostValue:Appkey forKey:@"accessId"];
         [request setPostValue:changePhotoSign forKey:@"sign"];
-        [request setPostValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+        [request setPostValue:userInfo.regUserId forKey:@"regUserId"];
         if (userFace != nil) {
             [request addData:UIImageJPEGRepresentation(userFace, 0.8f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:@"pic"];
         }

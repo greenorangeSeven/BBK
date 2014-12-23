@@ -36,10 +36,10 @@
     UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
     self.navigationItem.rightBarButtonItem = btnTel;
     
-    UserModel *user = [UserModel Instance];
-    [self.userFaceIv setImageWithURL:[NSURL URLWithString:[user getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
-    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [user getUserValueForKey:@"regUserName"], [user getUserValueForKey:@"mobileNo"]];
-    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [user getUserValueForKey:@"cellName"], [user getUserValueForKey:@"buildingName"], [user getUserValueForKey:@"numberName"], [user getUserValueForKey:@"userTypeName"]];
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    [self.userFaceIv setImageWithURL:[NSURL URLWithString:userInfo.photoFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", userInfo.regUserName, userInfo.mobileNo];
+    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", userInfo.defaultUserHouse.cellName, userInfo.defaultUserHouse.buildingName, userInfo.defaultUserHouse.numberName, userInfo.defaultUserHouse.userTypeName];
     
     //适配iOS7uinavigationbar遮挡的问题
     if(IS_IOS7)
@@ -114,12 +114,14 @@
         }
         int pageIndex = allCount/20 + 1;
         
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+        
         //生成获取我的快递URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
         [param setValue:@"20" forKey:@"countPerPages"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"mobileNo"] forKey:@"mobileNo"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
+        [param setValue:userInfo.mobileNo forKey:@"mobileNo"];
         [param setValue:@"0" forKey:@"stateId"];
         
         NSString *getMyExpressListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_Express] params:param];
@@ -258,7 +260,6 @@
         request.hud = [[MBProgressHUD alloc] initWithView:self.view];
         [Tool showHUD:@"领取中..." andView:self.view andHUD:request.hud];
     }
-    
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -379,7 +380,9 @@
 
 - (IBAction)telAction:(id)sender
 {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", userInfo.defaultUserHouse.phone]];
     if (!phoneWebView) {
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }

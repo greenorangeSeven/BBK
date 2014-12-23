@@ -12,6 +12,9 @@
 #import "SuitDetailView.h"
 
 @interface SuitWorkTableView ()
+{
+    UserInfo *userInfo;
+}
 
 @end
 
@@ -28,10 +31,10 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
-    UserModel *userModel = [UserModel Instance];
-    [self.userFaceIv setImageWithURL:[NSURL URLWithString:[userModel getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
-    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [userModel getUserValueForKey:@"regUserName"], [userModel getUserValueForKey:@"mobileNo"]];
-    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [userModel getUserValueForKey:@"cellName"], [userModel getUserValueForKey:@"buildingName"], [userModel getUserValueForKey:@"numberName"], [userModel getUserValueForKey:@"userTypeName"]];
+    userInfo = [[UserModel Instance] getUserInfo];
+    [self.userFaceIv setImageWithURL:[NSURL URLWithString:userInfo.photoFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", userInfo.regUserName, userInfo.mobileNo];
+    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", userInfo.defaultUserHouse.cellName, userInfo.defaultUserHouse.buildingName, userInfo.defaultUserHouse.numberName, userInfo.defaultUserHouse.userTypeName];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -100,8 +103,8 @@
         
         //生成获取投诉列表URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
+        [param setValue:userInfo.regUserId forKey:@"userId"];
         [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
         [param setValue:@"20" forKey:@"countPerPages"];
         NSString *getSuitListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findSuitWorkByPage] params:param];

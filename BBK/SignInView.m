@@ -12,6 +12,7 @@
 @interface SignInView ()
 {
     int remainingIntegral;
+    UserInfo *userInfo;
 }
 
 @end
@@ -28,12 +29,13 @@
     titleLabel.textColor = [Tool getColorForMain];
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
+    userInfo = [[UserModel Instance] getUserInfo];
 }
 
 - (void)findRegUserInfoByUserId
 {
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
+    [param setValue:userInfo.regUserId forKey:@"userId"];
     
     NSString *findRegUserInfoUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findRegUserInfoByUserId] params:param];
     [[AFOSCClient sharedClient] getPath:findRegUserInfoUrl parameters:nil
@@ -88,7 +90,7 @@
     //用户签到
     self.signInBtn.enabled = NO;
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-    [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
+    [param setValue:userInfo.regUserId forKey:@"userId"];
     
     NSString *signInUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_signin] params:param];
     [[AFOSCClient sharedClient] getPath:signInUrl parameters:nil
@@ -122,7 +124,7 @@
 }
 
 - (IBAction)luckyDrawAction:(id)sender {
-    NSString *lotteryHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_lottery , [[UserModel Instance] getUserValueForKey:@"regUserId"]];
+    NSString *lotteryHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_lottery , userInfo.regUserId];
     CommDetailView *detailView = [[CommDetailView alloc] init];
     detailView.titleStr = @"抽奖";
     detailView.urlStr = lotteryHtm;

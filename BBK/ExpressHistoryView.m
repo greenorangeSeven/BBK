@@ -98,12 +98,14 @@
         }
         int pageIndex = allCount/20 + 1;
         
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+        
         //生成获取我的快递URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
         [param setValue:@"20" forKey:@"countPerPages"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"mobileNo"] forKey:@"mobileNo"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
+        [param setValue:userInfo.mobileNo forKey:@"mobileNo"];
         [param setValue:@"1" forKey:@"stateId"];
         
         NSString *getMyExpressListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_Express] params:param];

@@ -57,15 +57,15 @@
         return;
     }
     self.navigationItem.rightBarButtonItem.enabled = NO;
-
-    UserModel *userModel = [UserModel Instance];
+    
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
 
     //生成新增报修Sign
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setValue:[NSString stringWithFormat:@"%d", topicTypeId] forKey:@"typeId"];
     [param setValue:contentStr forKey:@"content"];
-    [param setValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"userId"];
-    [param setValue:[userModel getUserValueForKey:@"cellId"] forKey:@"cellId"];
+    [param setValue:userInfo.regUserId forKey:@"userId"];
+    [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
     NSString *addTopicSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_addTopicInfo] params:param];
 
     NSString *addTopicUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_addTopicInfo];
@@ -76,8 +76,8 @@
     [request setPostValue:addTopicSign forKey:@"sign"];
     [request setPostValue:[NSString stringWithFormat:@"%d", topicTypeId] forKey:@"typeId"];
     [request setPostValue:contentStr forKey:@"content"];
-    [request setPostValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"userId"];
-    [request setPostValue:[userModel getUserValueForKey:@"cellId"] forKey:@"cellId"];
+    [request setPostValue:userInfo.regUserId forKey:@"userId"];
+    [request setPostValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
     for (int i = 0 ; i < [topicImageArray count] - 1; i++) {
         UIImage *topicImage = [topicImageArray objectAtIndex:i];
         [request addData:UIImageJPEGRepresentation(topicImage, 0.8f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:[NSString stringWithFormat:@"pic%d", i]];

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserHouse.h"
 
 @interface UserInfo : NSObject<NSCoding>
 
@@ -16,6 +17,8 @@
 @property (nonatomic, retain) NSString *mobileNo;
 @property (nonatomic, retain) NSString *nickName;
 @property (nonatomic, retain) NSString *photoFull;
+
+@property (nonatomic, retain) UserHouse *defaultUserHouse;
 
 @property (nonatomic, retain) NSArray *rhUserHouseList;
 

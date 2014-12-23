@@ -68,7 +68,8 @@
 {
     if ([request.URL.absoluteString hasSuffix:@"telphone"])
     {
-        NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+        NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", userInfo.defaultUserHouse.phone]];
         if (!phoneWebView) {
             phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
         }
@@ -146,9 +147,11 @@
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
         //查询当前有效的活动列表
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+        
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
         [param setValue:self.activity.activityId forKey:@"activityId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+        [param setValue:userInfo.regUserId forKey:@"regUserId"];
         NSString *addCancelInActivityUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_addCancelInActivity] params:param];
         [[AFOSCClient sharedClient]getPath:addCancelInActivityUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {

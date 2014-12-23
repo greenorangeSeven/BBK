@@ -54,10 +54,12 @@
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+        
         //查询当前有效的活动列表
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
+        [param setValue:userInfo.regUserId forKey:@"userId"];
         NSString *getActivityListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findCellActivityOnTime] params:param];
         [[AFOSCClient sharedClient]getPath:getActivityListUrl parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -209,9 +211,11 @@
             //如果有网络连接
             if ([UserModel Instance].isNetworkRunning) {
                 //查询当前有效的活动列表
+                UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+                
                 NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
                 [param setValue:activity.activityId forKey:@"activityId"];
-                [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+                [param setValue:userInfo.regUserId forKey:@"regUserId"];
                 NSString *addCancelInActivityUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_addCancelInActivity] params:param];
                 [[AFOSCClient sharedClient]getPath:addCancelInActivityUrl parameters:Nil
                                            success:^(AFHTTPRequestOperation *operation, id responseObject) {

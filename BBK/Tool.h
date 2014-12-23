@@ -53,6 +53,7 @@
 #import "Payment.h"
 #import "PaymentItem.h"
 #import "Trade.h"
+#import "HouseUser.h"
 
 @interface Tool : NSObject
 
@@ -205,5 +206,7 @@
 + (NSMutableArray *)readJsonStrToPaymentItemArray:(NSString *)str;
 //解析交易买卖JSON
 + (NSMutableArray *)readJsonStrToTradeArray:(NSString *)str;
+//解析房间所绑定的用户JSON
++ (NSMutableArray *)readJsonStrToHouseUserArray:(NSString *)str;
 
 @end

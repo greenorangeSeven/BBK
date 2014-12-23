@@ -42,11 +42,11 @@
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle: @"我的" style:UIBarButtonItemStyleBordered target:self action:@selector(pushSuitWorkListAction:)];
     self.navigationItem.rightBarButtonItem = rightBtn;
     
-    UserModel *userModel = [UserModel Instance];
-    [self.userFaceIv setImageWithURL:[NSURL URLWithString:[userModel getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    [self.userFaceIv setImageWithURL:[NSURL URLWithString:userInfo.photoFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
     
-    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [userModel getUserValueForKey:@"regUserName"], [userModel getUserValueForKey:@"mobileNo"]];
-    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [userModel getUserValueForKey:@"cellName"], [userModel getUserValueForKey:@"buildingName"], [userModel getUserValueForKey:@"numberName"], [userModel getUserValueForKey:@"userTypeName"]];
+    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", userInfo.regUserName, userInfo.mobileNo];
+    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", userInfo.defaultUserHouse.cellName, userInfo.defaultUserHouse.buildingName, userInfo.defaultUserHouse.numberName, userInfo.defaultUserHouse.userTypeName];
     
     self.suitContentTv.delegate = self;
     
@@ -490,7 +490,8 @@
 }
 
 - (IBAction)telServiceAction:(id)sender {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", userInfo.defaultUserHouse.phone]];
     if (!phoneWebView) {
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }
@@ -505,14 +506,14 @@
     }
     self.submitSuitBtn.enabled = NO;
     
-    UserModel *userModel = [UserModel Instance];
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
     
     //生成新增投诉Sign
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setValue:[NSString stringWithFormat:@"%d", suitTypeId] forKey:@"suitTypeId"];
     [param setValue:contentStr forKey:@"suitContent"];
-    [param setValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
-    [param setValue:[userModel getUserValueForKey:@"numberId"] forKey:@"numberId"];
+    [param setValue:userInfo.regUserId forKey:@"regUserId"];
+    [param setValue:userInfo.defaultUserHouse.numberId forKey:@"numberId"];
     NSString *addSuitSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_addSuitWork] params:param];
     
     NSString *addSuitUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_addSuitWork];
@@ -523,8 +524,8 @@
     [request setPostValue:addSuitSign forKey:@"sign"];
     [request setPostValue:[NSString stringWithFormat:@"%d", suitTypeId] forKey:@"suitTypeId"];
     [request setPostValue:contentStr forKey:@"suitContent"];
-    [request setPostValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
-    [request setPostValue:[userModel getUserValueForKey:@"numberId"] forKey:@"numberId"];
+    [request setPostValue:userInfo.regUserId forKey:@"regUserId"];
+    [request setPostValue:userInfo.defaultUserHouse.numberId forKey:@"numberId"];
     for (int i = 0 ; i < [suitImageArray count] - 1; i++) {
         UIImage *repairImage = [suitImageArray objectAtIndex:i];
         [request addData:UIImageJPEGRepresentation(repairImage, 0.8f) withFileName:@"img.jpg" andContentType:@"image/jpeg" forKey:[NSString stringWithFormat:@"pic%d", i]];

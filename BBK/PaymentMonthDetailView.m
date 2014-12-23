@@ -10,6 +10,9 @@
 #import "PaymentItemCell.h"
 
 @interface PaymentMonthDetailView ()
+{
+    UserInfo *userInfo;
+}
 
 @end
 
@@ -37,7 +40,7 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     //    设置无分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    userInfo = [[UserModel Instance] getUserInfo];
     [self getPaymentByMonth];
 }
 
@@ -47,9 +50,9 @@
     if ([UserModel Instance].isNetworkRunning) {
         //月账单列表
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"buildingName"] forKey:@"buildName"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"numberName"] forKey:@"numberName"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserName"] forKey:@"regUserName"];
+        [param setValue:userInfo.defaultUserHouse.buildingName forKey:@"buildName"];
+        [param setValue:userInfo.defaultUserHouse.numberName forKey:@"numberName"];
+        [param setValue:userInfo.regUserName forKey:@"regUserName"];
         [param setValue:self.month forKey:@"month"];
         
         NSString *paymentByMonthSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_findPaymentListByMonth] params:param];

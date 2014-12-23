@@ -108,10 +108,12 @@
     {
         //如果有网络连接
         if ([UserModel Instance].isNetworkRunning) {
+            
+            UserInfo *userInfo = [[UserModel Instance] getUserInfo];
             //查询当前有效的活动列表
             NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
             [param setValue:topic.topicId forKey:@"topicId"];
-            [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
+            [param setValue:userInfo.regUserId forKey:@"regUserId"];
             [param setValue:replyContent forKey:@"replyContent"];
             NSString *replyTopicSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_addTopicReply] params:param];
             
@@ -141,14 +143,16 @@
                                                    [self.textFieldOnToolbar resignFirstResponder];
                                                    [self.textField resignFirstResponder];
                                                    
+                                                   UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+                                                   
                                                    TopicReply *reply = [[TopicReply alloc] init];
-                                                   reply.replyContent = [NSString stringWithFormat:@"%@：%@",[[UserModel Instance] getUserValueForKey:@"nickName"], replyContent];
+                                                   reply.replyContent = [NSString stringWithFormat:@"%@：%@",userInfo.nickName, replyContent];
                                                    reply.contentHeight = [Tool heightForString:reply.replyContent fontSize:14.0 andWidth:232.0] + 3;
                                                    topic.replyHeight += reply.contentHeight;
                                                    topic.viewAddHeight +=  reply.contentHeight;
                                                    
                                                    reply.replyContentAttr = [[NSMutableAttributedString alloc] initWithString:reply.replyContent];
-                                                   [reply.replyContentAttr addAttribute:NSForegroundColorAttributeName value:[Tool getColorForMain] range:NSMakeRange(0, [[[UserModel Instance] getUserValueForKey:@"nickName"] length] + 1)];
+                                                   [reply.replyContentAttr addAttribute:NSForegroundColorAttributeName value:[Tool getColorForMain] range:NSMakeRange(0, [userInfo.nickName length] + 1)];
                                                    
                                                    [topic.replyList addObject:reply];
                                                    
@@ -234,13 +238,16 @@
         }
         int pageIndex = allCount/20 + 1;
         
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+        
         //生成获取朋友圈列表URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"cellId"] forKey:@"cellId"];
-        [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
+        [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
+        [param setValue:userInfo.defaultUserHouse.regUserId forKey:@"userId"];
         [param setValue:@"starttime-desc" forKey:@"sort"];
         [param setValue:[NSString stringWithFormat:@"%d", pageIndex] forKey:@"pageNumbers"];
         [param setValue:@"20" forKey:@"countPerPages"];
+        [param setValue:@"0" forKey:@"stateId"];
         NSString *topicInfoByPageUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findTopicInfoByPageForApp] params:param];
         
         [[AFOSCClient sharedClient]getPath:topicInfoByPageUrl parameters:Nil
@@ -372,7 +379,9 @@
             
             cell.typeNameLb.text = [NSString stringWithFormat:@"【%@】", topic.typeName];
             
-            if ([topic.regUserId isEqualToString:[[UserModel Instance] getUserValueForKey:@"regUserId"]]) {
+            UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+            
+            if ([topic.regUserId isEqualToString:userInfo.regUserId]) {
                 cell.deleteBtn.hidden = NO;
             }
             else
@@ -479,10 +488,12 @@
             tap.enabled = NO;
             //如果有网络连接
             if ([UserModel Instance].isNetworkRunning) {
+                
+                UserInfo *userInfo = [[UserModel Instance] getUserInfo];
                 //查询点赞/取消点赞
                 NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
                 [param setValue:topic.topicId forKey:@"topicId"];
-                [param setValue:[[UserModel Instance] getUserValueForKey:@"regUserId"] forKey:@"userId"];
+                [param setValue:userInfo.regUserId forKey:@"userId"];
                 NSString *topicHeartUrl = @"";
                 if (topic.isHeart == 1) {
                     topicHeartUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_delTopicHeart] params:param];

@@ -141,6 +141,10 @@
 #define api_changeUserPhoto @"/zhxq_api/regUser/changeUserPhoto.htm"
 //修改个人资料
 #define api_modiUserInfo @"/zhxq_api/regUser/modiUserInfo.htm"
+//发放注册邀请码
+#define api_createInvitationCode @"/zhxq_api/regUser/createInvitationCode.htm"
+//查询指定房间所绑定的用户信息
+#define api_findUserHouseList @"/zhxq_api/regUser/findUserHouseList.htm"
 
 
 //小区通知详情页面
@@ -161,7 +165,6 @@
 #define htm_lottery @"/zhxq_api/app/lottery.htm?accessId=&userId="
 //便民服务页面
 #define htm_shopDetail @"/zhxq_api/app/shopDetail.htm?shopId="
-
 
 
 #define servicephone @"0731-58661602"
@@ -196,6 +199,10 @@
 #define PaymentCellIdentifier @"PaymentCellIdentifier"
 #define PaymentItemCellIdentifier @"PaymentItemCellIdentifier"
 #define TradeListCellIdentifier @"TradeListCellIdentifier"
+#define ReleasepermitCellIdentifier @"ReleasepermitCellIdentifier"
+#define HouseUserCellIdentifier @"HouseUserCellIdentifier"
+#define ChangeHouseCellIdentifier @"ChangeHouseCellIdentifier"
+
 
 
 #define Notification_RefreshMyRepairs @"Notification_RefreshMyRepairs"

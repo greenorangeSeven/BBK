@@ -69,6 +69,14 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 	return instance;
 }
 
+- (void)setObjectForSync:(id<NSCoding>)anObject forKey:(NSString *)key
+{
+    NSString* cachePath = cachePathForKey(_directory, key);
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:anObject];
+    [data writeToFile:cachePath atomically:YES];
+    [self setCacheTimeoutInterval:self.defaultTimeoutInterval forKey:key];
+}
+
 - (id)init {
 	NSString* cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
 	NSString* oldCachesDirectory = [[[cachesDirectory stringByAppendingPathComponent:[[NSProcessInfo processInfo] processName]] stringByAppendingPathComponent:@"EGOCache"] copy];

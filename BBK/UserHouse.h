@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSNumber *userStateId;
 @property (nonatomic, retain) NSString *userStateName;
+//userTypeId=0为业主，userTypeId=1为家属
 @property (nonatomic, retain) NSNumber *userTypeId;
 @property (nonatomic, retain) NSString *userTypeName;
 @property (nonatomic, retain) NSString *cellId;
@@ -21,5 +22,7 @@
 @property (nonatomic, retain) NSString *numberName;
 @property (nonatomic, retain) NSString *regUserId;
 @property (nonatomic, retain) NSString *phone;
+
+@property BOOL isDefault;
 
 @end

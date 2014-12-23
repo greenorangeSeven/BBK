@@ -61,7 +61,8 @@
 {
     if ([request.URL.absoluteString hasSuffix:@"telphone"])
     {
-        NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+        NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", userInfo.defaultUserHouse.phone]];
         if (!phoneWebView) {
             phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
         }

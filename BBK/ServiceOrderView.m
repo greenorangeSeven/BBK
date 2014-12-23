@@ -13,6 +13,7 @@
 @interface ServiceOrderView ()
 {
     UIWebView *phoneWebView;
+    UserInfo *userInfo;
 }
 
 @end
@@ -30,11 +31,12 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
-    UserModel *userModel = [UserModel Instance];
-    [self.userFaceIv setImageWithURL:[NSURL URLWithString:[userModel getUserValueForKey:@"photoFull"]] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+    userInfo = [[UserModel Instance] getUserInfo];
+
+    [self.userFaceIv setImageWithURL:[NSURL URLWithString:userInfo.photoFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
     
-    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", [userModel getUserValueForKey:@"regUserName"], [userModel getUserValueForKey:@"mobileNo"]];
-    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", [userModel getUserValueForKey:@"cellName"], [userModel getUserValueForKey:@"buildingName"], [userModel getUserValueForKey:@"numberName"], [userModel getUserValueForKey:@"userTypeName"]];
+    self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", userInfo.regUserName, userInfo.mobileNo];
+    self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", userInfo.defaultUserHouse.cellName, userInfo.defaultUserHouse.buildingName, userInfo.defaultUserHouse.numberName, userInfo.defaultUserHouse.userTypeName];
     
     self.orderContentTv.delegate = self;
     
@@ -103,7 +105,7 @@
 
 - (IBAction)telServiceAction:(id)sender
 {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", [[UserModel Instance] getUserValueForKey:@"cellPhone"]]];
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", userInfo.defaultUserHouse.phone]];
     if (!phoneWebView) {
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }
@@ -125,8 +127,8 @@
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setValue:contentStr forKey:@"content"];
     [param setValue:self.orderDateLb.text forKey:@"starttime"];
-    [param setValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
-    [param setValue:[userModel getUserValueForKey:@"cellId"] forKey:@"cellId"];
+    [param setValue:userInfo.regUserId forKey:@"regUserId"];
+    [param setValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
     NSString *addCelebrationSign = [Tool serializeSign:[NSString stringWithFormat:@"%@%@", api_base_url, api_addCelebrationInfo] params:param];
     
     NSString *addCelebrationUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_addCelebrationInfo];
@@ -137,8 +139,8 @@
     [request setPostValue:addCelebrationSign forKey:@"sign"];
     [request setPostValue:contentStr forKey:@"content"];
     [request setPostValue:self.orderDateLb.text forKey:@"starttime"];
-    [request setPostValue:[userModel getUserValueForKey:@"regUserId"] forKey:@"regUserId"];
-    [request setPostValue:[userModel getUserValueForKey:@"cellId"] forKey:@"cellId"];
+    [request setPostValue:userInfo.regUserId forKey:@"regUserId"];
+    [request setPostValue:userInfo.defaultUserHouse.cellId forKey:@"cellId"];
     
     request.delegate = self;
     [request setDidFailSelector:@selector(requestFailed:)];
