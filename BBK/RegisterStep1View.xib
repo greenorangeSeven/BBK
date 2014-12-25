@@ -203,6 +203,9 @@
                             <state key="normal" title="邀请码用户注册" backgroundImage="button_red1">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="inviteRegisterAction:" destination="-1" eventType="touchUpInside" id="UzT-kG-AFl"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="如果您接收到业主发给您邀请码请在此注册" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9t-q1-0Rv">
                             <rect key="frame" x="62" y="440" width="196" height="39"/>

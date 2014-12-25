@@ -44,6 +44,13 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
+    if([self.present isEqualToString:@"present"] == YES)
+    {
+        UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithTitle: @"关闭" style:UIBarButtonItemStyleBordered target:self action:@selector(closeAction)];
+        leftBtn.tintColor = [Tool getColorForMain];
+        self.navigationItem.leftBarButtonItem = leftBtn;
+    }
+    
     //适配iOS7uinavigationbar遮挡的问题
     if(IS_IOS7)
     {
@@ -62,6 +69,13 @@
     [self getRepairDetailData];
 }
 
+- (void)closeAction
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 - (void)getRepairDetailData
 {
     //如果有网络连接
@@ -69,7 +83,7 @@
         [Tool showHUD:@"加载中..." andView:self.view andHUD:hud];
         //生成获取报修详情URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:self.repair.repairWorkId forKey:@"repairWorkId"];
+        [param setValue:self.repairWorkId forKey:@"repairWorkId"];
         NSString *getRepairDetailUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findRepairWorkDetaile] params:param];
         
         [[AFOSCClient sharedClient]getPath:getRepairDetailUrl parameters:Nil
@@ -345,7 +359,7 @@
     //生成提交报修评价URL
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setValue:sorce forKey:@"sorce"];
-    [param setValue:self.repair.repairWorkId forKey:@"repairWorkId"];
+    [param setValue:self.repairWorkId forKey:@"repairWorkId"];
     if ([userRecontent length] > 0) {
         [param setValue:userRecontent forKey:@"userRecontent"];
     }
@@ -357,7 +371,7 @@
     [request setTimeOutSeconds:30];
     [request setPostValue:Appkey forKey:@"accessId"];
     [request setPostValue:sorce forKey:@"sorce"];
-    [request setPostValue:self.repair.repairWorkId forKey:@"repairWorkId"];
+    [request setPostValue:self.repairWorkId forKey:@"repairWorkId"];
     if ([userRecontent length] > 0) {
         [request setPostValue:userRecontent forKey:@"userRecontent"];
     }

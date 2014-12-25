@@ -29,6 +29,13 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
+    if([self.present isEqualToString:@"present"] == YES)
+    {
+        UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithTitle: @"关闭" style:UIBarButtonItemStyleBordered target:self action:@selector(closeAction)];
+        leftBtn.tintColor = [Tool getColorForMain];
+        self.navigationItem.leftBarButtonItem = leftBtn;
+    }
+    
     //适配iOS7uinavigationbar遮挡的问题
     if(IS_IOS7)
     {
@@ -45,6 +52,13 @@
     NSURL *url = [[NSURL alloc]initWithString:self.urlStr];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     self.webView.delegate = self;
+}
+
+- (void)closeAction
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webViewP
@@ -78,13 +92,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

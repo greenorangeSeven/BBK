@@ -40,6 +40,13 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
+    if([self.present isEqualToString:@"present"] == YES)
+    {
+        UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithTitle: @"关闭" style:UIBarButtonItemStyleBordered target:self action:@selector(closeAction)];
+        leftBtn.tintColor = [Tool getColorForMain];
+        self.navigationItem.leftBarButtonItem = leftBtn;
+    }
+    
     //适配iOS7uinavigationbar遮挡的问题
     if(IS_IOS7)
     {
@@ -58,6 +65,13 @@
     [self getSuitDetailData];
 }
 
+- (void)closeAction
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 - (void)getSuitDetailData
 {
     //如果有网络连接
@@ -65,7 +79,7 @@
         [Tool showHUD:@"加载中..." andView:self.view andHUD:hud];
         //生成获取报修详情URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:self.suit.suitWorkId forKey:@"suitWorkId"];
+        [param setValue:self.suitWorkId forKey:@"suitWorkId"];
         NSString *getSuitDetailUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findSuitWorkDetail] params:param];
         
         [[AFOSCClient sharedClient]getPath:getSuitDetailUrl parameters:Nil
@@ -317,7 +331,7 @@
     //生成提交报修评价URL
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setValue:sorce forKey:@"sorce"];
-    [param setValue:self.suit.suitWorkId forKey:@"suitWorkId"];
+    [param setValue:self.suitWorkId forKey:@"suitWorkId"];
     if ([userRecontent length] > 0) {
         [param setValue:userRecontent forKey:@"userRecontent"];
     }
@@ -329,7 +343,7 @@
     [request setTimeOutSeconds:30];
     [request setPostValue:Appkey forKey:@"accessId"];
     [request setPostValue:sorce forKey:@"sorce"];
-    [request setPostValue:self.suit.suitWorkId forKey:@"suitWorkId"];
+    [request setPostValue:self.suitWorkId forKey:@"suitWorkId"];
     if ([userRecontent length] > 0) {
         [request setPostValue:userRecontent forKey:@"userRecontent"];
     }

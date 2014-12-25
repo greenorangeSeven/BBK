@@ -13,6 +13,7 @@
 
 @property BOOL isForeground;
 @property (strong, nonatomic) UIWindow *window;
+@property (copy, nonatomic) NSDictionary *pushInfo;
 
 @end
 

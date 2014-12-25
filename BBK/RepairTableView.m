@@ -254,7 +254,7 @@
         Repair *repair = [repairs objectAtIndex:row];
         if (repair) {
             RepairDetailView *repairDetail = [[RepairDetailView alloc] init];
-            repairDetail.repair = repair;
+            repairDetail.repairWorkId = repair.repairWorkId;
             [self.navigationController pushViewController:repairDetail animated:YES];
         }
     }

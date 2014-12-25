@@ -9,6 +9,7 @@
 #import "ChangeHouseView.h"
 #import "UserHouse.h"
 #import "ChangeHouseCell.h"
+#import "XGPush.h"
 
 @interface ChangeHouseView ()
 {
@@ -107,11 +108,19 @@
 - (void)changeHouseAction:(id)sender {
     UIButton *tap = (UIButton *)sender;
     if (tap) {
+        
+        //房间切换先移除原默认小区ID推送TAG
+        [XGPush delTag:defaultUserHouse.cellId];
+        
         UserHouse *house = [userHouses objectAtIndex:tap.tag];
         UserInfo *userInfo = [[UserModel Instance] getUserInfo];
         userInfo.defaultUserHouse = house;
         [[UserModel Instance] saveUserInfo:userInfo];
         defaultUserHouse = house;
+        
+        //切换后再设置用户小区ID推送TAG
+        [XGPush setTag:defaultUserHouse.cellId];
+        
         [self.tableView reloadData];
     }
 }

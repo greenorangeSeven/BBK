@@ -10,7 +10,8 @@
 
 @interface RepairDetailView : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 
-@property (weak, nonatomic) Repair *repair;
+@property (copy, nonatomic) NSString *present;
+@property (copy, nonatomic) NSString *repairWorkId;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

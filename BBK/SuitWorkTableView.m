@@ -243,7 +243,7 @@
         Suit *suit = [suits objectAtIndex:row];
         if (suit) {
             SuitDetailView *suitDetail = [[SuitDetailView alloc] init];
-            suitDetail.suit = suit;
+            suitDetail.suitWorkId = suit.suitWorkId;
             [self.navigationController pushViewController:suitDetail animated:YES];
         }
     }

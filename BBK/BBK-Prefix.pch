@@ -39,132 +39,141 @@
 #define Appkey @"10000001"
 #define AppSecret @"Hr54hiz7"
 
-//#define api_base_url @"http://192.168.1.23:8080"
-#define api_base_url @"http://114.215.145.29:8080"
+//#define api_base_url @"http://192.168.1.27:8080/zhxq_api/"
+#define api_base_url @"http://114.215.145.29:8080/zhxq_api/"
+//#define api_base_url @"http://222.243.129.39:802/zhxq_api/"
 //登录接口
-#define api_login @"/zhxq_api/regUser/login.htm"
+#define api_login @"regUser/login.htm"
 //查询城市接口
-#define api_findAllCity @"/zhxq_api/params/findAllCity.htm"
+#define api_findAllCity @"params/findAllCity.htm"
 //查询城市小区接口
-#define api_findCellListByCity @"/zhxq_api/params/findCellListByCity.htm"
+#define api_findCellListByCity @"params/findCellListByCity.htm"
 //注册验证码
-#define api_createRegCode @"/zhxq_api/regUser/createRegCode.htm"
+#define api_createRegCode @"regUser/createRegCode.htm"
 //注册接口
-#define api_regUser @"/zhxq_api/regUser/regUser.htm"
+#define api_regUser @"regUser/regUser.htm"
+//邀请注册接口
+#define api_invitationCodeReg @"regUser/invitationCodeReg.htm"
 //获得小区通知
-#define api_findPushInfo @"/zhxq_api/push/findPushInfoByPage.htm"
+#define api_findPushInfo @"push/findPushInfoByPage.htm"
 //获得小区服务
-#define api_callService @"/zhxq_api/params/findManagerCompanyDepartmentAll.htm"
+#define api_callService @"params/findManagerCompanyDepartmentAll.htm"
 //获得快递查询
-#define api_Express @"/zhxq_api/express/findExpressInfoByPage.htm"
+#define api_Express @"express/findExpressInfoByPage.htm"
 //领取包裹
-#define api_GetExpress @"/zhxq_api/express/receiveExpressInfo.htm"
+#define api_GetExpress @"express/receiveExpressInfo.htm"
 //获取报修类型
-#define api_FindAllRepairType @"/zhxq_api/repair/findAllRepairType.htm"
+#define api_FindAllRepairType @"repair/findAllRepairType.htm"
 //新增报修
-#define api_AddRepairWork @"/zhxq_api/repair/addRepairWork.htm"
+#define api_AddRepairWork @"repair/addRepairWork.htm"
 //报修分页查询
-#define api_FindRepairWorkByPage @"/zhxq_api/repair/findRepairWorkByPage.htm"
+#define api_FindRepairWorkByPage @"repair/findRepairWorkByPage.htm"
 //报修详情
-#define api_findRepairWorkDetaile @"/zhxq_api/repair/findRepairWorkDetail.htm"
+#define api_findRepairWorkDetaile @"repair/findRepairWorkDetail.htm"
 //报修评价
-#define api_modiRepairWorkOver @"/zhxq_api/repair/modiRepairWorkOver.htm"
+#define api_modiRepairWorkOver @"repair/modiRepairWorkOver.htm"
 //获取广告信息
-#define api_findAdInfoList @"/zhxq_api/ad/findAdInfoList.htm"
+#define api_findAdInfoList @"ad/findAdInfoList.htm"
 //获取生活查询
-#define api_findLifeTypeAll @"/zhxq_api/shop/findLifeTypeAll.htm"
+#define api_findLifeTypeAll @"shop/findLifeTypeAll.htm"
 //获取商家分类
-#define api_findShopType @"/zhxq_api/shop/findShopTypeList.htm"
+#define api_findShopType @"shop/findShopTypeList.htm"
 //获取商家信息
-#define api_findShopInfoByPage @"/zhxq_api/shop/findShopInfoByPage.htm"
+#define api_findShopInfoByPage @"shop/findShopInfoByPage.htm"
 //获取商家分类
-#define api_findShopInfoByPage @"/zhxq_api/shop/findShopInfoByPage.htm"
+#define api_findShopInfoByPage @"shop/findShopInfoByPage.htm"
 //获取悦生活月刊列表
-#define api_findMonthlyByPageInfo @"/zhxq_api/monthly/findMonthlyByPageInfo.htm"
+#define api_findMonthlyByPageInfo @"monthly/findMonthlyByPageInfo.htm"
 //获取投诉类型
-#define api_findAllSuitType @"/zhxq_api/suit/findAllSuitType.htm"
+#define api_findAllSuitType @"suit/findAllSuitType.htm"
 //新增投诉
-#define api_addSuitWork @"/zhxq_api/suit/addSuitWork.htm"
+#define api_addSuitWork @"suit/addSuitWork.htm"
 //获取投诉列表
-#define api_findSuitWorkByPage @"/zhxq_api/suit/findSuitWorkByPage.htm"
+#define api_findSuitWorkByPage @"suit/findSuitWorkByPage.htm"
 //获取投诉详情
-#define api_findSuitWorkDetail @"/zhxq_api/suit/findSuitWorkDetail.htm"
+#define api_findSuitWorkDetail @"suit/findSuitWorkDetail.htm"
 //投诉评价
-#define api_modiSuitWorkOver @"/zhxq_api/suit/modiSuitWorkOver.htm"
+#define api_modiSuitWorkOver @"suit/modiSuitWorkOver.htm"
 //获得物品借用
-#define api_BorrowGoods @"/zhxq_api/borrow/findBorrowGoodsByPage.htm"
+#define api_BorrowGoods @"borrow/findBorrowGoodsByPage.htm"
 //物品借用
-#define api_borrowGoods @"/zhxq_api/borrow/borrowGoods.htm"
+#define api_borrowGoods @"borrow/borrowGoods.htm"
 //物品借用记录
-#define api_findBorrowRecordsByUserId @"/zhxq_api/borrow/findBorrowRecordsByUserId.htm"
+#define api_findBorrowRecordsByUserId @"borrow/findBorrowRecordsByUserId.htm"
 //添加访客通行证
-#define api_createPassCode @"/zhxq_api/pass/createPassCode.htm"
+#define api_createPassCode @"pass/createPassCode.htm"
 //获得业主发布的访客通行证
-#define api_findPassInfoByPage @"/zhxq_api/pass/findPassInfoByPage.htm"
+#define api_findPassInfoByPage @"pass/findPassInfoByPage.htm"
 //添加预约服务
-#define api_addCelebrationInfo @"/zhxq_api/pass/addCelebrationInfo.htm"
+#define api_addCelebrationInfo @"pass/addCelebrationInfo.htm"
 // 查询当前有效的活动列表
-#define api_findCellActivityOnTime @"/zhxq_api/activity/findCellActivityOnTime.htm"
+#define api_findCellActivityOnTime @"activity/findCellActivityOnTime.htm"
 // 活动点赞
-#define api_addActivityHeart @"/zhxq_api/activity/addActivityHeart.htm"
+#define api_addActivityHeart @"activity/addActivityHeart.htm"
 // 加入/取消相关活动
-#define api_addCancelInActivity @"/zhxq_api/activity/addCancelInActivity.htm"
+#define api_addCancelInActivity @"activity/addCancelInActivity.htm"
 //获得社区朋友圈（生活页接口）
-#define api_CircleOfFriends @"/zhxq_api/topic/findTopicInfoByPage.htm"
+#define api_CircleOfFriends @"topic/findTopicInfoByPage.htm"
 //获得社区朋友圈（社区朋友圈页面接口）
-#define api_findTopicInfoByPageForApp @"/zhxq_api/topic/findTopicInfoByPageForApp.htm"
+#define api_findTopicInfoByPageForApp @"topic/findTopicInfoByPageForApp.htm"
 //社区朋友圈取消点赞
-#define api_delTopicHeart @"/zhxq_api/topic/delTopicHeart.htm"
+#define api_delTopicHeart @"topic/delTopicHeart.htm"
 //社区朋友圈点赞
-#define api_addTopicHeart @"/zhxq_api/topic/addTopicHeart.htm"
+#define api_addTopicHeart @"topic/addTopicHeart.htm"
 //新增社区朋友圈回复
-#define api_addTopicReply @"/zhxq_api/topic/addTopicReply.htm"
+#define api_addTopicReply @"topic/addTopicReply.htm"
 //删除社区朋友圈
-#define api_delTopicInfo @"/zhxq_api/topic/delTopicInfo.htm"
+#define api_delTopicInfo @"topic/delTopicInfo.htm"
 //获取所有话题类型
-#define api_findAllTopicType @"/zhxq_api/topic/findAllTopicType.htm"
+#define api_findAllTopicType @"topic/findAllTopicType.htm"
 //获取朋友圈话题
-#define api_addTopicInfo @"/zhxq_api/topic/addTopicInfo.htm"
+#define api_addTopicInfo @"topic/addTopicInfo.htm"
 //按月分组查询账单数据
-#define api_findPaymentByGroup @"/zhxq_api/payment/findPaymentByGroup.htm"
+#define api_findPaymentByGroup @"payment/findPaymentByGroup.htm"
 //查询月账单详情
-#define api_findPaymentListByMonth @"/zhxq_api/payment/findPaymentListByMonth.htm"
+#define api_findPaymentListByMonth @"payment/findPaymentListByMonth.htm"
 //分页查询交易数据
-#define api_findBusinessInfoByPage @"/zhxq_api/business/findBusinessInfoByPage.htm"
+#define api_findBusinessInfoByPage @"business/findBusinessInfoByPage.htm"
 //发布交易
-#define api_addBusinessInfoForApp @"/zhxq_api/business/addBusinessInfoForApp.htm"
+#define api_addBusinessInfoForApp @"business/addBusinessInfoForApp.htm"
 //签到
-#define api_signin @"/zhxq_api/integral/signin.htm"
+#define api_signin @"integral/signin.htm"
 //获取用户信息
-#define api_findRegUserInfoByUserId @"/zhxq_api/regUser/findRegUserInfoByUserId.htm"
+#define api_findRegUserInfoByUserId @"regUser/findRegUserInfoByUserId.htm"
 //更换头像
-#define api_changeUserPhoto @"/zhxq_api/regUser/changeUserPhoto.htm"
+#define api_changeUserPhoto @"regUser/changeUserPhoto.htm"
 //修改个人资料
-#define api_modiUserInfo @"/zhxq_api/regUser/modiUserInfo.htm"
+#define api_modiUserInfo @"regUser/modiUserInfo.htm"
 //发放注册邀请码
-#define api_createInvitationCode @"/zhxq_api/regUser/createInvitationCode.htm"
+#define api_createInvitationCode @"regUser/createInvitationCode.htm"
 //查询指定房间所绑定的用户信息
-#define api_findUserHouseList @"/zhxq_api/regUser/findUserHouseList.htm"
+#define api_findUserHouseList @"regUser/findUserHouseList.htm"
+//删除指定房间所绑定的用户信息
+#define api_delUserHouseList @"regUser/delUserHouseList.htm"
+//版本更新
+#define api_findSysUpdate @"sysUpdate/findSysUpdate.htm"
 
 
 //小区通知详情页面
-#define htm_pushDetailHtm @"/zhxq_api/app/pushDetail.htm?pushId="
+#define htm_pushDetailHtm @"app/pushDetail.htm?pushId="
 //悦月刊详情页
-#define htm_monthlyDetailHtm @"/zhxq_api/app/monthlyDetail.htm?publicationId="
+#define htm_monthlyDetailHtm @"app/monthlyDetail.htm?publicationId="
 //维修收费清单页面
-#define htm_repairItemList @"/zhxq_api/app/repairItemList.htm?accessId="
+#define htm_repairItemList @"app/repairItemList.htm?accessId="
 //预约服务收费清单页面
-#define htm_celebrationItemsList @"/zhxq_api/app/celebrationItemsList.htm?accessId="
+#define htm_celebrationItemsList @"app/celebrationItemsList.htm?accessId="
 //活动详情页面
-#define htm_activityDetail @"/zhxq_api/app/activityDetail.htm?activityId="
+#define htm_activityDetail @"app/activityDetail.htm?activityId="
 //广告详情页面
-#define htm_adDetail @"/zhxq_api/app/adDetail.htm?adId="
+#define htm_adDetail @"app/adDetail.htm?adId="
 //交易详情页面
-#define htm_businessDetail @"/zhxq_api/app/businessDetail.htm"
+#define htm_businessDetail @"app/businessDetail.htm"
 //抽奖页面
-#define htm_lottery @"/zhxq_api/app/lottery.htm?accessId=&userId="
+#define htm_lottery @"app/lottery.htm?accessId=&userId="
 //便民服务页面
-#define htm_shopDetail @"/zhxq_api/app/shopDetail.htm?shopId="
+#define htm_shopDetail @"app/shopDetail.htm?shopId="
+//关于智慧社区
+#define htm_about @"app/about.htm"
 
 
 #define servicephone @"0731-58661602"

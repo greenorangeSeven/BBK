@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *houseNumTf;
 
 - (IBAction)nextStepAction:(id)sender;
+- (IBAction)inviteRegisterAction:(id)sender;
 
 @end

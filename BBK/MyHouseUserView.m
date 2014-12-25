@@ -122,41 +122,86 @@
     cell.nameLb.text = user.regUserName;
     cell.positionLb.text = [NSString stringWithFormat:@"身份:%@", user.userTypeName];
     
-    if (userTypeId != 0) {
-        cell.removeBtn.hidden = YES;
+    //只有业主才有移除按钮
+    if ([userTypeId isEqualToString:@"0"] == YES) {
+        //业主不能被移除
+        if (user.userTypeId == 0) {
+            cell.removeBtn.hidden = YES;
+        }
+        else
+        {
+            cell.removeBtn.hidden = NO;
+        }
     }
     else
     {
-        cell.removeBtn.hidden = NO;
+        cell.removeBtn.hidden = YES;
     }
+    
     [cell.removeBtn addTarget:self action:@selector(removeUserAction:) forControlEvents:UIControlEventTouchUpInside];
+    cell.removeBtn.tag = row;
     
     return cell;
 }
 
 - (IBAction)removeUserAction:(id)sender
 {
-//    UIButton *btn = (UIButton *)sender;
-//    if (btn) {
-//        int row = btn.tag;
-//        
-//        Express *exp = [expresses objectAtIndex:row];
-//        
-//        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-//        [param setValue:exp.expressId forKey:@"expressId"];
-//        NSString *getExpressUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_GetExpress] params:param];
-//        
-//        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:getExpressUrl]];
-//        [request setUseCookiePersistence:NO];
-//        [request setDelegate:self];
-//        [request setDidFailSelector:@selector(requestFailed:)];
-//        [request setDidFinishSelector:@selector(requestGetExpress:)];
-//        request.tag = row;
-//        [request startAsynchronous];
-//        
-//        request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-//        [Tool showHUD:@"领取中..." andView:self.view andHUD:request.hud];
-//    }
+    UIButton *tap = (UIButton *)sender;
+    
+    if (tap) {
+        HouseUser *user = [houseUsers objectAtIndex:tap.tag];
+        if (user)
+        {
+            tap.enabled = NO;
+            //如果有网络连接
+            if ([UserModel Instance].isNetworkRunning) {
+                //查询当前有效的活动列表
+                NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+                [param setValue:user.numberId forKey:@"numberId"];
+                [param setValue:user.regUserId forKey:@"regUserId"];
+                NSString *delUserHouseListUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_delUserHouseList] params:param];
+                [[AFOSCClient sharedClient]getPath:delUserHouseListUrl parameters:Nil
+                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                               @try {
+                                                   NSData *data = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+                                                   NSError *error;
+                                                   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                                   
+                                                   NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
+                                                   if ([state isEqualToString:@"0000"] == NO) {
+                                                       UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                                                                    message:[[json objectForKey:@"header"] objectForKey:@"msg"]
+                                                                                                   delegate:nil
+                                                                                          cancelButtonTitle:@"确定"
+                                                                                          otherButtonTitles:nil];
+                                                       [av show];
+                                                       //                                                       return;
+                                                   }
+                                                   else
+                                                   {
+                                                       [Tool showCustomHUD:@"已移除该用户" andView:self.view andImage:@"37x-Failure.png" andAfterDelay:2];
+                                                       [houseUsers removeObjectAtIndex:tap.tag];
+                                                       [self.tableView reloadData];
+                                                   }
+                                                   tap.enabled = YES;
+                                               }
+                                               @catch (NSException *exception) {
+                                                   [NdUncaughtExceptionHandler TakeException:exception];
+                                               }
+                                               @finally {
+                                                   
+                                               }
+                                           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                               if ([UserModel Instance].isNetworkRunning == NO) {
+                                                   return;
+                                               }
+                                               if ([UserModel Instance].isNetworkRunning) {
+                                                   [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                               }
+                                           }];
+            }
+        }
+    }
 }
 
 //表格行点击事件

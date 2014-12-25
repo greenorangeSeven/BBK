@@ -10,7 +10,8 @@
 
 @interface SuitDetailView : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 
-@property (weak, nonatomic) Suit *suit;
+@property (copy, nonatomic) NSString *present;
+@property (copy, nonatomic) NSString *suitWorkId;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

@@ -16,6 +16,7 @@
 #import "MyPageView.h"
 #import "SettingPageView.h"
 #import "AppDelegate.h"
+#import "XGPush.h"
 
 @interface LoginView ()
 
@@ -99,7 +100,7 @@
     NSData *data = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    
+    NSLog(request.responseString);
     NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
     if ([state isEqualToString:@"0000"] == NO) {
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
@@ -126,7 +127,7 @@
         if([userInfo.rhUserHouseList count] > 0)
         {
             for (int i = 0; i < [userInfo.rhUserHouseList count]; i++) {
-                UserHouse *userHouse = (UserHouse *)[userInfo.rhUserHouseList objectAtIndex:1];
+                UserHouse *userHouse = (UserHouse *)[userInfo.rhUserHouseList objectAtIndex:0];
                 if (i == 0) {
                     [userModel saveValue:[userHouse.userTypeId stringValue] ForKey:@"userTypeId"];
                     [userModel saveValue:userHouse.userTypeName ForKey:@"userTypeName"];
@@ -158,6 +159,7 @@
         }
 //        [[EGOCache globalCache] setObject:userInfo forKey:UserInfoCache withTimeoutInterval:3600 * 24 * 356];
         [[UserModel Instance] saveUserInfo:userInfo];
+        [XGPush setTag:userInfo.defaultUserHouse.cellId];
         [self gotoTabbar];
     }
 }

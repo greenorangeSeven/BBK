@@ -30,6 +30,12 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
+    if([self.present isEqualToString:@"present"] == YES)
+    {
+        UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithTitle: @"关闭" style:UIBarButtonItemStyleBordered target:self action:@selector(closeAction)];
+        leftBtn.tintColor = [Tool getColorForMain];
+        self.navigationItem.leftBarButtonItem = leftBtn;
+    }
     UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 21, 22)];
     [rBtn addTarget:self action:@selector(telAction:) forControlEvents:UIControlEventTouchUpInside];
     [rBtn setImage:[UIImage imageNamed:@"head_tel"] forState:UIControlStateNormal];
@@ -68,6 +74,13 @@
     
     expresses = [[NSMutableArray alloc] initWithCapacity:20];
     [self refreshExpressData:YES];
+}
+
+- (void)closeAction
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)refreshed:(NSNotification *)notification

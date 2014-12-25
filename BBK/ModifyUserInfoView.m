@@ -144,11 +144,13 @@
     else
     {
         UserModel *userModel = [UserModel Instance];
+        UserInfo *userInfo = [[UserModel Instance] getUserInfo];
         if ([self.oldPassWordTf.text length] > 0 && [self.newsPassWordTf.text length] > 0)
         {
             [userModel saveAccount:[userModel getUserValueForKey:@"Account"] andPwd:self.newsPassWordTf.text];
         }
-        [userModel saveValue:self.nickNameTf.text ForKey:@"nickName"];
+        userInfo.nickName = self.nickNameTf.text;
+        [userModel saveUserInfo:userInfo];
         [Tool showCustomHUD:@"修改成功" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:2];
         [self.navigationController popViewControllerAnimated:YES];
     }

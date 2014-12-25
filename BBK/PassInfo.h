@@ -19,4 +19,9 @@
 @property (nonatomic, retain) NSNumber *starttimeStamp;
 @property (nonatomic, retain) NSString *starttime;
 
+@property (nonatomic, retain) NSString *cellName;
+@property (nonatomic, retain) NSString *buildingName;
+@property (nonatomic, retain) NSString *numberName;
+@property (nonatomic, retain) NSString *carLicense;
+
 @end

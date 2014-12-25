@@ -10,8 +10,9 @@
 
 @interface CommDetailView : UIViewController<UIWebViewDelegate>
 
-@property (weak, nonatomic) NSString *titleStr;
-@property (weak, nonatomic) NSString *urlStr;
+@property (copy, nonatomic) NSString *present;
+@property (copy, nonatomic) NSString *titleStr;
+@property (copy, nonatomic) NSString *urlStr;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end

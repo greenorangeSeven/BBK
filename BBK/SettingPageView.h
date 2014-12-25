@@ -10,7 +10,7 @@
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
 
-@interface SettingPageView : UIViewController<SGFocusImageFrameDelegate>
+@interface SettingPageView : UIViewController<SGFocusImageFrameDelegate,UIAlertViewDelegate>
 {
     NSMutableArray *advDatas;
     SGFocusImageFrame *bannerView;
@@ -20,6 +20,13 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *switchLb;
 @property (weak, nonatomic) IBOutlet UIImageView *advIv;
+//注销用户
 - (IBAction)logoutAction:(id)sender;
+//关于步步高智慧社区
+- (IBAction)aboutBBGAction:(id)sender;
+//版本更新
+- (IBAction)checkVersionUpdate:(id)sender;
+//清除缓存
+- (IBAction)clearCacheAction:(id)sender;
 
 @end

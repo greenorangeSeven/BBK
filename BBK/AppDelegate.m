@@ -16,6 +16,10 @@
 #import "MyPageView.h"
 #import "SettingPageView.h"
 #import "TransitionView.h"
+#import "CommDetailView.h"
+#import "ExpressView.h"
+#import "RepairDetailView.h"
+#import "SuitDetailView.h"
 
 #import "XGPush.h"
 #import "XGSetting.h"
@@ -74,6 +78,8 @@ BMKMapManager* _mapManager;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //检查网络是否存在 如果不存在 则弹出提示
     [UserModel Instance].isNetworkRunning = [CheckNetwork isExistenceNetwork];
+    
+    self.pushInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     
     //显示系统托盘
 //    [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
@@ -137,27 +143,69 @@ BMKMapManager* _mapManager;
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
         //清除所有通知(包含本地通知)
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
-//        NoticeFrameView *noticeView = [[NoticeFrameView alloc] initWithNibName:@"NoticeFrameView" bundle:nil];
-//        noticeView.presentType = @"present";
-//        UINavigationController *noticeViewNav = [[UINavigationController alloc] initWithRootViewController:noticeView];
-//        
-//        [self.window.rootViewController presentViewController:noticeViewNav animated:YES completion:^{
-//            _isForeground = NO;
-//        }];
+        NSString *type = [self.pushInfo  objectForKey:@"type"];
+        if ([type isEqualToString:@"notice"] == YES)
+        {
+            NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@", api_base_url, [self.pushInfo  objectForKey:@"url"]];
+            CommDetailView *detailView = [[CommDetailView alloc] initWithNibName:@"CommDetailView" bundle:nil];
+            detailView.present = @"present";
+            detailView.titleStr = @"物业通知";
+            detailView.urlStr = pushDetailHtm;
+            UINavigationController *detailViewNav = [[UINavigationController alloc] initWithRootViewController:detailView];
+            [self.window.rootViewController presentViewController:detailViewNav animated:YES completion:^{
+                _isForeground = NO;
+            }];
+        }
+        else if ([type isEqualToString:@"express"] == YES)
+        {
+            ExpressView *expressView = [[ExpressView alloc] initWithNibName:@"ExpressView" bundle:nil];
+            expressView.present = @"present";
+            UINavigationController *noticeViewNav = [[UINavigationController alloc] initWithRootViewController:expressView];
+            [self.window.rootViewController presentViewController:noticeViewNav animated:YES completion:^{
+                _isForeground = NO;
+            }];
+        }
+        else if ([type isEqualToString:@"repair"] == YES)
+        {
+            RepairDetailView *repairDetail = [[RepairDetailView alloc] initWithNibName:@"RepairDetailView" bundle:nil];
+            repairDetail.present = @"present";
+            repairDetail.repairWorkId = [self.pushInfo objectForKey:@"id"];
+            UINavigationController *repairDetailNav = [[UINavigationController alloc] initWithRootViewController:repairDetail];
+            [self.window.rootViewController presentViewController:repairDetailNav animated:YES completion:^{
+                _isForeground = NO;
+            }];
+        }
+        else if ([type isEqualToString:@"suit"] == YES)
+        {
+            SuitDetailView *suitDetail = [[SuitDetailView alloc] initWithNibName:@"SuitDetailView" bundle:nil];
+            suitDetail.present = @"present";
+            suitDetail.suitWorkId = [self.pushInfo objectForKey:@"id"];
+            UINavigationController *suitDetailNav = [[UINavigationController alloc] initWithRootViewController:suitDetail];
+            [self.window.rootViewController presentViewController:suitDetailNav animated:YES completion:^{
+                _isForeground = NO;
+            }];
+        }
     };
     
     void (^errorBlock)(void) = ^(void){
         //失败之后的处理
         NSLog(@"[XGPush]handleLaunching's errorBlock");
+        UIAlertView *notificationAlert = [[UIAlertView alloc] initWithTitle:@"推送消息" message:@"ddddddd" delegate:self cancelButtonTitle:@"忽略" otherButtonTitles:@"查看", nil];
+        [notificationAlert show];
     };
     //清除所有通知(包含本地通知)
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     [XGPush handleLaunching:launchOptions successCallback:successBlock errorCallback:errorBlock];
     //信鸽END
-       
+    
     return YES;
 }
+
+//- (void)integrationXG
+//{
+//    
+//}
 
 - (void)userLogin
 {
@@ -329,6 +377,12 @@ BMKMapManager* _mapManager;
         NSLog(@"[XGPush]register errorBlock");
     };
     
+    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    
+    if (userInfo.mobileNo != nil && [userInfo.mobileNo length] > 0) {
+        [XGPush setAccount:userInfo.mobileNo];
+    }
+    
     //注册设备
     [[XGSetting getInstance] setChannel:@"appstore"];
     //    [[XGSetting getInstance] setGameServer:@"巨神峰"];
@@ -355,7 +409,7 @@ BMKMapManager* _mapManager;
 {
     //推送反馈(app运行时)
     [XGPush handleReceiveNotification:userInfo];
-    
+    self.pushInfo = userInfo;
     
     //回调版本示例
     /**/
@@ -363,17 +417,7 @@ BMKMapManager* _mapManager;
         //成功之后的处理
         NSLog(@"[XGPush]handleReceiveNotification successBlock");
         if (_isForeground == YES) {
-            //角标清0
-            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-            //清除所有通知(包含本地通知)
-            [[UIApplication sharedApplication] cancelAllLocalNotifications];
-//            NoticeFrameView *noticeView = [[NoticeFrameView alloc] initWithNibName:@"NoticeFrameView" bundle:nil];
-//            noticeView.presentType = @"present";
-//            UINavigationController *noticeViewNav = [[UINavigationController alloc] initWithRootViewController:noticeView];
-            
-//            [self.window.rootViewController presentViewController:noticeViewNav animated:YES completion:^{
-//                _isForeground = NO;
-//            }];
+            [self pushNotificationHandle];
         }
         else
         {
@@ -395,23 +439,63 @@ BMKMapManager* _mapManager;
     };
     
     [XGPush handleReceiveNotification:userInfo successCallback:successBlock errorCallback:errorBlock completion:completion];
-    
+}
+
+//推送通知处理
+- (void)pushNotificationHandle
+{
+    //角标清0
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    //清除所有通知(包含本地通知)
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    NSString *type = [self.pushInfo  objectForKey:@"type"];
+    if ([type isEqualToString:@"notice"] == YES) {
+        NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@", api_base_url, [self.pushInfo  objectForKey:@"url"]];
+        CommDetailView *detailView = [[CommDetailView alloc] initWithNibName:@"CommDetailView" bundle:nil];
+        detailView.present = @"present";
+        detailView.titleStr = @"物业通知";
+        detailView.urlStr = pushDetailHtm;
+        UINavigationController *detailViewNav = [[UINavigationController alloc] initWithRootViewController:detailView];
+        [self.window.rootViewController presentViewController:detailViewNav animated:YES completion:^{
+            _isForeground = NO;
+        }];
+    }
+    else if ([type isEqualToString:@"express"] == YES)
+    {
+        ExpressView *expressView = [[ExpressView alloc] initWithNibName:@"ExpressView" bundle:nil];
+        expressView.present = @"present";
+        UINavigationController *noticeViewNav = [[UINavigationController alloc] initWithRootViewController:expressView];
+        [self.window.rootViewController presentViewController:noticeViewNav animated:YES completion:^{
+            _isForeground = NO;
+        }];
+    }
+    else if ([type isEqualToString:@"repair"] == YES)
+    {
+        RepairDetailView *repairDetail = [[RepairDetailView alloc] initWithNibName:@"RepairDetailView" bundle:nil];
+        repairDetail.present = @"present";
+        repairDetail.repairWorkId = [self.pushInfo objectForKey:@"id"];
+        UINavigationController *repairDetailNav = [[UINavigationController alloc] initWithRootViewController:repairDetail];
+        [self.window.rootViewController presentViewController:repairDetailNav animated:YES completion:^{
+            _isForeground = NO;
+        }];
+    }
+    else if ([type isEqualToString:@"suit"] == YES)
+    {
+        SuitDetailView *suitDetail = [[SuitDetailView alloc] initWithNibName:@"SuitDetailView" bundle:nil];
+        suitDetail.present = @"present";
+        suitDetail.suitWorkId = [self.pushInfo objectForKey:@"id"];
+        UINavigationController *suitDetailNav = [[UINavigationController alloc] initWithRootViewController:suitDetail];
+        [self.window.rootViewController presentViewController:suitDetailNav animated:YES completion:^{
+            _isForeground = NO;
+        }];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    
     if (buttonIndex == 1) {
-        //角标清0
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-        //清除所有通知(包含本地通知)
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
-//        NoticeFrameView *noticeView = [[NoticeFrameView alloc] initWithNibName:@"NoticeFrameView" bundle:nil];
-//        noticeView.presentType = @"present";
-//        UINavigationController *noticeViewNav = [[UINavigationController alloc] initWithRootViewController:noticeView];
-//        
-//        [self.window.rootViewController presentViewController:noticeViewNav animated:YES completion:^{
-//            
-//        }];
+        [self pushNotificationHandle];
     }
 }
 

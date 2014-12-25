@@ -88,6 +88,8 @@
 		146E22881A45B962003EB640 /* PaymentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 146E22871A45B962003EB640 /* PaymentItem.m */; };
 		146E228C1A45BC10003EB640 /* PaymentItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 146E228A1A45BC10003EB640 /* PaymentItemCell.m */; };
 		146E228D1A45BC10003EB640 /* PaymentItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E228B1A45BC10003EB640 /* PaymentItemCell.xib */; };
+		14753FBB1A4B9DA0002533E6 /* InviteRegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14753FB91A4B9DA0002533E6 /* InviteRegisterView.m */; };
+		14753FBC1A4B9DA0002533E6 /* InviteRegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14753FBA1A4B9DA0002533E6 /* InviteRegisterView.xib */; };
 		148AD7D01A3EC5F700290203 /* BorrowGoodFromView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148AD7CE1A3EC5F700290203 /* BorrowGoodFromView.m */; };
 		148AD7D11A3EC5F700290203 /* BorrowGoodFromView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148AD7CF1A3EC5F700290203 /* BorrowGoodFromView.xib */; };
 		148AD7D61A3F1B3500290203 /* BorrowRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 148AD7D51A3F1B3500290203 /* BorrowRecord.m */; };
@@ -579,6 +581,9 @@
 		146E22891A45BC10003EB640 /* PaymentItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentItemCell.h; sourceTree = "<group>"; };
 		146E228A1A45BC10003EB640 /* PaymentItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentItemCell.m; sourceTree = "<group>"; };
 		146E228B1A45BC10003EB640 /* PaymentItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentItemCell.xib; sourceTree = "<group>"; };
+		14753FB81A4B9DA0002533E6 /* InviteRegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteRegisterView.h; sourceTree = "<group>"; };
+		14753FB91A4B9DA0002533E6 /* InviteRegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteRegisterView.m; sourceTree = "<group>"; };
+		14753FBA1A4B9DA0002533E6 /* InviteRegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteRegisterView.xib; sourceTree = "<group>"; };
 		148AD7CD1A3EC5F700290203 /* BorrowGoodFromView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorrowGoodFromView.h; sourceTree = "<group>"; };
 		148AD7CE1A3EC5F700290203 /* BorrowGoodFromView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorrowGoodFromView.m; sourceTree = "<group>"; };
 		148AD7CF1A3EC5F700290203 /* BorrowGoodFromView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorrowGoodFromView.xib; sourceTree = "<group>"; };
@@ -1741,6 +1746,9 @@
 				14E3A06B1A276F9C009D0EB0 /* RegisterStep3View.h */,
 				14E3A06C1A276F9C009D0EB0 /* RegisterStep3View.m */,
 				14E3A06D1A276F9C009D0EB0 /* RegisterStep3View.xib */,
+				14753FB81A4B9DA0002533E6 /* InviteRegisterView.h */,
+				14753FB91A4B9DA0002533E6 /* InviteRegisterView.m */,
+				14753FBA1A4B9DA0002533E6 /* InviteRegisterView.xib */,
 			);
 			name = SettingPage;
 			sourceTree = "<group>";
@@ -2472,6 +2480,7 @@
 				14E8F4131A2D5CE900017CA5 /* MyPageView.xib in Resources */,
 				14C117BB1A357F60009CAC7E /* CircleOfFriendsImgCell.xib in Resources */,
 				14FDB9E21A26C94F006EFFCC /* MWPhotoBrowser.bundle in Resources */,
+				14753FBC1A4B9DA0002533E6 /* InviteRegisterView.xib in Resources */,
 				1406D01A1A494F5500CF3FEE /* ChangeHouseView.xib in Resources */,
 				14B4D3D11A36D82300933A5A /* LifeReferView.xib in Resources */,
 				14CCEDFE1A36936300ABBE7F /* RepairTableView.xib in Resources */,
@@ -2542,6 +2551,7 @@
 				14FDB9C01A26C94F006EFFCC /* MWTapDetectingView.m in Sources */,
 				14F8014C1A46C0B900DAD296 /* Trade.m in Sources */,
 				14B4D4711A3D20CF00933A5A /* AddSuitWorkView.m in Sources */,
+				14753FBB1A4B9DA0002533E6 /* InviteRegisterView.m in Sources */,
 				14B641BA1A2D42AC00C350A0 /* LifePageView.m in Sources */,
 				14FDB96C1A26C94E006EFFCC /* AFJSONRequestOperation.m in Sources */,
 				14FDB96A1A26C94E006EFFCC /* AFHTTPRequestOperation.m in Sources */,
@@ -2798,8 +2808,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2821,7 +2831,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
+				PROVISIONING_PROFILE = "b9f61512-5353-4999-8dc5-88aa57a16d05";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2843,8 +2853,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2859,7 +2869,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
+				PROVISIONING_PROFILE = "b9f61512-5353-4999-8dc5-88aa57a16d05";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2874,7 +2884,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Framework,
@@ -2897,7 +2907,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
+				PROVISIONING_PROFILE = "b9f61512-5353-4999-8dc5-88aa57a16d05";
 			};
 			name = Debug;
 		};
@@ -2910,7 +2920,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Framework,
@@ -2933,7 +2943,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
+				PROVISIONING_PROFILE = "b9f61512-5353-4999-8dc5-88aa57a16d05";
 			};
 			name = Release;
 		};

@@ -14,6 +14,7 @@
 #import "HouseNum.h"
 #import "Unit.h"
 #import "IQKeyboardManager/KeyboardManager.framework/Headers/IQKeyboardManager.h"
+#import "InviteRegisterView.h"
 
 @interface RegisterStep1View ()
 {
@@ -496,5 +497,10 @@
     RegisterStep2View *register2 = [[RegisterStep2View alloc] init];
     register2.houseNumId = houseNumId;
     [self.navigationController pushViewController:register2 animated:YES];
+}
+
+- (IBAction)inviteRegisterAction:(id)sender {
+    InviteRegisterView *inviteRegister = [[InviteRegisterView alloc] init];
+    [self.navigationController pushViewController:inviteRegister animated:YES];
 }
 @end

@@ -21,6 +21,8 @@
     BOOL _reloading;
 }
 
+@property (copy, nonatomic) NSString *present;
+
 @property (weak, nonatomic) IBOutlet UIImageView *userFaceIv;
 @property (weak, nonatomic) IBOutlet UILabel *userInfoLb;
 @property (weak, nonatomic) IBOutlet UILabel *userAddressLb;
