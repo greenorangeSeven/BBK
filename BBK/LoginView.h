@@ -15,7 +15,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *mobileNoTf;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTf;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *findPasswordBtn;
+
 - (IBAction)loginAction:(id)sender;
 - (IBAction)registerAction:(id)sender;
+- (IBAction)findPasswordAction:(id)sender;
 
 @end

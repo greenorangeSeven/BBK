@@ -10,4 +10,6 @@
 
 @interface TransitionView : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *defaultIV;
+
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BMapKit.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,UIAlertViewDelegate>
 
 @property BOOL isForeground;
 @property (strong, nonatomic) UIWindow *window;

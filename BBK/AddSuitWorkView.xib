@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddSuitWorkView">
             <connections>
                 <outlet property="collectionView" destination="exT-Ja-XW0" id="ses-B6-ddL"/>
+                <outlet property="scrollView" destination="HoZ-8i-97o" id="LBr-tR-g1s"/>
                 <outlet property="submitSuitBtn" destination="6zu-1m-ki8" id="tdo-p4-Nw4"/>
                 <outlet property="suitContentPlaceholder" destination="6tt-Xo-bu9" id="FM2-wI-Qef"/>
                 <outlet property="suitContentTv" destination="FKd-xQ-vLb" id="3Ca-mG-1VK"/>
@@ -20,11 +21,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="491"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="HoZ-8i-97o">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="491"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="NpK-hM-NgY">
@@ -191,8 +192,8 @@
                 </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-133" y="25"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-133" y="-13.5"/>
         </view>
     </objects>
     <resources>

@@ -96,6 +96,9 @@
                                 <state key="normal" title="快递物流查询" backgroundImage="button_blue">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="kd100Action:" destination="-1" eventType="touchUpInside" id="XYj-QJ-QuP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ADF-zo-2q6">
                                 <rect key="frame" x="44" y="78" width="233" height="47"/>

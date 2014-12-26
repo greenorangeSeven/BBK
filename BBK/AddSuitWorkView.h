@@ -10,6 +10,7 @@
 
 @interface AddSuitWorkView : UIViewController<UITextViewDelegate, UIActionSheetDelegate, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *userFaceIv;
 @property (weak, nonatomic) IBOutlet UILabel *userInfoLb;
 @property (weak, nonatomic) IBOutlet UILabel *userAddressLb;

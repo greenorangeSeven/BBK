@@ -16,7 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (!IS_IPHONE_5) {
+        self.defaultIV.image = [UIImage imageNamed:@"transition"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

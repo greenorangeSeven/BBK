@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *noticeTitleLb;
 @property (weak, nonatomic) IBOutlet UIImageView *advIv;
 - (IBAction)noticeDetailAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *gatePassBtn;
+@property (weak, nonatomic) IBOutlet UILabel *gatePassLb;
 
 //物业通知
 - (IBAction)noticesAction:(id)sender;

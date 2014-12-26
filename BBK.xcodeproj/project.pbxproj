@@ -90,6 +90,8 @@
 		146E228D1A45BC10003EB640 /* PaymentItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146E228B1A45BC10003EB640 /* PaymentItemCell.xib */; };
 		14753FBB1A4B9DA0002533E6 /* InviteRegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14753FB91A4B9DA0002533E6 /* InviteRegisterView.m */; };
 		14753FBC1A4B9DA0002533E6 /* InviteRegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14753FBA1A4B9DA0002533E6 /* InviteRegisterView.xib */; };
+		14753FC31A4CFD31002533E6 /* Activity_35CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14753FC11A4CFD31002533E6 /* Activity_35CollectionCell.m */; };
+		14753FC41A4CFD31002533E6 /* Activity_35CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14753FC21A4CFD31002533E6 /* Activity_35CollectionCell.xib */; };
 		148AD7D01A3EC5F700290203 /* BorrowGoodFromView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148AD7CE1A3EC5F700290203 /* BorrowGoodFromView.m */; };
 		148AD7D11A3EC5F700290203 /* BorrowGoodFromView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148AD7CF1A3EC5F700290203 /* BorrowGoodFromView.xib */; };
 		148AD7D61A3F1B3500290203 /* BorrowRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 148AD7D51A3F1B3500290203 /* BorrowRecord.m */; };
@@ -584,6 +586,9 @@
 		14753FB81A4B9DA0002533E6 /* InviteRegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteRegisterView.h; sourceTree = "<group>"; };
 		14753FB91A4B9DA0002533E6 /* InviteRegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteRegisterView.m; sourceTree = "<group>"; };
 		14753FBA1A4B9DA0002533E6 /* InviteRegisterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteRegisterView.xib; sourceTree = "<group>"; };
+		14753FC01A4CFD31002533E6 /* Activity_35CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity_35CollectionCell.h; sourceTree = "<group>"; };
+		14753FC11A4CFD31002533E6 /* Activity_35CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity_35CollectionCell.m; sourceTree = "<group>"; };
+		14753FC21A4CFD31002533E6 /* Activity_35CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Activity_35CollectionCell.xib; sourceTree = "<group>"; };
 		148AD7CD1A3EC5F700290203 /* BorrowGoodFromView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorrowGoodFromView.h; sourceTree = "<group>"; };
 		148AD7CE1A3EC5F700290203 /* BorrowGoodFromView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorrowGoodFromView.m; sourceTree = "<group>"; };
 		148AD7CF1A3EC5F700290203 /* BorrowGoodFromView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorrowGoodFromView.xib; sourceTree = "<group>"; };
@@ -1555,6 +1560,9 @@
 				142D9E1F1A4071A500EF59A1 /* ActivityCollectionCell.h */,
 				142D9E201A4071A500EF59A1 /* ActivityCollectionCell.m */,
 				142D9E211A4071A500EF59A1 /* ActivityCollectionCell.xib */,
+				14753FC01A4CFD31002533E6 /* Activity_35CollectionCell.h */,
+				14753FC11A4CFD31002533E6 /* Activity_35CollectionCell.m */,
+				14753FC21A4CFD31002533E6 /* Activity_35CollectionCell.xib */,
 				142D9E2A1A408AC400EF59A1 /* ActivityDetailView.h */,
 				142D9E2B1A408AC400EF59A1 /* ActivityDetailView.m */,
 				142D9E2C1A408AC400EF59A1 /* ActivityDetailView.xib */,
@@ -2467,6 +2475,7 @@
 				142435C51A47A17900896B6F /* SignInView.xib in Resources */,
 				14B641DD1A2DFA7D00C350A0 /* NoticeOldCell.xib in Resources */,
 				14FDB9D01A26C94F006EFFCC /* LICENSE in Resources */,
+				14753FC41A4CFD31002533E6 /* Activity_35CollectionCell.xib in Resources */,
 				14B641C21A2D691A00C350A0 /* SettingPageView.xib in Resources */,
 				14E3A0651A275C77009D0EB0 /* RegisterStep1View.xib in Resources */,
 				14B641CF1A2DA9DD00C350A0 /* NoticeTableView.xib in Resources */,
@@ -2603,6 +2612,7 @@
 				1406D01E1A49533D00CF3FEE /* ChangeHouseCell.m in Sources */,
 				14FDB9A01A26C94E006EFFCC /* EGORefreshTableHeaderView.m in Sources */,
 				149575711A2CA2D100320CF8 /* PropertyPageView.m in Sources */,
+				14753FC31A4CFD31002533E6 /* Activity_35CollectionCell.m in Sources */,
 				14FDB96F1A26C94E006EFFCC /* AFOSCClient.m in Sources */,
 				14FDB9AA1A26C94E006EFFCC /* NSString+Extensions.m in Sources */,
 				1406D0081A4917DA00CF3FEE /* Releasepermit.m in Sources */,
@@ -2808,8 +2818,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: BBG Real Estate Development Co.,Ltd. (5JS3H59A9N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: BBG Real Estate Development Co.,Ltd. (5JS3H59A9N)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2831,7 +2841,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b9f61512-5353-4999-8dc5-88aa57a16d05";
+				PROVISIONING_PROFILE = "7b1d6c5a-d6ac-4139-b9e0-18d9422cc111";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2853,8 +2863,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: BBG Real Estate Development Co.,Ltd. (5JS3H59A9N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: BBG Real Estate Development Co.,Ltd. (5JS3H59A9N)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2869,7 +2879,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "b9f61512-5353-4999-8dc5-88aa57a16d05";
+				PROVISIONING_PROFILE = "7b1d6c5a-d6ac-4139-b9e0-18d9422cc111";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2884,7 +2894,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: BBG Real Estate Development Co.,Ltd. (5JS3H59A9N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Framework,
@@ -2907,7 +2917,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b9f61512-5353-4999-8dc5-88aa57a16d05";
+				PROVISIONING_PROFILE = "7b1d6c5a-d6ac-4139-b9e0-18d9422cc111";
 			};
 			name = Debug;
 		};
@@ -2920,7 +2930,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qu Yuping (7KUC8QGPU9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: BBG Real Estate Development Co.,Ltd. (5JS3H59A9N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					Framework,
@@ -2943,7 +2953,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b9f61512-5353-4999-8dc5-88aa57a16d05";
+				PROVISIONING_PROFILE = "7b1d6c5a-d6ac-4139-b9e0-18d9422cc111";
 			};
 			name = Release;
 		};

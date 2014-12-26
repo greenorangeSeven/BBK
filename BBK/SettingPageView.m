@@ -42,6 +42,14 @@
     self.navigationItem.rightBarButtonItem = btnTel;
     
     [self getADVData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshed:) name:Notification_RefreshSettingPageView object:nil];
+}
+
+- (void)refreshed:(NSNotification *)notification
+{
+    [bannerView removeFromSuperview];
+    bannerView = nil;
+    [self getADVData];
 }
 
 - (void)getADVData
@@ -190,7 +198,7 @@
     if ([UserModel Instance].isNetworkRunning) {
         //生成版本更新URL
         NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
-        [param setValue:@"1" forKey:@"sysType"];
+        [param setValue:@"0" forKey:@"sysType"];
         NSString *findSysUpdateUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findSysUpdate] params:param];
         
         [[AFOSCClient sharedClient]getPath:findSysUpdateUrl parameters:Nil

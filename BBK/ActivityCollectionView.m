@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "Activity.h"
 #import "ActivityCollectionCell.h"
+#import "Activity_35CollectionCell.h"
 #import "ActivityDetailView.h"
 
 @interface ActivityCollectionView ()
@@ -37,16 +38,16 @@
     self.activityCollection.dataSource = self;
     
     [self.activityCollection registerClass:[ActivityCollectionCell class] forCellWithReuseIdentifier:ActivityCollectionCellIdentifier];
-    
+    [self.activityCollection registerClass:[Activity_35CollectionCell class] forCellWithReuseIdentifier:Activity_35CollectionCellIdentifier];
     
     self.activityCollection.backgroundColor = [Tool getBackgroundColor];
     [self getActivityList];
-    //适配iOS7uinavigationbar遮挡tableView的问题
-    if(IS_IOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+//    //适配iOS7uinavigationbar遮挡tableView的问题
+//    if(IS_IOS7)
+//    {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+//    }
 }
 
 //取数方法
@@ -99,46 +100,88 @@
 //每个UICollectionView展示的内容
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ActivityCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ActivityCollectionCellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"ActivityCollectionCell" owner:self options:nil];
-        for (NSObject *o in objects) {
-            if ([o isKindOfClass:[ActivityCollectionCell class]]) {
-                cell = (ActivityCollectionCell *)o;
-                break;
-            }
-        }
-    }
     int indexRow = [indexPath row];
     Activity *activity = [activities objectAtIndex:indexRow];
     self.pageControl.currentPage = indexRow;
-    
-    [Tool roundView:cell.bg andCornerRadius:5.0f];
-    
-    [cell.praiseBtn setTitle:[NSString stringWithFormat:@"  赞(%d)", activity.heartCount] forState:UIControlStateNormal];
-    [cell.praiseBtn addTarget:self action:@selector(praiseAction:) forControlEvents:UIControlEventTouchUpInside];
-    cell.praiseBtn.tag = indexRow;
-    
-    if ([activity.isJoin isEqualToString:@"1"]) {
-        [cell.attendBtn setTitle:@"  已参与" forState:UIControlStateNormal];
+    if(IS_IPHONE_5)
+    {
+        ActivityCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ActivityCollectionCellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"ActivityCollectionCell" owner:self options:nil];
+            for (NSObject *o in objects) {
+                if ([o isKindOfClass:[ActivityCollectionCell class]]) {
+                    cell = (ActivityCollectionCell *)o;
+                    break;
+                }
+            }
+        }
+        
+        [Tool roundView:cell.bg andCornerRadius:5.0f];
+        
+        [cell.praiseBtn setTitle:[NSString stringWithFormat:@"  赞(%d)", activity.heartCount] forState:UIControlStateNormal];
+        [cell.praiseBtn addTarget:self action:@selector(praiseAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.praiseBtn.tag = indexRow;
+        
+        if ([activity.isJoin isEqualToString:@"1"]) {
+            [cell.attendBtn setTitle:@"  已参与" forState:UIControlStateNormal];
+        }
+        else
+        {
+            [cell.attendBtn setTitle:@"  我要参与" forState:UIControlStateNormal];
+        }
+        [cell.attendBtn addTarget:self action:@selector(attendAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.attendBtn.tag = indexRow;
+        
+        [cell.checkDetailBtn addTarget:self action:@selector(checkDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.checkDetailBtn.tag = indexRow;
+        
+        cell.titleLb.text = activity.activityName;
+        cell.dateLb.text = [NSString stringWithFormat:@"活动时间：%@-%@", activity.starttime, activity.endtime];
+        cell.conditionLb.text = [NSString stringWithFormat:@"活动资格：%@", activity.qualifications];
+        cell.telephoneLb.text = [NSString stringWithFormat:@"咨询电话：%@", activity.phone];
+        cell.qqLb.text = [NSString stringWithFormat:@"咨询QQ：%@", activity.qq];
+        [cell.imageIv setImageWithURL:[NSURL URLWithString:activity.imgUrlFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+        return cell;
     }
     else
     {
-        [cell.attendBtn setTitle:@"  我要参与" forState:UIControlStateNormal];
+        Activity_35CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Activity_35CollectionCellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"Activity_35CollectionCell" owner:self options:nil];
+            for (NSObject *o in objects) {
+                if ([o isKindOfClass:[Activity_35CollectionCell class]]) {
+                    cell = (Activity_35CollectionCell *)o;
+                    break;
+                }
+            }
+        }
+        
+        [Tool roundView:cell.bg andCornerRadius:5.0f];
+        
+        [cell.praiseBtn setTitle:[NSString stringWithFormat:@"  赞(%d)", activity.heartCount] forState:UIControlStateNormal];
+        [cell.praiseBtn addTarget:self action:@selector(praiseAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.praiseBtn.tag = indexRow;
+        
+        if ([activity.isJoin isEqualToString:@"1"]) {
+            [cell.attendBtn setTitle:@"  已参与" forState:UIControlStateNormal];
+        }
+        else
+        {
+            [cell.attendBtn setTitle:@"  我要参与" forState:UIControlStateNormal];
+        }
+        [cell.attendBtn addTarget:self action:@selector(attendAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.attendBtn.tag = indexRow;
+        
+        [cell.checkDetailBtn addTarget:self action:@selector(checkDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.checkDetailBtn.tag = indexRow;
+        
+        cell.titleLb.text = activity.activityName;
+        cell.dateLb.text = [NSString stringWithFormat:@"活动时间：%@-%@", activity.starttime, activity.endtime];
+        cell.conditionLb.text = [NSString stringWithFormat:@"活动资格：%@", activity.qualifications];
+        cell.telephoneLb.text = [NSString stringWithFormat:@"咨询电话：%@", activity.phone];
+        [cell.imageIv setImageWithURL:[NSURL URLWithString:activity.imgUrlFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+        return cell;
     }
-    [cell.attendBtn addTarget:self action:@selector(attendAction:) forControlEvents:UIControlEventTouchUpInside];
-    cell.attendBtn.tag = indexRow;
-    
-    [cell.checkDetailBtn addTarget:self action:@selector(checkDetailAction:) forControlEvents:UIControlEventTouchUpInside];
-    cell.checkDetailBtn.tag = indexRow;
-    
-    cell.titleLb.text = activity.activityName;
-    cell.dateLb.text = [NSString stringWithFormat:@"活动时间：%@-%@", activity.starttime, activity.endtime];
-    cell.conditionLb.text = [NSString stringWithFormat:@"活动资格：%@", activity.qualifications];
-    cell.telephoneLb.text = [NSString stringWithFormat:@"咨询电话：%@", activity.phone];
-    cell.qqLb.text = [NSString stringWithFormat:@"咨询QQ：%@", activity.qq];
-    [cell.imageIv setImageWithURL:[NSURL URLWithString:activity.imgUrlFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
-    return cell;
 }
 
 - (void)praiseAction:(id)sender
@@ -292,9 +335,14 @@
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if(IS_IPHONE_5)
+    {
     return CGSizeMake(320, 504);
-    
+    }
+    else
+    {
+        return CGSizeMake(320, 416);
+    }
     
 }
 

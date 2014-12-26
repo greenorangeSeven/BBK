@@ -33,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.frame.size.height);
     
     userInfo = [[UserModel Instance] getUserInfo];
     
@@ -65,6 +66,16 @@
     self.scrollView.delegate = self;
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.view.bounds.size.height);
     
+    [self getADVData];
+    [self getNotice];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshed:) name:Notification_RefreshPropertyPageView object:nil];
+}
+
+- (void)refreshed:(NSNotification *)notification
+{
+    [bannerView removeFromSuperview];
+    bannerView = nil;
     [self getADVData];
     [self getNotice];
 }
@@ -232,7 +243,7 @@
                                            }
                                            notices = nil;
                                            [self doneLoadingTableViewData];
-                                           self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.bounds.size.height+1);
+                                           self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 456+1);
                                        }
                                        @catch (NSException *exception) {
                                            [NdUncaughtExceptionHandler TakeException:exception];
@@ -343,6 +354,16 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"返回";
     self.navigationItem.backBarButtonItem = backItem;
+    
+    if ([[[UserModel Instance] getUserInfo].defaultUserHouse.userTypeId intValue] == 0) {
+        self.gatePassBtn.hidden = NO;
+        self.gatePassLb.hidden = NO;
+    }
+    else
+    {
+        self.gatePassBtn.hidden = YES;
+        self.gatePassLb.hidden = YES;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

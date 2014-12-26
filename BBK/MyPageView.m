@@ -21,6 +21,7 @@
 {
     UIWebView *phoneWebView;
     UIImage *userFace;
+    UserInfo *userInfo;
 }
 
 @end
@@ -57,7 +58,6 @@
 
 - (IBAction)telAction:(id)sender
 {
-    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
     NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", userInfo.defaultUserHouse.phone]];
     if (!phoneWebView) {
         phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
@@ -85,6 +85,11 @@
 
 //邀请注册
 - (IBAction)InviteAction:(id)sender {
+    
+    if ([[[UserModel Instance] getUserInfo].defaultUserHouse.userTypeId intValue] != 0) {
+        [Tool showCustomHUD:@"该功能只对业主开放" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        return;
+    }
     InviteView *inviteView = [[InviteView alloc] init];
     inviteView.parentView = self.view;
     inviteView.hidesBottomBarWhenPushed = YES;
@@ -114,6 +119,10 @@
 
 //电子放行单
 - (IBAction)releasepermitActon:(id)sender {
+    if ([[[UserModel Instance] getUserInfo].defaultUserHouse.userTypeId intValue] != 0) {
+        [Tool showCustomHUD:@"该功能只对业主开放" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        return;
+    }
     ReleasepermitView *releaseView = [[ReleasepermitView alloc] init];
     releaseView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:releaseView animated:YES];
@@ -129,11 +138,12 @@
     backItem.title = @"返回";
     self.navigationItem.backBarButtonItem = backItem;
     
-    UserInfo *userInfo = [[UserModel Instance] getUserInfo];
+    userInfo = [[UserModel Instance] getUserInfo];
     [self.userFaceIv setImageWithURL:[NSURL URLWithString:userInfo.photoFull] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
     
     self.userInfoLb.text = [NSString stringWithFormat:@"%@(%@)", userInfo.regUserName, userInfo.mobileNo];
     self.userAddressLb.text = [NSString stringWithFormat:@"%@%@%@--%@", userInfo.defaultUserHouse.cellName, userInfo.defaultUserHouse.buildingName, userInfo.defaultUserHouse.numberName, userInfo.defaultUserHouse.userTypeName];
+    
 }
 
 #pragma mark VPImageCropperDelegate

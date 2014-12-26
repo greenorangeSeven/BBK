@@ -49,6 +49,57 @@
     [self.navigationController pushViewController:register1 animated:YES];
 }
 
+- (IBAction)findPasswordAction:(id)sender {
+    NSString *mobileStr = self.mobileNoTf.text;
+    if (![mobileStr isValidPhoneNum]) {
+        [Tool showCustomHUD:@"手机号错误" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        return;
+    }
+    self.findPasswordBtn.enabled = NO;
+    //生成登陆URL
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    [param setValue:mobileStr forKey:@"mobileNo"];
+    NSString *findUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findPassword] params:param];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:findUrl]];
+    [request setUseCookiePersistence:NO];
+    [request setTimeOutSeconds:30];
+    [request setDelegate:self];
+    [request setDidFailSelector:@selector(requestFailed:)];
+    [request setDidFinishSelector:@selector(requestFindPassword:)];
+    [request startAsynchronous];
+    
+    request.hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"密码找回中..." andView:self.view andHUD:request.hud];
+}
+
+- (void)requestFindPassword:(ASIHTTPRequest *)request
+{
+    if (request.hud) {
+        [request.hud hide:YES];
+    }
+    
+    [request setUseCookiePersistence:YES];
+    NSData *data = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
+    if ([state isEqualToString:@"0000"] == NO) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                     message:[[json objectForKey:@"header"] objectForKey:@"msg"]
+                                                    delegate:nil
+                                           cancelButtonTitle:@"确定"
+                                           otherButtonTitles:nil];
+        [av show];
+        self.findPasswordBtn.enabled = YES;
+        return;
+    }
+    else
+    {
+        [Tool showCustomHUD:@"新密码已发送至您的手机" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+    }
+}
+
 - (IBAction)loginAction:(id)sender {
     NSString *mobileStr = self.mobileNoTf.text;
     NSString *pwdStr = self.passwordTf.text;
@@ -100,7 +151,6 @@
     NSData *data = [request.responseString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    NSLog(request.responseString);
     NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
     if ([state isEqualToString:@"0000"] == NO) {
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"

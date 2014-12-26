@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userInfoLb;
 @property (weak, nonatomic) IBOutlet UILabel *userAddressLb;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *orderContentPlaceholder;
 @property (weak, nonatomic) IBOutlet UITextView *orderContentTv;
 @property (weak, nonatomic) IBOutlet UILabel *orderDateLb;

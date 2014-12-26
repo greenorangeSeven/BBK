@@ -10,6 +10,7 @@
 #import "ExpressCell.h"
 #import "ExpressHistoryView.h"
 #import "UIImageView+WebCache.h"
+#import "CommDetailView.h"
 
 @interface ExpressView ()
 {
@@ -405,6 +406,15 @@
 - (IBAction)expressHistoryAction:(id)sender {
     ExpressHistoryView *historyView = [[ExpressHistoryView alloc] init];
     [self.navigationController pushViewController:historyView animated:YES];
+}
+
+- (IBAction)kd100Action:(id)sender {
+    NSString *pushDetailHtm = @"http://m.kuaidi100.com";
+    CommDetailView *detailView = [[CommDetailView alloc] init];
+    detailView.titleStr = @"快递物流查询";
+    detailView.urlStr = pushDetailHtm;
+    detailView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailView animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

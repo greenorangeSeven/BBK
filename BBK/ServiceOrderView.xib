@@ -10,6 +10,7 @@
                 <outlet property="orderContentPlaceholder" destination="Ylt-fV-Yi4" id="obd-p5-mZF"/>
                 <outlet property="orderContentTv" destination="64C-eG-u5c" id="tBS-vN-6Sf"/>
                 <outlet property="orderDateLb" destination="eC7-Xk-J3K" id="6KR-aI-taz"/>
+                <outlet property="scrollView" destination="ABB-4A-5QS" id="yqW-Lk-clH"/>
                 <outlet property="submitOrderBtn" destination="Omh-Rg-4Oo" id="dUS-cL-3dr"/>
                 <outlet property="userAddressLb" destination="GK3-7X-I7x" id="yUD-z7-w3e"/>
                 <outlet property="userFaceIv" destination="mOX-fs-HBG" id="U3z-1l-71P"/>
@@ -24,7 +25,7 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ABB-4A-5QS">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="9DG-5p-N95">
                             <rect key="frame" x="0.0" y="6" width="320" height="81"/>

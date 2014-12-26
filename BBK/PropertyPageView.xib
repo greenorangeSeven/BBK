@@ -8,6 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PropertyPageView">
             <connections>
                 <outlet property="advIv" destination="sJn-T4-uao" id="8tf-tG-pNG"/>
+                <outlet property="gatePassBtn" destination="Cm3-yK-P7y" id="8NR-kc-Q1c"/>
+                <outlet property="gatePassLb" destination="8OC-CL-l82" id="pdt-sT-UTf"/>
                 <outlet property="noticeTitleLb" destination="0cq-Ck-Wud" id="hZb-su-v7S"/>
                 <outlet property="scrollView" destination="UOn-5I-q9O" id="Hx3-S0-VNo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -231,7 +233,7 @@
             </subviews>
             <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="127" y="-463"/>
+            <point key="canvasLocation" x="-4" y="-483"/>
         </view>
     </objects>
     <resources>

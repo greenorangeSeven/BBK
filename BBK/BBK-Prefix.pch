@@ -40,10 +40,12 @@
 #define AppSecret @"Hr54hiz7"
 
 //#define api_base_url @"http://192.168.1.27:8080/zhxq_api/"
-#define api_base_url @"http://114.215.145.29:8080/zhxq_api/"
-//#define api_base_url @"http://222.243.129.39:802/zhxq_api/"
+//#define api_base_url @"http://114.215.145.29:8080/zhxq_api/"
+#define api_base_url @"http://222.243.129.39:802/zhxq_api/"
 //登录接口
 #define api_login @"regUser/login.htm"
+//找回密码
+#define api_findPassword @"regUser/findPassword.htm"
 //查询城市接口
 #define api_findAllCity @"params/findAllCity.htm"
 //查询城市小区接口
@@ -203,6 +205,7 @@
 #define BorrowRecordCellIdentifier @"BorrowRecordCellIdentifier"
 #define GatePassInfoCellIdentifier @"GatePassInfoCellIdentifier"
 #define ActivityCollectionCellIdentifier @"ActivityCollectionCellIdentifier"
+#define Activity_35CollectionCellIdentifier @"Activity_35CollectionCellIdentifier"
 #define CircleOfFriendsFullCellIdentifier @"CircleOfFriendsFullCellIdentifier"
 #define CircleOfFriendsReplyCellIdentifier @"CircleOfFriendsReplyCellIdentifier"
 #define PaymentCellIdentifier @"PaymentCellIdentifier"
@@ -220,6 +223,10 @@
 #define Notification_RefreshMyInbox @"Notification_RefreshMyInbox"
 #define Notification_RefreshTopic @"Notification_RefreshTopic"
 #define Notification_RefreshTrade @"Notification_RefreshTrade"
+#define Notification_RefreshPropertyPageView @"Notification_RefreshPropertyPageView"
+#define Notification_RefreshLifePageView @"Notification_LifePageView"
+#define Notification_RefreshSettingPageView @"Notification_RefreshSettingPageView"
+
 
 
 #define UserInfoCache @"UserInfoCache"

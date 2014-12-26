@@ -151,7 +151,7 @@
         }
         userInfo.nickName = self.nickNameTf.text;
         [userModel saveUserInfo:userInfo];
-        [Tool showCustomHUD:@"修改成功" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:2];
+        [Tool showCustomHUD:@"修改成功" andView:self.parentView  andImage:@"37x-Failure.png" andAfterDelay:2];
         [self.navigationController popViewControllerAnimated:YES];
     }
     self.navigationItem.rightBarButtonItem.enabled = YES;

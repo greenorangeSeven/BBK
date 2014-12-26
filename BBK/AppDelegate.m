@@ -29,6 +29,9 @@
 BMKMapManager* _mapManager;
 
 @interface AppDelegate ()
+{
+    NSString *appPath;
+}
 
 @end
 
@@ -139,52 +142,7 @@ BMKMapManager* _mapManager;
     void (^successBlock)(void) = ^(void){
         //成功之后的处理
         NSLog(@"[XGPush]handleLaunching's successBlock");
-        //角标清0
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-        //清除所有通知(包含本地通知)
-        [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        NSString *type = [self.pushInfo  objectForKey:@"type"];
-        if ([type isEqualToString:@"notice"] == YES)
-        {
-            NSString *pushDetailHtm = [NSString stringWithFormat:@"%@%@", api_base_url, [self.pushInfo  objectForKey:@"url"]];
-            CommDetailView *detailView = [[CommDetailView alloc] initWithNibName:@"CommDetailView" bundle:nil];
-            detailView.present = @"present";
-            detailView.titleStr = @"物业通知";
-            detailView.urlStr = pushDetailHtm;
-            UINavigationController *detailViewNav = [[UINavigationController alloc] initWithRootViewController:detailView];
-            [self.window.rootViewController presentViewController:detailViewNav animated:YES completion:^{
-                _isForeground = NO;
-            }];
-        }
-        else if ([type isEqualToString:@"express"] == YES)
-        {
-            ExpressView *expressView = [[ExpressView alloc] initWithNibName:@"ExpressView" bundle:nil];
-            expressView.present = @"present";
-            UINavigationController *noticeViewNav = [[UINavigationController alloc] initWithRootViewController:expressView];
-            [self.window.rootViewController presentViewController:noticeViewNav animated:YES completion:^{
-                _isForeground = NO;
-            }];
-        }
-        else if ([type isEqualToString:@"repair"] == YES)
-        {
-            RepairDetailView *repairDetail = [[RepairDetailView alloc] initWithNibName:@"RepairDetailView" bundle:nil];
-            repairDetail.present = @"present";
-            repairDetail.repairWorkId = [self.pushInfo objectForKey:@"id"];
-            UINavigationController *repairDetailNav = [[UINavigationController alloc] initWithRootViewController:repairDetail];
-            [self.window.rootViewController presentViewController:repairDetailNav animated:YES completion:^{
-                _isForeground = NO;
-            }];
-        }
-        else if ([type isEqualToString:@"suit"] == YES)
-        {
-            SuitDetailView *suitDetail = [[SuitDetailView alloc] initWithNibName:@"SuitDetailView" bundle:nil];
-            suitDetail.present = @"present";
-            suitDetail.suitWorkId = [self.pushInfo objectForKey:@"id"];
-            UINavigationController *suitDetailNav = [[UINavigationController alloc] initWithRootViewController:suitDetail];
-            [self.window.rootViewController presentViewController:suitDetailNav animated:YES completion:^{
-                _isForeground = NO;
-            }];
-        }
+        [self pushNotificationHandle];
     };
     
     void (^errorBlock)(void) = ^(void){
@@ -199,13 +157,10 @@ BMKMapManager* _mapManager;
     [XGPush handleLaunching:launchOptions successCallback:successBlock errorCallback:errorBlock];
     //信鸽END
     
+    [self checkVersionUpdate];
+    
     return YES;
 }
-
-//- (void)integrationXG
-//{
-//    
-//}
 
 - (void)userLogin
 {
@@ -423,6 +378,7 @@ BMKMapManager* _mapManager;
         {
             NSString *alertStr = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
             UIAlertView *notificationAlert = [[UIAlertView alloc] initWithTitle:@"推送消息" message:alertStr delegate:self cancelButtonTitle:@"忽略" otherButtonTitles:@"查看", nil];
+            notificationAlert.tag = 1;
             [notificationAlert show];
         }
         
@@ -491,14 +447,6 @@ BMKMapManager* _mapManager;
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    if (buttonIndex == 1) {
-        [self pushNotificationHandle];
-    }
-}
-
 //信鸽
 
 - (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
@@ -544,6 +492,74 @@ BMKMapManager* _mapManager;
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+//版本更新
+- (void)checkVersionUpdate
+{
+    //如果有网络连接
+    if ([UserModel Instance].isNetworkRunning) {
+        //生成版本更新URL
+        NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+        [param setValue:@"0" forKey:@"sysType"];
+        NSString *findSysUpdateUrl = [Tool serializeURL:[NSString stringWithFormat:@"%@%@", api_base_url, api_findSysUpdate] params:param];
+        
+        [[AFOSCClient sharedClient]getPath:findSysUpdateUrl parameters:Nil
+                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       @try {
+                                           NSData *data = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+                                           NSError *error;
+                                           NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                           
+                                           NSString *state = [[json objectForKey:@"header"] objectForKey:@"state"];
+                                           if ([state isEqualToString:@"0000"] == NO) {
+                                               UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                                                            message:[[json objectForKey:@"header"] objectForKey:@"msg"]
+                                                                                           delegate:nil
+                                                                                  cancelButtonTitle:@"确定"
+                                                                                  otherButtonTitles:nil];
+                                               [av show];
+                                               return;
+                                           }
+                                           else
+                                           {
+                                               NSString *appversion = [[json objectForKey:@"data"] objectForKey:@"version"];
+                                               appPath = [[json objectForKey:@"data"] objectForKey:@"fileurl"];
+                                               if( [appversion intValue] > [AppVersionCode intValue])
+                                               {
+                                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"悦生活有新版了\n您需要更新吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+                                                   alert.tag = 0;
+                                                   [alert show];
+                                               }
+                                           }
+                                       }
+                                       @catch (NSException *exception) {
+                                           [NdUncaughtExceptionHandler TakeException:exception];
+                                       }
+                                       @finally {
+                                       }
+                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                       NSLog(@"获取出错");
+                                       
+                                       if ([UserModel Instance].isNetworkRunning == NO) {
+                                           return;
+                                       }
+                                   }];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        if (alertView.tag == 0)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appPath]];
+        }
+        else if (alertView.tag == 1) {
+            [self pushNotificationHandle];
+        }
+        
+    }
 }
 
 @end

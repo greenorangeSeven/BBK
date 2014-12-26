@@ -122,6 +122,9 @@
         [XGPush setTag:defaultUserHouse.cellId];
         
         [self.tableView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_RefreshPropertyPageView object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_RefreshLifePageView object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_RefreshSettingPageView object:nil];
     }
 }
 

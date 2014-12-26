@@ -204,9 +204,9 @@
         if ([shopType.shopTypeId isEqualToString:@"-1"]) {
             return;
         }
-//        ConvenienceTableView *shopTableView = [[ConvenienceTableView alloc] init];
-//        shopTableView.type = shopType;
-//        [self.navigationController pushViewController:shopTableView animated:YES];
+        self.typeId = shopType.shopTypeId;
+        isLoadOver = NO;
+        [self reload:NO];
     }
 }
 
@@ -421,6 +421,11 @@
         [param setValue:@"20" forKey:@"countPerPages"];
         if (self.typeId != nil && [self.typeId length] > 0) {
             [param setValue:self.typeId forKey:@"shopTypeId"];
+        }
+        else
+        {
+            [param setValue:@"0" forKey:@"classType"];
+            
         }
         if(latitude > 0)
         {

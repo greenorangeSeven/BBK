@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (IBAction)expressHistoryAction:(id)sender;
+- (IBAction)kd100Action:(id)sender;
 
 - (void)refreshExpressData:(BOOL)noRefresh;
 

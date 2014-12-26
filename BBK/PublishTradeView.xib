@@ -12,17 +12,18 @@
                 <outlet property="contentTv" destination="29A-Qm-9uR" id="alA-bI-SS2"/>
                 <outlet property="phoneTf" destination="RbN-Bg-Ddg" id="6pd-kW-hvD"/>
                 <outlet property="priceTf" destination="yZs-PE-y4i" id="VgJ-7V-6tc"/>
+                <outlet property="scrollView" destination="bQf-XL-Cjd" id="BgC-Ot-1LM"/>
                 <outlet property="titleTf" destination="zjg-vw-xfV" id="sah-cr-0gc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="471"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="bQf-XL-Cjd">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="471"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="SVw-Ce-pka">
@@ -156,8 +157,8 @@
                 </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="311" y="162"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="311" y="113.5"/>
         </view>
     </objects>
     <resources>

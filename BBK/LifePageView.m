@@ -43,11 +43,11 @@
     self.navigationItem.rightBarButtonItem = btnTel;
     
     //适配iOS7uinavigationbar遮挡tableView的问题
-    if(IS_IOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
+//    if(IS_IOS7)
+//    {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+//    }
     
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     
@@ -68,6 +68,15 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     
     topics = [[NSMutableArray alloc] initWithCapacity:2];
+    [self getADVData];
+    [self refreshCircleOfFriendsData:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshed:) name:Notification_RefreshLifePageView object:nil];
+}
+
+- (void)refreshed:(NSNotification *)notification
+{
+    [bannerView removeFromSuperview];
+    bannerView = nil;
     [self getADVData];
     [self refreshCircleOfFriendsData:YES];
 }
