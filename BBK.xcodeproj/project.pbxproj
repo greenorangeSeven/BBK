@@ -92,6 +92,8 @@
 		14753FBC1A4B9DA0002533E6 /* InviteRegisterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14753FBA1A4B9DA0002533E6 /* InviteRegisterView.xib */; };
 		14753FC31A4CFD31002533E6 /* Activity_35CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14753FC11A4CFD31002533E6 /* Activity_35CollectionCell.m */; };
 		14753FC41A4CFD31002533E6 /* Activity_35CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14753FC21A4CFD31002533E6 /* Activity_35CollectionCell.xib */; };
+		14753FC81A4D41AB002533E6 /* PopularityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14753FC61A4D41AB002533E6 /* PopularityView.m */; };
+		14753FC91A4D41AB002533E6 /* PopularityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14753FC71A4D41AB002533E6 /* PopularityView.xib */; };
 		148AD7D01A3EC5F700290203 /* BorrowGoodFromView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148AD7CE1A3EC5F700290203 /* BorrowGoodFromView.m */; };
 		148AD7D11A3EC5F700290203 /* BorrowGoodFromView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 148AD7CF1A3EC5F700290203 /* BorrowGoodFromView.xib */; };
 		148AD7D61A3F1B3500290203 /* BorrowRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 148AD7D51A3F1B3500290203 /* BorrowRecord.m */; };
@@ -589,6 +591,9 @@
 		14753FC01A4CFD31002533E6 /* Activity_35CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity_35CollectionCell.h; sourceTree = "<group>"; };
 		14753FC11A4CFD31002533E6 /* Activity_35CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity_35CollectionCell.m; sourceTree = "<group>"; };
 		14753FC21A4CFD31002533E6 /* Activity_35CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Activity_35CollectionCell.xib; sourceTree = "<group>"; };
+		14753FC51A4D41AB002533E6 /* PopularityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularityView.h; sourceTree = "<group>"; };
+		14753FC61A4D41AB002533E6 /* PopularityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularityView.m; sourceTree = "<group>"; };
+		14753FC71A4D41AB002533E6 /* PopularityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularityView.xib; sourceTree = "<group>"; };
 		148AD7CD1A3EC5F700290203 /* BorrowGoodFromView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorrowGoodFromView.h; sourceTree = "<group>"; };
 		148AD7CE1A3EC5F700290203 /* BorrowGoodFromView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorrowGoodFromView.m; sourceTree = "<group>"; };
 		148AD7CF1A3EC5F700290203 /* BorrowGoodFromView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorrowGoodFromView.xib; sourceTree = "<group>"; };
@@ -1183,6 +1188,9 @@
 				142D9E341A41B55700EF59A1 /* CircleOfFriendsView.h */,
 				142D9E351A41B55700EF59A1 /* CircleOfFriendsView.m */,
 				142D9E361A41B55700EF59A1 /* CircleOfFriendsView.xib */,
+				14753FC51A4D41AB002533E6 /* PopularityView.h */,
+				14753FC61A4D41AB002533E6 /* PopularityView.m */,
+				14753FC71A4D41AB002533E6 /* PopularityView.xib */,
 				142D9E401A41D47B00EF59A1 /* CircleOfFriendsFullCell.h */,
 				142D9E411A41D47B00EF59A1 /* CircleOfFriendsFullCell.m */,
 				142D9E421A41D47B00EF59A1 /* CircleOfFriendsFullCell.xib */,
@@ -2448,6 +2456,7 @@
 				14C117C11A359C7B009CAC7E /* AddRepairView.xib in Resources */,
 				142D9E0D1A3FD68D00EF59A1 /* PushGatePassView.xib in Resources */,
 				14FDB4481A25B73A006EFFCC /* Images.xcassets in Resources */,
+				14753FC91A4D41AB002533E6 /* PopularityView.xib in Resources */,
 				144A1AE11A2FF37D00E01E2B /* GoodBorrowView.xib in Resources */,
 				149575721A2CA2D100320CF8 /* PropertyPageView.xib in Resources */,
 				14B4D42C1A39D04A00933A5A /* RepairBasicCell.xib in Resources */,
@@ -2695,6 +2704,7 @@
 				14FDB9B41A26C94E006EFFCC /* FMResultSet.m in Sources */,
 				14FDB97A1A26C94E006EFFCC /* NSObject+SBJSON.m in Sources */,
 				14FDB97C1A26C94E006EFFCC /* SBJSON.m in Sources */,
+				14753FC81A4D41AB002533E6 /* PopularityView.m in Sources */,
 				142D9E281A40743500EF59A1 /* Activity.m in Sources */,
 				14FDB9E41A26C94F006EFFCC /* NSObject+RMArchivable.m in Sources */,
 				1406D0041A490AD000CF3FEE /* ReleasepermitCell.m in Sources */,

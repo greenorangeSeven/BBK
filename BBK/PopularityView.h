@@ -1,14 +1,14 @@
 //
-//  CircleOfFriendsView.h
+//  PopularityView.h
 //  BBK
 //
-//  Created by Seven on 14-12-17.
+//  Created by Seven on 14-12-26.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface CircleOfFriendsView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface PopularityView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 {
     NSMutableArray *topics;
     BOOL isLoading;
@@ -22,13 +22,8 @@
     int selectRow;
 }
 
-@property (weak, nonatomic) IBOutlet UILabel *recordNumLb;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-//人气榜
-- (IBAction)popularityAction:(id)sender;
-//发布
-- (IBAction)publicTopicAction:(id)sender;
 - (void)reload:(BOOL)noRefresh;
 
 //清空

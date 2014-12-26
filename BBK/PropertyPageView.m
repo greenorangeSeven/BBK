@@ -243,7 +243,13 @@
                                            }
                                            notices = nil;
                                            [self doneLoadingTableViewData];
-                                           self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 456+1);
+                                           if (IS_IPHONE_5) {
+                                               self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.view.bounds.size.height + 1);
+                                           }
+                                           else
+                                           {
+                                               self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, 456+1);
+                                           }
                                        }
                                        @catch (NSException *exception) {
                                            [NdUncaughtExceptionHandler TakeException:exception];
@@ -253,8 +259,6 @@
                                        }
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        NSLog(@"列表获取出错");
-                                       
-                                       
                                        if ([UserModel Instance].isNetworkRunning == NO) {
                                            return;
                                        }

@@ -43,11 +43,11 @@
     self.navigationItem.rightBarButtonItem = btnTel;
     
     //适配iOS7uinavigationbar遮挡tableView的问题
-//    if(IS_IOS7)
-//    {
-//        self.edgesForExtendedLayout = UIRectEdgeNone;
-//        self.automaticallyAdjustsScrollViewInsets = NO;
-//    }
+    if(IS_IOS7)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
     
