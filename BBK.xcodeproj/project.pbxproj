@@ -2851,7 +2851,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "7b1d6c5a-d6ac-4139-b9e0-18d9422cc111";
+				PROVISIONING_PROFILE = "4a98ca29-834f-4183-be40-4453fb7fab39";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2889,7 +2889,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "7b1d6c5a-d6ac-4139-b9e0-18d9422cc111";
+				PROVISIONING_PROFILE = "4a98ca29-834f-4183-be40-4453fb7fab39";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2927,7 +2927,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b1d6c5a-d6ac-4139-b9e0-18d9422cc111";
+				PROVISIONING_PROFILE = "4a98ca29-834f-4183-be40-4453fb7fab39";
 			};
 			name = Debug;
 		};
@@ -2963,7 +2963,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b1d6c5a-d6ac-4139-b9e0-18d9422cc111";
+				PROVISIONING_PROFILE = "4a98ca29-834f-4183-be40-4453fb7fab39";
 			};
 			name = Release;
 		};
@@ -2971,7 +2971,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2983,7 +2983,7 @@
 				INFOPLIST_FILE = BBKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
+				PROVISIONING_PROFILE = "793fd9da-cbf0-4132-ad4a-a801f275ce44";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBK.app/BBK";
 			};
 			name = Debug;
@@ -2992,7 +2992,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WEN XIKE (KPRX6RYNKY)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -3000,7 +3000,7 @@
 				INFOPLIST_FILE = BBKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6c2175ae-a9f1-4afe-9cc4-4a3704a93bd4";
+				PROVISIONING_PROFILE = "793fd9da-cbf0-4132-ad4a-a801f275ce44";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BBK.app/BBK";
 			};
 			name = Release;
