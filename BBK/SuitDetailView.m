@@ -216,7 +216,7 @@
         cell.repalyContentLb.frame = contentFrame;
         
         CGRect bottomFrame = cell.repalyContentFrameView.frame;
-        bottomFrame.origin.y += reply.viewAddHeight;
+        bottomFrame.size.height += reply.viewAddHeight;
         cell.repalyContentFrameView.frame = bottomFrame;
         return cell;
     }

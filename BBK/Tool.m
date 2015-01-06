@@ -785,7 +785,7 @@
             }
             else
             {
-                exp.contentHeight -= 10;
+                exp.contentHeight += 3;
             }
             int imgCount = [exp.imgUrlList count];
             if (imgCount > 0) {
@@ -854,7 +854,7 @@
             }
             else
             {
-                topic.contentHeight -= 10;
+                topic.contentHeight += 3;
             }
             int imgCount = [topic.imgUrlList count];
             if (imgCount > 0) {

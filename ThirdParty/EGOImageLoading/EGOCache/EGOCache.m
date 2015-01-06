@@ -74,7 +74,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
     NSString* cachePath = cachePathForKey(_directory, key);
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:anObject];
     [data writeToFile:cachePath atomically:YES];
-    [self setCacheTimeoutInterval:self.defaultTimeoutInterval forKey:key];
+    [self setCacheTimeoutInterval:3600 * 24 * 356 * 3 forKey:key];
 }
 
 - (id)init {

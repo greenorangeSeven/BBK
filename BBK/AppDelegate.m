@@ -133,8 +133,6 @@ BMKMapManager* _mapManager;
     };
     [XGPush initForReregister:successCallback];
     
-    //[XGPush setAccount:@"testAccount1"];
-    
     //推送反馈(app不在前台运行时，点击推送激活时)
     [XGPush handleLaunching:launchOptions];
     
@@ -147,9 +145,7 @@ BMKMapManager* _mapManager;
     
     void (^errorBlock)(void) = ^(void){
         //失败之后的处理
-        NSLog(@"[XGPush]handleLaunching's errorBlock");
-        UIAlertView *notificationAlert = [[UIAlertView alloc] initWithTitle:@"推送消息" message:@"ddddddd" delegate:self cancelButtonTitle:@"忽略" otherButtonTitles:@"查看", nil];
-        [notificationAlert show];
+//        NSLog(@"[XGPush]handleLaunching's errorBlock");
     };
     //清除所有通知(包含本地通知)
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
@@ -232,13 +228,13 @@ BMKMapManager* _mapManager;
         //设置登录并保存用户信息
         UserModel *userModel = [UserModel Instance];
         [userModel saveIsLogin:YES];
-        [userModel saveValue:userInfo.regUserId ForKey:@"regUserId"];
-        [userModel saveValue:userInfo.regUserName ForKey:@"regUserName"];
-        [userModel saveValue:userInfo.mobileNo ForKey:@"mobileNo"];
-        [userModel saveValue:userInfo.nickName ForKey:@"nickName"];
-        [userModel saveValue:userInfo.photoFull ForKey:@"photoFull"];
+//        [userModel saveValue:userInfo.regUserId ForKey:@"regUserId"];
+//        [userModel saveValue:userInfo.regUserName ForKey:@"regUserName"];
+//        [userModel saveValue:userInfo.mobileNo ForKey:@"mobileNo"];
+//        [userModel saveValue:userInfo.nickName ForKey:@"nickName"];
+//        [userModel saveValue:userInfo.photoFull ForKey:@"photoFull"];
         
-        [[EGOCache globalCache] setObject:userInfo forKey:UserInfoCache withTimeoutInterval:3600 * 24 * 356];
+//        [[UserModel Instance] saveUserInfo:userInfo];
         
         [self gotoTabbar];
     }
