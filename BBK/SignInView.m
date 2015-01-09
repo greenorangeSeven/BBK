@@ -124,7 +124,7 @@
 }
 
 - (IBAction)luckyDrawAction:(id)sender {
-    NSString *lotteryHtm = [NSString stringWithFormat:@"%@%@%@", api_base_url, htm_lottery , userInfo.regUserId];
+    NSString *lotteryHtm = [NSString stringWithFormat:@"%@%@accessId=%@&userId=%@", api_base_url, htm_lottery, Appkey, userInfo.regUserId];
     CommDetailView *detailView = [[CommDetailView alloc] init];
     detailView.titleStr = @"抽奖";
     detailView.urlStr = lotteryHtm;
