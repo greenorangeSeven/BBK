@@ -128,7 +128,8 @@
         return 230.0 + basic.viewAddHeight ;
     }
     else if (row == 1) {
-        return 72.0 ;
+        RepairDispatch *dispatch = [detailItems objectAtIndex:row];
+        return 144.0 + dispatch.viewAddHeight ;
     }
     else if (row == 2) {
         RepairFinish *finish = [detailItems objectAtIndex:row];
@@ -217,6 +218,14 @@
         RepairDispatch *dispatch = [detailItems objectAtIndex:row];
         cell.dispatchTimeLb.text = dispatch.starttime;
         cell.dispatchManLb.text = [NSString stringWithFormat:@"%@(%@)", dispatch.repairmanName, dispatch.mobileNo];
+        cell.runContentLb.text = dispatch.runContent;
+        CGRect contentFrame = cell.runContentLb.frame;
+        contentFrame.size.height = dispatch.contentHeight;
+        cell.runContentLb.frame = contentFrame;
+        
+        CGRect contentViewFrame = cell.runContentView.frame;
+        contentViewFrame.size.height += dispatch.viewAddHeight;
+        cell.runContentView.frame = contentViewFrame;
         return cell;
     }
     else if (row == 2) {

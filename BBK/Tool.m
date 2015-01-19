@@ -1082,6 +1082,18 @@
                 dispatch.mobileNo = basic.mobileNo;
                 dispatch.starttimeStamp = [[basic.repairRunList objectAtIndex:l] objectForKey:@"starttimeStamp"];
                 dispatch.starttime = [self TimestampToDateStr:[dispatch.starttimeStamp stringValue] andFormatterStr:@"yyyy年MM月dd日 HH:mm"];
+                //物业回复
+                dispatch.runContent = [[basic.repairRunList objectAtIndex:l] objectForKey:@"runContent"];
+                dispatch.contentHeight = [self getTextHeight:304 andUIFont:[UIFont fontWithName:@"Arial-BoldItalicMT" size:14] andText:dispatch.runContent];
+                if (dispatch.contentHeight < 36)
+                {
+                    dispatch.contentHeight = 36;
+                    dispatch.viewAddHeight = 0;
+                }
+                else
+                {
+                    dispatch.viewAddHeight = dispatch.contentHeight - 36;
+                }
                 //添加报修派单数据
                 [items addObject:dispatch];
             }

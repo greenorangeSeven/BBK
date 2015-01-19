@@ -12,5 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *dispatchTimeLb;
 @property (weak, nonatomic) IBOutlet UILabel *dispatchManLb;
+@property (weak, nonatomic) IBOutlet UILabel *runContentLb;
+@property (weak, nonatomic) IBOutlet UIView *runContentView;
 
 @end
