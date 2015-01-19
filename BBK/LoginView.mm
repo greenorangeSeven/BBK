@@ -17,6 +17,7 @@
 #import "SettingPageView.h"
 #import "AppDelegate.h"
 #import "XGPush.h"
+#import "VisitorView.h"
 
 @interface LoginView ()
 
@@ -71,6 +72,11 @@
     
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"密码找回中..." andView:self.view andHUD:request.hud];
+}
+
+- (IBAction)visitorAction:(id)sender {
+    VisitorView *vsitorView = [[VisitorView alloc] init];
+    [self.navigationController pushViewController:vsitorView animated:YES];
 }
 
 - (void)requestFindPassword:(ASIHTTPRequest *)request

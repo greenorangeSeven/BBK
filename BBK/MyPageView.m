@@ -212,7 +212,11 @@
     {
         userFace = nil;
         NSString *userPhoto = [json objectForKey:@"data"];
-        [[UserModel Instance] saveValue:userPhoto ForKey:@"photoFull"];
+        [self.userFaceIv setImageWithURL:[NSURL URLWithString:userPhoto] placeholderImage:[UIImage imageNamed:@"default_head.png"]];
+//        [[UserModel Instance] saveValue:userPhoto ForKey:@"photoFull"];
+        userInfo.photoFull = userPhoto;
+        UserModel *userModel = [UserModel Instance];
+        [userModel saveUserInfo:userInfo];
     }
 }
 

@@ -20,5 +20,6 @@
 - (IBAction)loginAction:(id)sender;
 - (IBAction)registerAction:(id)sender;
 - (IBAction)findPasswordAction:(id)sender;
+- (IBAction)visitorAction:(id)sender;
 
 @end

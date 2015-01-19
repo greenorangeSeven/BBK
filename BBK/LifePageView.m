@@ -586,7 +586,7 @@
 
 //步步高商城
 - (IBAction)pushBuBuGaoWeb:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.bubugao.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://yunhou.com/"]];
 }
 
 //家有喜事（服务预约）
